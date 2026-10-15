@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Catálogo Navidad 2024 — Criscolor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap">
+<style>
+/* ─── TOKENS ─── */
+:root {
+  --blue: #1A1FD4;
+  --blue-dark: #1318a8;
+  --blue-light: #e8e9fb;
+  --blue-mid: #3d42e0;
+  --red: #d41a1a;
+  --gold: #c9a44e;
+  --gold-light: #f5e9c8;
+  --white: #ffffff;
+  --off-white: #f8f8fc;
+  --grey-100: #f3f3f8;
+  --grey-200: #e8e8f0;
+  --grey-400: #9898b8;
+  --grey-600: #555570;
+  --grey-800: #22223a;
+  --text: #1a1a2e;
+  --bg: #ffffff;
+  --card-bg: #f8f8fc;
+  --border: #e2e2ef;
+  --shadow: 0 2px 16px rgba(26,31,212,0.08);
+  --shadow-hover: 0 8px 40px rgba(26,31,212,0.18);
+  --radius: 16px;
+  --radius-sm: 8px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e0e1a;
+    --card-bg: #16162a;
+    --off-white: #16162a;
+    --grey-100: #1e1e32;
+    --grey-200: #28284a;
+    --border: #2a2a50;
+    --text: #f0f0ff;
+    --grey-600: #aaaacc;
+    --grey-800: #ddddff;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e0e1a; --card-bg: #16162a; --off-white: #16162a;
+  --grey-100: #1e1e32; --grey-200: #28284a; --border: #2a2a50;
+  --text: #f0f0ff; --grey-600: #aaaacc; --grey-800: #ddddff;
+  color-scheme: dark;
+}
+
+/* ─── RESET ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ─── LAYOUT HELPERS ─── */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.15;
+}
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--grey-600);
+  margin-top: 0.5rem;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.badge-blue { background: var(--blue); color: #fff; }
+.badge-gold { background: var(--gold); color: #fff; }
+.badge-outline { background: transparent; border: 1.5px solid var(--border); color: var(--grey-600); }
+
+/* ─── NAVIGATION ─── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .nav { background: rgba(14,14,26,0.95); }
+}
+:root[data-theme="dark"] .nav { background: rgba(14,14,26,0.95); }
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  gap: 24px;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-shrink: 0;
+}
+.logo-box {
+  display: flex;
+  align-items: center;
+}
+.logo-cris {
+  background: var(--blue);
+  color: #fff;
+  font-weight: 900;
+  font-size: 1.4rem;
+  padding: 4px 10px;
+  letter-spacing: -0.02em;
+}
+.logo-color {
+  color: var(--blue);
+  font-weight: 900;
+  font-size: 1.4rem;
+  letter-spacing: -0.02em;
+  padding-left: 2px;
+}
+.nav-search {
+  flex: 1;
+  max-width: 400px;
+  position: relative;
+}
+.nav-search input {
+  width: 100%;
+  padding: 10px 16px 10px 42px;
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  background: var(--grey-100);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s;
+}
+.nav-search input:focus {
+  border-color: var(--blue);
+  background: var(--bg);
+  box-shadow: 0 0 0 3px rgba(26,31,212,0.1);
+}
+.nav-search-icon {
+  position: absolute;
+  left: 14px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--grey-400);
+  pointer-events: none;
+}
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 100px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--blue);
+  color: #fff;
+}
+.btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); box-shadow: var(--shadow-hover); }
+.btn-outline {
+  border: 1.5px solid var(--border);
+  color: var(--text);
+}
+.btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  max-height: 900px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  margin-top: 72px;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('magnific__cinematic-wideangle-product-photography-of-a-massi__4528.png');
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.05);
+  transition: transform 8s ease;
+}
+.hero:hover .hero-bg { transform: scale(1); }
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, rgba(10,12,80,0.88) 0%, rgba(10,12,80,0.6) 50%, rgba(10,12,80,0.2) 100%);
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding-left: max(48px, env(safe-area-inset-left, 0px));
+  padding-right: max(48px, env(safe-area-inset-right, 0px));
+  max-width: 780px;
+}
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero-tag-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.3); }
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+.hero h1 span { color: var(--gold); }
+.hero-desc {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: rgba(255,255,255,0.8);
+  max-width: 540px;
+  margin-bottom: 36px;
+  line-height: 1.7;
+}
+.hero-ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.btn-hero-primary {
+  background: var(--blue);
+  color: #fff;
+  font-size: 1rem;
+  padding: 14px 30px;
+  border-radius: 100px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+.btn-hero-primary:hover { background: var(--blue-mid); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(26,31,212,0.4); }
+.btn-hero-outline {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  border: 1.5px solid rgba(255,255,255,0.35);
+  font-size: 1rem;
+  padding: 14px 30px;
+  border-radius: 100px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+.btn-hero-outline:hover { background: rgba(255,255,255,0.2); }
+.hero-stats {
+  position: absolute;
+  bottom: 40px;
+  left: 0; right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  z-index: 2;
+}
+.hero-stat {
+  padding: 16px 32px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.2);
+  text-align: center;
+  border-right: none;
+}
+.hero-stat:first-child { border-radius: 12px 0 0 12px; }
+.hero-stat:last-child { border-radius: 0 12px 12px 0; border-right: 1px solid rgba(255,255,255,0.2); }
+.hero-stat-num {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #fff;
+  display: block;
+}
+.hero-stat-label {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.65);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  display: block;
+}
+
+/* ─── B2B BANNER ─── */
+.b2b-banner {
+  background: var(--blue);
+  padding: 20px 0;
+  overflow: hidden;
+}
+.b2b-ticker {
+  display: flex;
+  gap: 48px;
+  animation: ticker 30s linear infinite;
+  width: max-content;
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.b2b-ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255,255,255,0.85);
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.b2b-ticker-item strong { color: #fff; font-weight: 700; }
+.ticker-dot {
+  width: 5px; height: 5px;
+  background: var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ─── FAMILIAS GRID ─── */
+.families-section {
+  padding: 100px 0 80px;
+  background: var(--off-white);
+}
+.families-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+.families-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+.family-card {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  background: var(--grey-200);
+}
+.family-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+.family-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.family-card:hover img { transform: scale(1.06); }
+.family-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,12,60,0.92) 0%, rgba(10,12,60,0.3) 60%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+}
+.family-card-num {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.family-card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.family-card-refs {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 14px;
+}
+.family-card-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--blue);
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  width: fit-content;
+  transition: all 0.2s;
+}
+.family-card-btn:hover { background: var(--blue-mid); }
+
+/* ─── FEATURED PRODUCTS ─── */
+.featured-section {
+  padding: 100px 0;
+  background: var(--bg);
+}
+.featured-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+.product-card {
+  background: var(--card-bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+}
+.product-card:hover {
+  border-color: var(--blue);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+}
+.product-card-img {
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--grey-100);
+  position: relative;
+}
+.product-card-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.product-card:hover .product-card-img img { transform: scale(1.08); }
+.product-card-family-tag {
+  position: absolute;
+  top: 12px; left: 12px;
+  background: var(--blue);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 100px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.product-card-body {
+  padding: 18px;
+}
+.product-card-ref {
+  font-size: 0.75rem;
+  color: var(--grey-400);
+  font-weight: 500;
+  margin-bottom: 4px;
+  font-family: 'Inter', monospace;
+  letter-spacing: 0.04em;
+}
+.product-card-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+.product-card-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.spec-chip {
+  background: var(--grey-100);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 0.72rem;
+  color: var(--grey-600);
+  font-weight: 500;
+}
+.product-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.product-card-ean {
+  font-size: 0.7rem;
+  color: var(--grey-400);
+  font-family: 'Inter', monospace;
+}
+.product-card-view {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--blue);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* ─── PRODUCT DETAIL MODAL ─── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,12,60,0.7);
+  backdrop-filter: blur(6px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.modal {
+  background: var(--bg);
+  border-radius: 20px;
+  max-width: 860px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: translateY(20px) scale(0.97);
+  transition: transform 0.25s ease;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.3);
+}
+.modal-overlay.active .modal { transform: translateY(0) scale(1); }
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 28px 0;
+}
+.modal-close {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--grey-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  font-size: 1.2rem;
+  transition: all 0.2s;
+}
+.modal-close:hover { background: var(--border); }
+.modal-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  padding: 24px 28px 32px;
+}
+@media (max-width: 640px) { .modal-body { grid-template-columns: 1fr; } }
+.modal-img {
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 1;
+  background: var(--grey-100);
+}
+.modal-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.modal-info { display: flex; flex-direction: column; gap: 16px; }
+.modal-family { font-size: 0.78rem; font-weight: 700; color: var(--blue); letter-spacing: 0.1em; text-transform: uppercase; }
+.modal-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+.modal-desc { font-size: 0.92rem; color: var(--grey-600); line-height: 1.65; }
+.modal-ficha {
+  background: var(--grey-100);
+  border-radius: 12px;
+  padding: 18px;
+  display: grid;
+  gap: 12px;
+}
+.modal-ficha-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--grey-600);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+  margin-bottom: 2px;
+}
+.modal-ficha-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.modal-ficha-key { font-size: 0.83rem; color: var(--grey-600); font-weight: 500; }
+.modal-ficha-val { font-size: 0.9rem; color: var(--text); font-weight: 700; font-family: 'Inter', monospace; text-align: right; }
+.modal-mayorista-note {
+  background: var(--blue-light);
+  border: 1.5px solid rgba(26,31,212,0.2);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 0.82rem;
+  color: var(--blue-dark);
+  font-weight: 500;
+  line-height: 1.5;
+}
+.modal-contact-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--blue);
+  color: #fff;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+  margin-top: auto;
+}
+.modal-contact-btn:hover { background: var(--blue-dark); }
+
+/* ─── SEARCH RESULTS ─── */
+.search-results {
+  position: fixed;
+  top: 72px; left: 0; right: 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  z-index: 999;
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  box-shadow: var(--shadow);
+}
+.search-results.active { max-height: 400px; }
+.search-results-inner {
+  padding: 20px max(20px, env(safe-area-inset-left, 0px));
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+.search-result-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.search-result-item:hover { background: var(--grey-100); }
+.search-result-img {
+  width: 48px; height: 48px;
+  border-radius: 8px;
+  background: var(--grey-200);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.search-result-img img { width: 100%; height: 100%; object-fit: cover; }
+.search-result-name { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+.search-result-ref { font-size: 0.75rem; color: var(--grey-400); }
+.search-no-results { padding: 24px; text-align: center; color: var(--grey-600); font-size: 0.9rem; }
+
+/* ─── FILTERS ─── */
+.filters-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 20px 0 0;
+}
+.filter-chip {
+  padding: 8px 18px;
+  border-radius: 100px;
+  border: 1.5px solid var(--border);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--grey-600);
+  transition: all 0.2s;
+  background: var(--bg);
+}
+.filter-chip:hover, .filter-chip.active {
+  background: var(--blue);
+  color: #fff;
+  border-color: var(--blue);
+}
+
+/* ─── B2B INFO SECTION ─── */
+.b2b-section {
+  padding: 80px 0;
+  background: var(--blue);
+  position: relative;
+  overflow: hidden;
+}
+.b2b-section::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+}
+.b2b-section::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: -40px;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+}
+.b2b-content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+@media (max-width: 768px) { .b2b-content { grid-template-columns: 1fr; } }
+.b2b-text .section-title { color: #fff; }
+.b2b-text .section-subtitle { color: rgba(255,255,255,0.7); }
+.b2b-text p { color: rgba(255,255,255,0.8); margin-top: 16px; line-height: 1.7; }
+.b2b-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.b2b-feature {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 14px;
+  padding: 20px;
+  transition: background 0.2s;
+}
+.b2b-feature:hover { background: rgba(255,255,255,0.15); }
+.b2b-feature-icon {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+.b2b-feature-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.b2b-feature-desc {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.5;
+}
+
+/* ─── CONTACT SECTION ─── */
+.contact-section {
+  padding: 100px 0;
+  background: var(--off-white);
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+@media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+.contact-info { display: flex; flex-direction: column; gap: 24px; }
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.contact-icon {
+  width: 48px; height: 48px;
+  background: var(--blue-light);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.contact-item-title { font-weight: 700; color: var(--text); margin-bottom: 2px; }
+.contact-item-val { font-size: 0.9rem; color: var(--grey-600); }
+.contact-form {
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 36px;
+}
+.form-group { margin-bottom: 18px; }
+.form-label {
+  display: block;
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  background: var(--card-bg);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s;
+}
+.form-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,31,212,0.1); }
+.form-input::placeholder { color: var(--grey-400); }
+textarea.form-input { resize: vertical; min-height: 100px; }
+.form-submit {
+  width: 100%;
+  background: var(--blue);
+  color: #fff;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+.form-submit:hover { background: var(--blue-dark); transform: translateY(-1px); box-shadow: var(--shadow-hover); }
+
+/* ─── FOOTER ─── */
+.footer {
+  background: #0a0b1e;
+  padding: 60px 0 32px;
+  color: rgba(255,255,255,0.6);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+@media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+.footer-brand .logo-cris { font-size: 1.2rem; }
+.footer-brand .logo-color { font-size: 1.2rem; }
+.footer-brand p { margin-top: 14px; font-size: 0.85rem; line-height: 1.7; max-width: 280px; }
+.footer-col-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 16px;
+}
+.footer-links { display: flex; flex-direction: column; gap: 10px; }
+.footer-link {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.55);
+  transition: color 0.2s;
+}
+.footer-link:hover { color: #fff; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.footer-copy { font-size: 0.82rem; }
+.footer-b2b-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(26,31,212,0.3);
+  border: 1px solid rgba(26,31,212,0.5);
+  color: rgba(255,255,255,0.8);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* ─── FAMILY PAGE (PANEL) ─── */
+.family-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: var(--bg);
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.family-panel.active { transform: translateX(0); }
+.family-panel-hero {
+  position: relative;
+  height: 360px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.family-panel-hero img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.family-panel-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.75) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 32px;
+}
+.family-panel-back {
+  position: absolute;
+  top: 20px; left: 20px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: all 0.2s;
+  z-index: 2;
+}
+.family-panel-back:hover { background: rgba(255,255,255,0.25); }
+.family-panel-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.family-panel-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.1;
+}
+.family-panel-body {
+  padding: 40px max(20px, env(safe-area-inset-left, 0px)) 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+.family-panel-desc {
+  font-size: 1.05rem;
+  color: var(--grey-600);
+  max-width: 680px;
+  line-height: 1.7;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.family-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .nav-search { display: none; }
+  .hero-stats { display: none; }
+  .families-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .family-card-name { font-size: 1.1rem; }
+  .featured-header { flex-direction: column; align-items: flex-start; }
+  .b2b-features { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .families-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 2.4rem; }
+  .hero-ctas { flex-direction: column; }
+  .btn-hero-primary, .btn-hero-outline { width: 100%; justify-content: center; }
+  .modal-body { grid-template-columns: 1fr; }
+}
+
+/* ─── UTILS ─── */
+.hidden-product { display: none !important; }
+.text-blue { color: var(--blue); }
+.text-gold { color: var(--gold); }
+svg { display: inline-block; vertical-align: middle; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" onclick="showHome()">
+      <img src="logo.png" alt="Criscolor" style="height:44px;width:auto;display:block;">
+    </a>
+
+    <div class="nav-search">
+      <svg class="nav-search-icon" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="text" id="globalSearch" placeholder="Buscar referencia, producto..." oninput="doSearch(this.value)" onfocus="if(this.value) showSearchResults()" onblur="setTimeout(hideSearchResults, 200)">
+    </div>
+
+    <div class="nav-actions">
+      <a href="tel:+34961532109" class="btn btn-outline">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.49 5.68a19.79 19.79 0 01-3.07-8.67A2 2 0 012.4 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.4a16 16 0 006.29 6.29l1.77-.88a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Llamar
+      </a>
+      <a href="#contacto" class="btn btn-primary">
+        Solicitar Catálogo
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Search Results Dropdown -->
+<div class="search-results" id="searchResults">
+  <div class="search-results-inner" id="searchResultsInner"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     MAIN PAGE (HOME)
+════════════════════════════════════════════ -->
+<div id="homePage">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="hero-tag-dot"></span>
+      Catálogo Navidad · Temporada 2024
+    </div>
+    <h1>Todo para la<br><span>Navidad</span><br>en un solo catálogo</h1>
+    <p class="hero-desc">Más de 400 referencias de artículos navideños organizadas en 10 familias de producto. Temporada 2024.</p>
+    <div class="hero-ctas">
+      <a href="#familias" class="btn-hero-primary">
+        Ver Catálogo
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#contacto" class="btn-hero-outline">
+        Solicitar Precios
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="b2b-banner">
+  <div class="b2b-ticker">
+    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>Catálogo Navidad 2024</strong> · 400+ referencias</div>
+    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>10 familias</strong> de producto navideño</div>
+    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>Stock disponible</strong> · Temporada 2024</div>
+    <div class="b2b-ticker-item"><span class="ticker-dot"></span> Desde <strong>Paterna, Valencia</strong> · criscolor.com</div>
+    <div class="b2b-ticker-item"><span class="ticker-dot"></span> Más de <strong>25 años</strong> en el sector</div>
+    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>Catálogo Navidad 2024</strong> · 400+ referencias</div>
+    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>10 familias</strong> de producto navideño</div>
+    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>Stock disponible</strong> · Temporada 2024</div>
+    <div class="b2b-ticker-item"><span class="ticker-dot"></span> Desde <strong>Paterna, Valencia</strong> · criscolor.com</div>
+    <div class="b2b-ticker-item"><span class="ticker-dot"></span> Más de <strong>25 años</strong> en el sector</div>
+  </div>
+</div>
+
+<!-- FAMILIAS -->
+<section class="families-section" id="familias">
+  <div class="container">
+    <div class="families-header">
+      <div class="badge badge-blue" style="margin-bottom:16px">10 Familias de Producto</div>
+      <h2 class="section-title">Colección Navidad 2024</h2>
+      <p class="section-subtitle">Todo lo que necesitas para surtir tu tienda esta temporada navideña</p>
+    </div>
+    <div class="families-grid" id="familiesGrid"></div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="featured-section" id="destacados">
+  <div class="container">
+    <div class="featured-header">
+      <div>
+        <div class="badge badge-gold" style="margin-bottom:12px">Productos Destacados</div>
+        <h2 class="section-title">Referencias Clave</h2>
+        <p class="section-subtitle">Selección de los artículos más vendidos con ficha técnica completa</p>
+      </div>
+      <div class="filters-bar" id="filtersBar"></div>
+    </div>
+    <div class="featured-grid" id="featuredGrid"></div>
+  </div>
+</section>
+
+<!-- EMPRESA -->
+<section class="b2b-section">
+  <div class="container">
+    <div class="b2b-content">
+      <div class="b2b-text">
+        <div class="badge badge-gold" style="margin-bottom:20px">Desde el año 2000</div>
+        <h2 class="section-title">Nuestra esencia en cada detalle</h2>
+        <p>Desde su fundación en el año 2000, Criscolor es un referente en multiproducto para el canal de gran consumo. Nacida con el propósito de revolucionar el sector, nuestra oferta ha crecido y se ha consolidado diversificando productos, creando marcas propias y ampliando nuestra cartera de clientes por todo el territorio nacional e internacional.</p>
+        <p style="margin-top:12px">Más de 25 años de trayectoria y una red de más de 25 agentes nacionales nos avalan. Contamos con instalaciones de más de 20.000 m² en Paterna, Valencia, donde un equipo humano de más de 60 personas trabaja cada día.</p>
+      </div>
+      <div class="b2b-features">
+        <div class="b2b-feature">
+          <div class="b2b-feature-icon">✦</div>
+          <div class="b2b-feature-title">Calidad</div>
+          <div class="b2b-feature-desc">Nuestra meta diaria. Cada referencia pasa por un proceso de selección riguroso antes de llegar a tu almacén.</div>
+        </div>
+        <div class="b2b-feature">
+          <div class="b2b-feature-icon">♻</div>
+          <div class="b2b-feature-title">Sostenibilidad</div>
+          <div class="b2b-feature-desc">Comprometidos con la comercialización de productos cada vez más respetuosos con el planeta.</div>
+        </div>
+        <div class="b2b-feature">
+          <div class="b2b-feature-icon">🌍</div>
+          <div class="b2b-feature-title">Presencia Internacional</div>
+          <div class="b2b-feature-desc">Agentes en Francia, Portugal, Marruecos, Centro América e Italia. 7.123 clientes en 13 países.</div>
+        </div>
+        <div class="b2b-feature">
+          <div class="b2b-feature-icon">📈</div>
+          <div class="b2b-feature-title">Crecimiento Continuo</div>
+          <div class="b2b-feature-desc">9% de crecimiento anual sostenido. 4.250 referencias en catálogo y ampliando temporada a temporada.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contacto">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:56px">
+      <div class="badge badge-blue" style="margin-bottom:16px">Contacto Comercial</div>
+      <h2 class="section-title">Solicita tu catálogo<br>y precios</h2>
+      <p class="section-subtitle">Rellena el formulario o llámanos directamente. Te atendemos en 24h.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-item-title">Dirección</div>
+            <div class="contact-item-val">PARC EMPRESARIAL TÀCTICA<br>Carrer de l'Algepser, 125<br>46980 Paterna, Valencia</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-item-title">Teléfono Comercial</div>
+            <div class="contact-item-val">(+34) 961 53 21 09<br>L-V de 8:00 a 13:30 y de 15:30 a 18:00</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-item-title">Email</div>
+            <div class="contact-item-val">comercial@criscolor.com</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🌐</div>
+          <div>
+            <div class="contact-item-title">Web Corporativa</div>
+            <div class="contact-item-val">www.criscolor.com</div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <h3 style="font-size:1.3rem;font-weight:700;margin-bottom:24px">Solicitar información</h3>
+        <div class="form-group">
+          <label class="form-label">Nombre / Empresa *</label>
+          <input type="text" class="form-input" placeholder="Tu empresa o nombre">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Teléfono *</label>
+          <input type="tel" class="form-input" placeholder="600 000 000">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" placeholder="correo@empresa.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tipo de negocio</label>
+          <select class="form-input">
+            <option value="">Selecciona...</option>
+            <option>Bazar / Todo a 1€</option>
+            <option>Ferretería</option>
+            <option>Papelería</option>
+            <option>Mayorista / Distribuidor</option>
+            <option>Tienda de regalos</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mensaje</label>
+          <textarea class="form-input" placeholder="¿Qué familias o referencias te interesan?"></textarea>
+        </div>
+        <button class="form-submit" onclick="submitForm()">
+          Enviar solicitud
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="logo.png" alt="Criscolor" style="height:40px;width:auto;display:block;filter:brightness(0) invert(1);opacity:0.85;">
+        <p>Artículos de regalo, fiesta y temporada desde Paterna, Valencia. Más de 25 años en el sector.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Familias</div>
+        <div class="footer-links">
+          <a href="#" class="footer-link" onclick="openFamily(0)">Artículos de Regalo</a>
+          <a href="#" class="footer-link" onclick="openFamily(1)">Globos</a>
+          <a href="#" class="footer-link" onclick="openFamily(2)">Figuras para Pintar</a>
+          <a href="#" class="footer-link" onclick="openFamily(3)">Pegatinas y Etiquetas</a>
+          <a href="#" class="footer-link" onclick="openFamily(4)">Cajas</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Más Familias</div>
+        <div class="footer-links">
+          <a href="#" class="footer-link" onclick="openFamily(5)">Sacos Navideños</a>
+          <a href="#" class="footer-link" onclick="openFamily(6)">Bolsas de Papel</a>
+          <a href="#" class="footer-link" onclick="openFamily(7)">Papel Regalo</a>
+          <a href="#" class="footer-link" onclick="openFamily(8)">Lazos y Cintas</a>
+          <a href="#" class="footer-link" onclick="openFamily(9)">Cañones y Fiesta</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Empresa</div>
+        <div class="footer-links">
+          <a href="https://www.criscolor.com" class="footer-link" target="_blank">criscolor.com</a>
+          <a href="#contacto" class="footer-link">Contacto Comercial</a>
+          <a href="#familias" class="footer-link">Ver Catálogo</a>
+        </div>
+      </div>
+    </div>
+    <!-- Banner institucional -->
+    <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;margin-bottom:24px;">
+      <img src="banner-eu.png" alt="Generalitat Valenciana · IVACE · Finançat per la Unió Europea · Fons Europeus · Programa FEDER Comunitat Valenciana 2021-2027" style="max-width:100%;height:auto;display:block;background:#fff;padding:10px 16px;border-radius:6px;">
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 CRISCOLOR Distribuciones de Levante, S.L.U. · Paterna, Valencia · Todos los derechos reservados</span>
+    </div>
+  </div>
+</footer>
+
+</div><!-- end homePage -->
+
+<!-- ═══════════════════════════════════════════
+     FAMILY PANEL
+════════════════════════════════════════════ -->
+<div class="family-panel" id="familyPanel">
+  <div class="family-panel-hero">
+    <img id="familyPanelImg" src="" alt="">
+    <div class="family-panel-hero-overlay">
+      <button class="family-panel-back" onclick="closeFamily()">←</button>
+      <div class="family-panel-tag" id="familyPanelTag"></div>
+      <h2 class="family-panel-title" id="familyPanelTitle"></h2>
+    </div>
+  </div>
+  <div class="family-panel-body">
+    <p class="family-panel-desc" id="familyPanelDesc"></p>
+    <div class="family-products-grid" id="familyProductsGrid"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PRODUCT MODAL
+════════════════════════════════════════════ -->
+<div class="modal-overlay" id="productModal" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-family" id="modalFamily"></div>
+        <div class="modal-name" id="modalName"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-img">
+        <img id="modalImg" src="" alt="">
+      </div>
+      <div class="modal-info">
+        <p class="modal-desc" id="modalDesc"></p>
+        <div class="modal-ficha">
+          <div class="modal-ficha-title">Ficha Técnica</div>
+          <div class="modal-ficha-row">
+            <span class="modal-ficha-key">Código Ref.</span>
+            <span class="modal-ficha-val" id="modalRef">—</span>
+          </div>
+          <div class="modal-ficha-row">
+            <span class="modal-ficha-key">Código EAN</span>
+            <span class="modal-ficha-val" id="modalEan">—</span>
+          </div>
+          <div class="modal-ficha-row">
+            <span class="modal-ficha-key">Uds. por Caja</span>
+            <span class="modal-ficha-val" id="modalUds">—</span>
+          </div>
+          <div class="modal-ficha-row" id="modalMedidaRow">
+            <span class="modal-ficha-key">Medida / Tamaño</span>
+            <span class="modal-ficha-val" id="modalMedida">—</span>
+          </div>
+          <div class="modal-ficha-row" id="modalMatRow">
+            <span class="modal-ficha-key">Material</span>
+            <span class="modal-ficha-val" id="modalMat">—</span>
+          </div>
+        </div>
+        <div class="modal-mayorista-note">
+          Contacta con nuestro equipo comercial para conocer precios y condiciones de pedido.
+        </div>
+        <a href="#contacto" class="modal-contact-btn" onclick="closeModal()">
+          Consultar Disponibilidad
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════
+const FAMILIES = [
+  {
+    id: 'regalo',
+    name: 'Artículos de Regalo',
+    desc: 'Decoraciones navideñas, figuras de Papa Noel y Reyes Magos, carteles decorativos, figuras de madera y plantillas. La familia más completa para decorar escaparates y puntos de venta navideños.',
+    img1: 'magnific__professional-product-photography-of-a-curated-flat__4506.png',
+    img2: 'magnific__professional-product-photography-of-a-curated-flat__4507.png',
+    refs: '80+ referencias',
+    color: '#e63946'
+  },
+  {
+    id: 'globos',
+    name: 'Globos',
+    desc: 'Globos foil navideños, globos de látex en colores festivos, gafas de fin de año y accesorios para fiestas. Perfectos para decoración de comercios y eventos navideños.',
+    img1: 'magnific__professional-product-photography-of-a-floating-col__4510.png',
+    img2: 'magnific__professional-product-photography-of-a-floating-col__4511.png',
+    refs: '40+ referencias',
+    color: '#f77f00'
+  },
+  {
+    id: 'figuras',
+    name: 'Figuras para Pintar',
+    desc: 'Figuras navideñas para colorear e personalizar. Actividad perfecta para niños en Navidad. Incluye Papa Noel, renos, bolas de navidad y más motivos navideños en diferentes tamaños.',
+    img1: 'magnific__professional-product-photography-of-a-christmas-fi__4508.png',
+    img2: 'magnific__professional-product-photography-of-a-christmas-fi__4509.png',
+    refs: '25+ referencias',
+    color: '#2d9cdb'
+  },
+  {
+    id: 'pegatinas',
+    name: 'Pegatinas y Etiquetas',
+    desc: 'Pegatinas navideñas, etiquetas de regalo, sobres decorados y accesorios de papelería festiva. Imprescindibles para el packaging navideño de cualquier comercio.',
+    img1: 'magnific__professional-product-photography-of-a-complete-col__4514.png',
+    img2: 'magnific__professional-product-photography-of-a-complete-col__4515.png',
+    refs: '35+ referencias',
+    color: '#6b4226'
+  },
+  {
+    id: 'cajas',
+    name: 'Cajas de Regalo',
+    desc: 'Cajas redondas, rectangulares, metálicas y sets combinados para presentación de regalos. Disponibles en múltiples tamaños y diseños navideños. Ideales para regalos corporativos y uso doméstico.',
+    img1: 'magnific__professional-macro-product-photography-of-a-luxuri__4516.png',
+    img2: 'magnific__professional-macro-product-photography-of-a-luxuri__4517.png',
+    refs: '30+ referencias',
+    color: '#c9a44e'
+  },
+  {
+    id: 'sacos',
+    name: 'Sacos Navideños',
+    desc: 'Sacos de polietileno, poliéster y rafia para regalos navideños. Sacos de Papa Noel y Reyes Magos en diferentes tamaños. Solución perfecta para regalo de juguetes y artículos de gran tamaño.',
+    img1: 'magnific__professional-product-photography-of-an-organized-d__4518.png',
+    img2: 'magnific__professional-product-photography-of-an-organized-d__4519.png',
+    refs: '20+ referencias',
+    color: '#1A1FD4'
+  },
+  {
+    id: 'bolsas',
+    name: 'Bolsas de Papel y Cristal',
+    desc: 'Bolsas kraft, bolsas de personajes Disney y Marvel, bolsas metálicas, bolsas de Navidad y Reyes Magos, bolsas cristal transparentes y decoradas, envelopes kraft y cajas de vino de cartón.',
+    img1: 'magnific__professional-product-photography-of-a-curated-flat__4520.png',
+    img2: 'magnific__professional-product-photography-of-a-curated-flat__4521.png',
+    refs: '60+ referencias',
+    color: '#d4a017'
+  },
+  {
+    id: 'papel',
+    name: 'Papel de Regalo',
+    desc: 'Rollos en todos los formatos: 70CMx2M hasta 10M de largo, bobinas de polipropileno 62CM y 31CM, papel kraft, PP metalizado y Navidad. Licencias Disney, Marvel (Stitch, Mickey, Vengadores) y diseños exclusivos.',
+    img1: 'magnific__hazla-en-fondo-blanco__4522.png',
+    img2: 'magnific__hazla-en-fondo-blanco__4523.png',
+    refs: '90+ referencias',
+    color: '#e63946'
+  },
+  {
+    id: 'lazos',
+    name: 'Lazos y Cintas',
+    desc: 'Lazos estrella metalizados y adhesivos en tamaños 10mm, 14mm y 19mm. Lazos automáticos de 30mm y 50mm en toda la gama de colores. Cintas decorativas 5mm y 10mm en bobinas de 20m a 500m. Bobinas de rafia.',
+    img1: 'magnific__professional-product-photography-of-a-complete-gif__4526.png',
+    img2: 'magnific__professional-product-photography-of-a-complete-gif__4527.png',
+    refs: '80+ referencias',
+    color: '#c9a44e'
+  },
+  {
+    id: 'canones',
+    name: 'Cañones de Fiesta',
+    desc: 'Cañones de confeti, serpentinas, tiras metalizadas, banderas de España, cañones money, mariposas y pétalos rojos. Disponibles en 30cm, 40cm y 60cm. Accesorios: máquina cierra bolsas, viruta de celofán y porex.',
+    img1: 'magnific__professional-product-photography-of-a-premium-chri__4512.png',
+    img2: 'magnific__professional-product-photography-of-a-premium-chri__4513.png',
+    refs: '50+ referencias',
+    color: '#e63946'
+  }
+];
+
+const PRODUCTS = [
+  // REGALO
+  { id:'p1', family:'regalo', familyName:'Artículos de Regalo', name:'Kit Decoración Navidad Madera 12 Piezas', ref:'02115', ean:'8436539021152', uds:12, medida:'Surtido', mat:'Madera pintada', desc:'Set de 12 figuras decorativas navideñas en madera. Incluye Papa Noel, renos, estrellas y copos de nieve. Ideal para escaparates y decoración navideña.', img:'magnific__professional-product-photography-of-a-curated-flat__4506.png' },
+  { id:'p2', family:'regalo', familyName:'Artículos de Regalo', name:'Figura Papa Noel Articulado 30cm', ref:'02240', ean:'8436539022408', uds:12, medida:'30cm altura', mat:'Poliresina', desc:'Figura articulada de Papa Noel de 30cm de altura. Acabado detallado con traje rojo y barba blanca. Incluye saco de regalos.', img:'magnific__professional-product-photography-of-a-curated-flat__4507.png' },
+  { id:'p3', family:'regalo', familyName:'Artículos de Regalo', name:'Cartel Decorativo "Feliz Navidad" Grande', ref:'02301', ean:'8436539023019', uds:12, medida:'40x25cm', mat:'MDF lacado', desc:'Cartel decorativo con texto "Feliz Navidad" en relieve. Incluye cuerda para colgar. Apto para escaparates y decoración interior.', img:'magnific__professional-product-photography-of-a-curated-flat__4506.png' },
+
+  // GLOBOS
+  { id:'p4', family:'globos', familyName:'Globos', name:'Globo Foil "Feliz Navidad" 45cm', ref:'05121', ean:'8436539051219', uds:12, medida:'45cm diámetro', mat:'Aluminio foil', desc:'Globo foil plateado con texto navideño. Incluye sistema de autoinflado. Sin helio.', img:'magnific__professional-product-photography-of-a-floating-col__4510.png' },
+  { id:'p5', family:'globos', familyName:'Globos', name:'Set Globos Látex Navidad 10 Uds Surtidos', ref:'05203', ean:'8436539052031', uds:12, medida:'30cm inflados', mat:'Látex natural', desc:'Pack de 10 globos de látex en colores navideños: rojo, verde, dorado y blanco. Sin imprimir. Decoración versátil.', img:'magnific__professional-product-photography-of-a-floating-col__4511.png' },
+
+  // FIGURAS
+  { id:'p6', family:'figuras', familyName:'Figuras para Pintar', name:'Figura Yeso Reyes Magos Set 3 Piezas', ref:'06403', ean:'8436539064031', uds:12, medida:'15-20cm', mat:'Yeso blanco', desc:'Set de 3 Reyes Magos en yeso para pintar. Actividad creativa ideal para Navidad. Incluye base estable. Apto para colores acrílicos.', img:'magnific__professional-product-photography-of-a-christmas-fi__4508.png' },
+  { id:'p7', family:'figuras', familyName:'Figuras para Pintar', name:'Figura Yeso Papa Noel Grande', ref:'06411', ean:'8436539064114', uds:12, medida:'20cm altura', mat:'Yeso blanco', desc:'Figura de Papa Noel en yeso de 20cm para pintar y decorar. Ideal como manualidad navideña para niños. Alta resistencia.', img:'magnific__professional-product-photography-of-a-christmas-fi__4509.png' },
+
+  // PEGATINAS
+  { id:'p8', family:'pegatinas', familyName:'Pegatinas y Etiquetas', name:'Set Etiquetas Regalo Navidad 50 Uds', ref:'07601', ean:'8436539076014', uds:12, medida:'50 uds/pack', mat:'Papel adhesivo', desc:'Pack de 50 etiquetas autoadhesivas de regalo con motivos navideños. Surtido de diseños y colores. Ideales para marcar regalos.', img:'magnific__professional-product-photography-of-a-complete-col__4514.png' },
+  { id:'p9', family:'pegatinas', familyName:'Pegatinas y Etiquetas', name:'Rollo Pegatinas Navidad 100 Uds', ref:'07625', ean:'8436539076250', uds:12, medida:'100 uds/rollo', mat:'Papel adhesivo', desc:'Rollo de 100 pegatinas navideñas en formato práctico. Incluye Papa Noel, renos, bolas y copos de nieve. Fácil dispensación.', img:'magnific__professional-product-photography-of-a-complete-col__4515.png' },
+
+  // CAJAS
+  { id:'p10', family:'cajas', familyName:'Cajas de Regalo', name:'Caja Redonda Metal Navidad Grande', ref:'08502', ean:'8436539085024', uds:6, medida:'30cm diámetro', mat:'Metal litografiado', desc:'Caja metálica redonda con diseño navideño litografiado. Tapa abisagrada. Ideal para presentar surtidos de turrones, polvorones y dulces navideños.', img:'magnific__professional-macro-product-photography-of-a-luxuri__4516.png' },
+  { id:'p11', family:'cajas', familyName:'Cajas de Regalo', name:'Set Cajas Cartón Kraft 3 Tamaños', ref:'08615', ean:'8436539086151', uds:12, medida:'S/M/L (3 uds)', mat:'Cartón kraft', desc:'Set de 3 cajas de cartón kraft en tamaños pequeño, mediano y grande. Diseño minimalista apto para todo tipo de regalos. Fondo de montaje automático.', img:'magnific__professional-macro-product-photography-of-a-luxuri__4517.png' },
+
+  // SACOS
+  { id:'p12', family:'sacos', familyName:'Sacos Navideños', name:'Saco Papa Noel Poliéster 80x60cm', ref:'09105', ean:'8436539091054', uds:12, medida:'80x60cm', mat:'Poliéster', desc:'Saco navideño de tela de poliéster con imagen de Papa Noel. Cierre con cordón. Reutilizable y lavable. Ideal para juguetes y regalos grandes.', img:'magnific__professional-product-photography-of-an-organized-d__4518.png' },
+  { id:'p13', family:'sacos', familyName:'Sacos Navideños', name:'Saco Reyes Magos Polietileno 100x70cm', ref:'09203', ean:'8436539092030', uds:12, medida:'100x70cm', mat:'Polietileno', desc:'Saco transparente de polietileno impreso con motivos de Reyes Magos. Tapa sellada con adhesivo. Perfecto para grandes regalos de Navidad y Reyes.', img:'magnific__professional-product-photography-of-an-organized-d__4519.png' },
+
+  // BOLSAS
+  { id:'p14', family:'bolsas', familyName:'Bolsas de Papel y Cristal', name:'Bolsa Papel Kraft Navidad Surtida 12 Uds', ref:'10302', ean:'8436539103023', uds:12, medida:'Surtido S/M/L', mat:'Papel kraft 120g', desc:'Pack de 12 bolsas de papel kraft con diseños navideños surtidos. Asas de cuerda. Gramaje 120g para alta resistencia. Con fuelle lateral.', img:'magnific__professional-product-photography-of-a-curated-flat__4520.png' },
+  { id:'p15', family:'bolsas', familyName:'Bolsas de Papel y Cristal', name:'Bolsa Papel Personaje Stitch Navidad', ref:'10445', ean:'8436539104450', uds:12, medida:'33x26x12cm', mat:'Papel couché 150g', desc:'Bolsa de papel con licencia oficial Stitch (Disney) en diseño navideño. Alta calidad de impresión. Asas de cinta plana. Caja de 12 unidades.', img:'magnific__professional-product-photography-of-a-curated-flat__4521.png' },
+
+  // PAPEL REGALO
+  { id:'p16', family:'papel', familyName:'Papel de Regalo', name:'Rollo Papel Regalo Navidad 70CMx3M Surtido', ref:'44500', ean:'8435621445008', uds:12, medida:'70CM x 3M', mat:'Papel impreso 60g', desc:'Rollo de papel de regalo con diseños navideños surtidos (estrellas, renos, copos). Medida estándar 70cm de ancho y 3 metros de largo. Ideal para todo tipo de regalos.', img:'magnific__hazla-en-fondo-blanco__4522.png' },
+  { id:'p17', family:'papel', familyName:'Papel de Regalo', name:'Rollo Papel Kraft 100CMx3M Natural', ref:'44680', ean:'8436539446801', uds:6, medida:'100CM x 3M', mat:'Papel kraft 70g', desc:'Rollo de papel kraft natural de 1 metro de ancho y 3 metros de largo. Estilo nórdico natural. Compatible con sellos, rotuladores y decoración manual.', img:'magnific__hazla-en-fondo-blanco__4523.png' },
+  { id:'p18', family:'papel', familyName:'Papel de Regalo', name:'Dispensador Doble Bobina 31+62CM', ref:'43749', ean:'8435621437499', uds:6, medida:'Doble 31+62cm', mat:'Metal y plástico', desc:'Dispensador cortador de bobinas de papel doble: compatible con bobinas de 31cm y 62cm simultáneamente. Sistema de corte integrado. Uso profesional para tiendas.', img:'magnific__hazla-en-fondo-blanco__4524.png' },
+
+  // LAZOS
+  { id:'p19', family:'lazos', familyName:'Lazos y Cintas', name:'Lazo Estrella Metalizado Adhesivo 14mm 50 Uds', ref:'06726', ean:'8436539067261', uds:12, medida:'14mm · 50 uds/pack', mat:'Polipropileno metalizado', desc:'Pack de 50 lazos estrella autoadhesivos metalizados de 14mm. Surtido de colores: oro, plata, rojo, azul y verde. Decoración rápida para paquetes de regalo.', img:'magnific__professional-product-photography-of-a-complete-gif__4526.png' },
+  { id:'p20', family:'lazos', familyName:'Lazos y Cintas', name:'Lazo Automático 50MM Oro Granel 30 Uds', ref:'43013', ean:'8435621430134', uds:30, medida:'50mm · Granel', mat:'Polipropileno', desc:'Caja de 30 lazos automáticos de 50mm en color oro. Sistema pull-to-open. Acabado metalizado brillante. Presentación a granel para tiendas y bazares.', img:'magnific__professional-product-photography-of-a-complete-gif__4527.png' },
+  { id:'p21', family:'lazos', familyName:'Lazos y Cintas', name:'Cinta Decorativa Metalizada 5MM x 100M Oro', ref:'42456', ean:'8435621424560', uds:6, medida:'5mm x 100m', mat:'Polipropileno metalizado', desc:'Bobina de cinta decorativa metalizada dorada de 5mm de ancho y 100 metros de largo. Ideal para envolver regalos, decorar cestas y manualidades navideñas.', img:'magnific__professional-product-photography-of-a-complete-gif__4526.png' },
+
+  // CAÑONES
+  { id:'p22', family:'canones', familyName:'Cañones de Fiesta', name:'Cañón Fiesta Tiras Red 60cm', ref:'44255', ean:'8435621442557', uds:12, medida:'60cm longitud', mat:'Metal/Papel', desc:'Cañón de fiesta de 60cm con tiras confeti rojas y doradas. Efecto espectacular al disparar. Ideal para fin de año, bodas y celebraciones navideñas. Uso único.', img:'magnific__professional-product-photography-of-a-premium-chri__4512.png' },
+  { id:'p23', family:'canones', familyName:'Cañones de Fiesta', name:'Cañón Fiesta Serpentina 40cm', ref:'44257', ean:'8435621442571', uds:12, medida:'40cm longitud', mat:'Metal/Papel', desc:'Cañón de serpentinas de colores de 40cm. Disparo de serpentinas multicolor. Efecto visual festivo. Perfecto para nochevieja y fiestas navideñas.', img:'magnific__professional-product-photography-of-a-premium-chri__4513.png' }
+];
+
+// ═══════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  // Set hero background (using CSS instead of img for performance)
+  document.getElementById('heroBg').style.backgroundImage =
+    "url('magnific__cinematic-wideangle-product-photography-of-a-massi__4528.png')";
+
+  renderFamilies();
+  renderFilters();
+  renderProducts(PRODUCTS);
+});
+
+// ═══════════════════════════════════════════
+// FAMILIES
+// ═══════════════════════════════════════════
+function renderFamilies() {
+  const grid = document.getElementById('familiesGrid');
+  grid.innerHTML = FAMILIES.map((f, i) => `
+    <div class="family-card" onclick="openFamily(${i})">
+      <img src="${f.img1}" alt="${f.name}" loading="lazy">
+      <div class="family-card-overlay">
+        <div class="family-card-name">${f.name}</div>
+        <div class="family-card-refs">${f.refs}</div>
+        <div class="family-card-btn">
+          Ver productos
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openFamily(idx) {
+  const f = FAMILIES[idx];
+  document.getElementById('familyPanelImg').src = f.img1;
+  document.getElementById('familyPanelTag').textContent = `${f.refs}`;
+  document.getElementById('familyPanelTitle').textContent = f.name;
+  document.getElementById('familyPanelDesc').textContent = f.desc;
+
+  // Render family's products
+  const familyProds = PRODUCTS.filter(p => p.family === f.id);
+  const grid = document.getElementById('familyProductsGrid');
+  if (familyProds.length) {
+    grid.innerHTML = familyProds.map(p => productCardHTML(p)).join('');
+  } else {
+    grid.innerHTML = '<p style="color:var(--grey-400);font-size:.9rem;">Fichas técnicas disponibles bajo solicitud. Contacta con nuestro equipo comercial.</p>';
+  }
+
+  document.getElementById('familyPanel').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeFamily() {
+  document.getElementById('familyPanel').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// ═══════════════════════════════════════════
+// PRODUCTS
+// ═══════════════════════════════════════════
+function productCardHTML(p) {
+  return `
+    <div class="product-card" onclick="openProduct('${p.id}')">
+      <div class="product-card-img">
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        <div class="product-card-family-tag">${p.familyName}</div>
+      </div>
+      <div class="product-card-body">
+        <div class="product-card-ref">Ref. ${p.ref}</div>
+        <div class="product-card-name">${p.name}</div>
+        <div class="product-card-specs">
+          <span class="spec-chip">📦 ${p.uds} uds/caja</span>
+          ${p.medida ? `<span class="spec-chip">📐 ${p.medida}</span>` : ''}
+          ${p.mat ? `<span class="spec-chip">✦ ${p.mat}</span>` : ''}
+        </div>
+        <div class="product-card-footer">
+          <div class="product-card-ean">EAN: ${p.ean}</div>
+          <div class="product-card-view">
+            Ver ficha
+            <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderProducts(prods) {
+  const grid = document.getElementById('featuredGrid');
+  grid.innerHTML = prods.map(p => productCardHTML(p)).join('');
+}
+
+// ═══════════════════════════════════════════
+// FILTERS
+// ═══════════════════════════════════════════
+function renderFilters() {
+  const bar = document.getElementById('filtersBar');
+  const families = ['Todos', ...FAMILIES.map(f => f.name)];
+  bar.innerHTML = families.map((f, i) => `
+    <button class="filter-chip ${i===0?'active':''}" onclick="filterBy('${f}', this)">
+      ${i===0 ? f : f.split(' ')[0]}
+    </button>
+  `).join('');
+}
+
+function filterBy(familyName, btn) {
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  const filtered = familyName === 'Todos' ? PRODUCTS :
+    PRODUCTS.filter(p => p.familyName === familyName);
+  renderProducts(filtered);
+}
+
+// ═══════════════════════════════════════════
+// PRODUCT MODAL
+// ═══════════════════════════════════════════
+function openProduct(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById('modalFamily').textContent = p.familyName;
+  document.getElementById('modalName').textContent = p.name;
+  document.getElementById('modalImg').src = p.img;
+  document.getElementById('modalDesc').textContent = p.desc;
+  document.getElementById('modalRef').textContent = p.ref;
+  document.getElementById('modalEan').textContent = p.ean;
+  document.getElementById('modalUds').textContent = `${p.uds} unidades`;
+  document.getElementById('modalMedida').textContent = p.medida || '—';
+  document.getElementById('modalMat').textContent = p.mat || '—';
+  document.getElementById('productModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('productModal')) {
+    document.getElementById('productModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+// ═══════════════════════════════════════════
+// SEARCH
+// ═══════════════════════════════════════════
+function doSearch(q) {
+  const panel = document.getElementById('searchResults');
+  const inner = document.getElementById('searchResultsInner');
+  if (!q || q.length < 2) { panel.classList.remove('active'); return; }
+  const results = PRODUCTS.filter(p =>
+    p.name.toLowerCase().includes(q.toLowerCase()) ||
+    p.ref.includes(q) ||
+    p.ean.includes(q) ||
+    p.familyName.toLowerCase().includes(q.toLowerCase())
+  );
+  if (!results.length) {
+    inner.innerHTML = `<div class="search-no-results">No se encontraron productos para "<strong>${q}</strong>"</div>`;
+  } else {
+    inner.innerHTML = results.map(p => `
+      <div class="search-result-item" onclick="openProduct('${p.id}'); hideSearchResults();">
+        <div class="search-result-img"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
+        <div>
+          <div class="search-result-name">${p.name}</div>
+          <div class="search-result-ref">Ref. ${p.ref} · ${p.familyName}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+  panel.classList.add('active');
+}
+
+function showSearchResults() {
+  if (document.getElementById('globalSearch').value.length >= 2) {
+    document.getElementById('searchResults').classList.add('active');
+  }
+}
+function hideSearchResults() {
+  document.getElementById('searchResults').classList.remove('active');
+}
+
+// ═══════════════════════════════════════════
+// MISC
+// ═══════════════════════════════════════════
+function showHome() {
+  closeFamily();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function submitForm() {
+  const btn = event.currentTarget;
+  btn.innerHTML = '✓ Solicitud enviada — te contactaremos en 24h';
+  btn.style.background = '#16a34a';
+  btn.disabled = true;
+}
+
+// Keyboard: Escape closes modals
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeModal();
+    closeFamily();
+  }
+});
+</script>
+</body>
+</html>
