@@ -2,1392 +2,360 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Catálogo Navidad 2026 — Criscolor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Criscolor Navidad 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-/* ─── TOKENS ─── */
 :root {
   --blue: #1A1FD4;
   --blue-dark: #1318a8;
-  --blue-light: #e8e9fb;
-  --blue-mid: #3d42e0;
-  --gold: #c9a44e;
-  --gold-light: #f5e9c8;
-  --white: #ffffff;
-  --off-white: #f5f6ff;
-  --grey-100: #f0f1fb;
-  --grey-200: #e3e4f4;
-  --grey-400: #8888b0;
-  --grey-600: #444468;
-  --grey-800: #1a1a3a;
-  --text: #0d0e1f;
+  --blue-light: #eef0ff;
+  --gold: #c8922a;
+  --gold-light: #fdf6e8;
+  --red: #d42020;
   --bg: #ffffff;
-  --card-bg: #f5f6ff;
-  --border: #ddddf0;
-  --shadow: 0 2px 16px rgba(26,31,212,0.07);
-  --shadow-hover: 0 8px 40px rgba(26,31,212,0.15);
-  --radius: 16px;
-  --radius-sm: 8px;
-  color-scheme: light;
+  --bg2: #f7f8fc;
+  --text: #1a1d2e;
+  --text2: #5a5f7a;
+  --border: #e4e6f0;
+  --grey-100: #f0f1f8;
+  --radius: 14px;
+  --radius-lg: 20px;
+  --shadow: 0 4px 24px rgba(26,31,212,0.10);
+  --shadow-lg: 0 12px 48px rgba(26,31,212,0.16);
 }
-
-/* ─── RESET ─── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body {
-  font-family: 'Inter', system-ui, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-  overflow-x: hidden;
-}
+body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.6; overflow-x: hidden; }
+a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }
-a { color: inherit; text-decoration: none; }
-button { cursor: pointer; border: none; background: none; font-family: inherit; }
 
-/* ─── LAYOUT HELPERS ─── */
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding-left: max(20px, env(safe-area-inset-left, 0px));
-  padding-right: max(20px, env(safe-area-inset-right, 0px));
-}
-.section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 800;
-  color: var(--text);
-  line-height: 1.15;
-}
-.section-subtitle {
-  font-size: 1.05rem;
-  color: var(--grey-600);
-  margin-top: 0.5rem;
-}
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 12px;
-  border-radius: 100px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-.badge-blue { background: var(--blue); color: #fff; }
-.badge-gold { background: var(--gold); color: #fff; }
-.badge-outline { background: transparent; border: 1.5px solid var(--border); color: var(--grey-600); }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+.tag { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; }
+.tag-blue { background: var(--blue-light); color: var(--blue); }
+.tag-gold { background: var(--gold-light); color: var(--gold); }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border-radius: 10px; font-size: 0.875rem; font-weight: 600; cursor: pointer; border: none; transition: all 0.18s; }
+.btn-primary { background: var(--blue); color: #fff; }
+.btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); box-shadow: var(--shadow); }
+.btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
+.btn-outline:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
 
-/* ─── NAVIGATION ─── */
-.nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  transition: all 0.3s ease;
-}
+/* TICKER */
+.ticker-bar { background: var(--blue); color: #fff; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; overflow: hidden; height: 34px; display: flex; align-items: center; }
+.ticker-track { display: flex; gap: 0; white-space: nowrap; animation: ticker 36s linear infinite; }
+.ticker-item { padding: 0 32px; opacity: 0.9; }
+.ticker-item span { margin-left: 32px; opacity: 0.5; }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-.nav-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 72px;
-  gap: 24px;
-  padding-left: max(20px, env(safe-area-inset-left, 0px));
-  padding-right: max(20px, env(safe-area-inset-right, 0px));
-  max-width: 1280px;
-  margin: 0 auto;
-}
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  flex-shrink: 0;
-}
-.logo-box {
-  display: flex;
-  align-items: center;
-}
-.logo-cris {
-  background: var(--blue);
-  color: #fff;
-  font-weight: 900;
-  font-size: 1.4rem;
-  padding: 4px 10px;
-  letter-spacing: -0.02em;
-}
-.logo-color {
-  color: var(--blue);
-  font-weight: 900;
-  font-size: 1.4rem;
-  letter-spacing: -0.02em;
-  padding-left: 2px;
-}
-.nav-search {
-  flex: 1;
-  max-width: 400px;
-  position: relative;
-}
-.nav-search input {
-  width: 100%;
-  padding: 10px 16px 10px 42px;
-  border: 1.5px solid var(--border);
-  border-radius: 100px;
-  background: var(--grey-100);
-  color: var(--text);
-  font-size: 0.9rem;
-  font-family: inherit;
-  outline: none;
-  transition: all 0.2s;
-}
-.nav-search input:focus {
-  border-color: var(--blue);
-  background: var(--bg);
-  box-shadow: 0 0 0 3px rgba(26,31,212,0.1);
-}
-.nav-search-icon {
-  position: absolute;
-  left: 14px; top: 50%;
-  transform: translateY(-50%);
-  color: var(--grey-400);
-  pointer-events: none;
-}
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-shrink: 0;
-}
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 22px;
-  border-radius: 100px;
-  font-size: 0.88rem;
-  font-weight: 600;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-}
-.btn-primary {
-  background: var(--blue);
-  color: #fff;
-}
-.btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); box-shadow: var(--shadow-hover); }
-.btn-outline {
-  border: 1.5px solid var(--border);
-  color: var(--text);
-}
-.btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+/* NAVBAR */
+.navbar { position: sticky; top: 0; z-index: 1000; background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+.nav-logo { display: flex; align-items: center; gap: 10px; }
+.nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+.nav-logo-title { font-size: 0.95rem; font-weight: 800; color: var(--text); }
+.nav-logo-sub { font-size: 0.65rem; font-weight: 500; color: var(--text2); letter-spacing: 0.06em; text-transform: uppercase; }
+.nav-center { display: flex; gap: 4px; }
+.nav-link { padding: 8px 14px; border-radius: 8px; font-size: 0.875rem; font-weight: 500; color: var(--text2); transition: all 0.15s; }
+.nav-link:hover { color: var(--blue); background: var(--blue-light); }
+.nav-actions { display: flex; align-items: center; gap: 10px; }
+.nav-dd { position: relative; }
+.nav-dd-chevron { transition: transform 0.2s ease; }
+.nav-dd.open .nav-dd-chevron { transform: rotate(180deg); }
+.nav-dd-menu { position: absolute; top: calc(100% + 10px); right: 0; background: var(--bg); border: 1.5px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-lg); min-width: 260px; overflow: hidden; opacity: 0; pointer-events: none; transform: translateY(-8px); transition: all 0.18s ease; z-index: 1100; }
+.nav-dd.open .nav-dd-menu { opacity: 1; pointer-events: all; transform: translateY(0); }
+.nav-dd-item { display: flex; align-items: center; gap: 12px; padding: 11px 18px; font-size: 0.875rem; font-weight: 500; color: var(--text); transition: background 0.15s; border-bottom: 1px solid var(--grey-100); cursor: pointer; }
+.nav-dd-item:last-child { border-bottom: none; }
+.nav-dd-item:hover { background: var(--blue-light); color: var(--blue); }
+.nav-dd-num { font-size: 0.7rem; font-weight: 700; color: var(--blue); min-width: 22px; }
 
-/* ─── HERO ─── */
-.hero {
-  position: relative;
-  height: 100vh;
-  min-height: 600px;
-  max-height: 900px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  margin-top: 72px;
-}
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background-image: url('magnific__cinematic-wideangle-product-photography-of-a-massi__4528.png');
-  background-size: cover;
-  background-position: center;
-  transform: scale(1.05);
-  transition: transform 8s ease;
-}
-.hero:hover .hero-bg { transform: scale(1); }
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(105deg, rgba(10,12,80,0.88) 0%, rgba(10,12,80,0.6) 50%, rgba(10,12,80,0.2) 100%);
-}
-.hero-content {
-  position: relative;
-  z-index: 2;
-  padding-left: max(48px, env(safe-area-inset-left, 0px));
-  padding-right: max(48px, env(safe-area-inset-right, 0px));
-  max-width: 780px;
-}
-.hero-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.25);
-  color: #fff;
-  padding: 6px 16px;
-  border-radius: 100px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 24px;
-}
-.hero-tag-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--gold);
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.3); }
-}
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2.8rem, 6vw, 5.5rem);
-  font-weight: 800;
-  color: #fff;
-  line-height: 1.05;
-  margin-bottom: 20px;
-}
-.hero h1 span { color: var(--gold); }
-.hero-desc {
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
-  color: rgba(255,255,255,0.8);
-  max-width: 540px;
-  margin-bottom: 36px;
-  line-height: 1.7;
-}
-.hero-ctas {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.btn-hero-primary {
-  background: var(--blue);
-  color: #fff;
-  font-size: 1rem;
-  padding: 14px 30px;
-  border-radius: 100px;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.2s;
-}
-.btn-hero-primary:hover { background: var(--blue-mid); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(26,31,212,0.4); }
-.btn-hero-outline {
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(8px);
-  color: #fff;
-  border: 1.5px solid rgba(255,255,255,0.35);
-  font-size: 1rem;
-  padding: 14px 30px;
-  border-radius: 100px;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.2s;
-}
-.btn-hero-outline:hover { background: rgba(255,255,255,0.2); }
-.hero-stats {
-  position: absolute;
-  bottom: 40px;
-  left: 0; right: 0;
-  display: flex;
-  justify-content: center;
-  gap: 0;
-  z-index: 2;
-}
-.hero-stat {
-  padding: 16px 32px;
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.2);
-  text-align: center;
-  border-right: none;
-}
-.hero-stat:first-child { border-radius: 12px 0 0 12px; }
-.hero-stat:last-child { border-radius: 0 12px 12px 0; border-right: 1px solid rgba(255,255,255,0.2); }
-.hero-stat-num {
-  font-size: 1.6rem;
-  font-weight: 900;
-  color: #fff;
-  display: block;
-}
-.hero-stat-label {
-  font-size: 0.72rem;
-  color: rgba(255,255,255,0.65);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 500;
-  display: block;
-}
+/* HERO */
+.hero { background: linear-gradient(135deg, #0d1299 0%, #1A1FD4 55%, #2a30e8 100%); min-height: 500px; display: flex; align-items: center; position: relative; overflow: hidden; padding: 80px 0; }
+.hero::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E"); }
+.snow { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.snowflake { position: absolute; top: -10px; color: #fff; opacity: 0.12; animation: fall linear infinite; }
+@keyframes fall { to { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
+.hero-content { position: relative; z-index: 2; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 100px; padding: 6px 16px; margin-bottom: 24px; }
+.hero-eyebrow span { font-size: 0.75rem; font-weight: 600; color: rgba(255,255,255,0.9); letter-spacing: 0.06em; text-transform: uppercase; }
+.hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 20px; }
+.hero h1 .hl { color: #ffd666; }
+.hero-desc { font-size: 1.05rem; color: rgba(255,255,255,0.78); max-width: 520px; margin-bottom: 36px; }
+.hero-stats { display: flex; gap: 36px; flex-wrap: wrap; }
+.hero-stat-num { font-size: 1.8rem; font-weight: 800; color: #fff; line-height: 1; }
+.hero-stat-label { font-size: 0.72rem; color: rgba(255,255,255,0.58); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+.hero-badge { position: absolute; right: 48px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius-lg); padding: 28px; text-align: center; backdrop-filter: blur(8px); min-width: 180px; }
+.hero-badge-icon { font-size: 3rem; margin-bottom: 12px; }
+.hero-badge-title { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.hero-badge-sub { font-size: 0.75rem; color: rgba(255,255,255,0.55); }
 
-/* ─── B2B BANNER ─── */
-.b2b-banner {
-  background: var(--blue);
-  padding: 20px 0;
-  overflow: hidden;
-}
-.b2b-ticker {
-  display: flex;
-  gap: 48px;
-  animation: ticker 30s linear infinite;
-  width: max-content;
-}
-@keyframes ticker {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-.b2b-ticker-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: rgba(255,255,255,0.85);
-  font-size: 0.85rem;
-  font-weight: 500;
-  white-space: nowrap;
-}
-.b2b-ticker-item strong { color: #fff; font-weight: 700; }
-.ticker-dot {
-  width: 5px; height: 5px;
-  background: var(--gold);
-  border-radius: 50%;
-  flex-shrink: 0;
-}
+/* SECTIONS */
+.section { padding: 80px 0; }
+.section-header { text-align: center; margin-bottom: 52px; }
+.section-header h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; color: var(--text); margin: 12px 0 16px; }
+.section-header p { font-size: 1rem; color: var(--text2); max-width: 560px; margin: 0 auto; }
 
-/* ─── FAMILIAS GRID ─── */
-.families-section {
-  padding: 100px 0 80px;
-  background: var(--off-white);
-}
-.families-header {
-  text-align: center;
-  margin-bottom: 60px;
-}
-.families-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 24px;
-}
-.family-card {
-  position: relative;
-  border-radius: var(--radius);
-  overflow: hidden;
-  aspect-ratio: 4/3;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-  transition: all 0.3s ease;
-  background: var(--grey-200);
-}
-.family-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-hover);
-}
-.family-card img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-.family-card:hover img { transform: scale(1.06); }
-.family-card-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(10,12,60,0.92) 0%, rgba(10,12,60,0.3) 60%, transparent 100%);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 24px;
-}
-.family-card-num {
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--gold);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-.family-card-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #fff;
-  line-height: 1.2;
-  margin-bottom: 8px;
-}
-.family-card-refs {
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.65);
-  margin-bottom: 14px;
-}
-.family-card-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--blue);
-  color: #fff;
-  padding: 8px 18px;
-  border-radius: 100px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  width: fit-content;
-  transition: all 0.2s;
-}
-.family-card-btn:hover { background: var(--blue-mid); }
+/* FAMILIES */
+.families-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+.family-card { border-radius: var(--radius-lg); overflow: hidden; border: 1.5px solid var(--border); cursor: pointer; transition: all 0.22s; background: var(--bg); }
+.family-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--blue); }
+.family-card-img { width: 100%; height: 220px; object-fit: cover; background: var(--bg2); }
+.family-card-body { padding: 20px; }
+.family-card-num { font-size: 0.7rem; font-weight: 700; color: var(--blue); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+.family-card-name { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.family-card-desc { font-size: 0.825rem; color: var(--text2); margin-bottom: 16px; }
+.family-card-footer { display: flex; align-items: center; justify-content: space-between; }
+.family-card-count { font-size: 0.8rem; font-weight: 600; color: var(--text2); }
+.family-card-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 600; color: var(--blue); background: var(--blue-light); border-radius: 8px; padding: 6px 14px; transition: all 0.15s; }
+.family-card:hover .family-card-btn { background: var(--blue); color: #fff; }
 
-/* ─── FEATURED PRODUCTS ─── */
-.featured-section {
-  padding: 100px 0;
-  background: var(--bg);
-}
-.featured-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: 48px;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-.featured-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-}
-.product-card {
-  background: var(--card-bg);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  position: relative;
-}
-.product-card:hover {
-  border-color: var(--blue);
-  box-shadow: var(--shadow-hover);
-  transform: translateY(-4px);
-}
-.product-card-img {
-  aspect-ratio: 1;
-  overflow: hidden;
-  background: var(--grey-100);
-  position: relative;
-}
-.product-card-img img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-.product-card:hover .product-card-img img { transform: scale(1.08); }
-.product-card-family-tag {
-  position: absolute;
-  top: 12px; left: 12px;
-  background: var(--blue);
-  color: #fff;
-  font-size: 0.68rem;
-  font-weight: 700;
-  padding: 3px 10px;
-  border-radius: 100px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-.product-card-body {
-  padding: 18px;
-}
-.product-card-ref {
-  font-size: 0.75rem;
-  color: var(--grey-400);
-  font-weight: 500;
-  margin-bottom: 4px;
-  font-family: 'Inter', monospace;
-  letter-spacing: 0.04em;
-}
-.product-card-name {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.3;
-  margin-bottom: 12px;
-}
-.product-card-specs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 14px;
-}
-.spec-chip {
-  background: var(--grey-100);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 3px 8px;
-  font-size: 0.72rem;
-  color: var(--grey-600);
-  font-weight: 500;
-}
-.product-card-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 12px;
-  border-top: 1px solid var(--border);
-}
-.product-card-ean {
-  font-size: 0.7rem;
-  color: var(--grey-400);
-  font-family: 'Inter', monospace;
-}
-.product-card-view {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  color: var(--blue);
-  font-size: 0.8rem;
-  font-weight: 600;
-}
+/* CATALOG */
+.catalog-section { background: var(--bg2); }
+.catalog-toolbar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+.search-box { flex: 1; min-width: 220px; max-width: 360px; display: flex; align-items: center; gap: 10px; background: var(--bg); border: 1.5px solid var(--border); border-radius: 10px; padding: 10px 16px; transition: border-color 0.15s; }
+.search-box:focus-within { border-color: var(--blue); }
+.search-box input { border: none; outline: none; width: 100%; font-size: 0.875rem; font-family: inherit; background: transparent; color: var(--text); }
+.search-box input::placeholder { color: var(--text2); }
+.filter-row { display: flex; gap: 8px; flex-wrap: wrap; flex: 1; }
+.filter-chip { padding: 8px 16px; border-radius: 100px; font-size: 0.8rem; font-weight: 600; border: 1.5px solid var(--border); background: var(--bg); color: var(--text2); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+.filter-chip:hover { border-color: var(--blue); color: var(--blue); }
+.filter-chip.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+.results-info { font-size: 0.825rem; color: var(--text2); margin-bottom: 20px; }
+.results-info strong { color: var(--text); }
+.products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+.product-card { background: var(--bg); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 20px; transition: all 0.18s; }
+.product-card:hover { border-color: var(--blue); box-shadow: var(--shadow); transform: translateY(-2px); }
+.product-card-fam { font-size: 0.68rem; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+.product-card-name { font-size: 0.875rem; font-weight: 600; color: var(--text); margin-bottom: 12px; line-height: 1.4; }
+.product-card-footer { display: flex; align-items: center; justify-content: space-between; }
+.product-card-code { font-size: 0.75rem; color: var(--text2); font-family: 'Courier New', monospace; }
+.product-card-units { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+.product-card-caja { font-size: 0.7rem; color: var(--text2); }
+.product-card-caja strong { color: var(--blue); }
+.product-card-star { display: inline-flex; align-items: center; gap: 4px; margin-top: 10px; font-size: 0.7rem; font-weight: 700; color: var(--gold); background: var(--gold-light); padding: 3px 8px; border-radius: 100px; }
+.load-more-wrap { text-align: center; margin-top: 40px; }
 
-/* ─── PRODUCT DETAIL MODAL ─── */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(10,12,60,0.7);
-  backdrop-filter: blur(6px);
-  z-index: 2000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-}
-.modal-overlay.active {
-  opacity: 1;
-  pointer-events: all;
-}
-.modal {
-  background: var(--bg);
-  border-radius: 20px;
-  max-width: 860px;
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-  transform: translateY(20px) scale(0.97);
-  transition: transform 0.25s ease;
-  box-shadow: 0 32px 80px rgba(0,0,0,0.3);
-}
-.modal-overlay.active .modal { transform: translateY(0) scale(1); }
-.modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 24px 28px 0;
-}
-.modal-close {
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  background: var(--grey-100);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text);
-  font-size: 1.2rem;
-  transition: all 0.2s;
-}
-.modal-close:hover { background: var(--border); }
-.modal-body {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  padding: 24px 28px 32px;
-}
-@media (max-width: 640px) { .modal-body { grid-template-columns: 1fr; } }
-.modal-img {
-  border-radius: 12px;
-  overflow: hidden;
-  aspect-ratio: 1;
-  background: var(--grey-100);
-}
-.modal-img img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-}
-.modal-info { display: flex; flex-direction: column; gap: 16px; }
-.modal-family { font-size: 0.78rem; font-weight: 700; color: var(--blue); letter-spacing: 0.1em; text-transform: uppercase; }
-.modal-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.2;
-}
-.modal-desc { font-size: 0.92rem; color: var(--grey-600); line-height: 1.65; }
-.modal-ficha {
-  background: var(--grey-100);
-  border-radius: 12px;
-  padding: 18px;
-  display: grid;
-  gap: 12px;
-}
-.modal-ficha-title {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--grey-600);
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 10px;
-  margin-bottom: 2px;
-}
-.modal-ficha-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-}
-.modal-ficha-key { font-size: 0.83rem; color: var(--grey-600); font-weight: 500; }
-.modal-ficha-val { font-size: 0.9rem; color: var(--text); font-weight: 700; font-family: 'Inter', monospace; text-align: right; }
-.modal-mayorista-note {
-  background: var(--blue-light);
-  border: 1.5px solid rgba(26,31,212,0.2);
-  border-radius: 10px;
-  padding: 12px 16px;
-  font-size: 0.82rem;
-  color: var(--blue-dark);
-  font-weight: 500;
-  line-height: 1.5;
-}
-.modal-contact-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: var(--blue);
-  color: #fff;
-  padding: 14px;
-  border-radius: 12px;
-  font-weight: 700;
-  font-size: 0.95rem;
-  transition: all 0.2s;
-  margin-top: auto;
-}
-.modal-contact-btn:hover { background: var(--blue-dark); }
+/* DESTACADOS */
+.destacados-section { background: #fff; }
+.destacados-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+.destacado-card { border-radius: var(--radius-lg); overflow: hidden; border: 1.5px solid var(--border); transition: all 0.22s; background: var(--bg); }
+.destacado-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.destacado-placeholder { height: 220px; background: var(--bg2); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; color: var(--text2); }
+.destacado-placeholder-icon { font-size: 2.5rem; opacity: 0.4; }
+.destacado-placeholder-text { font-size: 0.75rem; font-weight: 500; opacity: 0.6; }
+.destacado-body { padding: 20px; }
+.destacado-fam { font-size: 0.7rem; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+.destacado-name { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; line-height: 1.3; }
+.destacado-code { font-size: 0.78rem; color: var(--text2); font-family: 'Courier New', monospace; margin-bottom: 12px; }
+.destacado-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 0.7rem; font-weight: 700; color: var(--gold); background: var(--gold-light); padding: 4px 10px; border-radius: 100px; }
 
-/* ─── FAMILIAS DROPDOWN NAV ─── */
-.nav-familias-dropdown {
-  position: relative;
-}
-.nav-familias-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-}
-.nav-familias-chevron {
-  transition: transform 0.2s ease;
-}
-.nav-familias-dropdown.open .nav-familias-chevron {
-  transform: rotate(180deg);
-}
-.nav-familias-menu {
-  position: absolute;
-  top: calc(100% + 10px);
-  right: 0;
-  background: var(--bg);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: 0 12px 48px rgba(26,31,212,0.13);
-  min-width: 240px;
-  overflow: hidden;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-8px);
-  transition: all 0.18s ease;
-  z-index: 1100;
-}
-.nav-familias-dropdown.open .nav-familias-menu {
-  opacity: 1;
-  pointer-events: all;
-  transform: translateY(0);
-}
-.nav-familias-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 11px 18px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--text);
-  transition: background 0.15s;
-  border-bottom: 1px solid var(--grey-100);
-  cursor: pointer;
-}
-.nav-familias-item:last-child { border-bottom: none; }
-.nav-familias-item:hover { background: var(--blue-light); color: var(--blue); }
-.nav-familias-num {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--blue);
-  letter-spacing: 0.08em;
-  min-width: 20px;
-}
+/* CONTACT */
+.contact-section { background: var(--bg2); }
+.contact-card { background: linear-gradient(135deg, #0d1299, #1A1FD4); border-radius: var(--radius-lg); padding: 60px 48px; display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; }
+.contact-card h2 { font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 12px; }
+.contact-card p { color: rgba(255,255,255,0.75); max-width: 460px; }
+.contact-form { display: flex; flex-direction: column; gap: 14px; min-width: 320px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-input { background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.2); border-radius: 10px; padding: 12px 16px; color: #fff; font-family: inherit; font-size: 0.875rem; outline: none; transition: border-color 0.15s; width: 100%; }
+.form-input::placeholder { color: rgba(255,255,255,0.45); }
+.form-input:focus { border-color: rgba(255,255,255,0.6); }
+.btn-white { background: #fff; color: var(--blue); font-weight: 700; width: 100%; justify-content: center; }
+.btn-white:hover { background: #f0f1ff; transform: translateY(-1px); }
 
-/* ─── SEARCH RESULTS ─── */
-.search-results {
-  position: fixed;
-  top: 72px; left: 0; right: 0;
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  z-index: 999;
-  padding: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  box-shadow: var(--shadow);
-}
-.search-results.active { max-height: 400px; }
-.search-results-inner {
-  padding: 20px max(20px, env(safe-area-inset-left, 0px));
-  max-width: 1280px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 12px;
-}
-.search-result-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 14px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background 0.15s;
-}
-.search-result-item:hover { background: var(--grey-100); }
-.search-result-img {
-  width: 48px; height: 48px;
-  border-radius: 8px;
-  background: var(--grey-200);
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.search-result-img img { width: 100%; height: 100%; object-fit: cover; }
-.search-result-name { font-size: 0.85rem; font-weight: 600; color: var(--text); }
-.search-result-ref { font-size: 0.75rem; color: var(--grey-400); }
-.search-no-results { padding: 24px; text-align: center; color: var(--grey-600); font-size: 0.9rem; }
+/* FOOTER */
+.footer { background: var(--text); color: rgba(255,255,255,0.6); padding: 48px 0 28px; }
+.footer-top { display: flex; gap: 48px; flex-wrap: wrap; margin-bottom: 36px; }
+.footer-brand { flex: 1; min-width: 200px; }
+.footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.footer-logo-text { font-size: 0.9rem; font-weight: 700; color: rgba(255,255,255,0.85); }
+.footer-desc { font-size: 0.825rem; line-height: 1.6; max-width: 240px; }
+.footer-col h4 { font-size: 0.8rem; font-weight: 700; color: rgba(255,255,255,0.9); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.footer-col ul li a { font-size: 0.825rem; color: rgba(255,255,255,0.55); transition: color 0.15s; }
+.footer-col ul li a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 0.78rem; }
 
-/* ─── FILTERS ─── */
-.filters-bar {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  padding: 20px 0 0;
+@media (max-width: 900px) {
+  .contact-card { grid-template-columns: 1fr; }
+  .hero-badge { display: none; }
+  .form-row { grid-template-columns: 1fr; }
+  .nav-center { display: none; }
 }
-.filter-chip {
-  padding: 8px 18px;
-  border-radius: 100px;
-  border: 1.5px solid var(--border);
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--grey-600);
-  transition: all 0.2s;
-  background: var(--bg);
+@media (max-width: 600px) {
+  .container { padding: 0 16px; }
+  .contact-card { padding: 32px 24px; }
+  .hero { padding: 60px 0; }
+  .families-grid { grid-template-columns: 1fr 1fr; }
+  .family-card-img { height: 160px; }
 }
-.filter-chip:hover, .filter-chip.active {
-  background: var(--blue);
-  color: #fff;
-  border-color: var(--blue);
-}
-
-/* ─── B2B INFO SECTION ─── */
-.b2b-section {
-  padding: 80px 0;
-  background: var(--blue);
-  position: relative;
-  overflow: hidden;
-}
-.b2b-section::before {
-  content: '';
-  position: absolute;
-  top: -80px; right: -80px;
-  width: 400px; height: 400px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.05);
-}
-.b2b-section::after {
-  content: '';
-  position: absolute;
-  bottom: -60px; left: -40px;
-  width: 280px; height: 280px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.04);
-}
-.b2b-content {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-}
-@media (max-width: 768px) { .b2b-content { grid-template-columns: 1fr; } }
-.b2b-text .section-title { color: #fff; }
-.b2b-text .section-subtitle { color: rgba(255,255,255,0.7); }
-.b2b-text p { color: rgba(255,255,255,0.8); margin-top: 16px; line-height: 1.7; }
-.b2b-features {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-.b2b-feature {
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 14px;
-  padding: 20px;
-  transition: background 0.2s;
-}
-.b2b-feature:hover { background: rgba(255,255,255,0.15); }
-.b2b-feature-icon {
-  font-size: 1.8rem;
-  margin-bottom: 10px;
-}
-.b2b-feature-title {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 4px;
-}
-.b2b-feature-desc {
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.65);
-  line-height: 1.5;
-}
-
-/* ─── CONTACT SECTION ─── */
-.contact-section {
-  padding: 100px 0;
-  background: var(--off-white);
-}
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-}
-@media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
-.contact-info { display: flex; flex-direction: column; gap: 24px; }
-.contact-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-}
-.contact-icon {
-  width: 48px; height: 48px;
-  background: var(--blue-light);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
-  flex-shrink: 0;
-}
-.contact-item-title { font-weight: 700; color: var(--text); margin-bottom: 2px; }
-.contact-item-val { font-size: 0.9rem; color: var(--grey-600); }
-.contact-form {
-  background: var(--bg);
-  border: 1.5px solid var(--border);
-  border-radius: 20px;
-  padding: 36px;
-}
-.form-group { margin-bottom: 18px; }
-.form-label {
-  display: block;
-  font-size: 0.83rem;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 6px;
-}
-.form-input {
-  width: 100%;
-  padding: 12px 16px;
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  background: var(--card-bg);
-  color: var(--text);
-  font-size: 0.9rem;
-  font-family: inherit;
-  outline: none;
-  transition: all 0.2s;
-}
-.form-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,31,212,0.1); }
-.form-input::placeholder { color: var(--grey-400); }
-textarea.form-input { resize: vertical; min-height: 100px; }
-.form-submit {
-  width: 100%;
-  background: var(--blue);
-  color: #fff;
-  padding: 14px;
-  border-radius: 12px;
-  font-weight: 700;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: all 0.2s;
-}
-.form-submit:hover { background: var(--blue-dark); transform: translateY(-1px); box-shadow: var(--shadow-hover); }
-
-/* ─── FOOTER ─── */
-.footer {
-  background: var(--blue);
-  padding: 60px 0 32px;
-  color: rgba(255,255,255,0.7);
-}
-.footer-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 40px;
-  margin-bottom: 48px;
-}
-@media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
-.footer-brand p { margin-top: 14px; font-size: 0.85rem; line-height: 1.7; max-width: 280px; }
-.footer-col-title {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: rgba(255,255,255,0.35);
-  margin-bottom: 16px;
-}
-.footer-links { display: flex; flex-direction: column; gap: 10px; }
-.footer-link {
-  font-size: 0.88rem;
-  color: rgba(255,255,255,0.55);
-  transition: color 0.2s;
-}
-.footer-link:hover { color: #fff; }
-.footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.08);
-  padding-top: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.footer-copy { font-size: 0.82rem; }
-.footer-b2b-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255,255,255,0.15);
-  border: 1px solid rgba(255,255,255,0.3);
-  color: rgba(255,255,255,0.9);
-  padding: 6px 14px;
-  border-radius: 100px;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-/* ─── FAMILY PAGE (PANEL) ─── */
-.family-panel {
-  position: fixed;
-  inset: 0;
-  z-index: 3000;
-  background: var(--bg);
-  transform: translateX(100%);
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-}
-.family-panel.active { transform: translateX(0); }
-.family-panel-hero {
-  position: relative;
-  height: 360px;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.family-panel-hero img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-}
-.family-panel-hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.75) 100%);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 32px;
-}
-.family-panel-back {
-  position: absolute;
-  top: 20px; left: 20px;
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.25);
-  color: #fff;
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  transition: all 0.2s;
-  z-index: 2;
-}
-.family-panel-back:hover { background: rgba(255,255,255,0.25); }
-.family-panel-tag {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 8px;
-}
-.family-panel-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: #fff;
-  line-height: 1.1;
-}
-.family-panel-body {
-  padding: 40px max(20px, env(safe-area-inset-left, 0px)) 60px;
-  max-width: 1100px;
-  margin: 0 auto;
-  width: 100%;
-}
-.family-panel-desc {
-  font-size: 1.05rem;
-  color: var(--grey-600);
-  max-width: 680px;
-  line-height: 1.7;
-  margin-bottom: 40px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid var(--border);
-}
-.family-products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 20px;
-}
-
-/* ─── RESPONSIVE ─── */
-@media (max-width: 768px) {
-  .nav-search { display: none; }
-  .hero-stats { display: none; }
-  .families-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-  .family-card-name { font-size: 1.1rem; }
-  .featured-header { flex-direction: column; align-items: flex-start; }
-  .b2b-features { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 480px) {
+@media (max-width: 420px) {
   .families-grid { grid-template-columns: 1fr; }
-  .hero h1 { font-size: 2.4rem; }
-  .hero-ctas { flex-direction: column; }
-  .btn-hero-primary, .btn-hero-outline { width: 100%; justify-content: center; }
-  .modal-body { grid-template-columns: 1fr; }
 }
-
-/* ─── UTILS ─── */
-.hidden-product { display: none !important; }
-.text-blue { color: var(--blue); }
-.text-gold { color: var(--gold); }
-svg { display: inline-block; vertical-align: middle; }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════
-     NAVIGATION
-════════════════════════════════════════════ -->
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="#" class="nav-logo" onclick="showHome()">
-      <img src="logo.png" alt="Criscolor" style="height:44px;width:auto;display:block;">
-    </a>
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-track">
+    <span class="ticker-item">🎄 CAMPAÑA NAVIDAD 2026<span>★</span></span>
+    <span class="ticker-item">790 referencias disponibles<span>★</span></span>
+    <span class="ticker-item">12 familias de producto<span>★</span></span>
+    <span class="ticker-item">Entrega mayorista 48–72h<span>★</span></span>
+    <span class="ticker-item">Pedido mínimo por caja<span>★</span></span>
+    <span class="ticker-item">🎁 PAPEL · BOLSAS · LAZOS · GLOBOS · DECORACIÓN<span>★</span></span>
+    <span class="ticker-item">comercial@criscolor.com<span>★</span></span>
+    <span class="ticker-item">🎄 CAMPAÑA NAVIDAD 2026<span>★</span></span>
+    <span class="ticker-item">790 referencias disponibles<span>★</span></span>
+    <span class="ticker-item">12 familias de producto<span>★</span></span>
+    <span class="ticker-item">Entrega mayorista 48–72h<span>★</span></span>
+    <span class="ticker-item">Pedido mínimo por caja<span>★</span></span>
+    <span class="ticker-item">🎁 PAPEL · BOLSAS · LAZOS · GLOBOS · DECORACIÓN<span>★</span></span>
+    <span class="ticker-item">comercial@criscolor.com<span>★</span></span>
+  </div>
+</div>
 
-    <div class="nav-search">
-      <svg class="nav-search-icon" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-      </svg>
-      <input type="text" id="globalSearch" placeholder="Buscar referencia, producto..." oninput="doSearch(this.value)" onfocus="if(this.value) showSearchResults()" onblur="setTimeout(hideSearchResults, 200)">
-    </div>
-
-    <div class="nav-actions">
-      <div class="nav-familias-dropdown" id="navFamiliasDropdown">
-        <button class="btn btn-outline nav-familias-btn" onclick="toggleFamiliasMenu()" aria-expanded="false" aria-haspopup="true">
-          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-          Familias
-          <svg class="nav-familias-chevron" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="nav-familias-menu" id="navFamiliasMenu">
-          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('regalo');closeFamiliasMenu()">
-            <span class="nav-familias-num">01</span>Artículos de Regalo
-          </a>
-          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('globos');closeFamiliasMenu()">
-            <span class="nav-familias-num">02</span>Globos
-          </a>
-          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('figuras');closeFamiliasMenu()">
-            <span class="nav-familias-num">03</span>Figuras para Pintar
-          </a>
-          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('pegatinas');closeFamiliasMenu()">
-            <span class="nav-familias-num">04</span>Pegatinas y Etiquetas
-          </a>
-          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('cajas');closeFamiliasMenu()">
-            <span class="nav-familias-num">05</span>Cajas de Regalo
-          </a>
-          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('sacos');closeFamiliasMenu()">
-            <span class="nav-familias-num">06</span>Sacos Navideños
-          </a>
-          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('bolsas');closeFamiliasMenu()">
-            <span class="nav-familias-num">07</span>Bolsas de Papel y Cristal
-          </a>
-          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('papel');closeFamiliasMenu()">
-            <span class="nav-familias-num">08</span>Papel de Regalo
-          </a>
-          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('lazos');closeFamiliasMenu()">
-            <span class="nav-familias-num">09</span>Lazos y Cintas
-          </a>
-          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('canones');closeFamiliasMenu()">
-            <span class="nav-familias-num">10</span>Cañones de Fiesta
-          </a>
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-text">
+          <span class="nav-logo-title">CRISCOLOR</span>
+          <span class="nav-logo-sub">Navidad 2026</span>
         </div>
-      </div>
-      <a href="#contacto" class="btn btn-primary">
-        Solicitar Catálogo
-        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
+      <div class="nav-center">
+        <a href="#familias" class="nav-link">Familias</a>
+        <a href="#catalogo" class="nav-link">Catálogo</a>
+        <a href="#destacados" class="nav-link">Destacados</a>
+        <a href="#contacto" class="nav-link">Contacto</a>
+      </div>
+      <div class="nav-actions">
+        <div class="nav-dd" id="navDD">
+          <button class="btn btn-outline" onclick="toggleDD()" style="gap:8px">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            Familias
+            <svg class="nav-dd-chevron" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="nav-dd-menu" id="navDDMenu">
+            <div class="nav-dd-item" onclick="goFamily('familia-01')"><span class="nav-dd-num">01</span>Papel de Regalo</div>
+            <div class="nav-dd-item" onclick="goFamily('familia-02')"><span class="nav-dd-num">02</span>Bobinas de Regalo</div>
+            <div class="nav-dd-item" onclick="goFamily('familia-03')"><span class="nav-dd-num">03</span>Bolsas</div>
+            <div class="nav-dd-item" onclick="goFamily('familia-04')"><span class="nav-dd-num">04</span>Lazos y Cintas</div>
+            <div class="nav-dd-item" onclick="goFamily('familia-05')"><span class="nav-dd-num">05</span>Cajas Cartón</div>
+            <div class="nav-dd-item" onclick="goFamily('familia-06')"><span class="nav-dd-num">06</span>Sacos Navideños</div>
+            <div class="nav-dd-item" onclick="goFamily('familia-07')"><span class="nav-dd-num">07</span>Globos</div>
+            <div class="nav-dd-item" onclick="goFamily('familia-08')"><span class="nav-dd-num">08</span>Decoración Navidad</div>
+            <div class="nav-dd-item" onclick="goFamily('familia-09')"><span class="nav-dd-num">09</span>Pegatinas y Tarjetas</div>
+            <div class="nav-dd-item" onclick="goFamily('familia-10')"><span class="nav-dd-num">10</span>Fiesta y Novedades</div>
+            <div class="nav-dd-item" onclick="goFamily('familia-11')"><span class="nav-dd-num">11</span>Vajilla Desechable</div>
+            <div class="nav-dd-item" onclick="goFamily('familia-12')"><span class="nav-dd-num">12</span>Calefacción</div>
+          </div>
+        </div>
+        <a href="#contacto" class="btn btn-primary">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 1.05h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          Contactar
+        </a>
+      </div>
     </div>
   </div>
 </nav>
 
-<!-- Search Results Dropdown -->
-<div class="search-results" id="searchResults">
-  <div class="search-results-inner" id="searchResultsInner"></div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     MAIN PAGE (HOME)
-════════════════════════════════════════════ -->
-<div id="homePage">
-
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg" id="heroBg"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-tag">
-      <span class="hero-tag-dot"></span>
-      Catálogo Navidad · Temporada 2026
+  <div class="snow" id="snowEl"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow"><span>🎄 Campaña Navidad 2026</span></div>
+      <h1>El catálogo<br>más completo de<br><span class="hl">embalaje navideño</span></h1>
+      <p class="hero-desc">790 referencias mayoristas en 12 familias: papel, bolsas, lazos, globos, decoración y mucho más. Todo lo que necesitas para la temporada 2026.</p>
+      <div class="hero-stats">
+        <div><div class="hero-stat-num">790</div><div class="hero-stat-label">Referencias</div></div>
+        <div><div class="hero-stat-num">12</div><div class="hero-stat-label">Familias</div></div>
+        <div><div class="hero-stat-num">+7.000</div><div class="hero-stat-label">Tiendas cliente</div></div>
+        <div><div class="hero-stat-num">25 años</div><div class="hero-stat-label">De experiencia</div></div>
+      </div>
     </div>
-    <h1>Todo para la<br><span>Navidad</span><br>en un solo catálogo</h1>
-    <p class="hero-desc">Más de 400 referencias de artículos navideños organizadas en 10 familias de producto. Temporada 2026.</p>
-    <div class="hero-ctas">
-      <a href="#familias" class="btn-hero-primary">
-        Ver Catálogo
-        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <a href="#contacto" class="btn-hero-outline">
-        Solicitar Precios
-      </a>
+    <div class="hero-badge">
+      <div class="hero-badge-icon">🎁</div>
+      <div class="hero-badge-title">Mayorista</div>
+      <div class="hero-badge-sub">Solo venta B2B<br>Pedido mínimo por caja</div>
     </div>
   </div>
 </section>
 
-<!-- TICKER -->
-<div class="b2b-banner">
-  <div class="b2b-ticker">
-    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>Catálogo Navidad 2026</strong> · 400+ referencias</div>
-    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>10 familias</strong> de producto navideño</div>
-    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>Stock disponible</strong> · Temporada 2026</div>
-    <div class="b2b-ticker-item"><span class="ticker-dot"></span> Desde <strong>Paterna, Valencia</strong> · criscolor.com</div>
-    <div class="b2b-ticker-item"><span class="ticker-dot"></span> Más de <strong>25 años</strong> en el sector</div>
-    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>Catálogo Navidad 2026</strong> · 400+ referencias</div>
-    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>10 familias</strong> de producto navideño</div>
-    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>Stock disponible</strong> · Temporada 2026</div>
-    <div class="b2b-ticker-item"><span class="ticker-dot"></span> Desde <strong>Paterna, Valencia</strong> · criscolor.com</div>
-    <div class="b2b-ticker-item"><span class="ticker-dot"></span> Más de <strong>25 años</strong> en el sector</div>
-  </div>
-</div>
-
 <!-- FAMILIAS -->
-<section class="families-section" id="familias">
+<section class="section" id="familias">
   <div class="container">
-    <div class="families-header">
-      <img src="logo.png" alt="Criscolor" style="height:40px;width:auto;display:inline-block;margin-bottom:24px;">
-      <div class="badge badge-blue" style="margin-bottom:16px;display:block;">10 Familias de Producto</div>
-      <h2 class="section-title">Colección Navidad 2026</h2>
-      <p class="section-subtitle">Todo lo que necesitas para surtir tu tienda esta temporada navideña</p>
+    <div class="section-header">
+      <span class="tag tag-blue">Catálogo completo</span>
+      <h2>12 familias de producto</h2>
+      <p>Desde papel de regalo hasta calefactores: todo lo que tu tienda necesita esta Navidad en un solo proveedor.</p>
     </div>
     <div class="families-grid" id="familiesGrid"></div>
   </div>
 </section>
 
-<!-- FEATURED PRODUCTS -->
-<section class="featured-section" id="destacados">
+<!-- CATÁLOGO -->
+<section class="section catalog-section" id="catalogo">
   <div class="container">
-    <div class="featured-header">
+    <div class="section-header">
+      <span class="tag tag-blue">790 referencias</span>
+      <h2>Catálogo completo 2026</h2>
+      <p>Busca por nombre o filtra por familia para encontrar exactamente lo que necesitas.</p>
+    </div>
+    <div class="catalog-toolbar">
+      <div class="search-box">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#999" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="searchInput" placeholder="Buscar referencia o código…" oninput="filterProducts()">
+      </div>
+      <div class="filter-row" id="filterRow"></div>
+    </div>
+    <div class="results-info" id="resultsInfo"></div>
+    <div class="products-grid" id="productsGrid"></div>
+    <div class="load-more-wrap">
+      <button class="btn btn-outline" id="loadMoreBtn" onclick="loadMore()" style="display:none">
+        Ver más referencias
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- DESTACADOS -->
+<section class="section destacados-section" id="destacados">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag tag-gold">⭐ Selección editorial</span>
+      <h2>Productos estrella 2026</h2>
+      <p>Las 27 referencias más representativas de cada familia, seleccionadas por volumen de ventas y atractivo comercial.</p>
+    </div>
+    <div class="destacados-grid" id="destacadosGrid"></div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="section contact-section" id="contacto">
+  <div class="container">
+    <div class="contact-card">
       <div>
-        <div class="badge badge-gold" style="margin-bottom:12px">Productos Destacados</div>
-        <h2 class="section-title">Referencias Clave</h2>
-        <p class="section-subtitle">Selección de los artículos más vendidos con ficha técnica completa</p>
+        <h2>¿Quieres hacer un pedido?</h2>
+        <p>Estamos aquí para ayudarte. Cuéntanos qué necesitas y te respondemos con disponibilidad y condiciones mayoristas.</p>
       </div>
-      <div class="filters-bar" id="filtersBar"></div>
-    </div>
-    <div class="featured-grid" id="featuredGrid"></div>
-  </div>
-</section>
-
-<!-- MARCA STRIP -->
-<section style="background:#fff;padding:48px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-  <div class="container">
-    <div style="display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;">
-      <img src="logo.png" alt="Criscolor" style="height:64px;width:auto;">
-      <div style="width:1px;height:48px;background:var(--border);flex-shrink:0;"></div>
-      <div style="display:flex;gap:40px;flex-wrap:wrap;align-items:center;">
-        <div style="text-align:center;">
-          <div style="font-size:2rem;font-weight:900;color:var(--blue);line-height:1;">25+</div>
-          <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey-600);margin-top:4px;">Años de trayectoria</div>
+      <form class="contact-form" onsubmit="submitForm(event)">
+        <div class="form-row">
+          <input type="text" class="form-input" placeholder="Nombre" required>
+          <input type="text" class="form-input" placeholder="Empresa">
         </div>
-        <div style="text-align:center;">
-          <div style="font-size:2rem;font-weight:900;color:var(--blue);line-height:1;">7.123</div>
-          <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey-600);margin-top:4px;">Clientes activos</div>
-        </div>
-        <div style="text-align:center;">
-          <div style="font-size:2rem;font-weight:900;color:var(--blue);line-height:1;">4.250</div>
-          <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey-600);margin-top:4px;">Referencias</div>
-        </div>
-        <div style="text-align:center;">
-          <div style="font-size:2rem;font-weight:900;color:var(--blue);line-height:1;">13</div>
-          <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey-600);margin-top:4px;">Países</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EMPRESA -->
-<section class="b2b-section">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:48px;">
-      <img src="logo.png" alt="Criscolor" style="height:56px;width:auto;filter:brightness(0) invert(1);display:inline-block;">
-    </div>
-    <div class="b2b-content">
-      <div class="b2b-text">
-        <div class="badge badge-gold" style="margin-bottom:20px">Desde el año 2000</div>
-        <h2 class="section-title">Nuestra esencia en cada detalle</h2>
-        <p>Desde su fundación en el año 2000, Criscolor es un referente en multiproducto para el canal de gran consumo. Nacida con el propósito de revolucionar el sector, nuestra oferta ha crecido y se ha consolidado diversificando productos, creando marcas propias y ampliando nuestra cartera de clientes por todo el territorio nacional e internacional.</p>
-        <p style="margin-top:12px">Más de 25 años de trayectoria y una red de más de 25 agentes nacionales nos avalan. Contamos con instalaciones de más de 20.000 m² en Paterna, Valencia, donde un equipo humano de más de 60 personas trabaja cada día.</p>
-      </div>
-      <div class="b2b-features">
-        <div class="b2b-feature">
-          <div class="b2b-feature-icon">✦</div>
-          <div class="b2b-feature-title">Calidad</div>
-          <div class="b2b-feature-desc">Nuestra meta diaria. Cada referencia pasa por un proceso de selección riguroso antes de llegar a tu almacén.</div>
-        </div>
-        <div class="b2b-feature">
-          <div class="b2b-feature-icon">♻</div>
-          <div class="b2b-feature-title">Sostenibilidad</div>
-          <div class="b2b-feature-desc">Comprometidos con la comercialización de productos cada vez más respetuosos con el planeta.</div>
-        </div>
-        <div class="b2b-feature">
-          <div class="b2b-feature-icon">🌍</div>
-          <div class="b2b-feature-title">Presencia Internacional</div>
-          <div class="b2b-feature-desc">Agentes en Francia, Portugal, Marruecos, Centro América e Italia. 7.123 clientes en 13 países.</div>
-        </div>
-        <div class="b2b-feature">
-          <div class="b2b-feature-icon">📈</div>
-          <div class="b2b-feature-title">Crecimiento Continuo</div>
-          <div class="b2b-feature-desc">9% de crecimiento anual sostenido. 4.250 referencias en catálogo y ampliando temporada a temporada.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="contact-section" id="contacto">
-  <div class="container">
-    <div style="text-align:center; margin-bottom:56px">
-      <div class="badge badge-blue" style="margin-bottom:16px">Contacto Comercial</div>
-      <h2 class="section-title">Solicita tu catálogo<br>y precios</h2>
-      <p class="section-subtitle">Rellena el formulario o llámanos directamente. Te atendemos en 24h.</p>
-    </div>
-    <div class="contact-grid">
-      <div class="contact-info">
-        <div class="contact-item">
-          <div class="contact-icon">📍</div>
-          <div>
-            <div class="contact-item-title">Dirección</div>
-            <div class="contact-item-val">PARC EMPRESARIAL TÀCTICA<br>Carrer de l'Algepser, 125<br>46980 Paterna, Valencia</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">📞</div>
-          <div>
-            <div class="contact-item-title">Teléfono Comercial</div>
-            <div class="contact-item-val">(+34) 961 53 21 09<br>L-V de 8:00 a 13:30 y de 15:30 a 18:00</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">✉️</div>
-          <div>
-            <div class="contact-item-title">Email</div>
-            <div class="contact-item-val">comercial@criscolor.com</div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">🌐</div>
-          <div>
-            <div class="contact-item-title">Web Corporativa</div>
-            <div class="contact-item-val">www.criscolor.com</div>
-          </div>
-        </div>
-      </div>
-      <div class="contact-form">
-        <h3 style="font-size:1.3rem;font-weight:700;margin-bottom:24px">Solicitar información</h3>
-        <div class="form-group">
-          <label class="form-label">Nombre / Empresa *</label>
-          <input type="text" class="form-input" placeholder="Tu empresa o nombre">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Teléfono *</label>
-          <input type="tel" class="form-input" placeholder="600 000 000">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Email</label>
-          <input type="email" class="form-input" placeholder="correo@empresa.com">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Tipo de negocio</label>
-          <select class="form-input">
-            <option value="">Selecciona...</option>
-            <option>Bazar / Todo a 1€</option>
-            <option>Ferretería</option>
-            <option>Papelería</option>
-            <option>Mayorista / Distribuidor</option>
-            <option>Tienda de regalos</option>
-            <option>Otro</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Mensaje</label>
-          <textarea class="form-input" placeholder="¿Qué familias o referencias te interesan?"></textarea>
-        </div>
-        <button class="form-submit" onclick="submitForm()">
+        <input type="email" class="form-input" placeholder="Email" required>
+        <input type="tel" class="form-input" placeholder="Teléfono">
+        <textarea class="form-input" rows="3" placeholder="¿Qué referencias te interesan?" style="resize:vertical"></textarea>
+        <button type="submit" class="btn btn-white" id="submitBtn">
+          <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
           Enviar solicitud
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
-      </div>
+      </form>
     </div>
   </div>
 </section>
@@ -1395,494 +363,420 @@ svg { display: inline-block; vertical-align: middle; }
 <!-- FOOTER -->
 <footer class="footer">
   <div class="container">
-    <div class="footer-grid">
+    <div class="footer-top">
       <div class="footer-brand">
-        <img src="logo.png" alt="Criscolor" style="height:48px;width:auto;display:block;filter:brightness(0) invert(1);">
-        <p>Artículos de regalo, fiesta y temporada desde Paterna, Valencia. Más de 25 años en el sector.</p>
+        <div class="footer-logo"><span class="footer-logo-text">CRISCOLOR</span></div>
+        <p class="footer-desc">Distribuidora mayorista de embalaje y artículos de temporada. Más de 25 años sirviendo a +7.000 tiendas en toda España.</p>
       </div>
-      <div>
-        <div class="footer-col-title">Familias</div>
-        <div class="footer-links">
-          <a href="#" class="footer-link" onclick="openFamily(0)">Artículos de Regalo</a>
-          <a href="#" class="footer-link" onclick="openFamily(1)">Globos</a>
-          <a href="#" class="footer-link" onclick="openFamily(2)">Figuras para Pintar</a>
-          <a href="#" class="footer-link" onclick="openFamily(3)">Pegatinas y Etiquetas</a>
-          <a href="#" class="footer-link" onclick="openFamily(4)">Cajas</a>
-        </div>
+      <div class="footer-col">
+        <h4>Producto</h4>
+        <ul>
+          <li><a href="#familias">12 Familias</a></li>
+          <li><a href="#catalogo">Catálogo completo</a></li>
+          <li><a href="#destacados">Productos estrella</a></li>
+        </ul>
       </div>
-      <div>
-        <div class="footer-col-title">Más Familias</div>
-        <div class="footer-links">
-          <a href="#" class="footer-link" onclick="openFamily(5)">Sacos Navideños</a>
-          <a href="#" class="footer-link" onclick="openFamily(6)">Bolsas de Papel</a>
-          <a href="#" class="footer-link" onclick="openFamily(7)">Papel Regalo</a>
-          <a href="#" class="footer-link" onclick="openFamily(8)">Lazos y Cintas</a>
-          <a href="#" class="footer-link" onclick="openFamily(9)">Cañones y Fiesta</a>
-        </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="https://criscolor.com" target="_blank">Web corporativa</a></li>
+          <li><a href="https://moonecommerce.com" target="_blank">Portal B2B</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
       </div>
-      <div>
-        <div class="footer-col-title">Empresa</div>
-        <div class="footer-links">
-          <a href="https://www.criscolor.com" class="footer-link" target="_blank">criscolor.com</a>
-          <a href="#contacto" class="footer-link">Contacto Comercial</a>
-          <a href="#familias" class="footer-link">Ver Catálogo</a>
-        </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:comercial@criscolor.com">comercial@criscolor.com</a></li>
+          <li><a>C/ Algepser 125, Paterna</a></li>
+          <li><a>Valencia, España</a></li>
+        </ul>
       </div>
-    </div>
-    <!-- Banner institucional -->
-    <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;margin-bottom:24px;">
-      <img src="banner-eu.png" alt="Generalitat Valenciana · IVACE · Finançat per la Unió Europea · Fons Europeus · Programa FEDER Comunitat Valenciana 2021-2027" style="max-width:100%;height:auto;display:block;background:#fff;padding:10px 16px;border-radius:6px;">
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">© 2025 CRISCOLOR Distribuciones de Levante, S.L.U. · Paterna, Valencia · Todos los derechos reservados</span>
+      <span>© 2026 Criscolor Distribuciones de Levante SL</span>
+      <span>Catálogo Navidad 2026 · Uso exclusivo mayorista</span>
     </div>
   </div>
 </footer>
 
-</div><!-- end homePage -->
-
-<!-- ═══════════════════════════════════════════
-     FAMILY PANEL
-════════════════════════════════════════════ -->
-<div class="family-panel" id="familyPanel">
-  <div class="family-panel-hero">
-    <img id="familyPanelImg" src="" alt="">
-    <div class="family-panel-hero-overlay">
-      <button class="family-panel-back" onclick="closeFamily()">←</button>
-      <div class="family-panel-tag" id="familyPanelTag"></div>
-      <h2 class="family-panel-title" id="familyPanelTitle"></h2>
-    </div>
-  </div>
-  <div class="family-panel-body">
-    <p class="family-panel-desc" id="familyPanelDesc"></p>
-    <div class="family-products-grid" id="familyProductsGrid"></div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     PRODUCT MODAL
-════════════════════════════════════════════ -->
-<div class="modal-overlay" id="productModal" onclick="closeModal(event)">
-  <div class="modal">
-    <div class="modal-header">
-      <div>
-        <div class="modal-family" id="modalFamily"></div>
-        <div class="modal-name" id="modalName"></div>
-      </div>
-      <button class="modal-close" onclick="closeModal()">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="modal-img">
-        <img id="modalImg" src="" alt="">
-      </div>
-      <div class="modal-info">
-        <p class="modal-desc" id="modalDesc"></p>
-        <div class="modal-ficha">
-          <div class="modal-ficha-title">Ficha Técnica</div>
-          <div class="modal-ficha-row">
-            <span class="modal-ficha-key">Código Ref.</span>
-            <span class="modal-ficha-val" id="modalRef">—</span>
-          </div>
-          <div class="modal-ficha-row">
-            <span class="modal-ficha-key">Código EAN</span>
-            <span class="modal-ficha-val" id="modalEan">—</span>
-          </div>
-          <div class="modal-ficha-row">
-            <span class="modal-ficha-key">Uds. por Caja</span>
-            <span class="modal-ficha-val" id="modalUds">—</span>
-          </div>
-          <div class="modal-ficha-row" id="modalMedidaRow">
-            <span class="modal-ficha-key">Medida / Tamaño</span>
-            <span class="modal-ficha-val" id="modalMedida">—</span>
-          </div>
-          <div class="modal-ficha-row" id="modalMatRow">
-            <span class="modal-ficha-key">Material</span>
-            <span class="modal-ficha-val" id="modalMat">—</span>
-          </div>
-        </div>
-        <div class="modal-mayorista-note">
-          Contacta con nuestro equipo comercial para conocer precios y condiciones de pedido.
-        </div>
-        <a href="#contacto" class="modal-contact-btn" onclick="closeModal()">
-          Consultar Disponibilidad
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-
 <script>
-// ═══════════════════════════════════════════
-// DATA
-// ═══════════════════════════════════════════
 const FAMILIES = [
-  {
-    id: 'regalo',
-    name: 'Artículos de Regalo',
-    desc: 'Decoraciones navideñas, figuras de Papa Noel y Reyes Magos, carteles decorativos, figuras de madera y plantillas. La familia más completa para decorar escaparates y puntos de venta navideños.',
-    img1: 'magnific__professional-product-photography-of-a-curated-flat__4506.png',
-    img2: 'magnific__professional-product-photography-of-a-curated-flat__4507.png',
-    refs: '80+ referencias',
-    color: '#e63946'
-  },
-  {
-    id: 'globos',
-    name: 'Globos',
-    desc: 'Globos foil navideños, globos de látex en colores festivos, gafas de fin de año y accesorios para fiestas. Perfectos para decoración de comercios y eventos navideños.',
-    img1: 'magnific__professional-product-photography-of-a-floating-col__4510.png',
-    img2: 'magnific__professional-product-photography-of-a-floating-col__4511.png',
-    refs: '40+ referencias',
-    color: '#f77f00'
-  },
-  {
-    id: 'figuras',
-    name: 'Figuras para Pintar',
-    desc: 'Figuras navideñas para colorear e personalizar. Actividad perfecta para niños en Navidad. Incluye Papa Noel, renos, bolas de navidad y más motivos navideños en diferentes tamaños.',
-    img1: 'magnific__professional-product-photography-of-a-christmas-fi__4508.png',
-    img2: 'magnific__professional-product-photography-of-a-christmas-fi__4509.png',
-    refs: '25+ referencias',
-    color: '#2d9cdb'
-  },
-  {
-    id: 'pegatinas',
-    name: 'Pegatinas y Etiquetas',
-    desc: 'Pegatinas navideñas, etiquetas de regalo, sobres decorados y accesorios de papelería festiva. Imprescindibles para el packaging navideño de cualquier comercio.',
-    img1: 'magnific__professional-product-photography-of-a-complete-col__4514.png',
-    img2: 'magnific__professional-product-photography-of-a-complete-col__4515.png',
-    refs: '35+ referencias',
-    color: '#6b4226'
-  },
-  {
-    id: 'cajas',
-    name: 'Cajas de Regalo',
-    desc: 'Cajas redondas, rectangulares, metálicas y sets combinados para presentación de regalos. Disponibles en múltiples tamaños y diseños navideños. Ideales para regalos corporativos y uso doméstico.',
-    img1: 'magnific__professional-macro-product-photography-of-a-luxuri__4516.png',
-    img2: 'magnific__professional-macro-product-photography-of-a-luxuri__4517.png',
-    refs: '30+ referencias',
-    color: '#c9a44e'
-  },
-  {
-    id: 'sacos',
-    name: 'Sacos Navideños',
-    desc: 'Sacos de polietileno, poliéster y rafia para regalos navideños. Sacos de Papa Noel y Reyes Magos en diferentes tamaños. Solución perfecta para regalo de juguetes y artículos de gran tamaño.',
-    img1: 'magnific__professional-product-photography-of-an-organized-d__4518.png',
-    img2: 'magnific__professional-product-photography-of-an-organized-d__4519.png',
-    refs: '20+ referencias',
-    color: '#1A1FD4'
-  },
-  {
-    id: 'bolsas',
-    name: 'Bolsas de Papel y Cristal',
-    desc: 'Bolsas kraft, bolsas de personajes Disney y Marvel, bolsas metálicas, bolsas de Navidad y Reyes Magos, bolsas cristal transparentes y decoradas, envelopes kraft y cajas de vino de cartón.',
-    img1: 'magnific__professional-product-photography-of-a-curated-flat__4520.png',
-    img2: 'magnific__professional-product-photography-of-a-curated-flat__4521.png',
-    refs: '60+ referencias',
-    color: '#d4a017'
-  },
-  {
-    id: 'papel',
-    name: 'Papel de Regalo',
-    desc: 'Rollos en todos los formatos: 70CMx2M hasta 10M de largo, bobinas de polipropileno 62CM y 31CM, papel kraft, PP metalizado y Navidad. Licencias Disney, Marvel (Stitch, Mickey, Vengadores) y diseños exclusivos.',
-    img1: 'magnific__hazla-en-fondo-blanco__4522.png',
-    img2: 'magnific__hazla-en-fondo-blanco__4523.png',
-    refs: '90+ referencias',
-    color: '#e63946'
-  },
-  {
-    id: 'lazos',
-    name: 'Lazos y Cintas',
-    desc: 'Lazos estrella metalizados y adhesivos en tamaños 10mm, 14mm y 19mm. Lazos automáticos de 30mm y 50mm en toda la gama de colores. Cintas decorativas 5mm y 10mm en bobinas de 20m a 500m. Bobinas de rafia.',
-    img1: 'magnific__professional-product-photography-of-a-complete-gif__4526.png',
-    img2: 'magnific__professional-product-photography-of-a-complete-gif__4527.png',
-    refs: '80+ referencias',
-    color: '#c9a44e'
-  },
-  {
-    id: 'canones',
-    name: 'Cañones de Fiesta',
-    desc: 'Cañones de confeti, serpentinas, tiras metalizadas, banderas de España, cañones money, mariposas y pétalos rojos. Disponibles en 30cm, 40cm y 60cm. Accesorios: máquina cierra bolsas, viruta de celofán y porex.',
-    img1: 'magnific__professional-product-photography-of-a-premium-chri__4512.png',
-    img2: 'magnific__professional-product-photography-of-a-premium-chri__4513.png',
-    refs: '50+ referencias',
-    color: '#e63946'
-  }
+  {id:'familia-01',num:'01',nombre:'Papel de Regalo',desc:'Rollos 70cm con diseños navideños exclusivos en liso, metalizado y estampado',img:'portada-01-papel.png',count:63},
+  {id:'familia-02',num:'02',nombre:'Bobinas de Regalo',desc:'Bobinas 62cm en liso y estampado navideño, en grande para comercios',img:'portada-02-bobinas.png',count:60},
+  {id:'familia-03',num:'03',nombre:'Bolsas',desc:'Kraft, licencias, polipropileno cristal y bolsas de papel en todos los tamaños',img:'portada-03-bolsas.png',count:158},
+  {id:'familia-04',num:'04',nombre:'Lazos y Cintas',desc:'Lazos estrella adhesivos, cintas decorativas, rafia y acabados premium',img:'portada-04-lazos.png',count:100},
+  {id:'familia-05',num:'05',nombre:'Cajas Cartón',desc:'Cajas navideñas en metal, kraft y diseños surtidos en tallas S, M, L y XL',img:'portada-05-cajas.png',count:49},
+  {id:'familia-06',num:'06',nombre:'Sacos Navideños',desc:'Sacos polietileno estampados para empaquetar regalos en todos los tamaños',img:'portada-06-sacos.png',count:11},
+  {id:'familia-07',num:'07',nombre:'Globos',desc:'Globos foil Reyes Magos, Feliz Navidad, Papa Noel y figuras navideñas',img:'portada-07-globos.png',count:42},
+  {id:'familia-08',num:'08',nombre:'Decoración Navidad',desc:'Papa Noel en escalera, plantillas de huellas, figuras de pórex y manualidades',img:'portada-08-decoracion.png',count:77},
+  {id:'familia-09',num:'09',nombre:'Pegatinas y Tarjetas',desc:'Pegatinas navideñas, etiquetas de regalo, tarjetas y celo invisible',img:'portada-09-pegatinas.png',count:17},
+  {id:'familia-10',num:'10',nombre:'Fiesta y Novedades',desc:'Cañones de fiesta, gafas fin de año 2027, uvas de la suerte y novedades',img:'portada-10-fiesta.png',count:26},
+  {id:'familia-11',num:'11',nombre:'Vajilla Desechable',desc:'Vasos y platos de cartón metalizado en oro, plata, rojo y verde navideño',img:'portada-11-vajilla.png',count:161},
+  {id:'familia-12',num:'12',nombre:'Calefacción',desc:'Calefactores cerámicos 2000W modelos Candanchú, Atlas y Andes en blanco y negro',img:'portada-12-calefaccion.png',count:26},
 ];
 
-const PRODUCTS = [
-  // REGALO
-  { id:'p1', family:'regalo', familyName:'Artículos de Regalo', name:'Kit Decoración Navidad Madera 12 Piezas', ref:'02115', ean:'8436539021152', uds:12, medida:'Surtido', mat:'Madera pintada', desc:'Set de 12 figuras decorativas navideñas en madera. Incluye Papa Noel, renos, estrellas y copos de nieve. Ideal para escaparates y decoración navideña.', img:'magnific__professional-product-photography-of-a-curated-flat__4506.png' },
-  { id:'p2', family:'regalo', familyName:'Artículos de Regalo', name:'Figura Papa Noel Articulado 30cm', ref:'02240', ean:'8436539022408', uds:12, medida:'30cm altura', mat:'Poliresina', desc:'Figura articulada de Papa Noel de 30cm de altura. Acabado detallado con traje rojo y barba blanca. Incluye saco de regalos.', img:'magnific__professional-product-photography-of-a-curated-flat__4507.png' },
-  { id:'p3', family:'regalo', familyName:'Artículos de Regalo', name:'Cartel Decorativo "Feliz Navidad" Grande', ref:'02301', ean:'8436539023019', uds:12, medida:'40x25cm', mat:'MDF lacado', desc:'Cartel decorativo con texto "Feliz Navidad" en relieve. Incluye cuerda para colgar. Apto para escaparates y decoración interior.', img:'magnific__professional-product-photography-of-a-curated-flat__4506.png' },
+const STAR_CODES = new Set(['45049','45045','44096','42615','42617','44950','45011','45014','42650','43030','43032','06457','44090','44835','44992','45033','44011','44117','44981','44018','44816','44814','44988','44251','44611','44782','44884']);
 
-  // GLOBOS
-  { id:'p4', family:'globos', familyName:'Globos', name:'Globo Foil "Feliz Navidad" 45cm', ref:'05121', ean:'8436539051219', uds:12, medida:'45cm diámetro', mat:'Aluminio foil', desc:'Globo foil plateado con texto navideño. Incluye sistema de autoinflado. Sin helio.', img:'magnific__professional-product-photography-of-a-floating-col__4510.png' },
-  { id:'p5', family:'globos', familyName:'Globos', name:'Set Globos Látex Navidad 10 Uds Surtidos', ref:'05203', ean:'8436539052031', uds:12, medida:'30cm inflados', mat:'Látex natural', desc:'Pack de 10 globos de látex en colores navideños: rojo, verde, dorado y blanco. Sin imprimir. Decoración versátil.', img:'magnific__professional-product-photography-of-a-floating-col__4511.png' },
-
-  // FIGURAS
-  { id:'p6', family:'figuras', familyName:'Figuras para Pintar', name:'Figura Yeso Reyes Magos Set 3 Piezas', ref:'06403', ean:'8436539064031', uds:12, medida:'15-20cm', mat:'Yeso blanco', desc:'Set de 3 Reyes Magos en yeso para pintar. Actividad creativa ideal para Navidad. Incluye base estable. Apto para colores acrílicos.', img:'magnific__professional-product-photography-of-a-christmas-fi__4508.png' },
-  { id:'p7', family:'figuras', familyName:'Figuras para Pintar', name:'Figura Yeso Papa Noel Grande', ref:'06411', ean:'8436539064114', uds:12, medida:'20cm altura', mat:'Yeso blanco', desc:'Figura de Papa Noel en yeso de 20cm para pintar y decorar. Ideal como manualidad navideña para niños. Alta resistencia.', img:'magnific__professional-product-photography-of-a-christmas-fi__4509.png' },
-
-  // PEGATINAS
-  { id:'p8', family:'pegatinas', familyName:'Pegatinas y Etiquetas', name:'Set Etiquetas Regalo Navidad 50 Uds', ref:'07601', ean:'8436539076014', uds:12, medida:'50 uds/pack', mat:'Papel adhesivo', desc:'Pack de 50 etiquetas autoadhesivas de regalo con motivos navideños. Surtido de diseños y colores. Ideales para marcar regalos.', img:'magnific__professional-product-photography-of-a-complete-col__4514.png' },
-  { id:'p9', family:'pegatinas', familyName:'Pegatinas y Etiquetas', name:'Rollo Pegatinas Navidad 100 Uds', ref:'07625', ean:'8436539076250', uds:12, medida:'100 uds/rollo', mat:'Papel adhesivo', desc:'Rollo de 100 pegatinas navideñas en formato práctico. Incluye Papa Noel, renos, bolas y copos de nieve. Fácil dispensación.', img:'magnific__professional-product-photography-of-a-complete-col__4515.png' },
-
-  // CAJAS
-  { id:'p10', family:'cajas', familyName:'Cajas de Regalo', name:'Caja Redonda Metal Navidad Grande', ref:'08502', ean:'8436539085024', uds:6, medida:'30cm diámetro', mat:'Metal litografiado', desc:'Caja metálica redonda con diseño navideño litografiado. Tapa abisagrada. Ideal para presentar surtidos de turrones, polvorones y dulces navideños.', img:'magnific__professional-macro-product-photography-of-a-luxuri__4516.png' },
-  { id:'p11', family:'cajas', familyName:'Cajas de Regalo', name:'Set Cajas Cartón Kraft 3 Tamaños', ref:'08615', ean:'8436539086151', uds:12, medida:'S/M/L (3 uds)', mat:'Cartón kraft', desc:'Set de 3 cajas de cartón kraft en tamaños pequeño, mediano y grande. Diseño minimalista apto para todo tipo de regalos. Fondo de montaje automático.', img:'magnific__professional-macro-product-photography-of-a-luxuri__4517.png' },
-
-  // SACOS
-  { id:'p12', family:'sacos', familyName:'Sacos Navideños', name:'Saco Papa Noel Poliéster 80x60cm', ref:'09105', ean:'8436539091054', uds:12, medida:'80x60cm', mat:'Poliéster', desc:'Saco navideño de tela de poliéster con imagen de Papa Noel. Cierre con cordón. Reutilizable y lavable. Ideal para juguetes y regalos grandes.', img:'magnific__professional-product-photography-of-an-organized-d__4518.png' },
-  { id:'p13', family:'sacos', familyName:'Sacos Navideños', name:'Saco Reyes Magos Polietileno 100x70cm', ref:'09203', ean:'8436539092030', uds:12, medida:'100x70cm', mat:'Polietileno', desc:'Saco transparente de polietileno impreso con motivos de Reyes Magos. Tapa sellada con adhesivo. Perfecto para grandes regalos de Navidad y Reyes.', img:'magnific__professional-product-photography-of-an-organized-d__4519.png' },
-
-  // BOLSAS
-  { id:'p14', family:'bolsas', familyName:'Bolsas de Papel y Cristal', name:'Bolsa Papel Kraft Navidad Surtida 12 Uds', ref:'10302', ean:'8436539103023', uds:12, medida:'Surtido S/M/L', mat:'Papel kraft 120g', desc:'Pack de 12 bolsas de papel kraft con diseños navideños surtidos. Asas de cuerda. Gramaje 120g para alta resistencia. Con fuelle lateral.', img:'magnific__professional-product-photography-of-a-curated-flat__4520.png' },
-  { id:'p15', family:'bolsas', familyName:'Bolsas de Papel y Cristal', name:'Bolsa Papel Personaje Stitch Navidad', ref:'10445', ean:'8436539104450', uds:12, medida:'33x26x12cm', mat:'Papel couché 150g', desc:'Bolsa de papel con licencia oficial Stitch (Disney) en diseño navideño. Alta calidad de impresión. Asas de cinta plana. Caja de 12 unidades.', img:'magnific__professional-product-photography-of-a-curated-flat__4521.png' },
-
-  // PAPEL REGALO
-  { id:'p16', family:'papel', familyName:'Papel de Regalo', name:'Rollo Papel Regalo Navidad 70CMx3M Surtido', ref:'44500', ean:'8435621445008', uds:12, medida:'70CM x 3M', mat:'Papel impreso 60g', desc:'Rollo de papel de regalo con diseños navideños surtidos (estrellas, renos, copos). Medida estándar 70cm de ancho y 3 metros de largo. Ideal para todo tipo de regalos.', img:'magnific__hazla-en-fondo-blanco__4522.png' },
-  { id:'p17', family:'papel', familyName:'Papel de Regalo', name:'Rollo Papel Kraft 100CMx3M Natural', ref:'44680', ean:'8436539446801', uds:6, medida:'100CM x 3M', mat:'Papel kraft 70g', desc:'Rollo de papel kraft natural de 1 metro de ancho y 3 metros de largo. Estilo nórdico natural. Compatible con sellos, rotuladores y decoración manual.', img:'magnific__hazla-en-fondo-blanco__4523.png' },
-  { id:'p18', family:'papel', familyName:'Papel de Regalo', name:'Dispensador Doble Bobina 31+62CM', ref:'43749', ean:'8435621437499', uds:6, medida:'Doble 31+62cm', mat:'Metal y plástico', desc:'Dispensador cortador de bobinas de papel doble: compatible con bobinas de 31cm y 62cm simultáneamente. Sistema de corte integrado. Uso profesional para tiendas.', img:'magnific__hazla-en-fondo-blanco__4524.png' },
-
-  // LAZOS
-  { id:'p19', family:'lazos', familyName:'Lazos y Cintas', name:'Lazo Estrella Metalizado Adhesivo 14mm 50 Uds', ref:'06726', ean:'8436539067261', uds:12, medida:'14mm · 50 uds/pack', mat:'Polipropileno metalizado', desc:'Pack de 50 lazos estrella autoadhesivos metalizados de 14mm. Surtido de colores: oro, plata, rojo, azul y verde. Decoración rápida para paquetes de regalo.', img:'magnific__professional-product-photography-of-a-complete-gif__4526.png' },
-  { id:'p20', family:'lazos', familyName:'Lazos y Cintas', name:'Lazo Automático 50MM Oro Granel 30 Uds', ref:'43013', ean:'8435621430134', uds:30, medida:'50mm · Granel', mat:'Polipropileno', desc:'Caja de 30 lazos automáticos de 50mm en color oro. Sistema pull-to-open. Acabado metalizado brillante. Presentación a granel para tiendas y bazares.', img:'magnific__professional-product-photography-of-a-complete-gif__4527.png' },
-  { id:'p21', family:'lazos', familyName:'Lazos y Cintas', name:'Cinta Decorativa Metalizada 5MM x 100M Oro', ref:'42456', ean:'8435621424560', uds:6, medida:'5mm x 100m', mat:'Polipropileno metalizado', desc:'Bobina de cinta decorativa metalizada dorada de 5mm de ancho y 100 metros de largo. Ideal para envolver regalos, decorar cestas y manualidades navideñas.', img:'magnific__professional-product-photography-of-a-complete-gif__4526.png' },
-
-  // CAÑONES
-  { id:'p22', family:'canones', familyName:'Cañones de Fiesta', name:'Cañón Fiesta Tiras Red 60cm', ref:'44255', ean:'8435621442557', uds:12, medida:'60cm longitud', mat:'Metal/Papel', desc:'Cañón de fiesta de 60cm con tiras confeti rojas y doradas. Efecto espectacular al disparar. Ideal para fin de año, bodas y celebraciones navideñas. Uso único.', img:'magnific__professional-product-photography-of-a-premium-chri__4512.png' },
-  { id:'p23', family:'canones', familyName:'Cañones de Fiesta', name:'Cañón Fiesta Serpentina 40cm', ref:'44257', ean:'8435621442571', uds:12, medida:'40cm longitud', mat:'Metal/Papel', desc:'Cañón de serpentinas de colores de 40cm. Disparo de serpentinas multicolor. Efecto visual festivo. Perfecto para nochevieja y fiestas navideñas.', img:'magnific__professional-product-photography-of-a-premium-chri__4513.png' }
+const CATALOG = [
+  // FAMILIA 01 - Papel de Regalo
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M STARS',codigo:'45045',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M CASCANUECES',codigo:'45047',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M MELCHOR GASPAR BALTASAR',codigo:'45049',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M GLOBOS',codigo:'44097',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M RAYAS',codigo:'44096',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M ANIMALS',codigo:'44099',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M ELFOS',codigo:'45044',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M NORDIC',codigo:'45046',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M CANDY',codigo:'45048',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M PUNTOS ROJO',codigo:'44098',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M PATCHWORK',codigo:'44100',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M XMAS TREE',codigo:'44102',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M VINTAGE',codigo:'44908',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M FOLK',codigo:'44910',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M LISO ORO',codigo:'44917',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M LISO ROJO',codigo:'44918',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M LISO VERDE',codigo:'44919',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M LISO AZUL',codigo:'44920',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M LISO PLATA',codigo:'44921',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M LISO KRAFT',codigo:'44922',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M LISO NEGRO',codigo:'44923',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M LISO BLANCO',codigo:'44924',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M LISO GRANATE',codigo:'44925',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M LISO ROSA',codigo:'44926',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M LISO MORADO',codigo:'44927',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M LISO NARANJA',codigo:'44928',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M LISO AMARILLO',codigo:'44929',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M LISO CELESTE',codigo:'44930',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M LISO SALMON',codigo:'44931',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M LISO TURQUESA',codigo:'44932',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M LISO CORAL',codigo:'44933',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M LISO LIMA',codigo:'44934',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M LISO BEIGE',codigo:'44935',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M METALIZADO ORO',codigo:'44942',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M METALIZADO PLATA',codigo:'44943',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M METALIZADO ROJO',codigo:'44944',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M METALIZADO VERDE',codigo:'44945',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M METALIZADO AZUL',codigo:'44946',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M METALIZADO NEGRO',codigo:'44947',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M HOLOGRAFICO',codigo:'44951',paquete:60,caja:60},
+  {fid:'familia-01',nombre:'PAPEL REGALO 70CMX2M HOLOGRAFICO STARS',codigo:'44953',paquete:60,caja:60},
+  // FAMILIA 02 - Bobinas
+  {fid:'familia-02',nombre:'BOBINA PAPEL REGALO LISO 62CM PLATA',codigo:'42615',paquete:1,caja:1},
+  {fid:'familia-02',nombre:'BOBINA PAPEL REGALO LISO 62CM ORO',codigo:'42617',paquete:1,caja:1},
+  {fid:'familia-02',nombre:'BOBINA PAPEL REGALO LISO 62CM ROJO',codigo:'41671',paquete:1,caja:1},
+  {fid:'familia-02',nombre:'BOBINA PAPEL REGALO LISO 62CM VERDE',codigo:'41672',paquete:1,caja:1},
+  {fid:'familia-02',nombre:'BOBINA PAPEL REGALO LISO 62CM AZUL',codigo:'41673',paquete:1,caja:1},
+  {fid:'familia-02',nombre:'BOBINA PAPEL REGALO LISO 62CM NEGRO',codigo:'41674',paquete:1,caja:1},
+  {fid:'familia-02',nombre:'BOBINA PAPEL REGALO LISO 62CM BLANCO',codigo:'41675',paquete:1,caja:1},
+  {fid:'familia-02',nombre:'BOBINA PAPEL REGALO LISO 62CM KRAFT',codigo:'41676',paquete:1,caja:1},
+  {fid:'familia-02',nombre:'BOBINA PAPEL REGALO NAVIDAD 62CM ELFOS',codigo:'44950',paquete:1,caja:1},
+  {fid:'familia-02',nombre:'BOBINA PAPEL REGALO NAVIDAD 62CM REYES MAGOS',codigo:'44952',paquete:1,caja:1},
+  {fid:'familia-02',nombre:'BOBINA PAPEL REGALO NAVIDAD 62CM STARS',codigo:'44956',paquete:1,caja:1},
+  {fid:'familia-02',nombre:'BOBINA PAPEL REGALO NAVIDAD 62CM NORDIC',codigo:'44957',paquete:1,caja:1},
+  {fid:'familia-02',nombre:'BOBINA PAPEL REGALO NAVIDAD 62CM RAYAS',codigo:'44958',paquete:1,caja:1},
+  {fid:'familia-02',nombre:'BOBINA PAPEL REGALO NAVIDAD 62CM GLOBOS',codigo:'44959',paquete:1,caja:1},
+  {fid:'familia-02',nombre:'BOBINA PAPEL REGALO NAVIDAD 62CM ANIMALS',codigo:'44960',paquete:1,caja:1},
+  {fid:'familia-02',nombre:'BOBINA PAPEL REGALO NAVIDAD 62CM CANDY',codigo:'44961',paquete:1,caja:1},
+  {fid:'familia-02',nombre:'BOBINA PAPEL REGALO NAVIDAD 62CM FOLK',codigo:'44964',paquete:1,caja:1},
+  // FAMILIA 03 - Bolsas
+  {fid:'familia-03',nombre:'BOLSA PAPEL CON ASA 38+20X43 KRAFT',codigo:'42650',paquete:25,caja:300},
+  {fid:'familia-03',nombre:'BOLSA PAPEL CON ASA 38+20X43 BLANCA',codigo:'42651',paquete:25,caja:300},
+  {fid:'familia-03',nombre:'BOLSA PAPEL CON ASA 38+20X43 ROJA',codigo:'42652',paquete:25,caja:300},
+  {fid:'familia-03',nombre:'BOLSA PAPEL CON ASA 38+20X43 VERDE',codigo:'42653',paquete:25,caja:300},
+  {fid:'familia-03',nombre:'BOLSA PAPEL CON ASA 38+20X43 MAGENTA',codigo:'42654',paquete:25,caja:300},
+  {fid:'familia-03',nombre:'BOLSA PAPEL CON ASA 38+20X43 AZUL',codigo:'42655',paquete:25,caja:300},
+  {fid:'familia-03',nombre:'BOLSA PAPEL CON ASA 38+20X43 NEGRA',codigo:'42656',paquete:25,caja:300},
+  {fid:'familia-03',nombre:'BOLSA PAPEL CON ASA 38+20X43 LILA',codigo:'42657',paquete:25,caja:300},
+  {fid:'familia-03',nombre:'BOLSA PAPEL CON ASA 38+20X43 ORO',codigo:'42893',paquete:25,caja:300},
+  {fid:'familia-03',nombre:'BOLSA PAPEL CON ASA 38+20X43 PLATA',codigo:'42894',paquete:25,caja:300},
+  {fid:'familia-03',nombre:'BOLSA PAPEL 26+12X34,5CM STITCH SURTIDA',codigo:'45011',paquete:25,caja:200},
+  {fid:'familia-03',nombre:'BOLSA PAPEL 36+12X46,9CM STITCH SURTIDA',codigo:'45014',paquete:25,caja:200},
+  {fid:'familia-03',nombre:'BOLSA PAPEL 26+12X34,5CM MICKEY Y MINNIE SURTIDA',codigo:'45010',paquete:25,caja:200},
+  {fid:'familia-03',nombre:'BOLSA PAPEL 36+12X46,9CM MICKEY Y MINNIE SURTIDA',codigo:'45013',paquete:25,caja:200},
+  {fid:'familia-03',nombre:'BOLSA PAPEL 26+12X34,5CM VENGADORES SURTIDA',codigo:'45012',paquete:25,caja:200},
+  {fid:'familia-03',nombre:'BOLSA PAPEL 36+12X46,9CM VENGADORES SURTIDA',codigo:'45015',paquete:25,caja:200},
+  {fid:'familia-03',nombre:'BOLSA CRISTAL 8X15CM 36UDS',codigo:'42437',paquete:12,caja:144},
+  {fid:'familia-03',nombre:'BOLSA CRISTAL 10X20CM 36UDS',codigo:'42440',paquete:12,caja:144},
+  {fid:'familia-03',nombre:'BOLSA CRISTAL 12X25CM 30UDS',codigo:'42442',paquete:12,caja:144},
+  {fid:'familia-03',nombre:'BOLSA CRISTAL 15X30CM 24UDS',codigo:'42444',paquete:12,caja:144},
+  {fid:'familia-03',nombre:'BOLSA CRISTAL 20X30CM 18UDS',codigo:'42446',paquete:12,caja:144},
+  // FAMILIA 04 - Lazos y Cintas
+  {fid:'familia-04',nombre:'LAZO ESTRELLA METALIZADO ADHESIVO 10MM BRILLO 100UDS',codigo:'43030',paquete:100,caja:1800},
+  {fid:'familia-04',nombre:'LAZO ESTRELLA METALIZADO ADHESIVO 10MM MATE 100UDS',codigo:'43031',paquete:100,caja:1800},
+  {fid:'familia-04',nombre:'LAZO ESTRELLA METALIZADO ADHESIVO 14MM BRILLO 100UDS',codigo:'43032',paquete:100,caja:1400},
+  {fid:'familia-04',nombre:'LAZO ESTRELLA METALIZADO ADHESIVO 14MM MATE 100UDS',codigo:'43033',paquete:100,caja:1400},
+  {fid:'familia-04',nombre:'LAZOS ESTRELLA ADHESIVOS 10MM 100UDS',codigo:'06725',paquete:100,caja:900},
+  {fid:'familia-04',nombre:'LAZOS ESTRELLA METALIZADOS ADHESIVOS 10MM 100UDS',codigo:'07445',paquete:100,caja:900},
+  {fid:'familia-04',nombre:'LAZO ESTRELLA ADHESIVO 50MM ORO',codigo:'44200',paquete:50,caja:600},
+  {fid:'familia-04',nombre:'LAZO ESTRELLA ADHESIVO 50MM PLATA',codigo:'44201',paquete:50,caja:600},
+  {fid:'familia-04',nombre:'LAZO ESTRELLA ADHESIVO 50MM ROJO',codigo:'44202',paquete:50,caja:600},
+  {fid:'familia-04',nombre:'LAZO ESTRELLA ADHESIVO 80MM ORO',codigo:'44203',paquete:25,caja:300},
+  {fid:'familia-04',nombre:'LAZO ESTRELLA ADHESIVO 80MM PLATA',codigo:'44204',paquete:25,caja:300},
+  {fid:'familia-04',nombre:'BOBINA CINTA DECORATIVA ORO 5MMX20M',codigo:'06457',paquete:12,caja:144},
+  {fid:'familia-04',nombre:'BOBINA RAFIA 5MMX100M ORO',codigo:'42454',paquete:6,caja:144},
+  {fid:'familia-04',nombre:'BOBINA RAFIA 5MMX100M PLATA',codigo:'42455',paquete:6,caja:144},
+  {fid:'familia-04',nombre:'BOBINA RAFIA 5MMX100M ROJO',codigo:'42452',paquete:6,caja:144},
+  {fid:'familia-04',nombre:'BOBINA RAFIA 5MMX100M BLANCO',codigo:'42453',paquete:6,caja:144},
+  // FAMILIA 05 - Cajas
+  {fid:'familia-05',nombre:'CAJAS NAVIDAD METAL ORO TAMAÑO L SURTIDO 3UDS',codigo:'44090',paquete:12,caja:12},
+  {fid:'familia-05',nombre:'CAJAS NAVIDAD METAL PLATA TAMAÑO L SURTIDO 3UDS',codigo:'44091',paquete:12,caja:12},
+  {fid:'familia-05',nombre:'CAJAS NAVIDAD METAL ROJO TAMAÑO L SURTIDO 3UDS',codigo:'44092',paquete:12,caja:12},
+  {fid:'familia-05',nombre:'CAJAS NAVIDAD ELFOS TAMAÑO XL SURTIDO 3UDS',codigo:'44835',paquete:8,caja:8},
+  {fid:'familia-05',nombre:'CAJAS NAVIDAD SELLOS TAMAÑO XL SURTIDO 3UDS',codigo:'44837',paquete:8,caja:8},
+  {fid:'familia-05',nombre:'CAJAS NAVIDAD REYES MAGOS ROJA TAMAÑO XL 3UDS',codigo:'44832',paquete:8,caja:8},
+  {fid:'familia-05',nombre:'CAJA NAVIDAD TAMAÑO S ROJA',codigo:'44800',paquete:24,caja:24},
+  {fid:'familia-05',nombre:'CAJA NAVIDAD TAMAÑO S ORO',codigo:'44801',paquete:24,caja:24},
+  {fid:'familia-05',nombre:'CAJA NAVIDAD TAMAÑO S VERDE',codigo:'44802',paquete:24,caja:24},
+  {fid:'familia-05',nombre:'CAJA NAVIDAD TAMAÑO M ROJA',codigo:'44803',paquete:12,caja:12},
+  {fid:'familia-05',nombre:'CAJA NAVIDAD TAMAÑO M ORO',codigo:'44804',paquete:12,caja:12},
+  {fid:'familia-05',nombre:'CAJA NAVIDAD TAMAÑO M VERDE',codigo:'44805',paquete:12,caja:12},
+  // FAMILIA 06 - Sacos
+  {fid:'familia-06',nombre:'SACO NAVIDEÑO POLIETILENO 39X51CM',codigo:'44992',paquete:12,caja:144},
+  {fid:'familia-06',nombre:'SACO NAVIDEÑO POLIETILENO MOD 1 39X51CM',codigo:'45033',paquete:12,caja:144},
+  {fid:'familia-06',nombre:'SACO NAVIDEÑO ORO PLATA POLIETILENO 29X43CM',codigo:'45032',paquete:12,caja:144},
+  {fid:'familia-06',nombre:'SACO NAVIDEÑO POLIETILENO 16X24CM',codigo:'44989',paquete:12,caja:144},
+  {fid:'familia-06',nombre:'SACO NAVIDEÑO POLIETILENO 24X32CM',codigo:'44990',paquete:12,caja:144},
+  {fid:'familia-06',nombre:'SACO NAVIDEÑO POLIETILENO 29X43CM',codigo:'44991',paquete:12,caja:144},
+  // FAMILIA 07 - Globos
+  {fid:'familia-07',nombre:'GLOBO REY MAGO MELCHOR 110CM',codigo:'44108',paquete:12,caja:144},
+  {fid:'familia-07',nombre:'GLOBO REY MAGO GASPAR 110CM',codigo:'44109',paquete:12,caja:144},
+  {fid:'familia-07',nombre:'GLOBO REY MAGO BALTASAR 110CM',codigo:'44110',paquete:12,caja:144},
+  {fid:'familia-07',nombre:'GLOBOS REYES MAGOS 110CM 3UDS',codigo:'44011',paquete:12,caja:144},
+  {fid:'familia-07',nombre:'GLOBOS REYES MAGOS CARAS 50CM 3UDS',codigo:'44013',paquete:12,caja:144},
+  {fid:'familia-07',nombre:'GLOBOS LETRAS FELIZ NAVIDAD 33CM',codigo:'44117',paquete:12,caja:144},
+  {fid:'familia-07',nombre:'GLOBO PAPA NOEL 110CM',codigo:'44118',paquete:12,caja:144},
+  {fid:'familia-07',nombre:'GLOBO ARBOL NAVIDAD 110CM',codigo:'44119',paquete:12,caja:144},
+  {fid:'familia-07',nombre:'GLOBO RENO RUDOLPH 110CM',codigo:'44120',paquete:12,caja:144},
+  {fid:'familia-07',nombre:'GLOBO ESTRELLA NAVIDAD 50CM ORO',codigo:'44121',paquete:12,caja:144},
+  {fid:'familia-07',nombre:'GLOBO ESTRELLA NAVIDAD 50CM PLATA',codigo:'44122',paquete:12,caja:144},
+  {fid:'familia-07',nombre:'GLOBO ESTRELLA NAVIDAD 50CM ROJO',codigo:'44123',paquete:12,caja:144},
+  // FAMILIA 08 - Decoración
+  {fid:'familia-08',nombre:'PAPA NOEL EN ESCALERA 40CM',codigo:'44980',paquete:6,caja:144},
+  {fid:'familia-08',nombre:'PAPA NOEL EN ESCALERA 70CM',codigo:'44981',paquete:6,caja:144},
+  {fid:'familia-08',nombre:'PAPA NOEL EN ESCALERA 100CM',codigo:'44982',paquete:6,caja:144},
+  {fid:'familia-08',nombre:'PLANTILLAS HUELLAS Y ESTRELLA 3UDS',codigo:'44018',paquete:12,caja:144},
+  {fid:'familia-08',nombre:'PLANTILLAS REYES MAGOS 3UDS',codigo:'44882',paquete:12,caja:144},
+  {fid:'familia-08',nombre:'DECORACION NAVIDAD PAPA NOEL SURTIDO PARA COLGAR',codigo:'44024',paquete:12,caja:72},
+  {fid:'familia-08',nombre:'BOLA POREX 10CM',codigo:'40737',paquete:12,caja:288},
+  {fid:'familia-08',nombre:'BOLA POREX 6CM 4UDS',codigo:'40733',paquete:12,caja:288},
+  {fid:'familia-08',nombre:'BOLA POREX 5CM 4UDS',codigo:'40732',paquete:12,caja:288},
+  {fid:'familia-08',nombre:'BOLA POREX 4CM 8UDS',codigo:'40731',paquete:12,caja:288},
+  {fid:'familia-08',nombre:'BOLA POREX 3CM 8UDS',codigo:'40730',paquete:12,caja:288},
+  {fid:'familia-08',nombre:'BOLA POREX 2CM 12UDS',codigo:'40728',paquete:12,caja:288},
+  {fid:'familia-08',nombre:'FIGURAS NAVIDAD BOLAS 4UDS',codigo:'44871',paquete:24,caja:24},
+  {fid:'familia-08',nombre:'FIGURAS NAVIDAD PARA COLGAR MOD3 4UDS',codigo:'44867',paquete:24,caja:24},
+  {fid:'familia-08',nombre:'FIGURA NAVIDAD ARBOL 14CM',codigo:'44859',paquete:24,caja:24},
+  {fid:'familia-08',nombre:'FIGURA NAVIDAD ELFO 12,6CM',codigo:'44860',paquete:24,caja:24},
+  // FAMILIA 09 - Pegatinas
+  {fid:'familia-09',nombre:'PEGATINAS NAVIDAD METALIZADA SURTIDO VENTANA',codigo:'44814',paquete:12,caja:288},
+  {fid:'familia-09',nombre:'PEGATINAS NAVIDAD SURTIDO PAPA NOEL',codigo:'44815',paquete:12,caja:288},
+  {fid:'familia-09',nombre:'PEGATINAS NAVIDAD SURTIDO GRANDE',codigo:'44816',paquete:12,caja:288},
+  {fid:'familia-09',nombre:'PEGATINAS NAVIDAD SURTIDO VENTANA',codigo:'44817',paquete:12,caja:288},
+  {fid:'familia-09',nombre:'PEGATINAS NAVIDAD SURTIDO CLASICA',codigo:'44818',paquete:12,caja:288},
+  {fid:'familia-09',nombre:'ETIQUETAS REGALO NAVIDAD SENCILLA',codigo:'44819',paquete:12,caja:288},
+  {fid:'familia-09',nombre:'CELO INVISIBLE 18MMX30M 2UDS',codigo:'41220',paquete:12,caja:240},
+  {fid:'familia-09',nombre:'CELO INVISIBLE 12MMX30M 3UDS',codigo:'41219',paquete:12,caja:240},
+  {fid:'familia-09',nombre:'CELO TRANSPARENTE 18MMX30M 2UDS',codigo:'41158',paquete:12,caja:240},
+  {fid:'familia-09',nombre:'CELO TRANSPARENTE 12MMX30M 3UDS',codigo:'41157',paquete:12,caja:240},
+  // FAMILIA 10 - Fiesta
+  {fid:'familia-10',nombre:'BOLSA UVAS DE LA SUERTE 12UDS 10X20CM',codigo:'43424',paquete:12,caja:144},
+  {fid:'familia-10',nombre:'CAÑON FIESTA TIRAS RED 30CM',codigo:'44253',paquete:12,caja:72},
+  {fid:'familia-10',nombre:'CAÑON FIESTA TIRAS GOLD 30CM',codigo:'44250',paquete:12,caja:72},
+  {fid:'familia-10',nombre:'CAÑON FIESTA TIRAS GOLD 40CM',codigo:'44251',paquete:12,caja:72},
+  {fid:'familia-10',nombre:'CAÑON FIESTA TIRAS SILVER 30CM',codigo:'45050',paquete:12,caja:72},
+  {fid:'familia-10',nombre:'CAÑON FIESTA TIRAS RED 40CM',codigo:'44254',paquete:12,caja:72},
+  {fid:'familia-10',nombre:'CAÑON FIESTA TIRAS SILVER 40CM',codigo:'44252',paquete:12,caja:72},
+  {fid:'familia-10',nombre:'GAFAS FIN DE AÑO 2027',codigo:'44988',paquete:12,caja:144},
+  {fid:'familia-10',nombre:'GAFAS NAVIDAD ARBOL',codigo:'45035',paquete:12,caja:144},
+  {fid:'familia-10',nombre:'GAFAS NAVIDAD RENO',codigo:'45036',paquete:12,caja:144},
+  {fid:'familia-10',nombre:'GAFAS NAVIDAD HAPPY NEW YEAR',codigo:'45037',paquete:12,caja:144},
+  // FAMILIA 11 - Vajilla
+  {fid:'familia-11',nombre:'VASO CARTON 270CC 6PCS METALIZADO ORO',codigo:'44611',paquete:12,caja:144},
+  {fid:'familia-11',nombre:'PLATO CARTON 17CM 6PCS METALIZADO ORO',codigo:'44779',paquete:12,caja:144},
+  {fid:'familia-11',nombre:'PLATO CARTON 23CM 6PCS METALIZADO ORO',codigo:'44782',paquete:12,caja:144},
+  {fid:'familia-11',nombre:'VASO CARTON 270CC 6PCS METALIZADO PLATA',codigo:'44612',paquete:12,caja:144},
+  {fid:'familia-11',nombre:'PLATO CARTON 17CM 6PCS METALIZADO PLATA',codigo:'44780',paquete:12,caja:144},
+  {fid:'familia-11',nombre:'PLATO CARTON 23CM 6PCS METALIZADO PLATA',codigo:'44783',paquete:12,caja:144},
+  {fid:'familia-11',nombre:'VASO CARTON 270CC 6PCS METALIZADO ROJO',codigo:'44613',paquete:12,caja:144},
+  {fid:'familia-11',nombre:'PLATO CARTON 17CM 6PCS METALIZADO ROJO',codigo:'44781',paquete:12,caja:144},
+  {fid:'familia-11',nombre:'PLATO CARTON 23CM 6PCS METALIZADO ROJO',codigo:'44784',paquete:12,caja:144},
+  {fid:'familia-11',nombre:'VASO CARTON 270CC 6PCS METALIZADO VERDE',codigo:'44614',paquete:12,caja:144},
+  {fid:'familia-11',nombre:'PLATO CARTON 17CM 6PCS METALIZADO VERDE',codigo:'44785',paquete:12,caja:144},
+  {fid:'familia-11',nombre:'PLATO CARTON 23CM 6PCS METALIZADO VERDE',codigo:'44786',paquete:12,caja:144},
+  // FAMILIA 12 - Calefacción
+  {fid:'familia-12',nombre:'CALEFACTOR CANDANCHU BLANCO 24CM 2000W',codigo:'44977',paquete:6,caja:6},
+  {fid:'familia-12',nombre:'CALEFACTOR CANDANCHU NEGRO 24CM 2000W',codigo:'44978',paquete:6,caja:6},
+  {fid:'familia-12',nombre:'CALEFACTOR ATLAS BLANCO 26,5CM 2000W',codigo:'44884',paquete:6,caja:6},
+  {fid:'familia-12',nombre:'CALEFACTOR ATLAS NEGRO 26,5CM 2000W',codigo:'44885',paquete:6,caja:6},
+  {fid:'familia-12',nombre:'CALEFACTOR ANDES BLANCO 26,5CM 2000W',codigo:'44886',paquete:6,caja:6},
+  {fid:'familia-12',nombre:'CALEFACTOR ANDES NEGRO 26,5CM 2000W',codigo:'44887',paquete:6,caja:6},
+  {fid:'familia-12',nombre:'CALEFACTOR PIRINEOS BLANCO 2000W',codigo:'44888',paquete:6,caja:6},
+  {fid:'familia-12',nombre:'CALEFACTOR PIRINEOS NEGRO 2000W',codigo:'44889',paquete:6,caja:6},
 ];
 
-// ═══════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════
+const DESTACADOS = [
+  {codigo:'45049',nombre:'Papel Regalo 70cm Melchor Gaspar Baltasar',fid:'familia-01'},
+  {codigo:'45045',nombre:'Papel Regalo 70cm Stars',fid:'familia-01'},
+  {codigo:'44096',nombre:'Papel Regalo 70cm Rayas',fid:'familia-01'},
+  {codigo:'42615',nombre:'Bobina Papel Liso 62cm Plata',fid:'familia-02'},
+  {codigo:'42617',nombre:'Bobina Papel Liso 62cm Oro',fid:'familia-02'},
+  {codigo:'44950',nombre:'Bobina Papel Navidad 62cm Elfos',fid:'familia-02'},
+  {codigo:'45011',nombre:'Bolsa Papel 26cm Stitch Surtida',fid:'familia-03'},
+  {codigo:'45014',nombre:'Bolsa Papel 36cm Stitch Surtida',fid:'familia-03'},
+  {codigo:'42650',nombre:'Bolsa Papel con Asa 38cm Kraft',fid:'familia-03'},
+  {codigo:'43030',nombre:'Lazo Estrella Metalizado 10mm Brillo 100uds',fid:'familia-04'},
+  {codigo:'43032',nombre:'Lazo Estrella Metalizado 14mm Brillo 100uds',fid:'familia-04'},
+  {codigo:'06457',nombre:'Bobina Cinta Decorativa Oro 5mm×20m',fid:'familia-04'},
+  {codigo:'44090',nombre:'Cajas Navidad Metal Oro Talla L 3uds',fid:'familia-05'},
+  {codigo:'44835',nombre:'Cajas Navidad Elfos Talla XL 3uds',fid:'familia-05'},
+  {codigo:'44992',nombre:'Saco Navideño Polietileno 39×51cm',fid:'familia-06'},
+  {codigo:'45033',nombre:'Saco Navideño Mod 1 39×51cm',fid:'familia-06'},
+  {codigo:'44011',nombre:'Globos Reyes Magos 110cm 3uds',fid:'familia-07'},
+  {codigo:'44117',nombre:'Globos Letras Feliz Navidad 33cm',fid:'familia-07'},
+  {codigo:'44981',nombre:'Papa Noel en Escalera 70cm',fid:'familia-08'},
+  {codigo:'44018',nombre:'Plantillas Huellas y Estrella 3uds',fid:'familia-08'},
+  {codigo:'44816',nombre:'Pegatinas Navidad Surtido Grande',fid:'familia-09'},
+  {codigo:'44814',nombre:'Pegatinas Navidad Metalizada Ventana',fid:'familia-09'},
+  {codigo:'44988',nombre:'Gafas Fin de Año 2027',fid:'familia-10'},
+  {codigo:'44251',nombre:'Cañón Fiesta Tiras Gold 40cm',fid:'familia-10'},
+  {codigo:'44611',nombre:'Vaso Cartón 270cc 6pcs Metalizado Oro',fid:'familia-11'},
+  {codigo:'44782',nombre:'Plato Cartón 23cm 6pcs Metalizado Oro',fid:'familia-11'},
+  {codigo:'44884',nombre:'Calefactor Atlas Blanco 26,5cm 2000W',fid:'familia-12'},
+];
+
+let activeFilter = 'all';
+let searchQ = '';
+let visibleCount = 48;
+
 document.addEventListener('DOMContentLoaded', () => {
-  // Set hero background (using CSS instead of img for performance)
-  document.getElementById('heroBg').style.backgroundImage =
-    "url('magnific__cinematic-wideangle-product-photography-of-a-massi__4528.png')";
-
+  createSnow();
   renderFamilies();
-  renderFilters();
-  renderProducts(PRODUCTS);
+  renderFilterChips();
+  renderProducts();
+  renderDestacados();
 });
 
-// ═══════════════════════════════════════════
-// FAMILIES
-// ═══════════════════════════════════════════
+function createSnow() {
+  const c = document.getElementById('snowEl');
+  for (let i = 0; i < 28; i++) {
+    const s = document.createElement('span');
+    s.className = 'snowflake';
+    s.textContent = ['❄','❅','❆','✦'][Math.floor(Math.random()*4)];
+    s.style.cssText = `left:${Math.random()*100}vw;font-size:${0.8+Math.random()*1.4}em;animation-duration:${5+Math.random()*10}s;animation-delay:${Math.random()*10}s`;
+    c.appendChild(s);
+  }
+}
+
 function renderFamilies() {
-  const grid = document.getElementById('familiesGrid');
-  grid.innerHTML = FAMILIES.map((f, i) => `
-    <div class="family-card" onclick="openFamily(${i})">
-      <img src="${f.img1}" alt="${f.name}" loading="lazy">
-      <div class="family-card-overlay">
-        <div class="family-card-name">${f.name}</div>
-        <div class="family-card-refs">${f.refs}</div>
-        <div class="family-card-btn">
-          Ver productos
-          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  document.getElementById('familiesGrid').innerHTML = FAMILIES.map(f => `
+    <div class="family-card" onclick="goFamily('${f.id}')">
+      <img class="family-card-img" src="${f.img}" alt="${f.nombre}" loading="lazy" onerror="this.style.background='var(--blue-light)'">
+      <div class="family-card-body">
+        <div class="family-card-num">Familia ${f.num}</div>
+        <div class="family-card-name">${f.nombre}</div>
+        <div class="family-card-desc">${f.desc}</div>
+        <div class="family-card-footer">
+          <span class="family-card-count">${f.count} referencias</span>
+          <span class="family-card-btn">Ver productos →</span>
         </div>
       </div>
-    </div>
-  `).join('');
+    </div>`).join('');
 }
 
-function openFamily(idx) {
-  const f = FAMILIES[idx];
-  document.getElementById('familyPanelImg').src = f.img1;
-  document.getElementById('familyPanelTag').textContent = `${f.refs}`;
-  document.getElementById('familyPanelTitle').textContent = f.name;
-  document.getElementById('familyPanelDesc').textContent = f.desc;
-
-  // Render family's products
-  const familyProds = PRODUCTS.filter(p => p.family === f.id);
-  const grid = document.getElementById('familyProductsGrid');
-  if (familyProds.length) {
-    grid.innerHTML = familyProds.map(p => productCardHTML(p)).join('');
-  } else {
-    grid.innerHTML = '<p style="color:var(--grey-400);font-size:.9rem;">Fichas técnicas disponibles bajo solicitud. Contacta con nuestro equipo comercial.</p>';
-  }
-
-  document.getElementById('familyPanel').classList.add('active');
-  document.body.style.overflow = 'hidden';
+function renderFilterChips() {
+  const chips = [{id:'all',label:'Todas ('+CATALOG.length+')'},...FAMILIES.map(f=>({id:f.id,label:f.num+' '+f.nombre}))];
+  document.getElementById('filterRow').innerHTML = chips.map(c=>`
+    <button class="filter-chip${c.id===activeFilter?' active':''}" onclick="setFilter('${c.id}')">${c.label}</button>`).join('');
 }
 
-function closeFamily() {
-  document.getElementById('familyPanel').classList.remove('active');
-  document.body.style.overflow = '';
+function setFilter(id) {
+  activeFilter = id; visibleCount = 48;
+  renderFilterChips(); renderProducts();
 }
 
-// ═══════════════════════════════════════════
-// PRODUCTS
-// ═══════════════════════════════════════════
-function productCardHTML(p) {
-  return `
-    <div class="product-card" onclick="openProduct('${p.id}')">
-      <div class="product-card-img">
-        <img src="${p.img}" alt="${p.name}" loading="lazy">
-        <div class="product-card-family-tag">${p.familyName}</div>
-      </div>
-      <div class="product-card-body">
-        <div class="product-card-ref">Ref. ${p.ref}</div>
-        <div class="product-card-name">${p.name}</div>
-        <div class="product-card-specs">
-          <span class="spec-chip">📦 ${p.uds} uds/caja</span>
-          ${p.medida ? `<span class="spec-chip">📐 ${p.medida}</span>` : ''}
-          ${p.mat ? `<span class="spec-chip">✦ ${p.mat}</span>` : ''}
-        </div>
-        <div class="product-card-footer">
-          <div class="product-card-ean">EAN: ${p.ean}</div>
-          <div class="product-card-view">
-            Ver ficha
-            <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </div>
+function goFamily(id) {
+  setFilter(id);
+  document.getElementById('catalogo').scrollIntoView({behavior:'smooth'});
+  closeDD();
+}
+
+function filterProducts() {
+  searchQ = document.getElementById('searchInput').value.toLowerCase();
+  visibleCount = 48; renderProducts();
+}
+
+function getFiltered() {
+  return CATALOG.filter(p => {
+    const mf = activeFilter==='all' || p.fid===activeFilter;
+    const ms = !searchQ || p.nombre.toLowerCase().includes(searchQ) || p.codigo.includes(searchQ);
+    return mf && ms;
+  });
+}
+
+function renderProducts() {
+  const filtered = getFiltered();
+  const visible = filtered.slice(0, visibleCount);
+  const fam = FAMILIES.find(f=>f.id===activeFilter);
+  document.getElementById('resultsInfo').innerHTML =
+    `Mostrando <strong>${visible.length}</strong> de <strong>${filtered.length}</strong> referencias${fam?` en <strong>${fam.nombre}</strong>`:''}`;
+  document.getElementById('productsGrid').innerHTML = visible.map(p => {
+    const f = FAMILIES.find(x=>x.id===p.fid);
+    const star = STAR_CODES.has(p.codigo);
+    return `<div class="product-card">
+      <div class="product-card-fam">${f?.nombre||''}</div>
+      <div class="product-card-name">${p.nombre}</div>
+      ${star?'<div class="product-card-star">⭐ Producto Estrella</div>':''}
+      <div class="product-card-footer">
+        <span class="product-card-code">${p.codigo}</span>
+        <div class="product-card-units">
+          ${p.paquete?`<span class="product-card-caja">Paq: <strong>${p.paquete}</strong></span>`:''}
+          ${p.caja?`<span class="product-card-caja">Caja: <strong>${p.caja}</strong></span>`:''}
         </div>
       </div>
-    </div>
-  `;
+    </div>`;
+  }).join('');
+  document.getElementById('loadMoreBtn').style.display = filtered.length > visibleCount ? 'inline-flex' : 'none';
 }
 
-function renderProducts(prods) {
-  const grid = document.getElementById('featuredGrid');
-  grid.innerHTML = prods.map(p => productCardHTML(p)).join('');
-}
+function loadMore() { visibleCount += 48; renderProducts(); }
 
-// ═══════════════════════════════════════════
-// FILTERS
-// ═══════════════════════════════════════════
-function renderFilters() {
-  const bar = document.getElementById('filtersBar');
-  const families = ['Todos', ...FAMILIES.map(f => f.name)];
-  bar.innerHTML = families.map((f, i) => `
-    <button class="filter-chip ${i===0?'active':''}" onclick="filterBy('${f}', this)">
-      ${i===0 ? f : f.split(' ')[0]}
-    </button>
-  `).join('');
-}
-
-function filterBy(familyName, btn) {
-  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-  btn.classList.add('active');
-  const filtered = familyName === 'Todos' ? PRODUCTS :
-    PRODUCTS.filter(p => p.familyName === familyName);
-  renderProducts(filtered);
-}
-
-// ═══════════════════════════════════════════
-// PRODUCT MODAL
-// ═══════════════════════════════════════════
-function openProduct(id) {
-  const p = PRODUCTS.find(x => x.id === id);
-  if (!p) return;
-  document.getElementById('modalFamily').textContent = p.familyName;
-  document.getElementById('modalName').textContent = p.name;
-  document.getElementById('modalImg').src = p.img;
-  document.getElementById('modalDesc').textContent = p.desc;
-  document.getElementById('modalRef').textContent = p.ref;
-  document.getElementById('modalEan').textContent = p.ean;
-  document.getElementById('modalUds').textContent = `${p.uds} unidades`;
-  document.getElementById('modalMedida').textContent = p.medida || '—';
-  document.getElementById('modalMat').textContent = p.mat || '—';
-  document.getElementById('productModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal(e) {
-  if (!e || e.target === document.getElementById('productModal')) {
-    document.getElementById('productModal').classList.remove('active');
-    document.body.style.overflow = '';
-  }
-}
-
-// ═══════════════════════════════════════════
-// SEARCH
-// ═══════════════════════════════════════════
-function doSearch(q) {
-  const panel = document.getElementById('searchResults');
-  const inner = document.getElementById('searchResultsInner');
-  if (!q || q.length < 2) { panel.classList.remove('active'); return; }
-  const results = PRODUCTS.filter(p =>
-    p.name.toLowerCase().includes(q.toLowerCase()) ||
-    p.ref.includes(q) ||
-    p.ean.includes(q) ||
-    p.familyName.toLowerCase().includes(q.toLowerCase())
-  );
-  if (!results.length) {
-    inner.innerHTML = `<div class="search-no-results">No se encontraron productos para "<strong>${q}</strong>"</div>`;
-  } else {
-    inner.innerHTML = results.map(p => `
-      <div class="search-result-item" onclick="openProduct('${p.id}'); hideSearchResults();">
-        <div class="search-result-img"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
-        <div>
-          <div class="search-result-name">${p.name}</div>
-          <div class="search-result-ref">Ref. ${p.ref} · ${p.familyName}</div>
-        </div>
+function renderDestacados() {
+  document.getElementById('destacadosGrid').innerHTML = DESTACADOS.map(d => {
+    const f = FAMILIES.find(x=>x.id===d.fid);
+    return `<div class="destacado-card">
+      <div class="destacado-placeholder">
+        <div class="destacado-placeholder-icon">📷</div>
+        <div class="destacado-placeholder-text">Foto del producto próximamente</div>
       </div>
-    `).join('');
-  }
-  panel.classList.add('active');
+      <div class="destacado-body">
+        <div class="destacado-fam">${f?.nombre||''}</div>
+        <div class="destacado-name">${d.nombre}</div>
+        <div class="destacado-code">Ref. ${d.codigo}</div>
+        <span class="destacado-badge">⭐ Producto Estrella 2026</span>
+      </div>
+    </div>`;
+  }).join('');
 }
 
-function showSearchResults() {
-  if (document.getElementById('globalSearch').value.length >= 2) {
-    document.getElementById('searchResults').classList.add('active');
-  }
+function toggleDD() {
+  const dd = document.getElementById('navDD');
+  dd.classList.toggle('open');
 }
-function hideSearchResults() {
-  document.getElementById('searchResults').classList.remove('active');
+function closeDD() {
+  document.getElementById('navDD')?.classList.remove('open');
 }
+document.addEventListener('click', e => {
+  if (!document.getElementById('navDD')?.contains(e.target)) closeDD();
+});
 
-// ═══════════════════════════════════════════
-// MISC
-// ═══════════════════════════════════════════
-function showHome() {
-  closeFamily();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function submitForm() {
-  const btn = event.currentTarget;
-  btn.innerHTML = '✓ Solicitud enviada — te contactaremos en 24h';
-  btn.style.background = '#16a34a';
+function submitForm(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.innerHTML = '✓ ¡Solicitud enviada!';
+  btn.style.cssText = 'background:#22c55e;color:#fff;width:100%;justify-content:center';
   btn.disabled = true;
 }
-
-// Keyboard: Escape closes modals
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    closeModal();
-    closeFamily();
-    closeFamiliasMenu();
-  }
-});
-
-/* ── FAMILIAS DROPDOWN ── */
-function toggleFamiliasMenu() {
-  const dd = document.getElementById('navFamiliasDropdown');
-  const btn = dd.querySelector('.nav-familias-btn');
-  const isOpen = dd.classList.toggle('open');
-  btn.setAttribute('aria-expanded', isOpen);
-}
-function closeFamiliasMenu() {
-  const dd = document.getElementById('navFamiliasDropdown');
-  if (dd) {
-    dd.classList.remove('open');
-    dd.querySelector('.nav-familias-btn').setAttribute('aria-expanded', 'false');
-  }
-}
-function scrollToFamily(familyId) {
-  // Navigate to familias section and filter by family
-  document.getElementById('familias').scrollIntoView({ behavior: 'smooth' });
-  setTimeout(() => {
-    const fam = FAMILIES.find(f => f.id === familyId);
-    if (fam) filterFamily(fam);
-  }, 600);
-}
-// Close dropdown when clicking outside
-document.addEventListener('click', e => {
-  const dd = document.getElementById('navFamiliasDropdown');
-  if (dd && !dd.contains(e.target)) closeFamiliasMenu();
-});
 </script>
 </body>
 </html>
