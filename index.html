@@ -555,7 +555,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   inset: 0;
   background: rgba(10,12,60,0.7);
   backdrop-filter: blur(6px);
-  z-index: 2000;
+  z-index: 4000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1102,6 +1102,31 @@ textarea.form-input { resize: vertical; min-height: 100px; }
 .text-blue { color: var(--blue); }
 .text-gold { color: var(--gold); }
 svg { display: inline-block; vertical-align: middle; }
+
+/* ── REFERENCIAS (catálogo completo por familia) ── */
+.family-products-grid { display: block; }
+.family-stars-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; margin-bottom: 48px; }
+.ref-section-title { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey-600); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+.ref-count { background: var(--blue-light); color: var(--blue); border-radius: 100px; padding: 2px 10px; font-size: 0.75rem; letter-spacing: 0; }
+.ref-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+.ref-search { flex: 0 1 320px; min-width: 0; width: 100%; padding: 10px 16px; border: 1.5px solid var(--border); border-radius: 10px; font: inherit; font-size: 0.875rem; background: var(--grey-100); color: var(--grey-800); outline: none; transition: border-color .2s, background .2s; }
+.ref-search:focus { border-color: var(--blue); background: #fff; }
+.ref-list { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: #fff; }
+.ref-row { display: grid; grid-template-columns: 72px minmax(0,1fr) auto 150px; align-items: center; gap: 16px; width: 100%; padding: 13px 20px; border: 0; border-bottom: 1px solid var(--border); background: #fff; font: inherit; text-align: left; cursor: pointer; transition: background .15s; }
+.ref-row:last-child { border-bottom: 0; }
+.ref-row:hover { background: var(--blue-light); }
+.ref-row-code { font-size: 0.8rem; font-weight: 700; color: var(--blue); font-variant-numeric: tabular-nums; }
+.ref-row-name { font-size: 0.875rem; font-weight: 500; color: var(--grey-800); min-width: 0; }
+.ref-row-star { display: inline-block; margin-left: 6px; font-size: 0.65rem; font-weight: 700; color: #a8761a; background: #fdf3dd; border-radius: 100px; padding: 2px 8px; vertical-align: 1px; white-space: nowrap; }
+.ref-row-meta { display: flex; gap: 6px; }
+.ref-row-meta span { font-size: 0.72rem; color: var(--grey-600); background: var(--grey-100); border-radius: 6px; padding: 3px 8px; white-space: nowrap; }
+.ref-row-ean { font-size: 0.72rem; color: var(--grey-400); font-variant-numeric: tabular-nums; text-align: right; }
+@media (max-width: 768px) {
+  .ref-row { grid-template-columns: 60px minmax(0,1fr); gap: 4px 12px; padding: 12px 16px; }
+  .ref-row-meta { grid-column: 2; }
+  .ref-row-ean { grid-column: 2; text-align: left; }
+  .ref-search { flex-basis: 100%; }
+}
 </style>
 </head>
 <body>
@@ -1130,35 +1155,41 @@ svg { display: inline-block; vertical-align: middle; }
           <svg class="nav-familias-chevron" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="nav-familias-menu" id="navFamiliasMenu">
-          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('regalo');closeFamiliasMenu()">
-            <span class="nav-familias-num">01</span>Artículos de Regalo
+          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('papel');closeFamiliasMenu()">
+            <span class="nav-familias-num">01</span>Papel de Regalo
           </a>
-          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('globos');closeFamiliasMenu()">
-            <span class="nav-familias-num">02</span>Globos
+          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('bobinas');closeFamiliasMenu()">
+            <span class="nav-familias-num">02</span>Bobinas de Regalo
           </a>
-          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('figuras');closeFamiliasMenu()">
-            <span class="nav-familias-num">03</span>Figuras para Pintar
+          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('bolsas');closeFamiliasMenu()">
+            <span class="nav-familias-num">03</span>Bolsas
           </a>
-          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('pegatinas');closeFamiliasMenu()">
-            <span class="nav-familias-num">04</span>Pegatinas y Etiquetas
+          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('lazos');closeFamiliasMenu()">
+            <span class="nav-familias-num">04</span>Lazos y Cintas
           </a>
           <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('cajas');closeFamiliasMenu()">
-            <span class="nav-familias-num">05</span>Cajas de Regalo
+            <span class="nav-familias-num">05</span>Cajas Cartón
           </a>
           <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('sacos');closeFamiliasMenu()">
             <span class="nav-familias-num">06</span>Sacos Navideños
           </a>
-          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('bolsas');closeFamiliasMenu()">
-            <span class="nav-familias-num">07</span>Bolsas de Papel y Cristal
+          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('globos');closeFamiliasMenu()">
+            <span class="nav-familias-num">07</span>Globos
           </a>
-          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('papel');closeFamiliasMenu()">
-            <span class="nav-familias-num">08</span>Papel de Regalo
+          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('decoracion');closeFamiliasMenu()">
+            <span class="nav-familias-num">08</span>Decoración Navidad
           </a>
-          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('lazos');closeFamiliasMenu()">
-            <span class="nav-familias-num">09</span>Lazos y Cintas
+          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('pegatinas');closeFamiliasMenu()">
+            <span class="nav-familias-num">09</span>Pegatinas y Tarjetas
           </a>
-          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('canones');closeFamiliasMenu()">
-            <span class="nav-familias-num">10</span>Cañones de Fiesta
+          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('fiesta');closeFamiliasMenu()">
+            <span class="nav-familias-num">10</span>Fiesta y Novedades
+          </a>
+          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('vajilla');closeFamiliasMenu()">
+            <span class="nav-familias-num">11</span>Vajilla Desechable
+          </a>
+          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('calefaccion');closeFamiliasMenu()">
+            <span class="nav-familias-num">12</span>Calefacción
           </a>
         </div>
       </div>
@@ -1190,7 +1221,7 @@ svg { display: inline-block; vertical-align: middle; }
       Catálogo Navidad · Temporada 2026
     </div>
     <h1>Todo para la<br><span>Navidad</span><br>en un solo catálogo</h1>
-    <p class="hero-desc">Más de 400 referencias de artículos navideños organizadas en 10 familias de producto. Temporada 2026.</p>
+    <p class="hero-desc">798 referencias de artículos navideños organizadas en 12 familias de producto. Temporada 2026.</p>
     <div class="hero-ctas">
       <a href="#familias" class="btn-hero-primary">
         Ver Catálogo
@@ -1206,13 +1237,13 @@ svg { display: inline-block; vertical-align: middle; }
 <!-- TICKER -->
 <div class="b2b-banner">
   <div class="b2b-ticker">
-    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>Catálogo Navidad 2026</strong> · 400+ referencias</div>
-    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>10 familias</strong> de producto navideño</div>
+    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>Catálogo Navidad 2026</strong> · 798 referencias</div>
+    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>12 familias</strong> de producto navideño</div>
     <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>Stock disponible</strong> · Temporada 2026</div>
     <div class="b2b-ticker-item"><span class="ticker-dot"></span> Desde <strong>Paterna, Valencia</strong> · criscolor.com</div>
     <div class="b2b-ticker-item"><span class="ticker-dot"></span> Más de <strong>25 años</strong> en el sector</div>
-    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>Catálogo Navidad 2026</strong> · 400+ referencias</div>
-    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>10 familias</strong> de producto navideño</div>
+    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>Catálogo Navidad 2026</strong> · 798 referencias</div>
+    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>12 familias</strong> de producto navideño</div>
     <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>Stock disponible</strong> · Temporada 2026</div>
     <div class="b2b-ticker-item"><span class="ticker-dot"></span> Desde <strong>Paterna, Valencia</strong> · criscolor.com</div>
     <div class="b2b-ticker-item"><span class="ticker-dot"></span> Más de <strong>25 años</strong> en el sector</div>
@@ -1224,7 +1255,7 @@ svg { display: inline-block; vertical-align: middle; }
   <div class="container">
     <div class="families-header">
       <img src="logo.png" alt="Criscolor" style="height:40px;width:auto;display:inline-block;margin-bottom:24px;">
-      <div class="badge badge-blue" style="margin-bottom:16px;display:block;">10 Familias de Producto</div>
+      <div class="badge badge-blue" style="margin-bottom:16px;display:block;">12 Familias de Producto</div>
       <h2 class="section-title">Colección Navidad 2026</h2>
       <p class="section-subtitle">Todo lo que necesitas para surtir tu tienda esta temporada navideña</p>
     </div>
@@ -1239,7 +1270,7 @@ svg { display: inline-block; vertical-align: middle; }
       <div>
         <div class="badge badge-gold" style="margin-bottom:12px">Productos Destacados</div>
         <h2 class="section-title">Referencias Clave</h2>
-        <p class="section-subtitle">Selección de los artículos más vendidos con ficha técnica completa</p>
+        <p class="section-subtitle">Los 27 productos estrella de la campaña, con ficha técnica completa</p>
       </div>
       <div class="filters-bar" id="filtersBar"></div>
     </div>
@@ -1403,21 +1434,23 @@ svg { display: inline-block; vertical-align: middle; }
       <div>
         <div class="footer-col-title">Familias</div>
         <div class="footer-links">
-          <a href="#" class="footer-link" onclick="openFamily(0)">Artículos de Regalo</a>
-          <a href="#" class="footer-link" onclick="openFamily(1)">Globos</a>
-          <a href="#" class="footer-link" onclick="openFamily(2)">Figuras para Pintar</a>
-          <a href="#" class="footer-link" onclick="openFamily(3)">Pegatinas y Etiquetas</a>
-          <a href="#" class="footer-link" onclick="openFamily(4)">Cajas</a>
+          <a href="#" class="footer-link" onclick="openFamily(0);return false;">Papel de Regalo</a>
+          <a href="#" class="footer-link" onclick="openFamily(1);return false;">Bobinas de Regalo</a>
+          <a href="#" class="footer-link" onclick="openFamily(2);return false;">Bolsas</a>
+          <a href="#" class="footer-link" onclick="openFamily(3);return false;">Lazos y Cintas</a>
+          <a href="#" class="footer-link" onclick="openFamily(4);return false;">Cajas Cartón</a>
+          <a href="#" class="footer-link" onclick="openFamily(5);return false;">Sacos Navideños</a>
         </div>
       </div>
       <div>
         <div class="footer-col-title">Más Familias</div>
         <div class="footer-links">
-          <a href="#" class="footer-link" onclick="openFamily(5)">Sacos Navideños</a>
-          <a href="#" class="footer-link" onclick="openFamily(6)">Bolsas de Papel</a>
-          <a href="#" class="footer-link" onclick="openFamily(7)">Papel Regalo</a>
-          <a href="#" class="footer-link" onclick="openFamily(8)">Lazos y Cintas</a>
-          <a href="#" class="footer-link" onclick="openFamily(9)">Cañones y Fiesta</a>
+          <a href="#" class="footer-link" onclick="openFamily(6);return false;">Globos</a>
+          <a href="#" class="footer-link" onclick="openFamily(7);return false;">Decoración Navidad</a>
+          <a href="#" class="footer-link" onclick="openFamily(8);return false;">Pegatinas y Tarjetas</a>
+          <a href="#" class="footer-link" onclick="openFamily(9);return false;">Fiesta y Novedades</a>
+          <a href="#" class="footer-link" onclick="openFamily(10);return false;">Vajilla Desechable</a>
+          <a href="#" class="footer-link" onclick="openFamily(11);return false;">Calefacción</a>
         </div>
       </div>
       <div>
@@ -1434,7 +1467,7 @@ svg { display: inline-block; vertical-align: middle; }
       <img src="banner-eu.png" alt="Generalitat Valenciana · IVACE · Finançat per la Unió Europea · Fons Europeus · Programa FEDER Comunitat Valenciana 2021-2027" style="max-width:100%;height:auto;display:block;background:#fff;padding:10px 16px;border-radius:6px;">
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">© 2025 CRISCOLOR Distribuciones de Levante, S.L.U. · Paterna, Valencia · Todos los derechos reservados</span>
+      <span class="footer-copy">© 2026 CRISCOLOR Distribuciones de Levante, S.L.U. · Paterna, Valencia · Todos los derechos reservados</span>
     </div>
   </div>
 </footer>
@@ -1492,18 +1525,18 @@ svg { display: inline-block; vertical-align: middle; }
             <span class="modal-ficha-val" id="modalUds">—</span>
           </div>
           <div class="modal-ficha-row" id="modalMedidaRow">
-            <span class="modal-ficha-key">Medida / Tamaño</span>
+            <span class="modal-ficha-key">Uds. por Paquete</span>
             <span class="modal-ficha-val" id="modalMedida">—</span>
           </div>
           <div class="modal-ficha-row" id="modalMatRow">
-            <span class="modal-ficha-key">Material</span>
+            <span class="modal-ficha-key">Familia</span>
             <span class="modal-ficha-val" id="modalMat">—</span>
           </div>
         </div>
         <div class="modal-mayorista-note">
           Contacta con nuestro equipo comercial para conocer precios y condiciones de pedido.
         </div>
-        <a href="#contacto" class="modal-contact-btn" onclick="closeModal()">
+        <a href="#contacto" class="modal-contact-btn" onclick="closeModal();closeFamily()">
           Consultar Disponibilidad
           <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -1517,142 +1550,836 @@ svg { display: inline-block; vertical-align: middle; }
 // DATA
 // ═══════════════════════════════════════════
 const FAMILIES = [
-  {
-    id: 'regalo',
-    name: 'Artículos de Regalo',
-    desc: 'Decoraciones navideñas, figuras de Papa Noel y Reyes Magos, carteles decorativos, figuras de madera y plantillas. La familia más completa para decorar escaparates y puntos de venta navideños.',
-    img1: 'magnific__professional-product-photography-of-a-curated-flat__4506.png',
-    img2: 'magnific__professional-product-photography-of-a-curated-flat__4507.png',
-    refs: '80+ referencias',
-    color: '#e63946'
-  },
-  {
-    id: 'globos',
-    name: 'Globos',
-    desc: 'Globos foil navideños, globos de látex en colores festivos, gafas de fin de año y accesorios para fiestas. Perfectos para decoración de comercios y eventos navideños.',
-    img1: 'magnific__professional-product-photography-of-a-floating-col__4510.png',
-    img2: 'magnific__professional-product-photography-of-a-floating-col__4511.png',
-    refs: '40+ referencias',
-    color: '#f77f00'
-  },
-  {
-    id: 'figuras',
-    name: 'Figuras para Pintar',
-    desc: 'Figuras navideñas para colorear e personalizar. Actividad perfecta para niños en Navidad. Incluye Papa Noel, renos, bolas de navidad y más motivos navideños en diferentes tamaños.',
-    img1: 'magnific__professional-product-photography-of-a-christmas-fi__4508.png',
-    img2: 'magnific__professional-product-photography-of-a-christmas-fi__4509.png',
-    refs: '25+ referencias',
-    color: '#2d9cdb'
-  },
-  {
-    id: 'pegatinas',
-    name: 'Pegatinas y Etiquetas',
-    desc: 'Pegatinas navideñas, etiquetas de regalo, sobres decorados y accesorios de papelería festiva. Imprescindibles para el packaging navideño de cualquier comercio.',
-    img1: 'magnific__professional-product-photography-of-a-complete-col__4514.png',
-    img2: 'magnific__professional-product-photography-of-a-complete-col__4515.png',
-    refs: '35+ referencias',
-    color: '#6b4226'
-  },
-  {
-    id: 'cajas',
-    name: 'Cajas de Regalo',
-    desc: 'Cajas redondas, rectangulares, metálicas y sets combinados para presentación de regalos. Disponibles en múltiples tamaños y diseños navideños. Ideales para regalos corporativos y uso doméstico.',
-    img1: 'magnific__professional-macro-product-photography-of-a-luxuri__4516.png',
-    img2: 'magnific__professional-macro-product-photography-of-a-luxuri__4517.png',
-    refs: '30+ referencias',
-    color: '#c9a44e'
-  },
-  {
-    id: 'sacos',
-    name: 'Sacos Navideños',
-    desc: 'Sacos de polietileno, poliéster y rafia para regalos navideños. Sacos de Papa Noel y Reyes Magos en diferentes tamaños. Solución perfecta para regalo de juguetes y artículos de gran tamaño.',
-    img1: 'magnific__professional-product-photography-of-an-organized-d__4518.png',
-    img2: 'magnific__professional-product-photography-of-an-organized-d__4519.png',
-    refs: '20+ referencias',
-    color: '#1A1FD4'
-  },
-  {
-    id: 'bolsas',
-    name: 'Bolsas de Papel y Cristal',
-    desc: 'Bolsas kraft, bolsas de personajes Disney y Marvel, bolsas metálicas, bolsas de Navidad y Reyes Magos, bolsas cristal transparentes y decoradas, envelopes kraft y cajas de vino de cartón.',
-    img1: 'magnific__professional-product-photography-of-a-curated-flat__4520.png',
-    img2: 'magnific__professional-product-photography-of-a-curated-flat__4521.png',
-    refs: '60+ referencias',
-    color: '#d4a017'
-  },
-  {
-    id: 'papel',
-    name: 'Papel de Regalo',
-    desc: 'Rollos en todos los formatos: 70CMx2M hasta 10M de largo, bobinas de polipropileno 62CM y 31CM, papel kraft, PP metalizado y Navidad. Licencias Disney, Marvel (Stitch, Mickey, Vengadores) y diseños exclusivos.',
-    img1: 'magnific__hazla-en-fondo-blanco__4522.png',
-    img2: 'magnific__hazla-en-fondo-blanco__4523.png',
-    refs: '90+ referencias',
-    color: '#e63946'
-  },
-  {
-    id: 'lazos',
-    name: 'Lazos y Cintas',
-    desc: 'Lazos estrella metalizados y adhesivos en tamaños 10mm, 14mm y 19mm. Lazos automáticos de 30mm y 50mm en toda la gama de colores. Cintas decorativas 5mm y 10mm en bobinas de 20m a 500m. Bobinas de rafia.',
-    img1: 'magnific__professional-product-photography-of-a-complete-gif__4526.png',
-    img2: 'magnific__professional-product-photography-of-a-complete-gif__4527.png',
-    refs: '80+ referencias',
-    color: '#c9a44e'
-  },
-  {
-    id: 'canones',
-    name: 'Cañones de Fiesta',
-    desc: 'Cañones de confeti, serpentinas, tiras metalizadas, banderas de España, cañones money, mariposas y pétalos rojos. Disponibles en 30cm, 40cm y 60cm. Accesorios: máquina cierra bolsas, viruta de celofán y porex.',
-    img1: 'magnific__professional-product-photography-of-a-premium-chri__4512.png',
-    img2: 'magnific__professional-product-photography-of-a-premium-chri__4513.png',
-    refs: '50+ referencias',
-    color: '#e63946'
-  }
+  { id:'papel', num:'01', name:'Papel de Regalo', desc:"Rollos de 70 cm con diseños navideños exclusivos, Reyes Magos, licencias, lisos, kraft y metalizados. La familia de mayor rotación de la campaña.", img1:'portada-01-papel.png', img2:'portada-01-papel.png', refs:'67 referencias', color:'#e63946' },
+  { id:'bobinas', num:'02', name:'Bobinas de Regalo', desc:"Bobinas de 31 y 62 cm en liso, metalizado y estampado navideño. Formato profesional para mostrador y envoltorio en tienda.", img1:'portada-02-bobinas.png', img2:'portada-02-bobinas.png', refs:'62 referencias', color:'#c9a44e' },
+  { id:'bolsas', num:'03', name:'Bolsas', desc:"Bolsas kraft, bolsas de papel con licencias, bolsas de polipropileno cristal y sobres de papel en todos los tamaños.", img1:'portada-03-bolsas.png', img2:'portada-03-bolsas.png', refs:'159 referencias', color:'#d4a017' },
+  { id:'lazos', num:'04', name:'Lazos y Cintas', desc:"Lazos estrella adhesivos y automáticos, cintas decorativas metalizadas y rafia en bobinas de todas las medidas.", img1:'portada-04-lazos.png', img2:'portada-04-lazos.png', refs:'100 referencias', color:'#c9a44e' },
+  { id:'cajas', num:'05', name:'Cajas Cartón', desc:"Cajas navideñas en metal, kraft y diseños surtidos, en sets por tallas S, M, L y XL.", img1:'portada-05-cajas.png', img2:'portada-05-cajas.png', refs:'50 referencias', color:'#1A1FD4' },
+  { id:'sacos', num:'06', name:'Sacos Navideños', desc:"Sacos de polietileno estampados para regalos grandes y juguetes, en varios modelos y medidas.", img1:'portada-06-sacos.png', img2:'portada-06-sacos.png', refs:'11 referencias', color:'#1A1FD4' },
+  { id:'globos', num:'07', name:'Globos', desc:"Globos foil de Reyes Magos, Papa Noel y figuras navideñas, letras «Feliz Navidad» y globos de látex festivos.", img1:'portada-07-globos.png', img2:'portada-07-globos.png', refs:'42 referencias', color:'#f77f00' },
+  { id:'decoracion', num:'08', name:'Decoración Navidad', desc:"Papa Noel en escalera, banderas de Reyes Magos, plantillas de huellas, figuras de pórex y manualidades navideñas.", img1:'portada-08-decoracion.png', img2:'portada-08-decoracion.png', refs:'77 referencias', color:'#e63946' },
+  { id:'pegatinas', num:'09', name:'Pegatinas y Tarjetas', desc:"Pegatinas navideñas, etiquetas y tarjetas de regalo, pegatinas de ventana y celo para envolver.", img1:'portada-09-pegatinas.png', img2:'portada-09-pegatinas.png', refs:'17 referencias', color:'#6b4226' },
+  { id:'fiesta', num:'10', name:'Fiesta y Novedades', desc:"Cañones de fiesta de 30, 40 y 60 cm, gafas de Navidad y Fin de Año 2027, bolsas para las uvas y viruta de relleno.", img1:'portada-10-fiesta.png', img2:'portada-10-fiesta.png', refs:'26 referencias', color:'#e63946' },
+  { id:'vajilla', num:'11', name:'Vajilla Desechable', desc:"Vasos y platos de cartón metalizados en oro, plata, rojo y verde para las mesas de Navidad y Nochevieja.", img1:'portada-11-vajilla.png', img2:'portada-11-vajilla.png', refs:'161 referencias', color:'#c9a44e' },
+  { id:'calefaccion', num:'12', name:'Calefacción', desc:"Calefactores cerámicos de 2000 W y estufas en varios modelos y acabados, en blanco y negro.", img1:'portada-12-calefaccion.png', img2:'portada-12-calefaccion.png', refs:'26 referencias', color:'#2d9cdb' }
 ];
 
-const PRODUCTS = [
-  // REGALO
-  { id:'p1', family:'regalo', familyName:'Artículos de Regalo', name:'Kit Decoración Navidad Madera 12 Piezas', ref:'02115', ean:'8436539021152', uds:12, medida:'Surtido', mat:'Madera pintada', desc:'Set de 12 figuras decorativas navideñas en madera. Incluye Papa Noel, renos, estrellas y copos de nieve. Ideal para escaparates y decoración navideña.', img:'magnific__professional-product-photography-of-a-curated-flat__4506.png' },
-  { id:'p2', family:'regalo', familyName:'Artículos de Regalo', name:'Figura Papa Noel Articulado 30cm', ref:'02240', ean:'8436539022408', uds:12, medida:'30cm altura', mat:'Poliresina', desc:'Figura articulada de Papa Noel de 30cm de altura. Acabado detallado con traje rojo y barba blanca. Incluye saco de regalos.', img:'magnific__professional-product-photography-of-a-curated-flat__4507.png' },
-  { id:'p3', family:'regalo', familyName:'Artículos de Regalo', name:'Cartel Decorativo "Feliz Navidad" Grande', ref:'02301', ean:'8436539023019', uds:12, medida:'40x25cm', mat:'MDF lacado', desc:'Cartel decorativo con texto "Feliz Navidad" en relieve. Incluye cuerda para colgar. Apto para escaparates y decoración interior.', img:'magnific__professional-product-photography-of-a-curated-flat__4506.png' },
-
-  // GLOBOS
-  { id:'p4', family:'globos', familyName:'Globos', name:'Globo Foil "Feliz Navidad" 45cm', ref:'05121', ean:'8436539051219', uds:12, medida:'45cm diámetro', mat:'Aluminio foil', desc:'Globo foil plateado con texto navideño. Incluye sistema de autoinflado. Sin helio.', img:'magnific__professional-product-photography-of-a-floating-col__4510.png' },
-  { id:'p5', family:'globos', familyName:'Globos', name:'Set Globos Látex Navidad 10 Uds Surtidos', ref:'05203', ean:'8436539052031', uds:12, medida:'30cm inflados', mat:'Látex natural', desc:'Pack de 10 globos de látex en colores navideños: rojo, verde, dorado y blanco. Sin imprimir. Decoración versátil.', img:'magnific__professional-product-photography-of-a-floating-col__4511.png' },
-
-  // FIGURAS
-  { id:'p6', family:'figuras', familyName:'Figuras para Pintar', name:'Figura Yeso Reyes Magos Set 3 Piezas', ref:'06403', ean:'8436539064031', uds:12, medida:'15-20cm', mat:'Yeso blanco', desc:'Set de 3 Reyes Magos en yeso para pintar. Actividad creativa ideal para Navidad. Incluye base estable. Apto para colores acrílicos.', img:'magnific__professional-product-photography-of-a-christmas-fi__4508.png' },
-  { id:'p7', family:'figuras', familyName:'Figuras para Pintar', name:'Figura Yeso Papa Noel Grande', ref:'06411', ean:'8436539064114', uds:12, medida:'20cm altura', mat:'Yeso blanco', desc:'Figura de Papa Noel en yeso de 20cm para pintar y decorar. Ideal como manualidad navideña para niños. Alta resistencia.', img:'magnific__professional-product-photography-of-a-christmas-fi__4509.png' },
-
-  // PEGATINAS
-  { id:'p8', family:'pegatinas', familyName:'Pegatinas y Etiquetas', name:'Set Etiquetas Regalo Navidad 50 Uds', ref:'07601', ean:'8436539076014', uds:12, medida:'50 uds/pack', mat:'Papel adhesivo', desc:'Pack de 50 etiquetas autoadhesivas de regalo con motivos navideños. Surtido de diseños y colores. Ideales para marcar regalos.', img:'magnific__professional-product-photography-of-a-complete-col__4514.png' },
-  { id:'p9', family:'pegatinas', familyName:'Pegatinas y Etiquetas', name:'Rollo Pegatinas Navidad 100 Uds', ref:'07625', ean:'8436539076250', uds:12, medida:'100 uds/rollo', mat:'Papel adhesivo', desc:'Rollo de 100 pegatinas navideñas en formato práctico. Incluye Papa Noel, renos, bolas y copos de nieve. Fácil dispensación.', img:'magnific__professional-product-photography-of-a-complete-col__4515.png' },
-
-  // CAJAS
-  { id:'p10', family:'cajas', familyName:'Cajas de Regalo', name:'Caja Redonda Metal Navidad Grande', ref:'08502', ean:'8436539085024', uds:6, medida:'30cm diámetro', mat:'Metal litografiado', desc:'Caja metálica redonda con diseño navideño litografiado. Tapa abisagrada. Ideal para presentar surtidos de turrones, polvorones y dulces navideños.', img:'magnific__professional-macro-product-photography-of-a-luxuri__4516.png' },
-  { id:'p11', family:'cajas', familyName:'Cajas de Regalo', name:'Set Cajas Cartón Kraft 3 Tamaños', ref:'08615', ean:'8436539086151', uds:12, medida:'S/M/L (3 uds)', mat:'Cartón kraft', desc:'Set de 3 cajas de cartón kraft en tamaños pequeño, mediano y grande. Diseño minimalista apto para todo tipo de regalos. Fondo de montaje automático.', img:'magnific__professional-macro-product-photography-of-a-luxuri__4517.png' },
-
-  // SACOS
-  { id:'p12', family:'sacos', familyName:'Sacos Navideños', name:'Saco Papa Noel Poliéster 80x60cm', ref:'09105', ean:'8436539091054', uds:12, medida:'80x60cm', mat:'Poliéster', desc:'Saco navideño de tela de poliéster con imagen de Papa Noel. Cierre con cordón. Reutilizable y lavable. Ideal para juguetes y regalos grandes.', img:'magnific__professional-product-photography-of-an-organized-d__4518.png' },
-  { id:'p13', family:'sacos', familyName:'Sacos Navideños', name:'Saco Reyes Magos Polietileno 100x70cm', ref:'09203', ean:'8436539092030', uds:12, medida:'100x70cm', mat:'Polietileno', desc:'Saco transparente de polietileno impreso con motivos de Reyes Magos. Tapa sellada con adhesivo. Perfecto para grandes regalos de Navidad y Reyes.', img:'magnific__professional-product-photography-of-an-organized-d__4519.png' },
-
-  // BOLSAS
-  { id:'p14', family:'bolsas', familyName:'Bolsas de Papel y Cristal', name:'Bolsa Papel Kraft Navidad Surtida 12 Uds', ref:'10302', ean:'8436539103023', uds:12, medida:'Surtido S/M/L', mat:'Papel kraft 120g', desc:'Pack de 12 bolsas de papel kraft con diseños navideños surtidos. Asas de cuerda. Gramaje 120g para alta resistencia. Con fuelle lateral.', img:'magnific__professional-product-photography-of-a-curated-flat__4520.png' },
-  { id:'p15', family:'bolsas', familyName:'Bolsas de Papel y Cristal', name:'Bolsa Papel Personaje Stitch Navidad', ref:'10445', ean:'8436539104450', uds:12, medida:'33x26x12cm', mat:'Papel couché 150g', desc:'Bolsa de papel con licencia oficial Stitch (Disney) en diseño navideño. Alta calidad de impresión. Asas de cinta plana. Caja de 12 unidades.', img:'magnific__professional-product-photography-of-a-curated-flat__4521.png' },
-
-  // PAPEL REGALO
-  { id:'p16', family:'papel', familyName:'Papel de Regalo', name:'Rollo Papel Regalo Navidad 70CMx3M Surtido', ref:'44500', ean:'8435621445008', uds:12, medida:'70CM x 3M', mat:'Papel impreso 60g', desc:'Rollo de papel de regalo con diseños navideños surtidos (estrellas, renos, copos). Medida estándar 70cm de ancho y 3 metros de largo. Ideal para todo tipo de regalos.', img:'magnific__hazla-en-fondo-blanco__4522.png' },
-  { id:'p17', family:'papel', familyName:'Papel de Regalo', name:'Rollo Papel Kraft 100CMx3M Natural', ref:'44680', ean:'8436539446801', uds:6, medida:'100CM x 3M', mat:'Papel kraft 70g', desc:'Rollo de papel kraft natural de 1 metro de ancho y 3 metros de largo. Estilo nórdico natural. Compatible con sellos, rotuladores y decoración manual.', img:'magnific__hazla-en-fondo-blanco__4523.png' },
-  { id:'p18', family:'papel', familyName:'Papel de Regalo', name:'Dispensador Doble Bobina 31+62CM', ref:'43749', ean:'8435621437499', uds:6, medida:'Doble 31+62cm', mat:'Metal y plástico', desc:'Dispensador cortador de bobinas de papel doble: compatible con bobinas de 31cm y 62cm simultáneamente. Sistema de corte integrado. Uso profesional para tiendas.', img:'magnific__hazla-en-fondo-blanco__4524.png' },
-
-  // LAZOS
-  { id:'p19', family:'lazos', familyName:'Lazos y Cintas', name:'Lazo Estrella Metalizado Adhesivo 14mm 50 Uds', ref:'06726', ean:'8436539067261', uds:12, medida:'14mm · 50 uds/pack', mat:'Polipropileno metalizado', desc:'Pack de 50 lazos estrella autoadhesivos metalizados de 14mm. Surtido de colores: oro, plata, rojo, azul y verde. Decoración rápida para paquetes de regalo.', img:'magnific__professional-product-photography-of-a-complete-gif__4526.png' },
-  { id:'p20', family:'lazos', familyName:'Lazos y Cintas', name:'Lazo Automático 50MM Oro Granel 30 Uds', ref:'43013', ean:'8435621430134', uds:30, medida:'50mm · Granel', mat:'Polipropileno', desc:'Caja de 30 lazos automáticos de 50mm en color oro. Sistema pull-to-open. Acabado metalizado brillante. Presentación a granel para tiendas y bazares.', img:'magnific__professional-product-photography-of-a-complete-gif__4527.png' },
-  { id:'p21', family:'lazos', familyName:'Lazos y Cintas', name:'Cinta Decorativa Metalizada 5MM x 100M Oro', ref:'42456', ean:'8435621424560', uds:6, medida:'5mm x 100m', mat:'Polipropileno metalizado', desc:'Bobina de cinta decorativa metalizada dorada de 5mm de ancho y 100 metros de largo. Ideal para envolver regalos, decorar cestas y manualidades navideñas.', img:'magnific__professional-product-photography-of-a-complete-gif__4526.png' },
-
-  // CAÑONES
-  { id:'p22', family:'canones', familyName:'Cañones de Fiesta', name:'Cañón Fiesta Tiras Red 60cm', ref:'44255', ean:'8435621442557', uds:12, medida:'60cm longitud', mat:'Metal/Papel', desc:'Cañón de fiesta de 60cm con tiras confeti rojas y doradas. Efecto espectacular al disparar. Ideal para fin de año, bodas y celebraciones navideñas. Uso único.', img:'magnific__professional-product-photography-of-a-premium-chri__4512.png' },
-  { id:'p23', family:'canones', familyName:'Cañones de Fiesta', name:'Cañón Fiesta Serpentina 40cm', ref:'44257', ean:'8435621442571', uds:12, medida:'40cm longitud', mat:'Metal/Papel', desc:'Cañón de serpentinas de colores de 40cm. Disparo de serpentinas multicolor. Efecto visual festivo. Perfecto para nochevieja y fiestas navideñas.', img:'magnific__professional-product-photography-of-a-premium-chri__4513.png' }
+// Catálogo real Navidad 2026 (Excel CRISCOLOR_CAMPANA_NAVIDAD_2026) · c=código, n=nombre, e=EAN, p=uds/paquete, x=uds/caja, f=familia
+const CATALOG = [
+{"c":"41220","n":"Celo Invisible 18MMX30M 2UDS.","e":"8435621412208","f":"pegatinas","p":12,"x":240},
+{"c":"41219","n":"Celo Invisible 12MMX30M 3UDS.","e":"8435621412192","f":"pegatinas","p":12,"x":240},
+{"c":"41158","n":"Celo Transparente Amarillo 18MMX30M 2UDS.","e":"8435621411584","f":"pegatinas","p":12,"x":240},
+{"c":"41157","n":"Celo Transparente Amarillo 12MMX30M 3UDS","e":"8435621411577","f":"pegatinas","p":12,"x":240},
+{"c":"44979","n":"Bandera Reyes Magos 2MX1,5M","e":"8435621449792","f":"decoracion","p":6,"x":48},
+{"c":"44980","n":"Papa Noel en Escalera 40CM","e":"8435621449808","f":"decoracion","p":6,"x":144},
+{"c":"44981","n":"Papa Noel en Escalera 70CM","e":"8435621449815","f":"decoracion","p":6,"x":144},
+{"c":"44982","n":"Papa Noel en Escalera 100CM","e":"8435621449822","f":"decoracion","p":6,"x":144},
+{"c":"44984","n":"Figura Papa Noel 40CM","e":"8435621449846","f":"decoracion","p":6,"x":48},
+{"c":"44985","n":"Figura Melchor 44CM","e":"8435621449853","f":"decoracion","p":6,"x":48},
+{"c":"44986","n":"Figura Gaspar 44CM","e":"8435621449860","f":"decoracion","p":6,"x":48},
+{"c":"44987","n":"Figura Baltasar 44CM","e":"8435621449877","f":"decoracion","p":6,"x":48},
+{"c":"44882","n":"Plantillas Reyes Magos 3UDS","e":"8435621448825","f":"decoracion","p":12,"x":144},
+{"c":"44018","n":"Plantillas Huellas y Estrella 3UDS","e":"8435621440188","f":"decoracion","p":12,"x":144},
+{"c":"44026","n":"Decoracion Navidad Cartel Surtido","e":"8435621440263","f":"decoracion","p":12,"x":72},
+{"c":"44027","n":"Decoracion Navidad Caramelo Surtido","e":"8435621440270","f":"decoracion","p":12,"x":72},
+{"c":"44025","n":"Decoracion Navidad para Colgar Cartel Surtido","e":"8435621440256","f":"decoracion","p":12,"x":72},
+{"c":"44023","n":"Decoracion Navidad para Colgar Caras Surtido","e":"8435621440232","f":"decoracion","p":12,"x":72},
+{"c":"44021","n":"Decoracion Navidad para Colgar Señales Surtido","e":"8435621440218","f":"decoracion","p":12,"x":72},
+{"c":"44022","n":"Decoracion Navidad para Colgar Figuras Surtido","e":"8435621440225","f":"decoracion","p":12,"x":72},
+{"c":"44024","n":"Decoracion Navidad para Colgar Papa Noel Surtido","e":"8435621440249","f":"decoracion","p":12,"x":72},
+{"c":"44029","n":"Decoracion para Colgar Feliz Navidad Surtido","e":"8435621440294","f":"decoracion","p":12,"x":72},
+{"c":"44030","n":"Decoracion para Colgar Feliz Navidad Redondo Surtido","e":"8435621440300","f":"decoracion","p":12,"x":72},
+{"c":"44028","n":"Decoracion Letras para Colgar Feliz Navidad","e":"8435621440287","f":"decoracion","p":12,"x":72},
+{"c":"44988","n":"Gafas Fin de Año 2027","e":"8435621449884","f":"fiesta","p":12,"x":144},
+{"c":"45035","n":"Gafas Navidad Arbol","e":"8435621450354","f":"fiesta","p":12,"x":144},
+{"c":"45036","n":"Gafas Navidad Reno","e":"8435621450361","f":"fiesta","p":12,"x":144},
+{"c":"45037","n":"Gafas Navidad Happy New Year","e":"8435621450378","f":"fiesta","p":12,"x":144},
+{"c":"44108","n":"Globo Rey Mago Melchor 110CM","e":"8435621441086","f":"globos","p":12,"x":144},
+{"c":"44109","n":"Globo Rey Mago Gaspar 110CM","e":"8435621441093","f":"globos","p":12,"x":144},
+{"c":"44110","n":"Globo Rey Mago Baltasar 110CM","e":"8435621441109","f":"globos","p":12,"x":144},
+{"c":"44011","n":"Globos Reyes Magos 110CM 3UDS","e":"8435621440119","f":"globos","p":12,"x":144},
+{"c":"44013","n":"Globos Reyes Magos Caras 50CM 3UDS","e":"8435621440133","f":"globos","p":12,"x":144},
+{"c":"44117","n":"Globos Letras Feliz Navidad 33CM","e":"8435621441178","f":"globos","p":12,"x":144},
+{"c":"44114","n":"Set Globos Arbol 5UDS","e":"8435621441147","f":"globos","p":12,"x":144},
+{"c":"44593","n":"Set Globos Copo Nieve 5 Uds","e":"8435621445930","f":"globos","p":12,"x":144},
+{"c":"44597","n":"Globo Papa Noel 125CM","e":"8435621445978","f":"globos","p":12,"x":144},
+{"c":"44598","n":"Globo Papa Noel Saco Regalos 63CM","e":"8435621445985","f":"globos","p":12,"x":144},
+{"c":"44599","n":"Globo Papa Noel Saco Regalos 76CM","e":"8435621445992","f":"globos","p":12,"x":144},
+{"c":"44014","n":"Globos Papa Noel 89CM","e":"8435621440140","f":"globos","p":12,"x":144},
+{"c":"44141","n":"Globo Papa Noel 43CM","e":"8435621441413","f":"globos","p":12,"x":144},
+{"c":"44017","n":"Globo Cara Papa Noel 47CM","e":"8435621440171","f":"globos","p":12,"x":144},
+{"c":"44143","n":"Globo Reno 62CM","e":"8435621441437","f":"globos","p":12,"x":144},
+{"c":"44144","n":"Globo Arbol 127CM","e":"8435621441444","f":"globos","p":12,"x":144},
+{"c":"44015","n":"Globo Cascanueces 110CM","e":"8435621440157","f":"globos","p":12,"x":144},
+{"c":"44605","n":"Globo Elfos con Regalos 159CM","e":"8435621446050","f":"globos","p":12,"x":144},
+{"c":"44608","n":"Globo Muñeco de Nieve 104CM","e":"8435621446081","f":"globos","p":12,"x":144},
+{"c":"44609","n":"Globo Muñeco de Nieve 110CM","e":"8435621446098","f":"globos","p":12,"x":144},
+{"c":"44610","n":"Globo Galleta 114CM","e":"8435621446104","f":"globos","p":12,"x":144},
+{"c":"44591","n":"Set Globos Cascanueces 5 Uds","e":"8435621445916","f":"globos","p":12,"x":144},
+{"c":"44592","n":"Set Globos Papa Noel 5 Uds","e":"8435621445923","f":"globos","p":12,"x":144},
+{"c":"44148","n":"Globo Redondo Happy New Year Oro y Negro 35CM","e":"8435621441482","f":"globos","p":12,"x":144},
+{"c":"44135","n":"Globo Arbol y Regalos 60CM","e":"8435621441352","f":"globos","p":12,"x":144},
+{"c":"44136","n":"Globo Redondo Merry Christmas Rojo 35CM","e":"8435621441369","f":"globos","p":12,"x":144},
+{"c":"44129","n":"Globo Estrella Merry Christmas 39CM","e":"8435621441291","f":"globos","p":12,"x":144},
+{"c":"44130","n":"Globo Redondo Papa Noel 35CM","e":"8435621441307","f":"globos","p":12,"x":144},
+{"c":"44137","n":"Globo Elfo 75CM","e":"8435621441376","f":"globos","p":12,"x":144},
+{"c":"44132","n":"Globo Galleta 63CM","e":"8435621441321","f":"globos","p":12,"x":144},
+{"c":"44606","n":"Globo Caramelo con Arbol 70CM","e":"8435621446067","f":"globos","p":12,"x":144},
+{"c":"44016","n":"Globo Forma Caramelo 62CM","e":"8435621440164","f":"globos","p":12,"x":144},
+{"c":"44133","n":"Globo Campanas 59CM","e":"8435621441338","f":"globos","p":12,"x":144},
+{"c":"44120","n":"Globo Estrella Rojo 39CM","e":"8435621441208","f":"globos","p":12,"x":144},
+{"c":"44121","n":"Globo Estrella Oro 39CM","e":"8435621441215","f":"globos","p":12,"x":144},
+{"c":"44122","n":"Globo Estrella Plata 39CM","e":"8435621441222","f":"globos","p":12,"x":144},
+{"c":"44115","n":"Globos Letras Happy New Year Oro 30CM","e":"8435621441154","f":"globos","p":12,"x":144},
+{"c":"44118","n":"Set Globos Estrellas Happy New Year 5UDS","e":"8435621441185","f":"globos","p":12,"x":144},
+{"c":"44119","n":"Set Globos Botella Happy New Year 5UDS","e":"8435621441192","f":"globos","p":12,"x":144},
+{"c":"44138","n":"Globo Redondo Feliz Año Estrella 35CM","e":"8435621441383","f":"globos","p":12,"x":144},
+{"c":"44124","n":"Globo Botella Oro Feliz Año 50CM","e":"8435621441246","f":"globos","p":12,"x":144},
+{"c":"44127","n":"Globo Botella Oro Happy New Year 83CM","e":"8435621441277","f":"globos","p":12,"x":144},
+{"c":"44871","n":"Figuras Navidad Bolas 4UDS","e":"8435621448719","f":"decoracion","p":24,"x":24},
+{"c":"44867","n":"Figuras Navidad MOD3 para Colgar 4UDS","e":"8435621448672","f":"decoracion","p":24,"x":24},
+{"c":"44003","n":"Figuras Navidad MOD1 para Colgar 6UDS","e":"8435621440034","f":"decoracion","p":12,"x":12},
+{"c":"44004","n":"Figuras Navidad MOD2 para Colgar 6UDS","e":"8435621440041","f":"decoracion","p":12,"x":12},
+{"c":"44005","n":"Figuras Navidad Nacimiento 3UDS","e":"8435621440058","f":"decoracion","p":12,"x":12},
+{"c":"44008","n":"Figura Navidad Arbol","e":"8435621440089","f":"decoracion","p":12,"x":12},
+{"c":"44859","n":"Figura Navidad Arbol 14CM","e":"8435621448597","f":"decoracion","p":24,"x":24},
+{"c":"44009","n":"Figura Navidad Papa Noel MO1","e":"8435621440096","f":"decoracion","p":12,"x":12},
+{"c":"44010","n":"Figura Navidad Papa Noel MO2","e":"8435621440102","f":"decoracion","p":12,"x":12},
+{"c":"44860","n":"Figura Navidad Elfo 12,6CM","e":"8435621448603","f":"decoracion","p":24,"x":24},
+{"c":"44007","n":"Figuras Navidad MOD1 4UDS","e":"8435621440072","f":"decoracion","p":12,"x":12},
+{"c":"44814","n":"Pegatinas Navidad Metalizada Surtido Ventana","e":"8435621448146","f":"pegatinas","p":12,"x":288},
+{"c":"44815","n":"Pegatinas Navidad Surtido Papa Noel","e":"8435621448153","f":"pegatinas","p":12,"x":288},
+{"c":"44816","n":"Pegatinas Navidad Surtido Grande","e":"8435621448160","f":"pegatinas","p":12,"x":288},
+{"c":"44817","n":"Pegatinas Navidad Surtido Ventana","e":"8435621448177","f":"pegatinas","p":12,"x":288},
+{"c":"44818","n":"Pegatinas Navidad Surtido Clasica","e":"8435621448184","f":"pegatinas","p":12,"x":288},
+{"c":"44819","n":"Etiquetas Regalo Navidad Sencilla","e":"8435621448191","f":"pegatinas","p":12,"x":288},
+{"c":"44820","n":"Etiquetas Regalo Navidad","e":"8435621448207","f":"pegatinas","p":12,"x":288},
+{"c":"44821","n":"Rollo 500 Pegatinas Papa Noel 2,5CM","e":"8435621448214","f":"pegatinas","p":12,"x":288},
+{"c":"44822","n":"Rollo 500 Pegatinas Navidadeñas 2,5CM","e":"8435621448221","f":"pegatinas","p":12,"x":288},
+{"c":"43993","n":"Etiquetas Navideñas Efecto 4,5x8CM 8UDS","e":"8435621439939","f":"pegatinas","p":12,"x":288},
+{"c":"43992","n":"Etiquetas Navideñas Metal Efecto 4,5x8CM 6UDS","e":"8435621439922","f":"pegatinas","p":12,"x":288},
+{"c":"44883","n":"Sobre Papa Noel 200x110MM 10UDS","e":"8435621448832","f":"pegatinas","p":12,"x":72},
+{"c":"44019","n":"Sobre Reyes Magos 200x110MM 10UDS","e":"8435621440195","f":"pegatinas","p":12,"x":72},
+{"c":"CRISCCN","n":"Criscolor Cajas Navidad","e":"","f":"cajas"},
+{"c":"44073","n":"Cajas Redonda con Asa Navidad Tamaño M Surtido 3UDS","e":"8435621440737","f":"cajas","p":4,"x":4},
+{"c":"44074","n":"Cajas Redonda con Asa Navidad Reyes Magos Tamaño M Surtido 3UDS","e":"8435621440744","f":"cajas","p":4,"x":4},
+{"c":"44075","n":"Cajas Redonda con Asa Purpurina Oro Tamaño M Surtido 3UDS","e":"8435621440751","f":"cajas","p":4,"x":4},
+{"c":"44078","n":"Cajas Redonda Navidad Clasica Tamaño L Surtido 3UDS","e":"8435621440782","f":"cajas","p":4,"x":4},
+{"c":"44081","n":"Cajas Redonda Purpurina Oro Tamaño L Surtido 3UDS","e":"8435621440812","f":"cajas","p":4,"x":4},
+{"c":"44082","n":"Cajas Redonda Purpurina Plata Tamaño L Surtido 3UDS","e":"8435621440829","f":"cajas","p":4,"x":4},
+{"c":"44083","n":"Cajas Redonda Purpurina Rojo Tamaño L Surtido 3UDS","e":"8435621440836","f":"cajas","p":4,"x":4},
+{"c":"44838","n":"Cajas Redonda Navidad Melchor Gaspar Baltasar Roja Tamaño L Surtido 3UDS","e":"8435621448382","f":"cajas","p":4,"x":4},
+{"c":"44839","n":"Cajas Redonda Navidad Melchor Gaspar Baltasar Azul Tamaño L Surtido 3UDS","e":"8435621448399","f":"cajas","p":4,"x":4},
+{"c":"44840","n":"Cajas Redonda Navidad Belen Tamaño L Surtido 3UDS","e":"8435621448405","f":"cajas","p":4,"x":4},
+{"c":"44841","n":"Cajas Redonda Navidad Elfos Tamaño L Surtido 3UDS","e":"8435621448412","f":"cajas","p":4,"x":4},
+{"c":"44842","n":"Cajas Redonda Navidad Papa Noel Tamaño L Surtido 3UDS","e":"8435621448429","f":"cajas","p":4,"x":4},
+{"c":"44843","n":"Cajas Redonda Navidad Sellos Tamaño L Surtido 3UDS","e":"8435621448436","f":"cajas","p":4,"x":4},
+{"c":"44963","n":"Cajas Redonda Navidad Rey Melchor Tamaño L Surtido 3UDS","e":"8435621449631","f":"cajas","p":4,"x":4},
+{"c":"44964","n":"Cajas Redonda Navidad Rey Gaspar Tamaño L Surtido 3UDS","e":"8435621449648","f":"cajas","p":4,"x":4},
+{"c":"44965","n":"Cajas Redonda Navidad Rey Baltasar Tamaño L Surtido 3UDS","e":"8435621449655","f":"cajas","p":4,"x":4},
+{"c":"44092","n":"Cajas Navidad Metal Rojo Tamaño L Surtido 3UDS","e":"8435621440928","f":"cajas","p":12,"x":12},
+{"c":"44090","n":"Cajas Navidad Metal Oro Tamaño L Surtido 3UDS","e":"8435621440904","f":"cajas","p":12,"x":12},
+{"c":"44091","n":"Cajas Navidad Metal Plata Tamaño L Surtido 3UDS","e":"8435621440911","f":"cajas","p":12,"x":12},
+{"c":"44084","n":"Cajas Navidad Clasica Tamaño XL Surtido 3UDS","e":"8435621440843","f":"cajas","p":8,"x":8},
+{"c":"44832","n":"Cajas Navidad Melchor Gaspar Baltasar Roja Tamaño XL Surtido 3UDS","e":"8435621448320","f":"cajas","p":8,"x":8},
+{"c":"44833","n":"Cajas Navidad Melchor Gaspar Baltasar Azul Tamaño XL Surtido 3UDS","e":"8435621448337","f":"cajas","p":8,"x":8},
+{"c":"44834","n":"Cajas Navidad Belen Tamaño XL Surtido 3UDS","e":"8435621448344","f":"cajas","p":8,"x":8},
+{"c":"44835","n":"Cajas Navidad Elfos Tamaño XL Surtido 3UDS","e":"8435621448351","f":"cajas","p":8,"x":8},
+{"c":"44837","n":"Cajas Navidad Sellos Tamaño XL Surtido 3UDS","e":"8435621448375","f":"cajas","p":8,"x":8},
+{"c":"44836","n":"Cajas Navidad Papa Noel Tamaño XL Surtido 3UDS","e":"8435621448368","f":"cajas","p":8,"x":8},
+{"c":"44087","n":"Cajas Navidad Purpurina Oro Tamaño XL Surtido 3UDS","e":"8435621440874","f":"cajas","p":8,"x":8},
+{"c":"43985","n":"Cajas Star Navidad Tamaño Surtido 3UDS","e":"8435621439854","f":"cajas","p":3,"x":3},
+{"c":"43986","n":"Cajas Star Navidad Reyes Magos Tamaño Surtido 3UDS","e":"8435621439861","f":"cajas","p":3,"x":3},
+{"c":"43987","n":"Cajas Star Purpurina Oro Tamaño Surtido 3UDS","e":"8435621439878","f":"cajas","p":3,"x":3},
+{"c":"43989","n":"Cajas Star Purpurina Rojo Tamaño Surtido 3UDS","e":"8435621439892","f":"cajas","p":3,"x":3},
+{"c":"43972","n":"Cajas Navidad Clasica Tamaño Surtido 10UDS","e":"8435621439724","f":"cajas","p":2,"x":2},
+{"c":"43973","n":"Cajas Navidad Tamaño Surtido 10UDS","e":"8435621439731","f":"cajas","p":2,"x":2},
+{"c":"43974","n":"Cajas Navidad Reyes Magos Tamaño Surtido 10UDS","e":"8435621439748","f":"cajas","p":2,"x":2},
+{"c":"43975","n":"Cajas Purpurina Oro Tamaño Surtido 10UDS","e":"8435621439755","f":"cajas","p":2,"x":2},
+{"c":"43976","n":"Cajas Purpurina Plata Tamaño Surtido 10UDS","e":"8435621439762","f":"cajas","p":2,"x":2},
+{"c":"43977","n":"Cajas Purpurina Rojo Tamaño Surtido 10UDS","e":"8435621439779","f":"cajas","p":2,"x":2},
+{"c":"43981","n":"Cajas Redonda Purpurina Oro Tamaño Surtido 10UDS","e":"8435621439816","f":"cajas","p":2,"x":2},
+{"c":"43982","n":"Cajas Redonda Purpurina Plata Tamaño Surtido 10UDS","e":"8435621439823","f":"cajas","p":2,"x":2},
+{"c":"43983","n":"Cajas Redonda Purpurina Rojo Tamaño Surtido 10UDS","e":"8435621439830","f":"cajas","p":2,"x":2},
+{"c":"44966","n":"Cajas Maxi Rectangular Navidad Elfos Tamaño Surtido 10UDS","e":"8435621449662","f":"cajas","p":4,"x":4},
+{"c":"44967","n":"Cajas Maxi Rectangular Navidad Bolas Tamaño Surtido 10UDS","e":"8435621449679","f":"cajas","p":4,"x":4},
+{"c":"44968","n":"Cajas Maxi Rectangular Navidad Reyes Magos Tamaño Surtido 10UDS","e":"8435621449686","f":"cajas","p":4,"x":4},
+{"c":"44969","n":"Cajas Maxi Cuadrada Navidad Elfos Tamaño Surtido 10UDS","e":"8435621449693","f":"cajas","p":4,"x":4},
+{"c":"44970","n":"Cajas Maxi Cuadrada Navidad Bolas Tamaño Surtido 10UDS","e":"8435621449709","f":"cajas","p":4,"x":4},
+{"c":"44971","n":"Cajas Maxi Cuadrada Navidad Reyes Magos Tamaño Surtido 10UDS","e":"8435621449716","f":"cajas","p":4,"x":4},
+{"c":"44972","n":"Cajas Maxi Redonda Navidad Elfos Tamaño Surtido 10UDS","e":"8435621449723","f":"cajas","p":2,"x":2},
+{"c":"44973","n":"Cajas Maxi Redonda Navidad Bolas Tamaño Surtido 10UDS","e":"8435621449730","f":"cajas","p":2,"x":2},
+{"c":"44974","n":"Cajas Maxi Redonda Navidad Reyes Magos Tamaño Surtido 10UDS","e":"8435621449747","f":"cajas","p":2,"x":2},
+{"c":"45032","n":"Saco Navideño Oro Plata Polietileno 29X43CM","e":"8435621450323","f":"sacos","p":12,"x":144},
+{"c":"45033","n":"Saco Navideño Polietileno Mod 1 39X51CM","e":"8435621450330","f":"sacos","p":12,"x":144},
+{"c":"44989","n":"Saco Navideño Polietileno 16X24CM","e":"8435621449891","f":"sacos","p":12,"x":144},
+{"c":"44990","n":"Saco Navideño Polietileno 24X32CM","e":"8435621449907","f":"sacos","p":12,"x":144},
+{"c":"44991","n":"Saco Navideño Polietileno 29X43CM","e":"8435621449914","f":"sacos","p":12,"x":144},
+{"c":"44992","n":"Saco Navideño Polietileno 39X51CM","e":"8435621449921","f":"sacos","p":12,"x":144},
+{"c":"44993","n":"Saco Navideño Polietileno 44X57CM","e":"8435621449938","f":"sacos","p":12,"x":144},
+{"c":"44994","n":"Saco Navideño de Poliester 15X20CM","e":"8435621449945","f":"sacos","p":12,"x":144},
+{"c":"44995","n":"Saco Navideño de Poliester 30X20CM","e":"8435621449952","f":"sacos","p":12,"x":144},
+{"c":"44996","n":"Saco Navideño de Poliester 30X40CM","e":"8435621449969","f":"sacos","p":12,"x":144},
+{"c":"44999","n":"Bolsa de Vino con Cordón 15X35CM","e":"8435621449990","f":"sacos","p":12,"x":144},
+{"c":"43478","n":"Bolsa Papel con Asa Kraft 32+11x22 Felicidades Decorado","e":"8435621434781","f":"bolsas","p":12,"x":240},
+{"c":"43480","n":"Bolsa Papel con Asa Kraft 32+11x22 Sonrie","e":"8435621434804","f":"bolsas","p":12,"x":240},
+{"c":"42934","n":"Bolsa Papel con Asa Kraft 32+11x22 Especial","e":"8435621429343","f":"bolsas","p":12,"x":240},
+{"c":"42935","n":"Bolsa Papel con Asa Kraft 32+11x22 Espero","e":"8435621429350","f":"bolsas","p":12,"x":240},
+{"c":"43481","n":"Bolsa Papel con Asa Kraft 41+12x32 Sonrie","e":"8435621434811","f":"bolsas","p":12,"x":240},
+{"c":"43479","n":"Bolsa Papel con Asa Kraft 41+12x32 Felicidades Decorado","e":"8435621434798","f":"bolsas","p":12,"x":240},
+{"c":"42938","n":"Bolsa Papel con Asa Kraft 41+12x32 Especial","e":"8435621429381","f":"bolsas","p":12,"x":240},
+{"c":"42939","n":"Bolsa Papel con Asa Kraft 41+12x32 Espero","e":"8435621429398","f":"bolsas","p":12,"x":240},
+{"c":"43185","n":"Bolsa Papel con Asa 20+8x24 Surtido Plus 25 Uds","e":"8435621431858","f":"bolsas","p":1,"x":8},
+{"c":"43186","n":"Bolsa Papel con Asa 24+11x34 Surtido Plus 25 Uds","e":"8435621431865","f":"bolsas","p":1,"x":8},
+{"c":"43187","n":"Bolsa Papel con Asa 32+12x40 Surtido Plus 25 Uds","e":"8435621431872","f":"bolsas","p":1,"x":10},
+{"c":"43223","n":"Bolsa Papel con Asa 38+20x43 Surtido Plus 25 Uds","e":"8435621432237","f":"bolsas","p":1,"x":12},
+{"c":"43224","n":"Bolsa Papel con Asa 46+20X51 Surtido Plus 25 Uds","e":"8435621432244","f":"bolsas","p":1,"x":8},
+{"c":"43184","n":"Bolsa Papel con Asa 20+8x39 Surtido Plus 25 Uds","e":"8435621431841","f":"bolsas","p":1,"x":8},
+{"c":"42880","n":"Bolsa Papel con Asa 20+8X24 Colores Surtidos 25 Uds","e":"8435621428803","f":"bolsas","p":1,"x":8},
+{"c":"42881","n":"Bolsa Papel con Asa 24+11X34 Colores Surtidos 25 Uds","e":"8435621428810","f":"bolsas","p":1,"x":8},
+{"c":"42882","n":"Bolsa Papel con Asa 32+12X40 Colores Surtidos 25 Uds","e":"8435621428827","f":"bolsas","p":1,"x":10},
+{"c":"43221","n":"Bolsa Papel con Asa 38+20X43 Colores Surtidos 25 Uds","e":"8435621432213","f":"bolsas","p":1,"x":12},
+{"c":"43222","n":"Bolsa Papel con Asa 44+20X51 Colores Surtidos 25 Uds","e":"8435621432220","f":"bolsas","p":1,"x":8},
+{"c":"41762","n":"Bolsa Papel con Asa 20+8x39 Kraft","e":"8435621417623","f":"bolsas","p":25,"x":200},
+{"c":"41758","n":"Bolsa Papel con Asa 20+8X24 Kraft","e":"8435621417586","f":"bolsas","p":25,"x":200},
+{"c":"41759","n":"Bolsa Papel con Asa 24+11X34 Kraft","e":"8435621417593","f":"bolsas","p":25,"x":200},
+{"c":"41760","n":"Bolsa Papel con Asa 32+12X40 Kraft","e":"8435621417609","f":"bolsas","p":25,"x":250},
+{"c":"42650","n":"Bolsa Papel con Asa 38+20X43 Kraft","e":"8435621426502","f":"bolsas","p":25,"x":300},
+{"c":"41761","n":"Bolsa Papel con Asa 46+20X51 Kraft","e":"8435621417616","f":"bolsas","p":25,"x":200},
+{"c":"41776","n":"Bolsa Papel con Asa 20+8X24 Blanca","e":"8435621417760","f":"bolsas","p":25,"x":200},
+{"c":"41777","n":"Bolsa Papel con Asa 24+11X34 Blanca","e":"8435621417777","f":"bolsas","p":25,"x":200},
+{"c":"41778","n":"Bolsa Papel con Asa 32+12X40 Blanca","e":"8435621417784","f":"bolsas","p":25,"x":250},
+{"c":"42651","n":"Bolsa Papel con Asa 38+20X43 Blanca","e":"8435621426519","f":"bolsas","p":25,"x":300},
+{"c":"41779","n":"Bolsa Papel con Asa 46+20X51 Blanca","e":"8435621417791","f":"bolsas","p":25,"x":200},
+{"c":"41775","n":"Bolsa Papel con Asa 20+8x39 Rojo","e":"8435621417753","f":"bolsas","p":25,"x":200},
+{"c":"41771","n":"Bolsa Papel con Asa 20+8X24 Rojo","e":"8435621417715","f":"bolsas","p":25,"x":200},
+{"c":"41772","n":"Bolsa Papel con Asa 24+11X34 Rojo","e":"8435621417722","f":"bolsas","p":25,"x":200},
+{"c":"41773","n":"Bolsa Papel con Asa 32+12X40 Rojo","e":"8435621417739","f":"bolsas","p":25,"x":250},
+{"c":"42655","n":"Bolsa Papel con Asa 38+20X43 Rojo","e":"8435621426557","f":"bolsas","p":25,"x":300},
+{"c":"41774","n":"Bolsa Papel con Asa 44+20X51 Rojo","e":"8435621417746","f":"bolsas","p":25,"x":200},
+{"c":"41750","n":"Bolsa Papel con Asa 20+8X24 Negra","e":"8435621417500","f":"bolsas","p":25,"x":200},
+{"c":"41751","n":"Bolsa Papel con Asa 24+11x34 Negra","e":"8435621417517","f":"bolsas","p":25,"x":200},
+{"c":"41752","n":"Bolsa Papel con Asa 32+12X40 Negra","e":"8435621417524","f":"bolsas","p":25,"x":250},
+{"c":"42656","n":"Bolsa Papel con Asa 38+20X43 Negra","e":"8435621426564","f":"bolsas","p":25,"x":300},
+{"c":"41753","n":"Bolsa Papel con Asa 44+20X51 Negra","e":"8435621417531","f":"bolsas","p":25,"x":200},
+{"c":"41746","n":"Bolsa Papel con Asa 20+8X24 Azul","e":"8435621417463","f":"bolsas","p":25,"x":200},
+{"c":"41747","n":"Bolsa Papel con Asa 24+11X34 Azul","e":"8435621417470","f":"bolsas","p":25,"x":200},
+{"c":"41748","n":"Bolsa Papel con Asa 32+12X40 Azul","e":"8435621417487","f":"bolsas","p":25,"x":250},
+{"c":"42652","n":"Bolsa Papel con Asa 38+20X43 Azul","e":"8435621426526","f":"bolsas","p":25,"x":300},
+{"c":"41749","n":"Bolsa Papel con Asa 44+20X51 Azul","e":"8435621417494","f":"bolsas","p":25,"x":200},
+{"c":"41754","n":"Bolsa Papel con Asa 20+8X24 Verde","e":"8435621417548","f":"bolsas","p":25,"x":200},
+{"c":"41755","n":"Bolsa Papel con Asa 24+11X34 Verde","e":"8435621417555","f":"bolsas","p":25,"x":200},
+{"c":"41756","n":"Bolsa Papel con Asa 32+12X40 Verde","e":"8435621417562","f":"bolsas","p":25,"x":250},
+{"c":"42653","n":"Bolsa Papel con Asa 38+20X43 Verde","e":"8435621426533","f":"bolsas","p":25,"x":300},
+{"c":"41757","n":"Bolsa Papel con Asa 44+20X51 Verde","e":"8435621417579","f":"bolsas","p":25,"x":200},
+{"c":"41767","n":"Bolsa Papel con Asa 20+8X24 Magenta","e":"8435621417678","f":"bolsas","p":25,"x":200},
+{"c":"41768","n":"Bolsa Papel con Asa 24+11X34 Magenta","e":"8435621417685","f":"bolsas","p":25,"x":200},
+{"c":"41769","n":"Bolsa Papel con Asa 32+12X40 Magenta","e":"8435621417692","f":"bolsas","p":25,"x":250},
+{"c":"42654","n":"Bolsa Papel con Asa 38+20X43 Magenta","e":"8435621426540","f":"bolsas","p":25,"x":300},
+{"c":"41770","n":"Bolsa Papel con Asa 44+20X51 Magenta","e":"8435621417708","f":"bolsas","p":25,"x":200},
+{"c":"41780","n":"Bolsa Papel con Asa 20+8X24 Oro","e":"8435621417807","f":"bolsas","p":25,"x":200},
+{"c":"41781","n":"Bolsa Papel con Asa 24+11X34 Oro","e":"8435621417814","f":"bolsas","p":25,"x":200},
+{"c":"41782","n":"Bolsa Papel con Asa 32+12X40 Oro","e":"8435621417821","f":"bolsas","p":25,"x":250},
+{"c":"42893","n":"Bolsa Papel con Asa 38+20x43 Oro","e":"8435621428933","f":"bolsas","p":25,"x":300},
+{"c":"41783","n":"Bolsa Papel con Asa 44+20x51 Oro","e":"8435621417838","f":"bolsas","p":25,"x":200},
+{"c":"41763","n":"Bolsa Papel con Asa 20+8X24 Plata","e":"8435621417630","f":"bolsas","p":25,"x":200},
+{"c":"41764","n":"Bolsa Papel con Asa 24+11X34 Plata","e":"8435621417647","f":"bolsas","p":25,"x":200},
+{"c":"41765","n":"Bolsa Papel con Asa 32+12X40 Plata","e":"8435621417654","f":"bolsas","p":25,"x":250},
+{"c":"42894","n":"Bolsa Papel con Asa 38+20x43 Plata","e":"8435621428940","f":"bolsas","p":25,"x":300},
+{"c":"41766","n":"Bolsa Papel con Asa 44+20x51 Plata","e":"8435621417661","f":"bolsas","p":25,"x":200},
+{"c":"45011","n":"Bolsa Papel 26+12X34,5CM Stitch Surtida 110GR","e":"8435621450118","f":"bolsas","p":25,"x":200},
+{"c":"45014","n":"Bolsa Papel 36+12X46,9CM Stitch Surtida 110GR","e":"8435621450149","f":"bolsas","p":25,"x":200},
+{"c":"45010","n":"Bolsa Papel 26+12X34,5CM Mickey y Minnie Surtida 110GR","e":"8435621450101","f":"bolsas","p":25,"x":200},
+{"c":"45013","n":"Bolsa Papel 36+12X46,9CM Mickey y Minnie Surtida 110GR","e":"8435621450132","f":"bolsas","p":25,"x":200},
+{"c":"45012","n":"Bolsa Papel 26+12X34,5CM Vengadores Surtida 110GR","e":"8435621450125","f":"bolsas","p":25,"x":200},
+{"c":"45015","n":"Bolsa Papel 36+12X46,9CM Vengadores Surtida 110GR","e":"8435621450156","f":"bolsas","p":25,"x":200},
+{"c":"CRISCBN","n":"Criscolor Bolsas Navidad","e":"","f":"bolsas"},
+{"c":"44846","n":"Bolsa Navidad Belen con Lazo 28x9x20CM","e":"8435621448467","f":"bolsas","p":12,"x":48},
+{"c":"43994","n":"Bolsa Navidad con Lazo 28+9x20 Cm","e":"8435621439946","f":"bolsas","p":12,"x":48},
+{"c":"44851","n":"Bolsa Navidad Clasica con Lazo 34x11x25CM","e":"8435621448511","f":"bolsas","p":12,"x":48},
+{"c":"43999","n":"Bolsa Purpurina Rojo con Lazo 28+9x20CM","e":"8435621439991","f":"bolsas","p":12,"x":48},
+{"c":"44855","n":"Bolsa Purpurina Rojo con Lazo 34x11x25CM","e":"8435621448559","f":"bolsas","p":12,"x":48},
+{"c":"44853","n":"Bolsa Purpurina Oro con Lazo 34x11x25CM","e":"8435621448535","f":"bolsas","p":12,"x":48},
+{"c":"44854","n":"Bolsa Purpurina Plata con Lazo 34x11x25CM","e":"8435621448542","f":"bolsas","p":12,"x":48},
+{"c":"44858","n":"Bolsa Metal Rojo con Lazo 34x11x25CM","e":"8435621448580","f":"bolsas","p":12,"x":48},
+{"c":"44000","n":"Bolsa Metal Oro con Lazo 28+9x20CM","e":"8435621440003","f":"bolsas","p":12,"x":48},
+{"c":"44856","n":"Bolsa Metal Oro con Lazo 34x11x25CM","e":"8435621448566","f":"bolsas","p":12,"x":48},
+{"c":"44001","n":"Bolsa Metal Plata con Lazo 28+9x20CM","e":"8435621440010","f":"bolsas","p":12,"x":48},
+{"c":"44857","n":"Bolsa Metal Plata con Lazo 34x11x25CM","e":"8435621448573","f":"bolsas","p":12,"x":48},
+{"c":"44823","n":"Bolsa Papel 18+10x23 Navidad Melchor Gaspar Baltasar Surtida 210GR","e":"8435621448238","f":"bolsas","p":12,"x":48},
+{"c":"44826","n":"Bolsa Papel 26+10x32 Navidad Melchor Gaspar Baltasar Surtida 210GR","e":"8435621448269","f":"bolsas","p":12,"x":48},
+{"c":"44829","n":"Bolsa Papel 30+12x40 Navidad Melchor Gaspar Baltasar Surtida 210GR","e":"8435621448290","f":"bolsas","p":12,"x":48},
+{"c":"44824","n":"Bolsa Papel 18+10x23 Navidad Belen Surtida 210GR","e":"8435621448245","f":"bolsas","p":12,"x":48},
+{"c":"44827","n":"Bolsa Papel 26+10x32 Navidad Belen Surtida 210GR","e":"8435621448276","f":"bolsas","p":12,"x":48},
+{"c":"44830","n":"Bolsa Papel 30+12x40 Navidad Belen Surtida 210GR","e":"8435621448306","f":"bolsas","p":12,"x":48},
+{"c":"44825","n":"Bolsa Papel 18+10x23 Navidad Elfos Surtida 210GR","e":"8435621448252","f":"bolsas","p":12,"x":48},
+{"c":"44828","n":"Bolsa Papel 26+10x32 Navidad Elfos Surtida 210GR","e":"8435621448283","f":"bolsas","p":12,"x":48},
+{"c":"44831","n":"Bolsa Papel 30+12x40 Navidad Elfos Surtida 210GR","e":"8435621448313","f":"bolsas","p":12,"x":48},
+{"c":"43966","n":"Bolsa Papel 18+10x23 Navidad Reyes Magos Surtida 210GR","e":"8435621439663","f":"bolsas","p":12,"x":48},
+{"c":"43967","n":"Bolsa Papel 26+10x32 Navidad Reyes Magos Surtida 210GR","e":"8435621439670","f":"bolsas","p":12,"x":48},
+{"c":"44165","n":"Bolsa Papel 30+12x40 Navidad Reyes Magos Surtida 210GR","e":"8435621441659","f":"bolsas","p":12,"x":48},
+{"c":"43384","n":"Bolsa Papel 26+10x32 Navidad Metal Surtida 210GR","e":"8435621433845","f":"bolsas","p":12,"x":48},
+{"c":"43385","n":"Bolsa Papel 30+12x40 Navidad Metal Surtida 210GR","e":"8435621433852","f":"bolsas","p":12,"x":48},
+{"c":"43968","n":"Bolsa Papel 18+10x23 Navidad Reyes Magos Oro Surtida 210GR","e":"8435621439687","f":"bolsas","p":12,"x":48},
+{"c":"43969","n":"Bolsa Papel 26+10x32 Navidad Reyes Magos Oro Surtida 210GR","e":"8435621439694","f":"bolsas","p":12,"x":48},
+{"c":"44166","n":"Bolsa Papel 30+12x40 Navidad Reyes Magos Oro Surtida 210GR","e":"8435621441666","f":"bolsas","p":12,"x":48},
+{"c":"43386","n":"Bolsa Papel 18+10x23 Navidad Oro y Plata Surtida 210GR","e":"8435621433869","f":"bolsas","p":12,"x":48},
+{"c":"43387","n":"Bolsa Papel 26+10x32 Navidad Oro y Plata Surtida 210GR","e":"8435621433876","f":"bolsas","p":12,"x":48},
+{"c":"43388","n":"Bolsa Papel 30+12x40 Navidad Oro y Plata Surtida 210GR","e":"8435621433883","f":"bolsas","p":12,"x":48},
+{"c":"42941","n":"Bolsa Papel 18+10x23 Navidad Clasica Surtida 210GR","e":"8435621429411","f":"bolsas","p":12,"x":48},
+{"c":"42942","n":"Bolsa Papel 26+10x32 Navidad Clasica Surtida 210GR","e":"8435621429428","f":"bolsas","p":12,"x":48},
+{"c":"42943","n":"Bolsa Papel 30+12x40 Navidad Clasica Surtida 210GR","e":"8435621429435","f":"bolsas","p":12,"x":48},
+{"c":"42944","n":"Bolsa Papel 18+10x23 Navidad Surtida 210GR","e":"8435621429442","f":"bolsas","p":12,"x":48},
+{"c":"42945","n":"Bolsa Papel 26+10x32 Navidad Surtida 210GR","e":"8435621429459","f":"bolsas","p":12,"x":48},
+{"c":"42946","n":"Bolsa Papel 30+12x40 Navidad Surtida 210 Gr","e":"8435621429466","f":"bolsas","p":12,"x":48},
+{"c":"42947","n":"Bolsa Papel 18+10x23 Navidad Kraft Surtida 120GR","e":"8435621429473","f":"bolsas","p":12,"x":48},
+{"c":"42948","n":"Bolsa Papel 26+10x32 Navidad Kraft Surtida 120GR","e":"8435621429480","f":"bolsas","p":12,"x":48},
+{"c":"42949","n":"Bolsa Papel 30+12x40 Navidad Kraft Surtida 120GR","e":"8435621429497","f":"bolsas","p":12,"x":48},
+{"c":"42950","n":"Bolsa Papel 18+10x23 Metalizada Surtida 180GR","e":"8435621429503","f":"bolsas","p":12,"x":48},
+{"c":"42951","n":"Bolsa Papel 26+10x32 Metalizada Surtida 180GR","e":"8435621429510","f":"bolsas","p":12,"x":48},
+{"c":"42952","n":"Bolsa Papel 30+12x40 Metalizada Surtida 180GR","e":"8435621429527","f":"bolsas","p":12,"x":48},
+{"c":"42953","n":"Bolsa Papel 14+8x36 Metalizada Surtida 180GR","e":"8435621429534","f":"bolsas","p":12,"x":48},
+{"c":"43970","n":"Bolsa Papel 14+8x36 Vino Surtida 210GR","e":"8435621439700","f":"bolsas","p":12,"x":48},
+{"c":"43971","n":"Bolsa Papel 14+8x36 Champan Surtida 210GR","e":"8435621439717","f":"bolsas","p":12,"x":48},
+{"c":"42955","n":"Bolsa Papel 14+8x36 Vino Decorada Surtida 210GR","e":"8435621429558","f":"bolsas","p":12,"x":48},
+{"c":"42956","n":"Bolsa Papel 14+8x36 Botella Decorada Surtida 210GR","e":"8435621429565","f":"bolsas","p":12,"x":48},
+{"c":"43390","n":"Bolsa Papel 14+8x36 Vino Estrellas Surtida 210GR","e":"8435621433906","f":"bolsas","p":12,"x":48},
+{"c":"42968","n":"Bolsa Papel 14+8x36 Botella Navidad Clasica Surtida 210GR","e":"8435621429688","f":"bolsas","p":12,"x":48},
+{"c":"43396","n":"Estuche 8,5+8,5x36 1 Botella Metalizada Surtida","e":"8435621433968","f":"bolsas","p":12,"x":72},
+{"c":"43397","n":"Estuche 8,5+8,5x36 1 Botella Metalizada Purpurina Surtida","e":"8435621433975","f":"bolsas","p":12,"x":72},
+{"c":"43398","n":"Estuche 8,5+8,5x36 1 Botella Lisa Surtida","e":"8435621433982","f":"bolsas","p":12,"x":72},
+{"c":"43399","n":"Estuche 17+8,5x36 2 Botellas Metalizada Surtida","e":"8435621433999","f":"bolsas","p":12,"x":72},
+{"c":"43400","n":"Estuche 17+8,5x36 2 Botellas Metalizada Purpurina Surtida","e":"8435621434002","f":"bolsas","p":12,"x":72},
+{"c":"42996","n":"Caja Carton 2 Botellas Vino","e":"8435621429961","f":"bolsas","p":5,"x":50},
+{"c":"40073","n":"Caja Carton 3 Botellas Vino","e":"8435621400731","f":"bolsas","p":5,"x":50},
+{"c":"40071","n":"Caja Navidad 300X350X180MM","e":"8435621400717","f":"bolsas","p":5,"x":5},
+{"c":"42130","n":"Sobre Kraft 8X13CM Pack 25 Uds.","e":"8435621421309","f":"bolsas","p":12,"x":192},
+{"c":"42131","n":"Sobre Kraft Rojo 8X13CM Pack 25UDS.","e":"8435621421316","f":"bolsas","p":12,"x":192},
+{"c":"42132","n":"Sobre Kraft Oro 8X13CM Pack 25UDS","e":"8435621421323","f":"bolsas","p":12,"x":192},
+{"c":"42133","n":"Sobre Kraft Plata 8X13CM Pack 25UDS","e":"8435621421330","f":"bolsas","p":12,"x":192},
+{"c":"42134","n":"Sobre Kraft 11x21CM Pack 15UDS.","e":"8435621421347","f":"bolsas","p":12,"x":168},
+{"c":"42135","n":"Sobre Kraft Rojo 11x21CM Pack 15UDS.","e":"8435621421354","f":"bolsas","p":12,"x":168},
+{"c":"42136","n":"Sobre Kraft Oro 11x21CM Pack 15UDS.","e":"8435621421361","f":"bolsas","p":12,"x":168},
+{"c":"42137","n":"Sobre Kraft Plata 11x21CM Pack 15UDS","e":"8435621421378","f":"bolsas","p":12,"x":168},
+{"c":"42138","n":"Sobre Kraft 15x32CM Pack 10UDS","e":"8435621421385","f":"bolsas","p":12,"x":120},
+{"c":"42139","n":"Sobre Kraft Rojo 15x32CM Pack 10UDS.","e":"8435621421392","f":"bolsas","p":12,"x":120},
+{"c":"42140","n":"Sobre Kraft Oro 15x32CM Pack 10UDS","e":"8435621421408","f":"bolsas","p":12,"x":120},
+{"c":"42141","n":"Sobre Kraft Plata 15x32CM Pack 10UDS","e":"8435621421415","f":"bolsas","p":12,"x":120},
+{"c":"CRIS70CM","n":"Papel Regalo 70CM","e":"","f":"papel"},
+{"c":"45045","n":"Papel Regalo 70CMX2M Stars","e":"8435621450453","f":"papel","p":60,"x":60},
+{"c":"45047","n":"Papel Regalo 70CMX2M Cascanueces","e":"8435621450477","f":"papel","p":60,"x":60},
+{"c":"45049","n":"Papel Regalo 70CMX2M Melchor Gaspar Baltasar","e":"8435621450491","f":"papel","p":60,"x":60},
+{"c":"43022","n":"Papel Regalo 70CMX2M Surtido Disney","e":"8435621430226","f":"papel","p":50,"x":50},
+{"c":"43023","n":"Papel Regalo 70CMX2M Surtido Marvel","e":"8435621430233","f":"papel","p":50,"x":50},
+{"c":"44096","n":"Papel Regalo 70CMX2M Rayas","e":"8435621440966","f":"papel","p":60,"x":60},
+{"c":"44097","n":"Papel Regalo 70CMX2M Globos","e":"8435621440973","f":"papel","p":60,"x":60},
+{"c":"44098","n":"Papel Regalo 70CMX2M Pastel","e":"8435621440980","f":"papel","p":60,"x":60},
+{"c":"44099","n":"Papel Regalo 70CMX2M Animals","e":"8435621440997","f":"papel","p":60,"x":60},
+{"c":"44100","n":"Papel Regalo 70CMX2M British","e":"8435621441000","f":"papel","p":60,"x":60},
+{"c":"44101","n":"Papel Regalo 70CMX2M Party","e":"8435621441017","f":"papel","p":60,"x":60},
+{"c":"44102","n":"Papel Regalo 70CMX2M Animal Print","e":"8435621441024","f":"papel","p":60,"x":60},
+{"c":"43411","n":"Papel Regalo 70CMX2M Topos","e":"8435621434118","f":"papel","p":60,"x":60},
+{"c":"43412","n":"Papel Regalo 70CMX2M Lisos","e":"8435621434125","f":"papel","p":60,"x":60},
+{"c":"43457","n":"Papel Regalo 70CMX2M Reyes Magos","e":"8435621434576","f":"papel","p":60,"x":60},
+{"c":"43409","n":"Papel Regalo 70CMX2M Flowers","e":"8435621434095","f":"papel","p":60,"x":60},
+{"c":"43410","n":"Papel Regalo 70CMX2M Black&white","e":"8435621434101","f":"papel","p":60,"x":60},
+{"c":"42228","n":"Papel Regalo 70CMX2M Surtido","e":"8435621422283","f":"papel","p":60,"x":60},
+{"c":"44879","n":"Papel Regalo 70CMX2M Elfos","e":"8435621448795","f":"papel","p":60,"x":60},
+{"c":"42229","n":"Papel Regalo 70CMX2M Surtido Navidad","e":"8435621422290","f":"papel","p":60,"x":60},
+{"c":"42687","n":"Papel Regalo 70CMX3M Surtido Navidad","e":"8435621426878","f":"papel","p":50,"x":50},
+{"c":"45044","n":"Papel Regalo 70CMX5M Stars","e":"8435621450446","f":"papel","p":40,"x":40},
+{"c":"45046","n":"Papel Regalo 70CMX5M Cascanueces","e":"8435621450460","f":"papel","p":40,"x":40},
+{"c":"45048","n":"Papel Regalo 70CMX5M Melchor Gaspar Baltasar","e":"8435621450484","f":"papel","p":40,"x":40},
+{"c":"44880","n":"Papel Regalo 70CMX5M Elfos","e":"8435621448801","f":"papel","p":40,"x":40},
+{"c":"42688","n":"Papel Regalo 70CMX5M Surtido","e":"8435621426885","f":"papel","p":40,"x":40},
+{"c":"42994","n":"Papel Regalo 70CMX5M Surtido Metal Decorado","e":"8435621429947","f":"papel","p":40,"x":40},
+{"c":"42995","n":"Papel Regalo 70CMX5M Surtido Infantil Decorado","e":"8435621429954","f":"papel","p":40,"x":40},
+{"c":"42689","n":"Papel Regalo 70CMX5M Surtido Navidad","e":"8435621426892","f":"papel","p":40,"x":40},
+{"c":"43458","n":"Papel Regalo 70CMX5M Reyes Magos","e":"8435621434583","f":"papel","p":40,"x":40},
+{"c":"45056","n":"Papel Regalo 70CMX10M Cascanueces XL","e":"8435621450569","f":"papel","p":20,"x":20},
+{"c":"44881","n":"Papel Regalo 70CMX10M Elfos XL","e":"8435621448818","f":"papel","p":20,"x":20},
+{"c":"43414","n":"Papel Regalo 70CMX10M Surtido XL","e":"8435621434149","f":"papel","p":20,"x":20},
+{"c":"43415","n":"Papel Regalo 70CMX10M Surtido Navidad XL","e":"8435621434156","f":"papel","p":20,"x":20},
+{"c":"44105","n":"Papel Regalo 70CMX10M Surtido Metal Decorado XL","e":"8435621441055","f":"papel","p":20,"x":20},
+{"c":"44106","n":"Papel Regalo 70CMX10M Rayas XL","e":"8435621441062","f":"papel","p":20,"x":20},
+{"c":"44107","n":"Papel Regalo 70CMX10M Reyes Magos XL","e":"8435621441079","f":"papel","p":20,"x":20},
+{"c":"CRIS1M","n":"Papel Regalo 1M","e":"","f":"papel"},
+{"c":"42695","n":"Papel Regalo 1X3M Surtido","e":"8435621426953","f":"papel","p":36,"x":36},
+{"c":"42696","n":"Papel Regalo 1X3M Surtido Navidad","e":"8435621426960","f":"papel","p":36,"x":36},
+{"c":"43402","n":"Papel Regalo 1X3 Surtido Metal Decorado","e":"8435621434026","f":"papel","p":36,"x":36},
+{"c":"43403","n":"Papel Regalo 1X5 Surtido Navidad XL","e":"8435621434033","f":"papel","p":20,"x":20},
+{"c":"43413","n":"Papel Regalo 1X5 Surtido XL","e":"8435621434132","f":"papel","p":20,"x":20},
+{"c":"CRISKRAFT","n":"Papel Regalo Kraft","e":"","f":"papel"},
+{"c":"42998","n":"Papel Kraft 70CM X 2M","e":"8435621429985","f":"papel","p":60,"x":60},
+{"c":"41604","n":"Papel Kraft 100CM X 3M","e":"8435621416046","f":"papel","p":36,"x":36},
+{"c":"41743","n":"Rollo Papel Lisos Kraft 1X2M","e":"8435621417432","f":"papel","p":36,"x":36},
+{"c":"41744","n":"Rollo Papel Topos Kraft 1X2M","e":"8435621417449","f":"papel","p":36,"x":36},
+{"c":"41745","n":"Rollo Papel Deco Kraft 1X2M","e":"8435621417456","f":"papel","p":36,"x":36},
+{"c":"41742","n":"Rollo Papel Metal Kraft 1X2M","e":"8435621417425","f":"papel","p":36,"x":36},
+{"c":"41741","n":"Rollo Papel Blanco Kraft 1X3M","e":"8435621417418","f":"papel","p":36,"x":36},
+{"c":"CRISPP","n":"Polipropileno","e":"","f":"papel"},
+{"c":"40009","n":"Rollo PP 70X150CM Belen","e":"8435621400090","f":"papel","p":24,"x":24},
+{"c":"40011","n":"Rollo PP 70X100CM Metal","e":"8435621400113","f":"papel","p":24,"x":24},
+{"c":"40012","n":"Rollo PP 70X150CM Metal","e":"8435621400120","f":"papel","p":24,"x":24},
+{"c":"06943","n":"Rollo PP 70X100CM Cristal","e":"8436539069430","f":"papel","p":24,"x":24},
+{"c":"06942","n":"Rollo PP 70X100CM Decorado","e":"8436539069423","f":"papel","p":24,"x":24},
+{"c":"06635","n":"Rollo PP 70X150CM Cristal","e":"8436539066354","f":"papel","p":24,"x":24},
+{"c":"06636","n":"Rollo PP 70X150CM Decorado","e":"8436539066361","f":"papel","p":24,"x":24},
+{"c":"07819","n":"Rollo PP 100X150CM Cristal","e":"8436539078197","f":"papel","p":24,"x":24},
+{"c":"07820","n":"Rollo PP 100X150CM Decorado","e":"8436539078203","f":"papel","p":24,"x":24},
+{"c":"07814","n":"Rollo PP 100X150CM Metal","e":"8436539078142","f":"papel","p":24,"x":24},
+{"c":"07823","n":"Rollo PP 70X500CM Cristal","e":"8436539078234","f":"papel","p":24,"x":24},
+{"c":"07812","n":"Rollo PP 100X500CM Cristal","e":"8436539078128","f":"papel","p":24,"x":24},
+{"c":"06565","n":"Bobina Polipropileno Cristal 70CMX40M","e":"8436539065654","f":"papel","p":10,"x":10},
+{"c":"06566","n":"Bobina Polipropileno Decorada 70CMX40M","e":"8436539065661","f":"papel","p":10,"x":10},
+{"c":"CRIS62CM","n":"Bobinas 62CM","e":"","f":"bobinas"},
+{"c":"44950","n":"Bobina Papel Regalo Navidad 62CM Elfos","e":"8435621449501","f":"bobinas","p":1,"x":1},
+{"c":"44954","n":"Bobina Papel Regalo Navidad 62CM Reyes Magos 2","e":"8435621449549","f":"bobinas","p":1,"x":1},
+{"c":"44952","n":"Bobina Papel Regalo Navidad 62CM Reyes Magos","e":"8435621449525","f":"bobinas","p":1,"x":1},
+{"c":"42615","n":"Bobina Papel Regalo Liso 62CM Plata","e":"8435621426151","f":"bobinas","p":1,"x":1},
+{"c":"42617","n":"Bobina Papel Regalo Liso 62CM Oro","e":"8435621426175","f":"bobinas","p":1,"x":1},
+{"c":"41671","n":"Bobina Papel Regalo Liso 62CM Rojo","e":"8435621416718","f":"bobinas","p":1,"x":1},
+{"c":"43000","n":"Bobina Papel Regalo Decorado 62CM Figuras Rojo","e":"8435621430004","f":"bobinas","p":1,"x":1},
+{"c":"41665","n":"Bobina Papel Regalo Decorado 62CM Flores Rojo","e":"8435621416657","f":"bobinas","p":1,"x":1},
+{"c":"41651","n":"Bobina Papel Regalo Decorado 62CM Detalles Rojo","e":"8435621416510","f":"bobinas","p":1,"x":1},
+{"c":"41659","n":"Bobina Papel Regalo Decorado 62CM Letras Rojo","e":"8435621416596","f":"bobinas","p":1,"x":1},
+{"c":"41666","n":"Bobina Papel Regalo Infantil 62CM Numeros","e":"8435621416664","f":"bobinas","p":1,"x":1},
+{"c":"41663","n":"Bobina Papel Regalo Decorado 62CM Topos Rojo-blanco","e":"8435621416633","f":"bobinas","p":1,"x":1},
+{"c":"43004","n":"Bobina Papel Regalo Decorado 62CM Topos Plata","e":"8435621430042","f":"bobinas","p":1,"x":1},
+{"c":"43002","n":"Bobina Papel Regalo Decorado 62CM Nieve Azul","e":"8435621430028","f":"bobinas","p":1,"x":1},
+{"c":"41667","n":"Bobina Papel Regalo Decorado 62CM Mini Love","e":"8435621416671","f":"bobinas","p":1,"x":1},
+{"c":"41668","n":"Bobina Papel Regalo Decorado 62CM Love","e":"8435621416688","f":"bobinas","p":1,"x":1},
+{"c":"43010","n":"Bobina Papel Regalo Infantil 62CM Juguetes","e":"8435621430103","f":"bobinas","p":1,"x":1},
+{"c":"43416","n":"Bobina Papel Regalo Decorado 62CM Triangulos","e":"8435621434163","f":"bobinas","p":1,"x":1},
+{"c":"41653","n":"Bobina Papel Regalo Decorado 62CM Rombos Colores","e":"8435621416534","f":"bobinas","p":1,"x":1},
+{"c":"41657","n":"Bobina Papel Regalo Decorado 62CM Circulos Colores","e":"8435621416572","f":"bobinas","p":1,"x":1},
+{"c":"41656","n":"Bobina Papel Regalo Decorado 62CM Circulos Azules","e":"8435621416565","f":"bobinas","p":1,"x":1},
+{"c":"43419","n":"Bobina Papel Regalo Decorado 62CM Calaveras","e":"8435621434194","f":"bobinas","p":1,"x":1},
+{"c":"41713","n":"Bobina Papel Regalo Navidad 62CM Reno","e":"8435621417135","f":"bobinas","p":1,"x":1},
+{"c":"41711","n":"Bobina Papel Regalo Navidad 62CM Christmas","e":"8435621417111","f":"bobinas","p":1,"x":1},
+{"c":"43006","n":"Bobina Papel Regalo Navidad 62CM X-mas","e":"8435621430066","f":"bobinas","p":1,"x":1},
+{"c":"43008","n":"Bobina Papel Regalo Navidad 62CM Bolas","e":"8435621430080","f":"bobinas","p":1,"x":1},
+{"c":"43417","n":"Bobina Papel Regalo Navidad 62CM Galletas","e":"8435621434170","f":"bobinas","p":1,"x":1},
+{"c":"43418","n":"Bobina Papel Regalo Navidad 62CM Arboles","e":"8435621434187","f":"bobinas","p":1,"x":1},
+{"c":"41658","n":"Bobina Papel Regalo Decorado 62CM Mundo","e":"8435621416589","f":"bobinas","p":1,"x":1},
+{"c":"CRIS31CM","n":"Bobinas 31CM","e":"","f":"bobinas"},
+{"c":"44949","n":"Bobina Papel Regalo Navidad 31CM Elfos","e":"8435621449495","f":"bobinas","p":1,"x":1},
+{"c":"44951","n":"Bobina Papel Regalo Navidad 31CM Reyes Magos","e":"8435621449518","f":"bobinas","p":1,"x":1},
+{"c":"44953","n":"Bobina Papel Regalo Navidad 31CM Reyes Magos 2","e":"8435621449532","f":"bobinas","p":1,"x":1},
+{"c":"42618","n":"Bobina Papel Regalo Liso 31CM Oro","e":"8435621426182","f":"bobinas","p":1,"x":1},
+{"c":"42616","n":"Bobina Papel Regalo Liso 31CM Plata","e":"8435621426168","f":"bobinas","p":1,"x":1},
+{"c":"41692","n":"Bobina Papel Regalo Liso 31CM Rojo","e":"8435621416923","f":"bobinas","p":1,"x":1},
+{"c":"42999","n":"Bobina Papel Regalo Decorado 31CM Figuras Rojo","e":"8435621429992","f":"bobinas","p":1,"x":1},
+{"c":"41686","n":"Bobina Papel Regalo Decorado 31CM Flores Rojo","e":"8435621416862","f":"bobinas","p":1,"x":1},
+{"c":"41672","n":"Bobina Papel Regalo Decorado 31CM Detalles Rojo","e":"8435621416725","f":"bobinas","p":1,"x":1},
+{"c":"41680","n":"Bobina Papel Regalo Decorado 31CM Letras Rojo","e":"8435621416800","f":"bobinas","p":1,"x":1},
+{"c":"41687","n":"Bobina Papel Regalo Infantil 31CM Numeros","e":"8435621416879","f":"bobinas","p":1,"x":1},
+{"c":"41684","n":"Bobina Papel Regalo Decorado 31CM Topos Rojo-blanco","e":"8435621416848","f":"bobinas","p":1,"x":1},
+{"c":"43003","n":"Bobina Papel Regalo Decorado 31CM Topos Plata","e":"8435621430035","f":"bobinas","p":1,"x":1},
+{"c":"43001","n":"Bobina Papel Regalo Decorado 31CM Nieve Azul","e":"8435621430011","f":"bobinas","p":1,"x":1},
+{"c":"41688","n":"Bobina Papel Regalo Decorado 31CM Mini Love","e":"8435621416886","f":"bobinas","p":1,"x":1},
+{"c":"41689","n":"Bobina Papel Regalo Decorado 31CM Love","e":"8435621416893","f":"bobinas","p":1,"x":1},
+{"c":"43009","n":"Bobina Papel Regalo Infantil 31CM Juguetes","e":"8435621430097","f":"bobinas","p":1,"x":1},
+{"c":"41674","n":"Bobina Papel Regalo Decorado 31CM Rombos Colores","e":"8435621416749","f":"bobinas","p":1,"x":1},
+{"c":"43420","n":"Bobina Papel Regalo Decorado 31CM Triangulos","e":"8435621434200","f":"bobinas","p":1,"x":1},
+{"c":"41678","n":"Bobina Papel Regalo Decorado 31CM Circulos Colores","e":"8435621416787","f":"bobinas","p":1,"x":1},
+{"c":"41677","n":"Bobina Papel Regalo Decorado 31CM Circulos Azules","e":"8435621416770","f":"bobinas","p":1,"x":1},
+{"c":"43423","n":"Bobina Papel Regalo Decorado 31CM Calaveras","e":"8435621434231","f":"bobinas","p":1,"x":1},
+{"c":"41679","n":"Bobina Papel Regalo Decorado 31CM Mundo","e":"8435621416794","f":"bobinas","p":1,"x":1},
+{"c":"41714","n":"Bobina Papel Regalo Navidad 31CM Reno","e":"8435621417142","f":"bobinas","p":1,"x":1},
+{"c":"41712","n":"Bobina Papel Regalo Navidad 31CM Christmas","e":"8435621417128","f":"bobinas","p":1,"x":1},
+{"c":"43005","n":"Bobina Papel Regalo Navidad 31CM X-mas","e":"8435621430059","f":"bobinas","p":1,"x":1},
+{"c":"43007","n":"Bobina Papel Regalo Navidad 31CM Bolas","e":"8435621430073","f":"bobinas","p":1,"x":1},
+{"c":"43421","n":"Bobina Papel Regalo Navidad 31CM Galletas","e":"8435621434217","f":"bobinas","p":1,"x":1},
+{"c":"43422","n":"Bobina Papel Regalo Navidad 31CM Arboles","e":"8435621434224","f":"bobinas","p":1,"x":1},
+{"c":"43748","n":"Dispensador/cortador Bobina Papel 62CM","e":"8435621437485","f":"bobinas","p":1,"x":1},
+{"c":"43749","n":"Dispensador/cortador Bobina Papel Doble 31+62CM","e":"8435621437492","f":"bobinas","p":1,"x":1},
+{"c":"42484","n":"Kit Bobina Cinta Decorativa + 2 Lazos Estrella","e":"8435621424843","f":"lazos","p":12,"x":144},
+{"c":"42485","n":"Lazos Estrella Metalizados 10MM 4UDS (2 Rojos+ 1 Oro + 1 Plata)","e":"8435621424850","f":"lazos","p":12,"x":120},
+{"c":"42486","n":"Lazos Estrella Metalizados 10MM 6UDS (2 Rojos+ 2 Oro + 2 Plata)","e":"8435621424867","f":"lazos","p":12,"x":120},
+{"c":"42487","n":"Lazos Estrella Metalizados 10MM 12UDS (4 Rojos+ 4 Oro + 4 Plata)","e":"8435621424874","f":"lazos","p":12,"x":120},
+{"c":"42488","n":"Lazos Estrella Metalizados 14MM 3UDS (1 Rojo + 1 Oro + 1 Plata)","e":"8435621424881","f":"lazos","p":12,"x":120},
+{"c":"42489","n":"Lazos Estrella Metalizados 14MM 6UDS (2 Rojos+ 2 Oro + 2 Plata)","e":"8435621424898","f":"lazos","p":12,"x":120},
+{"c":"42490","n":"Lazos Estrella Metalizados 19MM 2UDS (1 Rojo + 1 Oro)","e":"8435621424904","f":"lazos","p":12,"x":120},
+{"c":"42491","n":"Lazos Estrella Metalizados 19MM 4UDS (2 Rojos+ 1 Oro + 1 Plata)","e":"8435621424911","f":"lazos","p":12,"x":120},
+{"c":"42272","n":"Lazo Estrella Lisos (20) 90MM","e":"8435621422726","f":"lazos","p":24,"x":120},
+{"c":"06725","n":"Lazos Estrella Adhesivos 10MM 100UDS","e":"8436539067252","f":"lazos","p":100,"x":900},
+{"c":"06726","n":"Lazos Estrella Adhesivos 14MM 50UDS","e":"8436539067269","f":"lazos","p":50,"x":450},
+{"c":"06727","n":"Lazos Estrella Adhesivos 19MM 36UDS","e":"8436539067276","f":"lazos","p":36,"x":324},
+{"c":"43030","n":"Lazo Estrella Metalizado Adhesivo 10MM Liso Brillo 100 Uds","e":"8435621430301","f":"lazos","p":100,"x":1800},
+{"c":"43031","n":"Lazo Estrella Metalizado Adhesivo 10MM Liso Mate 100 Uds","e":"8435621430318","f":"lazos","p":100,"x":1800},
+{"c":"43032","n":"Lazo Estrella Metalizado Adhesivo 14MM Liso Brillo 100 Uds","e":"8435621430325","f":"lazos","p":100,"x":1400},
+{"c":"43033","n":"Lazo Estrella Metalizado Adhesivo 14MM Liso Mate 100 Uds","e":"8435621430332","f":"lazos","p":100,"x":1400},
+{"c":"43034","n":"Lazo Estrella Metalizado Adhesivo 19MM Liso Brillo 70 Uds","e":"8435621430349","f":"lazos","p":70,"x":700},
+{"c":"43035","n":"Lazo Estrella Metalizado Adhesivo 19MM Liso Mate 70 Uds","e":"8435621430356","f":"lazos","p":70,"x":700},
+{"c":"07445","n":"Lazos Estrella Metalizados Adhesivos 10MM 100UDS","e":"8436539074458","f":"lazos","p":100,"x":900},
+{"c":"07446","n":"Lazos Estrella Metalizados Adhesivos 14MM 50UDS.","e":"8436539074465","f":"lazos","p":50,"x":450},
+{"c":"07447","n":"Lazos Estrella Metalizados Adhesivos 19MM 36UDS.","e":"8436539074472","f":"lazos","p":36,"x":324},
+{"c":"06409","n":"Lazo Automatico 30MM Blanco","e":"8436539064091","f":"lazos","p":12,"x":144},
+{"c":"06410","n":"Lazo Automatico 30MM Crema","e":"8436539064107","f":"lazos","p":12,"x":144},
+{"c":"06403","n":"Lazo Automatico 30MM Plata","e":"8436539064039","f":"lazos","p":12,"x":144},
+{"c":"06406","n":"Lazo Automatico 30MM Oro","e":"8436539064060","f":"lazos","p":12,"x":144},
+{"c":"06373","n":"Lazo Automatico 30MM Rojo","e":"8436539063735","f":"lazos","p":12,"x":144},
+{"c":"06884","n":"Lazo Automatico 30MM Rosa","e":"8436539068846","f":"lazos","p":12,"x":144},
+{"c":"06404","n":"Lazo Automatico 30MM Fucsia","e":"8436539064046","f":"lazos","p":12,"x":144},
+{"c":"06407","n":"Lazo Automatico 30MM Lila","e":"8436539064077","f":"lazos","p":12,"x":144},
+{"c":"06402","n":"Lazo Automatico 30MM Azul Claro","e":"8436539064022","f":"lazos","p":12,"x":144},
+{"c":"06411","n":"Lazo Automatico 30MM Azul","e":"8436539064114","f":"lazos","p":12,"x":144},
+{"c":"06408","n":"Lazo Automatico 30MM Pistacho","e":"8436539064084","f":"lazos","p":12,"x":144},
+{"c":"06405","n":"Lazo Automatico 30MM Verde","e":"8436539064053","f":"lazos","p":12,"x":144},
+{"c":"06422","n":"Lazo Automatico 50MM Blanco","e":"8436539064220","f":"lazos","p":12,"x":144},
+{"c":"06419","n":"Lazo Automatico 50MM Crema","e":"8436539064190","f":"lazos","p":12,"x":144},
+{"c":"06418","n":"Lazo Automatico 50MM Plata","e":"8436539064183","f":"lazos","p":12,"x":144},
+{"c":"06417","n":"Lazo Automatico 50MM Oro","e":"8436539064176","f":"lazos","p":12,"x":144},
+{"c":"06375","n":"Lazo Automatico 50MM Rojo","e":"8436539063759","f":"lazos","p":12,"x":144},
+{"c":"06661","n":"Lazo Automatico 50MM Rosa","e":"8436539066613","f":"lazos","p":12,"x":144},
+{"c":"06416","n":"Lazo Automatico 50MM Fucsia","e":"8436539064169","f":"lazos","p":12,"x":144},
+{"c":"06420","n":"Lazo Automatico 50MM Lila","e":"8436539064206","f":"lazos","p":12,"x":144},
+{"c":"06413","n":"Lazo Automatico 50MM Azul Claro","e":"8436539064138","f":"lazos","p":12,"x":144},
+{"c":"06415","n":"Lazo Automatico 50MM Azul","e":"8436539064152","f":"lazos","p":12,"x":144},
+{"c":"06421","n":"Lazo Automatico 50MM Pistacho","e":"8436539064213","f":"lazos","p":12,"x":144},
+{"c":"06414","n":"Lazo Automatico 50MM Verde","e":"8436539064145","f":"lazos","p":12,"x":144},
+{"c":"42577","n":"Lazo Automatico 50MM Marron","e":"8435621425772","f":"lazos","p":12,"x":144},
+{"c":"43011","n":"Lazo Automatico 50MM Blanco Granel","e":"8435621430110","f":"lazos","p":30,"x":300},
+{"c":"43012","n":"Lazo Automatico 50MM Plata Granel","e":"8435621430127","f":"lazos","p":30,"x":300},
+{"c":"43013","n":"Lazo Automatico 50MM Oro Granel","e":"8435621430134","f":"lazos","p":30,"x":300},
+{"c":"43014","n":"Lazo Automatico 50MM Rojo Granel","e":"8435621430141","f":"lazos","p":30,"x":300},
+{"c":"43025","n":"Lazo Automatico 50MM Azul Claro Granel","e":"8435621430257","f":"lazos","p":30,"x":300},
+{"c":"43026","n":"Lazo Automatico 50MM Azul Granel","e":"8435621430264","f":"lazos","p":30,"x":300},
+{"c":"43024","n":"Lazo Automatico 50MM Rosa Granel","e":"8435621430240","f":"lazos","p":30,"x":300},
+{"c":"43028","n":"Lazo Automatico 50MM Fucsia Granel","e":"8435621430288","f":"lazos","p":30,"x":300},
+{"c":"43029","n":"Lazo Automatico 50MM Violeta Granel","e":"8435621430295","f":"lazos","p":30,"x":300},
+{"c":"2200/12","n":"Lazo Automatico 50MM Naranja Granel","e":"8031653021304","f":"lazos","p":30,"x":300},
+{"c":"43027","n":"Lazo Automatico 50MM Verde Granel","e":"8435621430271","f":"lazos","p":30,"x":300},
+{"c":"2200/14","n":"Lazo Automatico 50MM Marron Granel","e":"8031653021342","f":"lazos","p":30,"x":300},
+{"c":"2249/02","n":"Lazo Automatico Tela 50MM Amarillo Granel","e":"8031653125460","f":"lazos","p":15,"x":180},
+{"c":"2249/23","n":"Lazo Automatico Tela 50MM Salmon Granel","e":"8031653125484","f":"lazos","p":15,"x":180},
+{"c":"2249/10","n":"Lazo Automatico Tela 50MM Verde Granel","e":"8031653125415","f":"lazos","p":15,"x":180},
+{"c":"273981","n":"Estuche Rollos 50MMX15MTS Azul Mate 12UDS","e":"8435621419320","f":"lazos","p":12,"x":300},
+{"c":"42454","n":"Bobina Rafia 5MMX100M Oro","e":"8435621424546","f":"lazos","p":6,"x":144},
+{"c":"42455","n":"Bobina Rafia 5MMX100M Plata","e":"8435621424553","f":"lazos","p":6,"x":144},
+{"c":"42452","n":"Bobina Rafia 5MMX100M Rojo","e":"8435621424522","f":"lazos","p":6,"x":144},
+{"c":"42453","n":"Bobina Rafia 5MMX100M Blanco","e":"8435621424539","f":"lazos","p":6,"x":144},
+{"c":"06457","n":"Bobina Cinta Decorativa Oro 5MMX20M","e":"8436539064572","f":"lazos","p":12,"x":144},
+{"c":"06468","n":"Bobina Cinta Decorativa Plata 5MMX20M","e":"8436539064688","f":"lazos","p":12,"x":144},
+{"c":"06461","n":"Bobina Cinta Decorativa Rojo 5MMX20M","e":"8436539064619","f":"lazos","p":12,"x":144},
+{"c":"06458","n":"Bobina Cinta Decorativa Blanco 5MMX20M","e":"8436539064589","f":"lazos","p":12,"x":144},
+{"c":"06459","n":"Bobina Cinta Decorativa Verde 5MMX20M","e":"8436539064596","f":"lazos","p":12,"x":144},
+{"c":"06460","n":"Bobina Cinta Decorativa Azul 5MMX20M","e":"8436539064602","f":"lazos","p":12,"x":144},
+{"c":"42456","n":"Cinta Decorativa Metalizada 5MMX100M Oro","e":"8435621424560","f":"lazos","p":6,"x":144},
+{"c":"42457","n":"Cinta Decorativa Metalizada 5MMX100M Plata","e":"8435621424577","f":"lazos","p":6,"x":144},
+{"c":"42458","n":"Cinta Decorativa Metalizada 5MMX100M Rosa","e":"8435621424584","f":"lazos","p":6,"x":144},
+{"c":"42461","n":"Cinta Decorativa Metalizada 5MMX100M Fucsia","e":"8435621424614","f":"lazos","p":6,"x":144},
+{"c":"42463","n":"Cinta Decorativa Metalizada 5MMX100M Azul Claro","e":"8435621424638","f":"lazos","p":6,"x":144},
+{"c":"42460","n":"Cinta Decorativa Metalizada 5MMX100M Azul","e":"8435621424607","f":"lazos","p":6,"x":144},
+{"c":"42459","n":"Cinta Decorativa Metalizada 5MMX100M Rojo","e":"8435621424591","f":"lazos","p":6,"x":144},
+{"c":"42462","n":"Cinta Decorativa Metalizada 5MMX100M Verde","e":"8435621424621","f":"lazos","p":6,"x":144},
+{"c":"42471","n":"Cinta Decorativa Metalizada 10MMX100M Plata","e":"8435621424713","f":"lazos","p":6,"x":72},
+{"c":"42470","n":"Cinta Decorativa Metalizada 10MMX100M Oro","e":"8435621424706","f":"lazos","p":6,"x":72},
+{"c":"42466","n":"Cinta Decorativa Metalizada 10MMX100M Rojo","e":"8435621424669","f":"lazos","p":6,"x":72},
+{"c":"42464","n":"Cinta Decorativa Metalizada 10MMX100M Rosa","e":"8435621424645","f":"lazos","p":6,"x":72},
+{"c":"42469","n":"Cinta Decorativa Metalizada 10MMX100M Fucsia","e":"8435621424690","f":"lazos","p":6,"x":72},
+{"c":"42465","n":"Cinta Decorativa Metalizada 10MMX100M Azul Claro","e":"8435621424652","f":"lazos","p":6,"x":72},
+{"c":"42467","n":"Cinta Decorativa Metalizada 10MMX100M Azul","e":"8435621424676","f":"lazos","p":6,"x":72},
+{"c":"42468","n":"Cinta Decorativa Metalizada 10MMX100M Verde","e":"8435621424683","f":"lazos","p":6,"x":72},
+{"c":"42479","n":"Cinta Decorativa 5MMX500M Oro","e":"8435621424799","f":"lazos","p":6,"x":36},
+{"c":"42481","n":"Cinta Decorativa 5MMX500M Rojo","e":"8435621424812","f":"lazos","p":6,"x":36},
+{"c":"42480","n":"Cinta Decorativa 5MMX500M Plata","e":"8435621424805","f":"lazos","p":6,"x":36},
+{"c":"42478","n":"Cinta Decorativa 5MMX500M Blanco","e":"8435621424782","f":"lazos","p":6,"x":36},
+{"c":"42482","n":"Cinta Decorativa 5MMX500M Azul","e":"8435621424829","f":"lazos","p":6,"x":36},
+{"c":"42483","n":"Cinta Decorativa 5MMX500M Fucsia","e":"8435621424836","f":"lazos","p":6,"x":36},
+{"c":"42476","n":"Cinta Decorativa 10MMX250M Azul","e":"8435621424768","f":"lazos","p":6,"x":36},
+{"c":"42472","n":"Cinta Decorativa 10MMX250M Blanca","e":"8435621424720","f":"lazos","p":6,"x":36},
+{"c":"42475","n":"Cinta Decorativa 10MMX250M Rojo","e":"8435621424751","f":"lazos","p":6,"x":36},
+{"c":"42477","n":"Cinta Decorativa 10MMX250M Fucsia","e":"8435621424775","f":"lazos","p":6,"x":36},
+{"c":"42474","n":"Cinta Decorativa 10MMX250M Plata","e":"8435621424744","f":"lazos","p":6,"x":36},
+{"c":"42473","n":"Cinta Decorativa 10MMX250M Oro","e":"8435621424737","f":"lazos","p":6,"x":36},
+{"c":"42437","n":"Bolsa Cristal 8X15CM 36UDS.","e":"8435621424379","f":"bolsas","p":12,"x":144},
+{"c":"42439","n":"Bolsa Cristal 8X30CM 36UDS.","e":"8435621424393","f":"bolsas","p":12,"x":144},
+{"c":"42440","n":"Bolsa Cristal 10X20CM 36UDS.","e":"8435621424409","f":"bolsas","p":12,"x":144},
+{"c":"42442","n":"Bolsa Cristal 12X25CM 30UDS.","e":"8435621424423","f":"bolsas","p":12,"x":144},
+{"c":"42444","n":"Bolsa Cristal 15X30CM 24UDS.","e":"8435621424447","f":"bolsas","p":12,"x":144},
+{"c":"42446","n":"Bolsa Cristal 20X30CM 18UDS.","e":"8435621424461","f":"bolsas","p":12,"x":144},
+{"c":"42448","n":"Bolsa Cristal 25X35CM 12UDS.","e":"8435621424485","f":"bolsas","p":12,"x":144},
+{"c":"42450","n":"Bolsa Cristal 30X40CM 12UDS.","e":"8435621424508","f":"bolsas","p":12,"x":144},
+{"c":"42438","n":"Bolsa Decorada 8X15CM 36UDS.","e":"8435621424386","f":"bolsas","p":12,"x":144},
+{"c":"42441","n":"Bolsa Decorada 10X20CM 36UDS.","e":"8435621424416","f":"bolsas","p":12,"x":144},
+{"c":"42443","n":"Bolsa Decorada 12X25CM 30UDS.","e":"8435621424430","f":"bolsas","p":12,"x":144},
+{"c":"42445","n":"Bolsa Decorada 15X30CM 24UDS.","e":"8435621424454","f":"bolsas","p":12,"x":144},
+{"c":"42447","n":"Bolsa Decorada 20X30CM 18UDS.","e":"8435621424478","f":"bolsas","p":12,"x":144},
+{"c":"42449","n":"Bolsa Decorada 25X35CM 12UDS.","e":"8435621424492","f":"bolsas","p":12,"x":144},
+{"c":"42451","n":"Bolsa Decorada 30X40CM 12UDS.","e":"8435621424515","f":"bolsas","p":12,"x":144},
+{"c":"44253","n":"Cañon Fiesta Tiras Red 30CM","e":"8435621442533","f":"fiesta","p":12,"x":72},
+{"c":"44254","n":"Cañon Fiesta Tiras Red 40CM","e":"8435621442540","f":"fiesta","p":12,"x":72},
+{"c":"44255","n":"Cañon Fiesta Tiras Red 60CM","e":"8435621442557","f":"fiesta","p":12,"x":48},
+{"c":"44250","n":"Cañon Fiesta Tiras Gold 30CM","e":"8435621442502","f":"fiesta","p":12,"x":72},
+{"c":"44251","n":"Cañon Fiesta Tiras Gold 40CM","e":"8435621442519","f":"fiesta","p":12,"x":72},
+{"c":"44252","n":"Cañon Fiesta Tiras Gold 60CM","e":"8435621442526","f":"fiesta","p":12,"x":48},
+{"c":"45050","n":"Cañon Fiesta Tiras Silver 30CM","e":"8435621450507","f":"fiesta","p":12,"x":72},
+{"c":"45051","n":"Cañon Fiesta Tiras Silver 40CM","e":"8435621450514","f":"fiesta","p":12,"x":72},
+{"c":"45052","n":"Cañon Fiesta Tiras Silver 60CM","e":"8435621450521","f":"fiesta","p":12,"x":48},
+{"c":"44307","n":"Cañon Fiesta Metalizado 30CM","e":"8435621443073","f":"fiesta","p":12,"x":72},
+{"c":"44308","n":"Cañon Fiesta Metalizado 40CM","e":"8435621443080","f":"fiesta","p":12,"x":72},
+{"c":"44309","n":"Cañon Fiesta Metalizado 60CM","e":"8435621443097","f":"fiesta","p":12,"x":48},
+{"c":"43424","n":"Bolsa Uvas de la Suerte 12 Uds 10x20CM","e":"8435621434248","f":"fiesta","p":12,"x":144},
+{"c":"06643","n":"Viruta Celofan 100G Transparente","e":"8436539066439","f":"fiesta","p":12,"x":12},
+{"c":"06642","n":"Viruta Celofan 100G Roja","e":"8436539066422","f":"fiesta","p":12,"x":12},
+{"c":"40079","n":"Viruta Celofan 500G Roja","e":"8435621400793","f":"fiesta","p":12,"x":12},
+{"c":"40074","n":"Viruta Celofan 500G Transparente","e":"8435621400748","f":"fiesta","p":12,"x":12},
+{"c":"06646","n":"Viruta Celofan 100G Plata","e":"8436539066460","f":"fiesta","p":12,"x":12},
+{"c":"40080","n":"Viruta Celofan 500G Plata","e":"8435621400809","f":"fiesta","p":12,"x":12},
+{"c":"42346","n":"Viruta Chopo 100G","e":"8435621423464","f":"fiesta","p":12,"x":12},
+{"c":"43404","n":"Viruta Porex Cuadrado","e":"8435621434040","f":"fiesta","p":12,"x":12},
+{"c":"43405","n":"Viruta Porex Circular","e":"8435621434057","f":"fiesta","p":12,"x":12},
+{"c":"41346","n":"Cabeza Porex","e":"8435621413465","f":"decoracion","p":6,"x":6},
+{"c":"41643","n":"Mini-bola Porex 2-4MM 9G Oro","e":"8435621416435","f":"decoracion","p":12,"x":240},
+{"c":"41645","n":"Mini-bola Porex 4-6MM 9GR. Oro","e":"8435621416459","f":"decoracion","p":12,"x":240},
+{"c":"41647","n":"Mini-bola Porex 8-10MM 9G Oro","e":"8435621416473","f":"decoracion","p":12,"x":240},
+{"c":"41644","n":"Mini-bola Porex 2-4MM 9GR. Plata","e":"8435621416442","f":"decoracion","p":12,"x":240},
+{"c":"41646","n":"Mini-bola Porex 4-6MM 9GR. Plata","e":"8435621416466","f":"decoracion","p":12,"x":240},
+{"c":"41648","n":"Mini-bola Porex 8-10MM 9GR. Plata","e":"8435621416480","f":"decoracion","p":12,"x":240},
+{"c":"41637","n":"Mini-bola Porex 1-2MM 9GR. Surtido Pastel","e":"8435621416374","f":"decoracion","p":12,"x":240},
+{"c":"41638","n":"Mini-bola Porex 2-4MM 9GR. Surtido Pastel","e":"8435621416381","f":"decoracion","p":12,"x":240},
+{"c":"41639","n":"Mini-bola Porex 8-10MM 9GR. Surtido Pastel","e":"8435621416398","f":"decoracion","p":12,"x":240},
+{"c":"41641","n":"Mini-bola Porex 2-4MM 9GR. Surtido Fuerte","e":"8435621416411","f":"decoracion","p":12,"x":240},
+{"c":"41634","n":"Mini-bola Porex 1-2MM 9GR. Blancas","e":"8435621416343","f":"decoracion","p":12,"x":240},
+{"c":"41635","n":"Mini-bola Porex 2-4MM 9GR. Blancas","e":"8435621416350","f":"decoracion","p":12,"x":240},
+{"c":"41636","n":"Mini-bola Porex 8-10MM 9GR. Blancas","e":"8435621416367","f":"decoracion","p":12,"x":240},
+{"c":"40728","n":"Bola Porex 2CM 12UDS.","e":"8435621407280","f":"decoracion","p":12,"x":288},
+{"c":"40730","n":"Bola Porex 3CM 8UDS.","e":"8435621407303","f":"decoracion","p":12,"x":288},
+{"c":"40731","n":"Bola Porex 4CM 8UDS.","e":"8435621407310","f":"decoracion","p":12,"x":288},
+{"c":"40732","n":"Bola Porex 5CM 4UDS.","e":"8435621407327","f":"decoracion","p":12,"x":288},
+{"c":"40733","n":"Bola Porex 6CM 4UDS.","e":"8435621407334","f":"decoracion","p":12,"x":288},
+{"c":"40734","n":"Bola Porex 7CM 2UDS.","e":"8435621407341","f":"decoracion","p":12,"x":240},
+{"c":"40735","n":"Bola Porex 8CM 2UDS.","e":"8435621407358","f":"decoracion","p":12,"x":240},
+{"c":"40736","n":"Bola Porex 9CM","e":"8435621407365","f":"decoracion","p":12,"x":240},
+{"c":"40737","n":"Bola Porex 10CM","e":"8435621407372","f":"decoracion","p":12,"x":288},
+{"c":"40738","n":"Bola Porex 12CM","e":"8435621407389","f":"decoracion","p":12,"x":144},
+{"c":"40016","n":"Bola Porex 15CM","e":"8435621400168","f":"decoracion","p":12,"x":144},
+{"c":"40017","n":"Bola Porex 20CM","e":"8435621400175","f":"decoracion","p":6,"x":60},
+{"c":"40018","n":"Bola Porex 25CM","e":"8435621400182","f":"decoracion","p":6,"x":36},
+{"c":"40019","n":"Bola Porex 30CM","e":"8435621400199","f":"decoracion","p":6,"x":20},
+{"c":"07020","n":"Bola Porex 35CM","e":"8436539070207","f":"decoracion","p":6,"x":15},
+{"c":"40785","n":"Huevo Porex 10CM","e":"8435621407853","f":"decoracion","p":12,"x":240},
+{"c":"40786","n":"Huevo Porex 12CM","e":"8435621407860","f":"decoracion","p":12,"x":144},
+{"c":"40787","n":"Huevo Porex 15CM","e":"8435621407877","f":"decoracion","p":12,"x":144},
+{"c":"42897","n":"Estrella Porex 10CM","e":"8435621428971","f":"decoracion","p":12,"x":240},
+{"c":"40796","n":"Estrella Porex 15CM","e":"8435621407969","f":"decoracion","p":12,"x":144},
+{"c":"40797","n":"Estrella Porex 20CM","e":"8435621407976","f":"decoracion","p":12,"x":144},
+{"c":"40798","n":"Estrella Porex 25CM","e":"8435621407983","f":"decoracion","p":6,"x":72},
+{"c":"41169","n":"Corona Porex 15CM","e":"8435621411690","f":"decoracion","p":12,"x":240},
+{"c":"41632","n":"Corona Porex 22CM","e":"8435621416329","f":"decoracion","p":12,"x":144},
+{"c":"41171","n":"Corona Porex 28CM","e":"8435621411713","f":"decoracion","p":6,"x":72},
+{"c":"40770","n":"Conos Porex 10CM 2UDS.","e":"8435621407709","f":"decoracion","p":12,"x":240},
+{"c":"40771","n":"Cono Porex 15CM","e":"8435621407716","f":"decoracion","p":12,"x":240},
+{"c":"42895","n":"Cono Porex 20CM","e":"8435621428957","f":"decoracion","p":12,"x":240},
+{"c":"40773","n":"Cono Porex 25CM","e":"8435621407730","f":"decoracion","p":12,"x":144},
+{"c":"40774","n":"Cono Porex 30CM","e":"8435621407747","f":"decoracion","p":6,"x":144},
+{"c":"42896","n":"Cono Porex 35CM","e":"8435621428964","f":"decoracion","p":6,"x":96},
+{"c":"40775","n":"Cono Porex 40CM","e":"8435621407754","f":"decoracion","p":6,"x":96},
+{"c":"44611","n":"Vaso Cartón 270CC 6PCS Metalizado Oro","e":"8435621446111","f":"vajilla","p":12,"x":144},
+{"c":"44779","n":"Plato Cartón 17CM 6PCS Metalizado Oro","e":"8435621447798","f":"vajilla","p":12,"x":144},
+{"c":"44782","n":"Plato Cartón 23CM 6PCS Metalizado Oro","e":"8435621447828","f":"vajilla","p":12,"x":144},
+{"c":"44763","n":"Bol Cartón Redondo 350CC 6PCS Metalizado Oro","e":"8435621447637","f":"vajilla","p":12,"x":60},
+{"c":"44628","n":"Servilletas 25X25CM 2 Capas 20PCS Metalizado Oro","e":"8435621446289","f":"vajilla","p":12,"x":72},
+{"c":"44645","n":"Servilletas 25X25CM 3 Capas 20PCS Metalizado Oro","e":"8435621446456","f":"vajilla","p":12,"x":72},
+{"c":"44662","n":"Servilletas 33X33CM 2 Capas 20PCS Metalizado Oro","e":"8435621446623","f":"vajilla","p":12,"x":72},
+{"c":"44679","n":"Servilletas 33X33CM 3 Capas 20PCS Metalizado Oro","e":"8435621446791","f":"vajilla","p":12,"x":72},
+{"c":"44612","n":"Vaso Cartón 270CC 6PCS Metalizado Plata","e":"8435621446128","f":"vajilla","p":12,"x":144},
+{"c":"44780","n":"Plato Cartón 17CM 6PCS Metalizado Plata","e":"8435621447804","f":"vajilla","p":12,"x":144},
+{"c":"44783","n":"Plato Cartón 23CM 6PCS Metalizado Plata","e":"8435621447835","f":"vajilla","p":12,"x":144},
+{"c":"44764","n":"Bol Cartón Redondo 350CC 6PCS Metalizado Plata","e":"8435621447644","f":"vajilla","p":12,"x":60},
+{"c":"44629","n":"Servilletas 25X25CM 2 Capas 20PCS Metalizado Plata","e":"8435621446296","f":"vajilla","p":12,"x":72},
+{"c":"44646","n":"Servilletas 25X25CM 3 Capas 20PCS Metalizado Plata","e":"8435621446463","f":"vajilla","p":12,"x":72},
+{"c":"44663","n":"Servilletas 33X33CM 2 Capas 20PCS Metalizado Plata","e":"8435621446630","f":"vajilla","p":12,"x":72},
+{"c":"44680","n":"Servilletas 33X33CM 3 Capas 20PCS Metalizado Plata","e":"8435621446807","f":"vajilla","p":12,"x":72},
+{"c":"44613","n":"Vaso Cartón 270CC 6PCS Metalizado Rojo","e":"8435621446135","f":"vajilla","p":12,"x":144},
+{"c":"44781","n":"Plato Cartón 17CM 6PCS Metalizado Rojo","e":"8435621447811","f":"vajilla","p":12,"x":144},
+{"c":"44784","n":"Plato Cartón 23CM 6PCS Metalizado Rojo","e":"8435621447842","f":"vajilla","p":12,"x":144},
+{"c":"44765","n":"Bol Cartón Redondo 350CC 6PCS Metalizado Rojo","e":"8435621447651","f":"vajilla","p":12,"x":60},
+{"c":"44630","n":"Servilletas 25X25CM 2 Capas 20PCS Metalizado Rojo","e":"8435621446302","f":"vajilla","p":12,"x":72},
+{"c":"44647","n":"Servilletas 25X25CM 3 Capas 20PCS Metalizado Rojo","e":"8435621446470","f":"vajilla","p":12,"x":72},
+{"c":"44664","n":"Servilletas 33X33CM 2 Capas 20PCS Metalizado Rojo","e":"8435621446647","f":"vajilla","p":12,"x":72},
+{"c":"44681","n":"Servilletas 33X33CM 3 Capas 20PCS Metalizado Rojo","e":"8435621446814","f":"vajilla","p":12,"x":72},
+{"c":"44614","n":"Vaso Cartón 270CC 6PCS Reyes Magos Rojo","e":"8435621446142","f":"vajilla","p":12,"x":144},
+{"c":"44730","n":"Plato Cartón 17CM 6PCS Reyes Magos Rojo","e":"8435621447309","f":"vajilla","p":12,"x":144},
+{"c":"44744","n":"Plato Cartón 23CM 6PCS Reyes Magos Rojo","e":"8435621447446","f":"vajilla","p":12,"x":144},
+{"c":"44631","n":"Servilletas 25X25CM 2 Capas 20PCS Reyes Magos Rojo","e":"8435621446319","f":"vajilla","p":12,"x":72},
+{"c":"44648","n":"Servilletas 25X25CM 3 Capas 20PCS Reyes Magos Rojo","e":"8435621446487","f":"vajilla","p":12,"x":72},
+{"c":"44665","n":"Servilletas 33X33CM 2 Capas 20PCS Reyes Magos Rojo","e":"8435621446654","f":"vajilla","p":12,"x":72},
+{"c":"44682","n":"Servilletas 33X33CM 3 Capas 20PCS Reyes Magos Rojo","e":"8435621446821","f":"vajilla","p":12,"x":72},
+{"c":"44615","n":"Vaso Cartón 270CC 6PCS Reyes Magos Azul","e":"8435621446159","f":"vajilla","p":12,"x":144},
+{"c":"44731","n":"Plato Cartón 17CM 6PCS Reyes Magos Azul","e":"8435621447316","f":"vajilla","p":12,"x":144},
+{"c":"44745","n":"Plato Cartón 23CM 6PCS Reyes Magos Azul","e":"8435621447453","f":"vajilla","p":12,"x":144},
+{"c":"44632","n":"Servilletas 25X25CM 2 Capas 20PCS Reyes Magos Azul","e":"8435621446326","f":"vajilla","p":12,"x":72},
+{"c":"44649","n":"Servilletas 25X25CM 3 Capas 20PCS Reyes Magos Azul","e":"8435621446494","f":"vajilla","p":12,"x":72},
+{"c":"44666","n":"Servilletas 33X33CM 2 Capas 20PCS Reyes Magos Azul","e":"8435621446661","f":"vajilla","p":12,"x":72},
+{"c":"44683","n":"Servilletas 33X33CM 3 Capas 20PCS Reyes Magos Azul","e":"8435621446838","f":"vajilla","p":12,"x":72},
+{"c":"44618","n":"Vaso Cartón 270CC 6PCS Merry Christmas Rojo","e":"8435621446180","f":"vajilla","p":12,"x":144},
+{"c":"44734","n":"Plato Cartón 17CM 6PCS Merry Christmas Rojo","e":"8435621447347","f":"vajilla","p":12,"x":144},
+{"c":"44748","n":"Plato Cartón 23CM 6PCS Merry Christmas Rojo","e":"8435621447484","f":"vajilla","p":12,"x":144},
+{"c":"44635","n":"Servilletas 25X25CM 2 Capas 20PCS Merry Christmas Rojo","e":"8435621446357","f":"vajilla","p":12,"x":72},
+{"c":"44652","n":"Servilletas 25X25CM 3 Capas 20PCS Merry Christmas Rojo","e":"8435621446524","f":"vajilla","p":12,"x":72},
+{"c":"44669","n":"Servilletas 33X33CM 2 Capas 20PCS Merry Christmas Rojo","e":"8435621446692","f":"vajilla","p":12,"x":72},
+{"c":"44686","n":"Servilletas 33X33CM 3 Capas 20PCS Merry Christmas Rojo","e":"8435621446869","f":"vajilla","p":12,"x":72},
+{"c":"45006","n":"Vaso Cartón 270CC 6PCS Cuadros","e":"8435621450064","f":"vajilla","p":12,"x":144},
+{"c":"45004","n":"Plato Cartón 17CM 6PCS Cuadros","e":"8435621450040","f":"vajilla","p":12,"x":144},
+{"c":"45005","n":"Plato Cartón 23CM 6PCS Cuadros","e":"8435621450057","f":"vajilla","p":12,"x":144},
+{"c":"45000","n":"Servilletas 25X25CM 2 Capas 20PCS Cuadros","e":"8435621450002","f":"vajilla","p":12,"x":72},
+{"c":"45002","n":"Servilletas 33X33CM 2 Capas 20PCS Cuadros","e":"8435621450026","f":"vajilla","p":12,"x":72},
+{"c":"44619","n":"Vaso Cartón 270CC 6PCS Flor de Navidad","e":"8435621446197","f":"vajilla","p":12,"x":144},
+{"c":"44735","n":"Plato Cartón 17CM 6PCS Flor de Navidad","e":"8435621447354","f":"vajilla","p":12,"x":144},
+{"c":"44749","n":"Plato Cartón 23CM 6PCS Flor de Navidad","e":"8435621447491","f":"vajilla","p":12,"x":144},
+{"c":"44636","n":"Servilletas 25X25CM 2 Capas 20PCS Flor de Navidad","e":"8435621446364","f":"vajilla","p":12,"x":72},
+{"c":"44653","n":"Servilletas 25X25CM 3 Capas 20PCS Flor de Navidad","e":"8435621446531","f":"vajilla","p":12,"x":72},
+{"c":"44670","n":"Servilletas 33X33CM 2 Capas 20PCS Flor de Navidad","e":"8435621446708","f":"vajilla","p":12,"x":72},
+{"c":"44687","n":"Servilletas 33X33CM 3 Capas 20PCS Flor de Navidad","e":"8435621446876","f":"vajilla","p":12,"x":72},
+{"c":"44620","n":"Vaso Cartón 270CC 6PCS Borde Rojo y Arbol","e":"8435621446203","f":"vajilla","p":12,"x":144},
+{"c":"44736","n":"Plato Cartón 17CM 6PCS Borde Rojo y Arbol","e":"8435621447361","f":"vajilla","p":12,"x":144},
+{"c":"44750","n":"Plato Cartón 23CM 6PCS Borde Rojo y Arbol","e":"8435621447507","f":"vajilla","p":12,"x":144},
+{"c":"44637","n":"Servilletas 25X25CM 2 Capas 20PCS Borde Rojo y Arbol","e":"8435621446371","f":"vajilla","p":12,"x":72},
+{"c":"44671","n":"Servilletas 33X33CM 2 Capas 20PCS Borde Rojo y Arbol","e":"8435621446715","f":"vajilla","p":12,"x":72},
+{"c":"44621","n":"Vaso Cartón 270CC 6PCS Merry Christmas Blanco","e":"8435621446210","f":"vajilla","p":12,"x":144},
+{"c":"44737","n":"Plato Cartón 17CM 6PCS Merry Christmas Blanco","e":"8435621447378","f":"vajilla","p":12,"x":144},
+{"c":"44751","n":"Plato Cartón 23CM 6PCS Merry Christmas Blanco","e":"8435621447514","f":"vajilla","p":12,"x":144},
+{"c":"44638","n":"Servilletas 25X25CM 2 Capas 20PCS Merry Christmas Blanco","e":"8435621446388","f":"vajilla","p":12,"x":72},
+{"c":"44672","n":"Servilletas 33X33CM 2 Capas 20PCS Merry Christmas Blanco","e":"8435621446722","f":"vajilla","p":12,"x":72},
+{"c":"44622","n":"Vaso Cartón 270CC 6PCS Flores","e":"8435621446227","f":"vajilla","p":12,"x":144},
+{"c":"44738","n":"Plato Cartón 17CM 6PCS Flores","e":"8435621447385","f":"vajilla","p":12,"x":144},
+{"c":"44752","n":"Plato Cartón 23CM 6PCS Flores","e":"8435621447521","f":"vajilla","p":12,"x":144},
+{"c":"44639","n":"Servilletas 25X25CM 2 Capas 20PCS Navideñas","e":"8435621446395","f":"vajilla","p":12,"x":72},
+{"c":"44673","n":"Servilletas 33X33CM 2 Capas 20PCS Navideñas","e":"8435621446739","f":"vajilla","p":12,"x":72},
+{"c":"44623","n":"Vaso Cartón 270CC 6PCS Bolas y Lazo","e":"8435621446234","f":"vajilla","p":12,"x":144},
+{"c":"44739","n":"Plato Cartón 17CM 6PCS Bolas y Lazo","e":"8435621447392","f":"vajilla","p":12,"x":144},
+{"c":"44753","n":"Plato Cartón 23CM 6PCS Bolas y Lazo","e":"8435621447538","f":"vajilla","p":12,"x":144},
+{"c":"44640","n":"Servilletas 25X25CM 2 Capas 20PCS Bolas y Lazo","e":"8435621446401","f":"vajilla","p":12,"x":72},
+{"c":"44674","n":"Servilletas 33X33CM 2 Capas 20PCS Bolas y Lazo","e":"8435621446746","f":"vajilla","p":12,"x":72},
+{"c":"44624","n":"Vaso Cartón 270CC 6PCS Papa Noel y Renos","e":"8435621446241","f":"vajilla","p":12,"x":144},
+{"c":"44740","n":"Plato Cartón 17CM 6PCS Papa Noel y Renos","e":"8435621447408","f":"vajilla","p":12,"x":144},
+{"c":"44754","n":"Plato Cartón 23CM 6PCS Papa Noel y Renos","e":"8435621447545","f":"vajilla","p":12,"x":144},
+{"c":"44641","n":"Servilletas 25X25CM 2 Capas 20PCS Papa Noel y Renos","e":"8435621446418","f":"vajilla","p":12,"x":72},
+{"c":"44658","n":"Servilletas 25X25CM 3 Capas 20PCS Papa Noel y Renos","e":"8435621446586","f":"vajilla","p":12,"x":72},
+{"c":"44675","n":"Servilletas 33X33CM 2 Capas 20PCS Papa Noel y Renos","e":"8435621446753","f":"vajilla","p":12,"x":72},
+{"c":"44692","n":"Servilletas 33X33CM 3 Capas 20PCS Papa Noel y Renos","e":"8435621446920","f":"vajilla","p":12,"x":72},
+{"c":"44625","n":"Vaso Cartón 270CC 6PCS Muñeco Nieve","e":"8435621446258","f":"vajilla","p":12,"x":144},
+{"c":"44741","n":"Plato Cartón 17CM 6PCS Muñeco Nieve","e":"8435621447415","f":"vajilla","p":12,"x":144},
+{"c":"44755","n":"Plato Cartón 23CM 6PCS Muñeco Nieve","e":"8435621447552","f":"vajilla","p":12,"x":144},
+{"c":"44642","n":"Servilletas 25X25CM 2 Capas 20PCS Muñeco Nieve","e":"8435621446425","f":"vajilla","p":12,"x":72},
+{"c":"44676","n":"Servilletas 33X33CM 2 Capas 20PCS Muñeco Nieve","e":"8435621446760","f":"vajilla","p":12,"x":72},
+{"c":"44627","n":"Vaso Cartón 270CC 6PCS Papa Noel","e":"8435621446272","f":"vajilla","p":12,"x":144},
+{"c":"44743","n":"Plato Cartón 17CM 6PCS Papa Noel","e":"8435621447439","f":"vajilla","p":12,"x":144},
+{"c":"44757","n":"Plato Cartón 23CM 6PCS Papa Noel","e":"8435621447576","f":"vajilla","p":12,"x":144},
+{"c":"44644","n":"Servilletas 25X25CM 2 Capas 20PCS Papa Noel","e":"8435621446449","f":"vajilla","p":12,"x":72},
+{"c":"44661","n":"Servilletas 25X25CM 3 Capas 20PCS Papa Noel","e":"8435621446616","f":"vajilla","p":12,"x":72},
+{"c":"44678","n":"Servilletas 33X33CM 2 Capas 20PCS Papa Noel","e":"8435621446784","f":"vajilla","p":12,"x":72},
+{"c":"44695","n":"Servilletas 33X33CM 3 Capas 20PCS Papa Noel","e":"8435621446951","f":"vajilla","p":12,"x":72},
+{"c":"44626","n":"Vaso Cartón 270CC 6PCS Arbol Christmas","e":"8435621446265","f":"vajilla","p":12,"x":144},
+{"c":"44742","n":"Plato Cartón 17CM 6PCS Arbol Christmas","e":"8435621447422","f":"vajilla","p":12,"x":144},
+{"c":"44756","n":"Plato Cartón 23CM 6PCS Arbol Christmas","e":"8435621447569","f":"vajilla","p":12,"x":144},
+{"c":"44643","n":"Servilletas 25X25CM 2 Capas 20PCS Arbol Christmas","e":"8435621446432","f":"vajilla","p":12,"x":72},
+{"c":"44677","n":"Servilletas 33X33CM 2 Capas 20PCS Arbol Christmas","e":"8435621446777","f":"vajilla","p":12,"x":72},
+{"c":"44616","n":"Vaso Cartón 270CC 6PCS Happy New Year","e":"8435621446166","f":"vajilla","p":12,"x":144},
+{"c":"44732","n":"Plato Cartón 17CM 6PCS Happy New Year","e":"8435621447323","f":"vajilla","p":12,"x":144},
+{"c":"44746","n":"Plato Cartón 23CM 6PCS Happy New Year","e":"8435621447460","f":"vajilla","p":12,"x":144},
+{"c":"44633","n":"Servilletas 25X25CM 2 Capas 20PCS Happy New Year","e":"8435621446333","f":"vajilla","p":12,"x":72},
+{"c":"44667","n":"Servilletas 33X33CM 2 Capas 20PCS Happy New Year","e":"8435621446678","f":"vajilla","p":12,"x":72},
+{"c":"44617","n":"Vaso Cartón 270CC 6PCS Happy New Year Reloj","e":"8435621446173","f":"vajilla","p":12,"x":144},
+{"c":"44733","n":"Plato Cartón 17CM 6PCS Happy New Year Reloj","e":"8435621447330","f":"vajilla","p":12,"x":144},
+{"c":"44747","n":"Plato Cartón 23CM 6PCS Happy New Year Reloj","e":"8435621447477","f":"vajilla","p":12,"x":144},
+{"c":"44634","n":"Servilletas 25X25CM 2 Capas 20PCS Happy New Year Reloj","e":"8435621446340","f":"vajilla","p":12,"x":72},
+{"c":"44668","n":"Servilletas 33X33CM 2 Capas 20PCS Happy New Year Reloj","e":"8435621446685","f":"vajilla","p":12,"x":72},
+{"c":"45007","n":"Bandeja Cartón 25X34CM Dia Reyes Magos","e":"8435621450071","f":"vajilla","p":12,"x":60},
+{"c":"45008","n":"Bandeja Cartón 25X34CM Dia Papa Noel","e":"8435621450088","f":"vajilla","p":12,"x":60},
+{"c":"45009","n":"Bandeja Cartón 25X34CM Cuadros","e":"8435621450095","f":"vajilla","p":12,"x":60},
+{"c":"44758","n":"Bandeja Cartón 25X34CM Flor de Navidad 1PC","e":"8435621447583","f":"vajilla","p":12,"x":60},
+{"c":"44761","n":"Bandeja Cartón 25X34CM Reyes Magos Rojo 1PC","e":"8435621447613","f":"vajilla","p":12,"x":60},
+{"c":"44762","n":"Bandeja Cartón 25X34CM Reyes Magos Azul 1PC","e":"8435621447620","f":"vajilla","p":12,"x":60},
+{"c":"44759","n":"Bandeja Cartón 25X34CM Papa Noel y Renos 1PC","e":"8435621447590","f":"vajilla","p":12,"x":60},
+{"c":"44760","n":"Bandeja Cartón 25X34CM Papa Noel 1PC","e":"8435621447606","f":"vajilla","p":12,"x":60},
+{"c":"44774","n":"Bandeja Cartón Rectangular 22X28CM con Blonda de Papel Metalizado Oro 1PC","e":"8435621447743","f":"vajilla","p":12,"x":60},
+{"c":"44775","n":"Bandeja Cartón Rectangular 22X28CM con Blonda de Papel Metalizado Plata 1PC","e":"8435621447750","f":"vajilla","p":12,"x":60},
+{"c":"44776","n":"Bandeja Cartón Rectangular 22X28CM con Blonda de Papel Metalizado Rojo 1PC","e":"8435621447767","f":"vajilla","p":12,"x":60},
+{"c":"44777","n":"Bandeja Cartón Rectangular 22X28CM con Blonda de Papel Blanco 1PC","e":"8435621447774","f":"vajilla","p":12,"x":60},
+{"c":"44778","n":"Bandeja Cartón Rectangular 25X34CM con Blonda de Papel Metalizado Oro 1PC","e":"8435621447781","f":"vajilla","p":12,"x":60},
+{"c":"44928","n":"Bandeja Cartón Rectangular 25X34CM con Blonda de Papel Metalizado Plata 1PC","e":"8435621449280","f":"vajilla","p":12,"x":60},
+{"c":"44929","n":"Bandeja Cartón Rectangular 25X34CM con Blonda de Papel Metalizado Rojo 1PC","e":"8435621449297","f":"vajilla","p":12,"x":60},
+{"c":"44930","n":"Bandeja Cartón Rectangular 25X34CM con Blonda de Papel Blanco 1PC","e":"8435621449303","f":"vajilla","p":12,"x":60},
+{"c":"44770","n":"Bandeja Cartón Rectangular 31X38CM con Blonda de Papel Metalizado Oro 1PC","e":"8435621447705","f":"vajilla","p":12,"x":60},
+{"c":"44771","n":"Bandeja Cartón Rectangular 31X38CM con Blonda de Papel Metalizado Plata 1PC","e":"8435621447712","f":"vajilla","p":12,"x":60},
+{"c":"44772","n":"Bandeja Cartón Rectangular 31X38CM con Blonda de Papel Metalizado Rojo 1PC","e":"8435621447729","f":"vajilla","p":12,"x":60},
+{"c":"44773","n":"Bandeja Cartón Rectangular 31X38CM con Blonda de Papel Blanco 1PC","e":"8435621447736","f":"vajilla","p":12,"x":60},
+{"c":"44766","n":"Bandeja Cartón Rectangular 34X42CM con Blonda de Papel Metalizado Oro 1PC","e":"8435621447668","f":"vajilla","p":12,"x":60},
+{"c":"44767","n":"Bandeja Cartón Rectangular 34X42CM con Blonda de Papel Metalizado Plata 1PC","e":"8435621447675","f":"vajilla","p":12,"x":60},
+{"c":"44768","n":"Bandeja Cartón Rectangular 34X42CM con Blonda de Papel Metalizado Rojo 1PC","e":"8435621447682","f":"vajilla","p":12,"x":60},
+{"c":"44769","n":"Bandeja Cartón Rectangular 34X42CM con Blonda de Papel Blanco 1PC","e":"8435621447699","f":"vajilla","p":12,"x":60},
+{"c":"44931","n":"Bandeja Cartón Redonda 23CM con Blonda de Papel Metalizado Oro 1PC","e":"8435621449310","f":"vajilla","p":12,"x":60},
+{"c":"44932","n":"Bandeja Cartón Redonda 23CM con Blonda de Papel Metalizado Plata 1PC","e":"8435621449327","f":"vajilla","p":12,"x":60},
+{"c":"44933","n":"Bandeja Cartón Redonda 23CM con Blonda de Papel Metalizado Rojo 1PC","e":"8435621449334","f":"vajilla","p":12,"x":60},
+{"c":"44934","n":"Bandeja Cartón Redonda 23CM con Blonda de Papel Blanco 1PC","e":"8435621449341","f":"vajilla","p":12,"x":60},
+{"c":"44935","n":"Bandeja Cartón Redonda 30CM con Blonda de Papel Metalizado Oro 1PC","e":"8435621449358","f":"vajilla","p":12,"x":60},
+{"c":"44936","n":"Bandeja Cartón Redonda 30CM con Blonda de Papel Metalizado Plata 1PC","e":"8435621449365","f":"vajilla","p":12,"x":60},
+{"c":"44937","n":"Bandeja Cartón Redonda 30CM con Blonda de Papel Metalizado Rojo 1PC","e":"8435621449372","f":"vajilla","p":12,"x":60},
+{"c":"44938","n":"Bandeja Cartón Redonda 30CM con Blonda de Papel Blanco 1PC","e":"8435621449389","f":"vajilla","p":12,"x":60},
+{"c":"44939","n":"Bandeja Cartón Redonda 35CM con Blonda de Papel Metalizado Oro 1PC","e":"8435621449396","f":"vajilla","p":12,"x":60},
+{"c":"44940","n":"Bandeja Cartón Redonda 35CM con Blonda de Papel Metalizado Plata 1PC","e":"8435621449402","f":"vajilla","p":12,"x":60},
+{"c":"44941","n":"Bandeja Cartón Redonda 35CM con Blonda de Papel Metalizado Rojo 1PC","e":"8435621449419","f":"vajilla","p":12,"x":60},
+{"c":"44942","n":"Bandeja Cartón Redonda 35CM con Blonda de Papel Blanco 1PC","e":"8435621449426","f":"vajilla","p":12,"x":60},
+{"c":"44943","n":"Bandeja Cartón Redonda 38CM con Blonda de Papel Metalizado Oro 1PC","e":"8435621449433","f":"vajilla","p":12,"x":60},
+{"c":"44944","n":"Bandeja Cartón Redonda 38CM con Blonda de Papel Metalizado Plata 1PC","e":"8435621449440","f":"vajilla","p":12,"x":60},
+{"c":"44945","n":"Bandeja Cartón Redonda 38CM con Blonda de Papel Metalizado Rojo 1PC","e":"8435621449457","f":"vajilla","p":12,"x":60},
+{"c":"44946","n":"Bandeja Cartón Redonda 38CM con Blonda de Papel Blanco 1PC","e":"8435621449464","f":"vajilla","p":12,"x":60},
+{"c":"44801","n":"Mantel Papel 1,4X2,2M Oro","e":"8435621448016","f":"vajilla","p":12,"x":144},
+{"c":"44802","n":"Mantel Papel 1,4X2,2M Plata","e":"8435621448023","f":"vajilla","p":12,"x":144},
+{"c":"44803","n":"Mantel Papel 1,4X2,2M Rojo","e":"8435621448030","f":"vajilla","p":12,"x":144},
+{"c":"44796","n":"Mantel Papel 1,4X2,2M Rojo Cuadros Copos de Nieve","e":"8435621447965","f":"vajilla","p":12,"x":144},
+{"c":"44798","n":"Mantel Papel 1,4X2,2M Granate Pinos","e":"8435621447989","f":"vajilla","p":12,"x":144},
+{"c":"44795","n":"Mantel Papel 1,4X2,2M Verde Ciervos","e":"8435621447958","f":"vajilla","p":12,"x":144},
+{"c":"44797","n":"Mantel Papel 1,4X2,2M Azul Navideño","e":"8435621447972","f":"vajilla","p":12,"x":144},
+{"c":"44794","n":"Mantel Papel 1,4X2,2M Gris Copos de Nieve","e":"8435621447941","f":"vajilla","p":12,"x":144},
+{"c":"44799","n":"Mantel Papel 1,4X2,2M Blanco Navideño","e":"8435621447996","f":"vajilla","p":12,"x":144},
+{"c":"44800","n":"Mantel Papel 1,4X2,2M Reyes Magos","e":"8435621448009","f":"vajilla","p":12,"x":144},
+{"c":"44977","n":"Calefactor Candanchu Blanco 24CM 2000W · Nº RII-AEE 8813","e":"8435621449778","f":"calefaccion","p":6,"x":6},
+{"c":"44978","n":"Calefactor Candanchu Negro 24CM 2000W · Nº RII-AEE 8813","e":"8435621449785","f":"calefaccion","p":6,"x":6},
+{"c":"44884","n":"Calefactor Atlas Blanco 26,5CM 2000W · Nº RII-AEE 8813","e":"8435621448849","f":"calefaccion","p":6,"x":6},
+{"c":"44885","n":"Calefactor Atlas Negro 26,5CM 2000W · Nº RII-AEE 8813","e":"8435621448856","f":"calefaccion","p":6,"x":6},
+{"c":"44886","n":"Calefactor Andes Blanco 26,5CM 2000W · Nº RII-AEE 8813","e":"8435621448863","f":"calefaccion","p":6,"x":6},
+{"c":"44887","n":"Calefactor Andes Negro 26,5CM 2000W · Nº RII-AEE 8813","e":"8435621448870","f":"calefaccion","p":6,"x":6},
+{"c":"44888","n":"Calefactor Cazorla Blanco 2000W · Nº RII-AEE 8813","e":"8435621448887","f":"calefaccion","p":6,"x":6},
+{"c":"44889","n":"Calefactor Fuji Blanco 25,5CM 2000W · Nº RII-AEE 8813","e":"8435621448894","f":"calefaccion","p":6,"x":6},
+{"c":"44890","n":"Calefactor Fuji Negro 25,5CM 2000W · Nº RII-AEE 8813","e":"8435621448900","f":"calefaccion","p":6,"x":6},
+{"c":"44897","n":"Calefactor Everest Blanco 17,5CM 1500W · Nº RII-AEE 8813","e":"8435621448979","f":"calefaccion","p":6,"x":6},
+{"c":"44898","n":"Calefactor Everest Negro 17,5CM 1500W · Nº RII-AEE 8813","e":"8435621448986","f":"calefaccion","p":6,"x":6},
+{"c":"44904","n":"Calefactor K2 24,5CM 1500W · Nº RII-AEE 8813","e":"8435621449044","f":"calefaccion","p":6,"x":6},
+{"c":"44905","n":"Calefactor Montblanc 25CM 1500W · Nº RII-AEE 8813","e":"8435621449051","f":"calefaccion","p":6,"x":6},
+{"c":"44906","n":"Calefactor K2 43CM 2000W · Nº RII-AEE 8813","e":"8435621449068","f":"calefaccion","p":4,"x":4},
+{"c":"44907","n":"Calefactor Montblanc 43CM 2000W · Nº RII-AEE 8813","e":"8435621449075","f":"calefaccion","p":4,"x":4},
+{"c":"44947","n":"Calefactor Elbrus 22,5CM 1500W · Nº RII-AEE 8813","e":"8435621449471","f":"calefaccion","p":6,"x":6},
+{"c":"44948","n":"Calefactor Elbrus Plus Giratorio 24,5CM 1500W · Nº RII-AEE 8813","e":"8435621449488","f":"calefaccion","p":6,"x":6},
+{"c":"44891","n":"Estufa Cuarzo Pirineo Blanca 33CM 800W · Nº RII-AEE 8813","e":"8435621448917","f":"calefaccion","p":6,"x":6},
+{"c":"45075","n":"Estufa Cuarzo Pirineo Gris 33CM 800W · Nº RII-AEE 8813","e":"8435621450750","f":"calefaccion","p":6,"x":6},
+{"c":"44892","n":"Estufa Cuarzo Pirineo Negra 33CM 800W · Nº RII-AEE 8813","e":"8435621448924","f":"calefaccion","p":6,"x":6},
+{"c":"44893","n":"Estufa Cuarzo Himalaya Blanca 34,5CM 800W · Nº RII-AEE 8813","e":"8435621448931","f":"calefaccion","p":6,"x":6},
+{"c":"45076","n":"Estufa Cuarzo Himalaya Gris 34,5CM 800W · Nº RII-AEE 8813","e":"8435621450767","f":"calefaccion","p":6,"x":6},
+{"c":"44894","n":"Estufa Cuarzo Himalaya Negra 34,5CM 800W · Nº RII-AEE 8813","e":"8435621448948","f":"calefaccion","p":6,"x":6},
+{"c":"44895","n":"Estufa Cuarzo Teide Blanca 52CM 1200W · Nº RII-AEE 8813","e":"8435621448955","f":"calefaccion","p":1,"x":1},
+{"c":"44896","n":"Estufa Cuarzo Teide Negra 52CM 1200W · Nº RII-AEE 8813","e":"8435621448962","f":"calefaccion","p":1,"x":1},
+{"c":"42648","n":"Estufa de Gas Criscolor","e":"8435621426489","f":"calefaccion","p":1,"x":4}
 ];
+
+// 27 productos estrella (fotos propias pendientes: de momento usan la portada de su familia)
+const STAR_CODES = ["45049", "45045", "44096", "42615", "42617", "44950", "45011", "45014", "42650", "43030", "43032", "06457", "44090", "44835", "44992", "45033", "44011", "44117", "44981", "44018", "44816", "44814", "44988", "44251", "44611", "44782", "44884"];
+const FAM_BY_ID = Object.fromEntries(FAMILIES.map(f => [f.id, f]));
+const CAT_BY_CODE = Object.fromEntries(CATALOG.map(p => [p.c, p]));
+const STAR_SET = new Set(STAR_CODES);
+const PRODUCTS = STAR_CODES.map(c => CAT_BY_CODE[c]).filter(Boolean).map(toProduct);
+
+function toProduct(p) {
+  const f = FAM_BY_ID[p.f];
+  return { id: p.c, family: p.f, familyName: f.name, name: p.n, ref: p.c, ean: p.e || '—',
+           uds: p.x || null, pack: p.p || null, img: p.img || f.img1 };
+}
+function escHTML(s) { return String(s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); }
+function norm(s) { return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
 
 // ═══════════════════════════════════════════
 // INIT
@@ -1687,24 +2414,53 @@ function renderFamilies() {
   `).join('');
 }
 
+let currentFamily = null;
 function openFamily(idx) {
   const f = FAMILIES[idx];
+  if (!f) return;
+  currentFamily = f;
   document.getElementById('familyPanelImg').src = f.img1;
-  document.getElementById('familyPanelTag').textContent = `${f.refs}`;
+  document.getElementById('familyPanelTag').textContent = `${f.num} · ${f.refs}`;
   document.getElementById('familyPanelTitle').textContent = f.name;
   document.getElementById('familyPanelDesc').textContent = f.desc;
 
-  // Render family's products
-  const familyProds = PRODUCTS.filter(p => p.family === f.id);
-  const grid = document.getElementById('familyProductsGrid');
-  if (familyProds.length) {
-    grid.innerHTML = familyProds.map(p => productCardHTML(p)).join('');
-  } else {
-    grid.innerHTML = '<p style="color:var(--grey-400);font-size:.9rem;">Fichas técnicas disponibles bajo solicitud. Contacta con nuestro equipo comercial.</p>';
-  }
+  const stars = PRODUCTS.filter(p => p.family === f.id);
+  const total = CATALOG.filter(p => p.f === f.id).length;
+  document.getElementById('familyProductsGrid').innerHTML = `
+    ${stars.length ? `
+      <div class="ref-section-title">Productos destacados</div>
+      <div class="family-stars-grid">${stars.map(p => productCardHTML(p)).join('')}</div>` : ''}
+    <div class="ref-toolbar">
+      <div class="ref-section-title" style="margin:0">Todas las referencias <span class="ref-count" id="refCount">${total}</span></div>
+      <input type="text" class="ref-search" id="refSearch" placeholder="Buscar en ${escHTML(f.name)}…" oninput="renderRefList(this.value)">
+    </div>
+    <div class="ref-list" id="refList"></div>`;
+  renderRefList('');
 
   document.getElementById('familyPanel').classList.add('active');
+  document.getElementById('familyPanel').scrollTop = 0;
   document.body.style.overflow = 'hidden';
+}
+
+function refRowHTML(p) {
+  return `
+    <button class="ref-row" onclick="openProduct('${p.c}')">
+      <span class="ref-row-code">${p.c}</span>
+      <span class="ref-row-name">${escHTML(p.n)}${STAR_SET.has(p.c) ? ' <span class="ref-row-star">★ Destacado</span>' : ''}</span>
+      <span class="ref-row-meta">${p.p ? `<span>${p.p} uds/paq.</span>` : ''}${p.x ? `<span>${p.x} uds/caja</span>` : ''}</span>
+      <span class="ref-row-ean">EAN ${p.e || '—'}</span>
+    </button>`;
+}
+
+function renderRefList(q) {
+  if (!currentFamily) return;
+  const nq = norm(q.trim());
+  const list = CATALOG.filter(p => p.f === currentFamily.id &&
+    (!nq || norm(p.n).includes(nq) || p.c.includes(nq) || (p.e || '').includes(nq)));
+  document.getElementById('refCount').textContent = list.length;
+  document.getElementById('refList').innerHTML = list.length
+    ? list.map(refRowHTML).join('')
+    : `<div class="search-no-results">No hay referencias para "<strong>${escHTML(q)}</strong>" en esta familia</div>`;
 }
 
 function closeFamily() {
@@ -1726,9 +2482,8 @@ function productCardHTML(p) {
         <div class="product-card-ref">Ref. ${p.ref}</div>
         <div class="product-card-name">${p.name}</div>
         <div class="product-card-specs">
-          <span class="spec-chip">📦 ${p.uds} uds/caja</span>
-          ${p.medida ? `<span class="spec-chip">📐 ${p.medida}</span>` : ''}
-          ${p.mat ? `<span class="spec-chip">✦ ${p.mat}</span>` : ''}
+          ${p.uds ? `<span class="spec-chip">📦 ${p.uds} uds/caja</span>` : ''}
+          ${p.pack ? `<span class="spec-chip">▣ ${p.pack} uds/paquete</span>` : ''}
         </div>
         <div class="product-card-footer">
           <div class="product-card-ean">EAN: ${p.ean}</div>
@@ -1772,17 +2527,19 @@ function filterBy(familyName, btn) {
 // PRODUCT MODAL
 // ═══════════════════════════════════════════
 function openProduct(id) {
-  const p = PRODUCTS.find(x => x.id === id);
-  if (!p) return;
-  document.getElementById('modalFamily').textContent = p.familyName;
+  const raw = CAT_BY_CODE[id];
+  if (!raw) return;
+  const p = toProduct(raw);
+  document.getElementById('modalFamily').textContent = p.familyName + (STAR_SET.has(p.ref) ? ' · ★ Producto destacado' : '');
   document.getElementById('modalName').textContent = p.name;
   document.getElementById('modalImg').src = p.img;
-  document.getElementById('modalDesc').textContent = p.desc;
+  document.getElementById('modalImg').alt = p.name;
+  document.getElementById('modalDesc').textContent = `Referencia de la familia ${p.familyName} del catálogo Navidad 2026. Venta exclusiva a profesionales: consulta precios y disponibilidad con nuestro equipo comercial.`;
   document.getElementById('modalRef').textContent = p.ref;
   document.getElementById('modalEan').textContent = p.ean;
-  document.getElementById('modalUds').textContent = `${p.uds} unidades`;
-  document.getElementById('modalMedida').textContent = p.medida || '—';
-  document.getElementById('modalMat').textContent = p.mat || '—';
+  document.getElementById('modalUds').textContent = p.uds ? `${p.uds} unidades` : '—';
+  document.getElementById('modalMedida').textContent = p.pack ? `${p.pack} unidades` : '—';
+  document.getElementById('modalMat').textContent = p.familyName;
   document.getElementById('productModal').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
@@ -1790,7 +2547,7 @@ function openProduct(id) {
 function closeModal(e) {
   if (!e || e.target === document.getElementById('productModal')) {
     document.getElementById('productModal').classList.remove('active');
-    document.body.style.overflow = '';
+    if (!document.getElementById('familyPanel').classList.contains('active')) document.body.style.overflow = '';
   }
 }
 
@@ -1800,25 +2557,25 @@ function closeModal(e) {
 function doSearch(q) {
   const panel = document.getElementById('searchResults');
   const inner = document.getElementById('searchResultsInner');
-  if (!q || q.length < 2) { panel.classList.remove('active'); return; }
-  const results = PRODUCTS.filter(p =>
-    p.name.toLowerCase().includes(q.toLowerCase()) ||
-    p.ref.includes(q) ||
-    p.ean.includes(q) ||
-    p.familyName.toLowerCase().includes(q.toLowerCase())
+  if (!q || q.trim().length < 2) { panel.classList.remove('active'); return; }
+  const nq = norm(q.trim());
+  const results = CATALOG.filter(p =>
+    norm(p.n).includes(nq) || p.c.includes(nq) || (p.e || '').includes(nq) || norm(FAM_BY_ID[p.f].name).includes(nq)
   );
   if (!results.length) {
-    inner.innerHTML = `<div class="search-no-results">No se encontraron productos para "<strong>${q}</strong>"</div>`;
+    inner.innerHTML = `<div class="search-no-results">No se encontraron productos para "<strong>${escHTML(q)}</strong>"</div>`;
   } else {
-    inner.innerHTML = results.map(p => `
-      <div class="search-result-item" onclick="openProduct('${p.id}'); hideSearchResults();">
-        <div class="search-result-img"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
+    const shown = results.slice(0, 40);
+    inner.innerHTML = shown.map(p => `
+      <div class="search-result-item" onclick="openProduct('${p.c}'); hideSearchResults();">
+        <div class="search-result-img"><img src="${FAM_BY_ID[p.f].img1}" alt="" loading="lazy"></div>
         <div>
-          <div class="search-result-name">${p.name}</div>
-          <div class="search-result-ref">Ref. ${p.ref} · ${p.familyName}</div>
+          <div class="search-result-name">${escHTML(p.n)}</div>
+          <div class="search-result-ref">Ref. ${p.c} · ${FAM_BY_ID[p.f].name}</div>
         </div>
       </div>
-    `).join('');
+    `).join('') + (results.length > shown.length
+      ? `<div class="search-no-results">Mostrando 40 de ${results.length} resultados · afina la búsqueda</div>` : '');
   }
   panel.classList.add('active');
 }
@@ -1874,8 +2631,8 @@ function scrollToFamily(familyId) {
   // Navigate to familias section and filter by family
   document.getElementById('familias').scrollIntoView({ behavior: 'smooth' });
   setTimeout(() => {
-    const fam = FAMILIES.find(f => f.id === familyId);
-    if (fam) filterFamily(fam);
+    const idx = FAMILIES.findIndex(f => f.id === familyId);
+    if (idx > -1) openFamily(idx);
   }, 600);
 }
 // Close dropdown when clicking outside
