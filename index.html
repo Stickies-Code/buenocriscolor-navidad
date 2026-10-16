@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Catálogo Navidad 2024 — Criscolor</title>
+<title>Catálogo Navidad 2026 — Criscolor</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap">
 <style>
@@ -676,6 +676,64 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .modal-contact-btn:hover { background: var(--blue-dark); }
 
+/* ─── FAMILIAS DROPDOWN NAV ─── */
+.nav-familias-dropdown {
+  position: relative;
+}
+.nav-familias-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.nav-familias-chevron {
+  transition: transform 0.2s ease;
+}
+.nav-familias-dropdown.open .nav-familias-chevron {
+  transform: rotate(180deg);
+}
+.nav-familias-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 48px rgba(26,31,212,0.13);
+  min-width: 240px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: all 0.18s ease;
+  z-index: 1100;
+}
+.nav-familias-dropdown.open .nav-familias-menu {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+.nav-familias-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 18px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text);
+  transition: background 0.15s;
+  border-bottom: 1px solid var(--grey-100);
+  cursor: pointer;
+}
+.nav-familias-item:last-child { border-bottom: none; }
+.nav-familias-item:hover { background: var(--blue-light); color: var(--blue); }
+.nav-familias-num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--blue);
+  letter-spacing: 0.08em;
+  min-width: 20px;
+}
+
 /* ─── SEARCH RESULTS ─── */
 .search-results {
   position: fixed;
@@ -1065,10 +1123,45 @@ svg { display: inline-block; vertical-align: middle; }
     </div>
 
     <div class="nav-actions">
-      <a href="tel:+34961532109" class="btn btn-outline">
-        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.49 5.68a19.79 19.79 0 01-3.07-8.67A2 2 0 012.4 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.4a16 16 0 006.29 6.29l1.77-.88a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-        Llamar
-      </a>
+      <div class="nav-familias-dropdown" id="navFamiliasDropdown">
+        <button class="btn btn-outline nav-familias-btn" onclick="toggleFamiliasMenu()" aria-expanded="false" aria-haspopup="true">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          Familias
+          <svg class="nav-familias-chevron" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="nav-familias-menu" id="navFamiliasMenu">
+          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('regalo');closeFamiliasMenu()">
+            <span class="nav-familias-num">01</span>Artículos de Regalo
+          </a>
+          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('globos');closeFamiliasMenu()">
+            <span class="nav-familias-num">02</span>Globos
+          </a>
+          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('figuras');closeFamiliasMenu()">
+            <span class="nav-familias-num">03</span>Figuras para Pintar
+          </a>
+          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('pegatinas');closeFamiliasMenu()">
+            <span class="nav-familias-num">04</span>Pegatinas y Etiquetas
+          </a>
+          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('cajas');closeFamiliasMenu()">
+            <span class="nav-familias-num">05</span>Cajas de Regalo
+          </a>
+          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('sacos');closeFamiliasMenu()">
+            <span class="nav-familias-num">06</span>Sacos Navideños
+          </a>
+          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('bolsas');closeFamiliasMenu()">
+            <span class="nav-familias-num">07</span>Bolsas de Papel y Cristal
+          </a>
+          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('papel');closeFamiliasMenu()">
+            <span class="nav-familias-num">08</span>Papel de Regalo
+          </a>
+          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('lazos');closeFamiliasMenu()">
+            <span class="nav-familias-num">09</span>Lazos y Cintas
+          </a>
+          <a href="#familias" class="nav-familias-item" onclick="scrollToFamily('canones');closeFamiliasMenu()">
+            <span class="nav-familias-num">10</span>Cañones de Fiesta
+          </a>
+        </div>
+      </div>
       <a href="#contacto" class="btn btn-primary">
         Solicitar Catálogo
         <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -1094,10 +1187,10 @@ svg { display: inline-block; vertical-align: middle; }
   <div class="hero-content">
     <div class="hero-tag">
       <span class="hero-tag-dot"></span>
-      Catálogo Navidad · Temporada 2024
+      Catálogo Navidad · Temporada 2026
     </div>
     <h1>Todo para la<br><span>Navidad</span><br>en un solo catálogo</h1>
-    <p class="hero-desc">Más de 400 referencias de artículos navideños organizadas en 10 familias de producto. Temporada 2024.</p>
+    <p class="hero-desc">Más de 400 referencias de artículos navideños organizadas en 10 familias de producto. Temporada 2026.</p>
     <div class="hero-ctas">
       <a href="#familias" class="btn-hero-primary">
         Ver Catálogo
@@ -1113,14 +1206,14 @@ svg { display: inline-block; vertical-align: middle; }
 <!-- TICKER -->
 <div class="b2b-banner">
   <div class="b2b-ticker">
-    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>Catálogo Navidad 2024</strong> · 400+ referencias</div>
+    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>Catálogo Navidad 2026</strong> · 400+ referencias</div>
     <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>10 familias</strong> de producto navideño</div>
-    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>Stock disponible</strong> · Temporada 2024</div>
+    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>Stock disponible</strong> · Temporada 2026</div>
     <div class="b2b-ticker-item"><span class="ticker-dot"></span> Desde <strong>Paterna, Valencia</strong> · criscolor.com</div>
     <div class="b2b-ticker-item"><span class="ticker-dot"></span> Más de <strong>25 años</strong> en el sector</div>
-    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>Catálogo Navidad 2024</strong> · 400+ referencias</div>
+    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>Catálogo Navidad 2026</strong> · 400+ referencias</div>
     <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>10 familias</strong> de producto navideño</div>
-    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>Stock disponible</strong> · Temporada 2024</div>
+    <div class="b2b-ticker-item"><span class="ticker-dot"></span> <strong>Stock disponible</strong> · Temporada 2026</div>
     <div class="b2b-ticker-item"><span class="ticker-dot"></span> Desde <strong>Paterna, Valencia</strong> · criscolor.com</div>
     <div class="b2b-ticker-item"><span class="ticker-dot"></span> Más de <strong>25 años</strong> en el sector</div>
   </div>
@@ -1132,7 +1225,7 @@ svg { display: inline-block; vertical-align: middle; }
     <div class="families-header">
       <img src="logo.png" alt="Criscolor" style="height:40px;width:auto;display:inline-block;margin-bottom:24px;">
       <div class="badge badge-blue" style="margin-bottom:16px;display:block;">10 Familias de Producto</div>
-      <h2 class="section-title">Colección Navidad 2024</h2>
+      <h2 class="section-title">Colección Navidad 2026</h2>
       <p class="section-subtitle">Todo lo que necesitas para surtir tu tienda esta temporada navideña</p>
     </div>
     <div class="families-grid" id="familiesGrid"></div>
@@ -1759,7 +1852,36 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     closeModal();
     closeFamily();
+    closeFamiliasMenu();
   }
+});
+
+/* ── FAMILIAS DROPDOWN ── */
+function toggleFamiliasMenu() {
+  const dd = document.getElementById('navFamiliasDropdown');
+  const btn = dd.querySelector('.nav-familias-btn');
+  const isOpen = dd.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen);
+}
+function closeFamiliasMenu() {
+  const dd = document.getElementById('navFamiliasDropdown');
+  if (dd) {
+    dd.classList.remove('open');
+    dd.querySelector('.nav-familias-btn').setAttribute('aria-expanded', 'false');
+  }
+}
+function scrollToFamily(familyId) {
+  // Navigate to familias section and filter by family
+  document.getElementById('familias').scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => {
+    const fam = FAMILIES.find(f => f.id === familyId);
+    if (fam) filterFamily(fam);
+  }, 600);
+}
+// Close dropdown when clicking outside
+document.addEventListener('click', e => {
+  const dd = document.getElementById('navFamiliasDropdown');
+  if (dd && !dd.contains(e.target)) closeFamiliasMenu();
 });
 </script>
 </body>
