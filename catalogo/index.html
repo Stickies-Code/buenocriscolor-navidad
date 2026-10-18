@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Catálogo interactivo Navidad 2026 — Criscolor</title>
+<meta name="description" content="Catálogo interactivo de la campaña Navidad 2026 de Criscolor: 790 referencias en 12 familias, con fichas, variantes y selección descargable. Venta a profesionales.">
+<meta name="theme-color" content="#070B33">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Criscolor Navidad">
+<link rel="manifest" href="/catalogo/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/catalogo/icon-180.png">
+<link rel="icon" href="/catalogo/icon-192.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Catálogo interactivo Navidad 2026 — Criscolor">
+<meta property="og:description" content="790 referencias en 12 familias. Pasa las páginas, toca un producto y guarda tu selección.">
+<meta property="og:image" content="https://buenocriscolor-navidad.vercel.app/img/og.jpg">
+<link rel="preload" href="/fonts/libre-caslon-display-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/catalogo/catalogo.css">
+</head>
+<body>
+
+<header class="cat-bar">
+  <a class="cat-brand" href="/" aria-label="Volver a la web de Criscolor Navidad">
+    <img src="/img/logo.png" alt="Criscolor" width="900" height="309">
+    <span class="cat-brand-title">Catálogo <span>Navidad 2026</span></span>
+  </a>
+  <button type="button" class="bar-btn is-search" id="searchBtn" aria-label="Buscar">
+    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+    <span class="lbl">Buscar <span class="lbl-md">producto, ref. o EAN</span></span>
+  </button>
+  <button type="button" class="bar-btn" id="indexBtn" aria-label="Índice">
+    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+    <span class="lbl">Índice</span>
+  </button>
+  <button type="button" class="bar-btn" id="selBtn" aria-label="Mi selección">
+    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+    <span class="lbl">Mi selección</span>
+    <span class="bar-count" id="selCount" hidden>0</span>
+  </button>
+  <button type="button" class="bar-btn is-icon" id="fsBtn" aria-label="Pantalla completa" hidden>
+    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+  </button>
+</header>
+
+<main class="cat-stage" id="stage" aria-label="Catálogo">
+  <div class="book-host" id="bookHost"></div>
+  <div class="cat-loading" id="loading">Abriendo el catálogo…</div>
+</main>
+
+<nav class="cat-controls" aria-label="Pasar páginas">
+  <button type="button" class="nav-arrow" id="prevBtn" aria-label="Página anterior">
+    <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg>
+  </button>
+  <div class="scrub">
+    <span class="scrub-label" id="scrubLabel" aria-live="polite">Portada</span>
+    <input type="range" class="scrub-range" id="scrub" min="0" max="1" value="0" step="1" aria-label="Ir a la página">
+    <span class="scrub-family" id="scrubFamily"></span>
+  </div>
+  <button type="button" class="nav-arrow" id="nextBtn" aria-label="Página siguiente">
+    <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+  </button>
+</nav>
+
+<div class="scrim" id="scrim"></div>
+
+<!-- Ficha de producto -->
+<aside class="sheet" id="fichaSheet" role="dialog" aria-modal="true" aria-labelledby="fichaTitle" aria-hidden="true">
+  <div class="sheet-head">
+    <div class="sheet-head-text">
+      <div class="sheet-kicker" id="fichaKicker"></div>
+      <h2 class="sheet-title" id="fichaTitle"></h2>
+    </div>
+    <button type="button" class="sheet-close" data-close aria-label="Cerrar ficha">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="sheet-body" id="fichaBody">
+    <button type="button" class="ficha-img" id="fichaImgBtn" aria-label="Ampliar la ficha" style="display:block;width:100%">
+      <img id="fichaImg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
+      <span class="ficha-zoom-hint"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4M11 8v6M8 11h6"/></svg>Ampliar</span>
+    </button>
+    <div id="fichaVideo"></div>
+    <div class="opts" id="fichaOpts"></div>
+    <div class="facts" id="fichaFacts"></div>
+    <details class="variants-list" id="fichaVariants" hidden>
+      <summary><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg><span></span></summary>
+      <div class="vlist"></div>
+    </details>
+  </div>
+  <div class="sheet-foot">
+    <button type="button" class="btn btn-primary" id="fichaAdd">Añadir a mi selección</button>
+    <div class="btn-row">
+      <button type="button" class="btn btn-ghost btn-sm" id="fichaDownload">Descargar ficha</button>
+      <a class="btn btn-ghost btn-sm" id="fichaWeb" href="/" target="_blank" rel="noopener">Ver familia en la web</a>
+    </div>
+  </div>
+</aside>
+
+<!-- Búsqueda -->
+<aside class="sheet is-left" id="searchSheet" role="dialog" aria-modal="true" aria-labelledby="searchTitle" aria-hidden="true">
+  <div class="sheet-head">
+    <div class="sheet-head-text"><div class="sheet-kicker">Catálogo Navidad 2026</div><h2 class="sheet-title" id="searchTitle">Buscar</h2></div>
+    <button type="button" class="sheet-close" data-close aria-label="Cerrar búsqueda"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <div class="sheet-body">
+    <div class="search-field">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+      <input type="search" id="searchInput" placeholder="Nombre, referencia o EAN" autocomplete="off" enterkeyhint="search" aria-label="Buscar producto" data-autofocus>
+    </div>
+    <p class="search-info" id="searchInfo" aria-live="polite"></p>
+    <div id="searchResults"></div>
+  </div>
+</aside>
+
+<!-- Índice -->
+<aside class="sheet is-left" id="indexSheet" role="dialog" aria-modal="true" aria-labelledby="indexTitle" aria-hidden="true">
+  <div class="sheet-head">
+    <div class="sheet-head-text"><div class="sheet-kicker">12 familias</div><h2 class="sheet-title" id="indexTitle">Índice</h2></div>
+    <button type="button" class="sheet-close" data-close aria-label="Cerrar índice"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <div class="sheet-body" id="indexList"></div>
+</aside>
+
+<!-- Mi selección -->
+<aside class="sheet" id="selSheet" role="dialog" aria-modal="true" aria-labelledby="selTitle" aria-hidden="true">
+  <div class="sheet-head">
+    <div class="sheet-head-text"><div class="sheet-kicker">Para pedir precios</div><h2 class="sheet-title" id="selTitle">Mi selección</h2></div>
+    <button type="button" class="sheet-close" data-close aria-label="Cerrar selección"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <div class="sheet-body" id="selList"></div>
+  <div class="sheet-foot" id="selFoot" hidden>
+    <div class="sel-summary" id="selSummary"></div>
+    <button type="button" class="btn btn-primary" id="selMail">Enviar a mi comercial</button>
+    <div class="btn-row">
+      <button type="button" class="btn btn-ghost btn-sm" id="selCsv">Descargar Excel</button>
+      <button type="button" class="btn btn-ghost btn-sm" id="selPrint">Imprimir / PDF</button>
+    </div>
+    <button type="button" class="btn btn-ghost btn-sm" id="selClear">Vaciar selección</button>
+    <p class="sel-note">Tu selección se guarda en este dispositivo.</p>
+  </div>
+</aside>
+
+<!-- Visor de ampliación -->
+<div class="zoom" id="zoom" role="dialog" aria-modal="true" aria-label="Ficha ampliada" aria-hidden="true">
+  <div class="zoom-bar">
+    <span class="zoom-title" id="zoomTitle"></span>
+    <div class="zoom-tools">
+      <button type="button" class="bar-btn" id="zoomDownload">Descargar</button>
+      <button type="button" class="bar-btn is-icon" id="zoomClose" aria-label="Cerrar"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+  </div>
+  <div class="zoom-scroll" id="zoomScroll"><img id="zoomImg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""></div>
+</div>
+
+<!-- Guía inicial -->
+<div class="coach" id="coach" role="dialog" aria-modal="true" aria-labelledby="coachTitle">
+  <div class="coach-card">
+    <h2 id="coachTitle">Bienvenido al catálogo Navidad 2026</h2>
+    <div class="coach-list">
+      <div><span class="i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h12M12 4l4 4-4 4"/><path d="M20 16H8M12 12l-4 4 4 4"/></svg></span><span><strong>Desliza</strong> para pasar las páginas, o usa las flechas de abajo.</span></div>
+      <div><span class="i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11"/><path d="M12 10.5a1.5 1.5 0 0 1 3 0V12a1.5 1.5 0 0 1 3 0v3a6 6 0 0 1-6 6h-.5a6 6 0 0 1-5.2-3L4.6 14.8a1.5 1.5 0 0 1 2.6-1.5L9 15"/></svg></span><span><strong>Toca un producto</strong> para ver su ficha y elegir color o medida.</span></div>
+      <div><span class="i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg></span><span><strong>Guarda tu selección</strong> y descárgala en Excel o envíala a tu comercial.</span></div>
+    </div>
+    <button type="button" class="btn btn-primary" id="coachOk">Abrir el catálogo</button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span></span></div>
+<div class="print-sheet" id="printSheet"></div>
+
+<script src="/assets/catalog.js"></script>
+<script src="/catalogo/modelos.js"></script>
+<script src="/catalogo/vendor/page-flip.browser.js"></script>
+<script src="/catalogo/catalogo.js"></script>
+</body>
+</html>

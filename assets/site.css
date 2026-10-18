@@ -1074,3 +1074,6 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 }
 .fam-cta .section-title em, .b2b-text .section-title em { color: var(--gold-bright); }
 .nav-familias-item[aria-current="page"] { background: var(--ink-soft); color: var(--ink); font-weight: 700; }
+.nav-cat-link { gap: 8px; }
+@media (max-width: 1100px) { .nav-cat-label { display: none; } .nav-cat-link { padding: 0 13px; } }
+@media (max-width: 380px) { .nav-cat-link { display: none; } }
