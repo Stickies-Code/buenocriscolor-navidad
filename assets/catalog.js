@@ -31,7 +31,7 @@ const FAMILIES = [
    Cada página tiene 1 hueco de vídeo y 5 de foto.
 ─────────────────────────────────────────────────────────── */
 const MEDIA = {
-  papel: { video: null, poster: null, fotos: ['/media/papel/1.webp?v=3', '/media/papel/2.webp?v=3', '/media/papel/3.webp?v=3', '/media/papel/4.webp?v=3', '/media/papel/5.webp?v=3'] },
+  papel: { video: '/media/papel/video.mp4?v=1', poster: '/media/papel/poster.webp?v=1', fotos: ['/media/papel/1.webp?v=3', '/media/papel/2.webp?v=3', '/media/papel/4.webp?v=3', '/media/papel/5.webp?v=3'] },
   bobinas: { video: null, poster: null, fotos: ['/media/bobinas/1.webp?v=2', '/media/bobinas/2.webp?v=2'] },
   bolsas: { video: null, poster: null, fotos: ['/media/bolsas/1.webp', '/media/bolsas/2.webp', '/media/bolsas/3.webp', '/media/bolsas/4.webp', '/media/bolsas/5.webp'] },
   lazos: { video: null, poster: null, fotos: ['/media/lazos/1.webp', '/media/lazos/2.webp', '/media/lazos/3.webp', '/media/lazos/4.webp', '/media/lazos/5.webp'] },
