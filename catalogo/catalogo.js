@@ -17,16 +17,15 @@
 ────────────────────────────────────────────────────────── */
 const VIDEOS = {
   '45049': { src: '/media/papel/video.mp4?v=1', poster: '/media/papel/poster.webp?v=1' },
-  '44950': { src: '/media/bobinas/video.mp4?v=1', poster: '/media/bobinas/poster.webp?v=1' },
+  '44950': { src: '/media/bobinas/video.mp4?v=2', poster: '/media/bobinas/poster.webp?v=2' },
   '42650': { src: '/media/bolsas/video.mp4?v=1', poster: '/media/bolsas/poster.webp?v=1' },
-  '06375': { src: '/media/lazos/video.mp4?v=1', poster: '/media/lazos/poster.webp?v=1' },
+  '06375': { src: '/media/lazos/video.mp4?v=2', poster: '/media/lazos/poster.webp?v=2' },
   '44090': { src: '/media/cajas/video.mp4?v=1', poster: '/media/cajas/poster.webp?v=1' },
-  '45033': { src: '/media/sacos/video.mp4?v=1', poster: '/media/sacos/poster.webp?v=1' },
-  '44011': { src: '/media/globos/video.mp4?v=1', poster: '/media/globos/poster.webp?v=1' },
+  '45033': { src: '/media/sacos/video.mp4?v=2', poster: '/media/sacos/poster.webp?v=2' },
   '44981': { src: '/media/decoracion/video.mp4?v=1', poster: '/media/decoracion/poster.webp?v=1' },
-  '44814': { src: '/media/pegatinas/video.mp4?v=1', poster: '/media/pegatinas/poster.webp?v=1' },
-  '44251': { src: '/media/fiesta/video.mp4?v=1', poster: '/media/fiesta/poster.webp?v=1' },
-  '44611': { src: '/media/vajilla/video.mp4?v=1', poster: '/media/vajilla/poster.webp?v=1' },
+  '44814': { src: '/media/pegatinas/video.mp4?v=2', poster: '/media/pegatinas/poster.webp?v=2' },
+  '44251': { src: '/media/fiesta/video.mp4?v=2', poster: '/media/fiesta/poster.webp?v=2' },
+  '44611': { src: '/media/vajilla/video.mp4?v=2', poster: '/media/vajilla/poster.webp?v=2' },
   '44891': { src: '/media/calefaccion/video.mp4?v=1', poster: '/media/calefaccion/poster.webp?v=1' }
 };
 /* Fotos de producto extra por referencia: se ven en la ficha junto a la foto
