@@ -188,13 +188,14 @@ input[type="range"].scrub-range {
 .sw { width: 1.9cqw; height: 1.9cqw; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(16, 18, 46, 0.18); display: inline-block; }
 .sw-more { font-size: 1.6cqw; color: var(--text-3); margin-left: 0.2cqw; }
 .tile-badges { position: absolute; top: 1.8cqw; left: 1.8cqw; right: 1.8cqw; display: flex; justify-content: space-between; pointer-events: none; }
-.tile-star, .tile-video {
+.tile-star, .tile-video, .tile-photo {
   width: 4cqw; height: 4cqw; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
 }
 .tile-star { background: var(--gold-soft); color: var(--gold); margin-left: auto; }
 .tile-video { background: var(--ink); color: #fff; }
-.tile-star svg, .tile-video svg { width: 55%; height: 55%; }
+.tile-photo { background: rgba(255, 255, 255, 0.92); color: var(--ink); box-shadow: 0 0 0 1px var(--ink-line, rgba(16, 18, 46, 0.12)); }
+.tile-star svg, .tile-video svg, .tile-photo svg { width: 55%; height: 55%; }
 .pg-grid.is-feature .tile:first-child .tile-img { flex: 1.25; }
 .pg-grid.is-feature .tile:first-child .tile-body { flex: 1; justify-content: center; padding: 2cqw 2.4cqw; gap: 1.4cqw; }
 .pg-grid.is-feature .tile:first-child .tile-name { font-family: var(--font-display); font-weight: 400; font-size: 4.2cqw; line-height: 1.08; -webkit-line-clamp: 4; }
@@ -306,6 +307,12 @@ input[type="range"].scrub-range {
 .ficha-img img { width: 100%; height: 100%; object-fit: contain; transition: opacity .3s var(--ease); }
 .ficha-img img.is-loading { opacity: 0.25; }
 .ficha-zoom-hint { position: absolute; right: 10px; bottom: 10px; display: inline-flex; align-items: center; gap: 6px; padding: 7px 11px; border-radius: 999px; background: rgba(16, 18, 46, 0.78); color: #fff; font-size: 0.78rem; font-weight: 600; pointer-events: none; }
+.ficha-thumbs { display: flex; gap: 8px; margin-top: 10px; overflow-x: auto; scrollbar-width: none; padding: 2px; }
+.ficha-thumbs::-webkit-scrollbar { display: none; }
+.ficha-thumb { flex: none; width: 64px; height: 64px; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 0 0 1px var(--line); cursor: pointer; transition: box-shadow .2s var(--ease), transform .2s var(--ease); }
+.ficha-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ficha-thumb[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--ink); }
+.ficha-thumb:active { transform: scale(0.96); }
 .ficha-video { margin-top: 14px; border-radius: 16px; overflow: hidden; background: #000; aspect-ratio: 16 / 9; }
 .ficha-video video { width: 100%; height: 100%; object-fit: cover; }
 .opts { margin-top: 20px; display: grid; gap: 16px; }

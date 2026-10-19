@@ -15,7 +15,37 @@
    Página de ambiente por familia (foto o vídeo IA a sangre):
      papel: { img: '/media/catalogo/papel.webp?v=4' }  o  { video: '…mp4', poster: '…webp' }
 ────────────────────────────────────────────────────────── */
-const VIDEOS = {};
+const VIDEOS = {
+  '45049': { src: '/media/papel/video.mp4?v=1', poster: '/media/papel/poster.webp?v=1' }
+};
+/* Fotos de producto extra por referencia: se ven en la ficha junto a la foto
+   del catálogo, y la tarjeta del libro lleva una marca discreta. Si una variante
+   no tiene fotos propias, usa las de la misma variante en otra medida. */
+const FOTOS = {
+  '45049': ['/media/catalogo/fotos/45049-1.webp', '/media/catalogo/fotos/45049-2.webp', '/media/catalogo/fotos/45049-3.webp'],
+  '45045': ['/media/catalogo/fotos/45045-1.webp'],
+  '44950': ['/media/catalogo/fotos/44950-1.webp', '/media/catalogo/fotos/44950-2.webp'],
+  '42617': ['/media/catalogo/fotos/42617-1.webp', '/media/catalogo/fotos/42617-2.webp'],
+  '42615': ['/media/catalogo/fotos/42617-2.webp'],
+  '42650': ['/media/catalogo/fotos/42650-1.webp'],
+  '42655': ['/media/catalogo/fotos/42655-1.webp'],
+  '06375': ['/media/catalogo/fotos/06375-1.webp'],
+  '43030': ['/media/catalogo/fotos/43030-1.webp'],
+  '44090': ['/media/catalogo/fotos/44090-1.webp'],
+  '44835': ['/media/catalogo/fotos/44835-1.webp'],
+  '45033': ['/media/catalogo/fotos/45033-1.webp', '/media/catalogo/fotos/45033-2.webp'],
+  '44011': ['/media/catalogo/fotos/44011-1.webp'],
+  '44121': ['/media/catalogo/fotos/44121-1.webp'],
+  '44981': ['/media/catalogo/fotos/44981-1.webp', '/media/catalogo/fotos/44981-2.webp'],
+  '44816': ['/media/catalogo/fotos/44816-1.webp'],
+  '44814': ['/media/catalogo/fotos/44814-1.webp'],
+  '44251': ['/media/catalogo/fotos/44251-1.webp'],
+  '45035': ['/media/catalogo/fotos/45035-1.webp'],
+  '44611': ['/media/catalogo/fotos/44611-1.webp'],
+  '44782': ['/media/catalogo/fotos/44782-1.webp'],
+  '44884': ['/media/catalogo/fotos/44884-1.webp'],
+  '44891': ['/media/catalogo/fotos/44891-1.webp']
+};
 const AMBIENTES = {
   papel: { img: '/media/catalogo/papel.webp?v=4' },
   bobinas: { img: '/media/catalogo/bobinas.webp?v=4' },
@@ -60,6 +90,7 @@ const I = {
   arrow: '<svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
   star: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/></svg>',
   play: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg>',
+  photo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.6l1.4-2h5l1.4 2h1.6A2.5 2.5 0 0 1 20 8.5v8a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-8Z"/><circle cx="12" cy="12.5" r="3.2"/></svg>',
   swipe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h12M12 4l4 4-4 4"/><path d="M20 16H8M12 12l-4 4 4 4"/></svg>',
   tap: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11"/><path d="M12 10.5a1.5 1.5 0 0 1 3 0V12a1.5 1.5 0 0 1 3 0v3a6 6 0 0 1-6 6h-.5a6 6 0 0 1-5.2-3L4.6 14.8a1.5 1.5 0 0 1 2.6-1.5L9 15"/></svg>',
   bag: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>',
@@ -96,12 +127,21 @@ const PAGES = [];          // { kind, html, family }
 const MODEL_PAGE = {};     // id modelo → índice de página
 const FAMILY_PAGE = {};    // id familia → página de apertura
 
+/* Fotos extra de una variante (o de la misma variante en otra medida/cantidad) */
+const LOOK_DIMS = ['Medida', 'Cantidad'];
+function photosFor(m, v) {
+  if (FOTOS[v.c]) return FOTOS[v.c];
+  const same = m.v.find(x => FOTOS[x.c] && m.d.every(d => LOOK_DIMS.includes(d) || x.a[d] === v.a[d]));
+  return same ? FOTOS[same.c] : [];
+}
+
 function tileHTML(m, feature) {
   const lead = CAT[m.k];
   const n = m.v.length;
   const colors = m.d.includes('Color') ? [...new Set(m.v.map(v => v.a.Color))] : [];
   const sizes = m.d.includes('Medida') ? [...new Set(m.v.map(v => v.a.Medida))] : [];
   const hasVideo = m.v.some(v => VIDEOS[v.c]);
+  const hasPhotos = !hasVideo && m.v.some(v => FOTOS[v.c]);
   const sw = colors.filter(swatchFor).slice(0, feature ? 10 : 6);
   const more = colors.length - sw.length;
   let meta;
@@ -120,7 +160,7 @@ function tileHTML(m, feature) {
         <span class="tile-meta">${meta}</span>
         ${feature ? `<span class="tile-cta">Ver ficha ${I.arrow}</span>` : ''}
       </div>
-      <div class="tile-badges">${hasVideo ? `<span class="tile-video" title="Con vídeo">${I.play}</span>` : ''}${m.s ? `<span class="tile-star" title="Producto destacado">${I.star}</span>` : ''}</div>
+      <div class="tile-badges">${hasVideo ? `<span class="tile-video" title="Con vídeo">${I.play}</span>` : hasPhotos ? `<span class="tile-photo" title="Con fotos de producto">${I.photo}</span>` : ''}${m.s ? `<span class="tile-star" title="Producto destacado">${I.star}</span>` : ''}</div>
     </div>`;
 }
 
@@ -417,11 +457,14 @@ document.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click
 /* ── Ficha ── */
 let fm = null;      // modelo abierto
 let fsel = {};      // selección de dimensiones
+let fview = 0;      // imagen visible en la ficha (0 = foto de catálogo)
+let fcode = null;   // variante mostrada (para reiniciar la imagen al cambiar)
 function variantFor(m, sel) { return m.v.find(v => m.d.every(d => v.a[d] === sel[d])); }
 function openModel(id, code) {
   const m = MODEL[id];
   if (!m) return;
   fm = m;
+  fcode = null;
   const v0 = (code && m.v.find(v => v.c === code)) || m.v.find(v => v.c === m.k) || m.v[0];
   fsel = { ...v0.a };
   $('#fichaKicker').textContent = `${FAM[m.f].num} · ${FAM[m.f].name}${m.s ? ' · Destacado' : ''}`;
@@ -434,13 +477,20 @@ function renderFicha() {
   const m = fm;
   const v = variantFor(m, fsel) || m.v[0];
   const p = CAT[v.c];
+  const views = [ficha(p.e), ...photosFor(m, v)];
+  if (fcode !== v.c) { fcode = v.c; fview = 0; }
+  if (fview >= views.length) fview = 0;
   const img = $('#fichaImg');
-  if (!img.src.endsWith(ficha(p.e))) {
+  const src = views[fview];
+  if (!img.src.endsWith(src)) {
     img.classList.add('is-loading');
     img.onload = () => img.classList.remove('is-loading');
-    img.src = ficha(p.e);
+    img.src = src;
   }
-  img.alt = `Ficha de ${p.n}`;
+  img.alt = fview ? `Foto de producto: ${p.n}` : `Ficha de ${p.n}`;
+  const th = $('#fichaThumbs');
+  th.hidden = views.length < 2;
+  th.innerHTML = views.length < 2 ? '' : views.map((u, i) => `<button type="button" class="ficha-thumb" data-view="${i}" aria-pressed="${i === fview}" aria-label="${i ? `Foto de producto ${i}` : 'Ficha de catálogo'}"><img src="${i ? u : mini(p.e)}" alt="" loading="lazy" draggable="false"></button>`).join('');
   const vid = VIDEOS[v.c] || m.v.map(x => VIDEOS[x.c]).find(Boolean);
   $('#fichaVideo').innerHTML = vid ? `<div class="ficha-video"><video src="${vid.src}" ${vid.poster ? `poster="${vid.poster}"` : ''} controls playsinline preload="metadata"></video></div>` : '';
 
@@ -504,9 +554,15 @@ $('#fichaAdd').addEventListener('click', () => {
   renderFicha();
   toast(`Añadida la ref. ${v.c} a tu selección`);
 });
+$('#fichaThumbs').addEventListener('click', e => {
+  const b = e.target.closest('.ficha-thumb');
+  if (!b) return;
+  fview = +b.dataset.view;
+  renderFicha();
+});
 $('#fichaImgBtn').addEventListener('click', () => {
   const v = variantFor(fm, fsel) || fm.v[0];
-  openZoom(CAT[v.c]);
+  openZoom(CAT[v.c], fview ? $('#fichaImg').getAttribute('src') : null);
 });
 $('#fichaDownload').addEventListener('click', () => {
   const v = variantFor(fm, fsel) || fm.v[0];
@@ -536,10 +592,10 @@ function saveBlob(blob, name) {
 
 /* ── Visor de ampliación ── */
 const zoom = $('#zoom');
-function openZoom(p) {
+function openZoom(p, src) {
   const img = $('#zoomImg');
-  img.src = ficha(p.e);
-  img.alt = `Ficha de ${p.n}`;
+  img.src = src || ficha(p.e);
+  img.alt = src ? `Foto de producto: ${p.n}` : `Ficha de ${p.n}`;
   $('#zoomTitle').textContent = `Ref. ${p.c} · ${p.n}`;
   zoom.classList.remove('is-zoomed');
   img.style.width = '';
