@@ -18,7 +18,7 @@
 const VIDEOS = {};
 const AMBIENTES = {
   papel: { img: '/media/catalogo/papel.webp?v=3' },
-  bobinas: { img: '/media/catalogo/bobinas.webp' },
+  bobinas: { img: '/media/catalogo/bobinas.webp?v=2' },
   bolsas: { img: '/media/catalogo/bolsas.webp' },
   lazos: { img: '/media/lazos/1.webp' },
   cajas: { img: '/media/cajas/1.webp' },

@@ -32,7 +32,7 @@ const FAMILIES = [
 ─────────────────────────────────────────────────────────── */
 const MEDIA = {
   papel: { video: null, poster: null, fotos: ['/media/papel/1.webp?v=3', '/media/papel/2.webp?v=3', '/media/papel/3.webp?v=3', '/media/papel/4.webp?v=3', '/media/papel/5.webp?v=3'] },
-  bobinas: { video: null, poster: null, fotos: ['/media/bobinas/1.webp', '/media/bobinas/2.webp', '/media/bobinas/3.webp', '/media/bobinas/4.webp', '/media/bobinas/5.webp'] },
+  bobinas: { video: null, poster: null, fotos: ['/media/bobinas/1.webp?v=2', '/media/bobinas/2.webp?v=2'] },
   bolsas: { video: null, poster: null, fotos: ['/media/bolsas/1.webp', '/media/bolsas/2.webp', '/media/bolsas/3.webp', '/media/bolsas/4.webp', '/media/bolsas/5.webp'] },
   lazos: { video: null, poster: null, fotos: ['/media/lazos/1.webp', '/media/lazos/2.webp', '/media/lazos/3.webp', '/media/lazos/4.webp', '/media/lazos/5.webp'] },
   cajas: { video: null, poster: null, fotos: ['/media/cajas/1.webp', '/media/cajas/2.webp', '/media/cajas/3.webp', '/media/cajas/4.webp', '/media/cajas/5.webp'] },

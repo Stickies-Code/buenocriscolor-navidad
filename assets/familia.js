@@ -22,17 +22,16 @@ function renderMedia() {
   const video = m.video
     ? `<video src="${m.video}" ${m.poster ? `poster="${m.poster}"` : ''} autoplay muted loop playsinline preload="metadata" aria-label="Vídeo de ${escHTML(FAM.name)}"></video>`
     : ph('video', 'Vídeo IA');
-  const foto = i => m.fotos[i]
-    ? `<img src="${m.fotos[i]}" alt="${escHTML(FAM.name)}: imagen ${i + 1}" loading="lazy">`
-    : ph('foto', 'Foto IA');
-  document.getElementById('mediaGrid').innerHTML = `
-    <div class="media-slot is-video">${video}</div>
-    <div class="media-slot is-side">${foto(0)}</div>
-    <div class="media-slot is-side">${foto(1)}</div>
-    <div class="media-slot is-photo">${foto(2)}</div>
-    <div class="media-slot is-photo">${foto(3)}</div>
-    <div class="media-slot is-photo">${foto(4)}</div>`;
-  revealChildren(document.getElementById('mediaGrid'), '.media-slot', 0.06, 6);
+  // La galería se adapta al número de fotos (0–5): sin huecos vacíos.
+  const fotos = (m.fotos || []).slice(0, 5);
+  const n = fotos.length;
+  const img = (src, i) => `<img src="${src}" alt="${escHTML(FAM.name)}: imagen ${i + 1}" loading="lazy">`;
+  const kind = i => (n === 3 ? 'is-photo' : i < 2 ? 'is-side' : 'is-photo');
+  const grid = document.getElementById('mediaGrid');
+  grid.className = `media-grid media-n${n}`;
+  grid.innerHTML = `<div class="media-slot is-video">${video}</div>` +
+    fotos.map((src, i) => `<div class="media-slot ${kind(i)}">${img(src, i)}</div>`).join('');
+  revealChildren(grid, '.media-slot', 0.06, 6);
 }
 
 /* ── Destacados de la familia ── */
