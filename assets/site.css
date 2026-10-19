@@ -838,17 +838,9 @@ textarea.form-input { resize: vertical; min-height: 120px; }
   .modal-header { padding: 24px 22px 0; }
 }
 @media (max-width: 640px) {
-  .hero-overlay {
-    background:
-      linear-gradient(180deg, rgba(0, 6, 63, 0.55) 0%, rgba(0, 6, 63, 0.78) 45%, rgba(0, 6, 63, 0.9) 100%);
-  }
-  .hero-bg { background-position: 70% center; }
 }
 @media (max-width: 520px) {
   .nav-actions .btn-primary { display: none; }
-  .hero { min-height: 600px; }
-  .hero-content { padding-top: 104px; padding-bottom: 48px; }
-  .hero h1 { font-size: clamp(2.6rem, 12vw, 3.4rem); }
   .hero-ctas { gap: 20px; }
   .hero-meta { margin-top: 40px; gap: 6px 18px; }
 }
@@ -864,8 +856,29 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 ═══════════════════════════════════════════════════════════ */
 
 /* Hero de portada: imagen optimizada */
-.hero-bg { background-image: url('/img/hero.webp'); }
-@media (max-width: 760px) { .hero-bg { background-image: url('/img/hero-m.webp'); } }
+/* Hero: escaparate Criscolor con el logo en el cartel; el texto va abajo, centrado */
+.hero-bg { background-image: url('/img/hero.webp?v=2'); background-position: center 28%; }
+.hero { align-items: flex-end; }
+.hero-overlay {
+  background:
+    linear-gradient(180deg, rgba(0, 6, 63, 0.55) 0%, rgba(0, 6, 63, 0) 18%),
+    linear-gradient(0deg, rgba(0, 6, 63, 0.96) 0%, rgba(0, 6, 63, 0.84) 30%, rgba(0, 6, 63, 0.35) 46%, rgba(0, 6, 63, 0) 60%);
+}
+.hero-content { text-align: center; padding-top: 0; padding-bottom: 56px; }
+.hero h1 { max-width: none; margin-left: auto; margin-right: auto; font-size: clamp(2.6rem, 4.6vw, 4.4rem); line-height: 1.02; margin-bottom: 30px; text-shadow: 0 2px 24px rgba(0, 6, 63, 0.85), 0 0 60px rgba(0, 6, 63, 0.6); }
+.hero-ctas { justify-content: center; }
+.hero-meta { justify-content: center; margin-left: auto; margin-right: auto; margin-top: 40px; max-width: 640px; }
+@media (max-width: 760px) {
+  .hero { display: block; height: auto; min-height: 0; max-height: none; }
+  .hero-bg { background-image: url('/img/hero-m.webp?v=2'); bottom: auto; height: 144vw; background-position: center top; }
+  .hero-overlay {
+    background:
+      linear-gradient(180deg, rgba(0, 6, 63, 0.5) 0, rgba(0, 6, 63, 0) 22vw),
+      linear-gradient(180deg, rgba(0, 6, 63, 0) 72vw, rgba(0, 6, 63, 0.86) 112vw, var(--ink-night) 144vw);
+  }
+  .hero-content { padding-top: 104vw; padding-bottom: 52px; }
+  .hero h1 { font-size: clamp(2.2rem, 10vw, 3rem); }
+}
 
 /* Las fotos de producto son recortes cuadrados sobre blanco */
 .product-card-img { background: #fff; }
