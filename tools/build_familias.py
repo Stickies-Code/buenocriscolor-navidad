@@ -7,6 +7,8 @@ Ejecutar después de cambiar en index.html el menú, el footer o la ficha
 o los datos de assets/catalog.js.
 """
 import html, json, os, re
+# Versión de imagen por familia (cambiar al sustituir una portada para saltar la caché)
+IMG_V = {'bobinas': '?v=2'}
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://buenocriscolor-navidad.vercel.app'
@@ -50,10 +52,10 @@ for f in FAMS:
 <meta property="og:type" content="website">
 <meta property="og:title" content="{e['name']} — Catálogo Navidad 2026 · Criscolor">
 <meta property="og:description" content="{e['count']} referencias de {e['name']}. Venta mayorista desde Paterna, Valencia.">
-<meta property="og:image" content="{SITE}/img/og/{f['id']}.jpg">
+<meta property="og:image" content="{SITE}/img/og/{f['id']}.jpg{IMG_V.get(f['id'],'')}">
 <meta property="og:url" content="{SITE}/familia/{f['id']}">
 {head}
-<link rel="preload" href="/img/familias/{f['id']}.webp" as="image">
+<link rel="preload" href="/img/familias/{f['id']}.webp{IMG_V.get(f['id'],'')}" as="image">
 </head>
 <body data-family="{f['id']}">
 <a href="#referencias" class="skip-link">Saltar a las referencias</a>
@@ -62,7 +64,7 @@ for f in FAMS:
 
 <main>
 <header class="fam-hero">
-  <div class="fam-hero-bg"><img src="/img/familias/{f['id']}.webp" alt="" fetchpriority="high"></div>
+  <div class="fam-hero-bg"><img src="/img/familias/{f['id']}.webp{IMG_V.get(f['id'],'')}" alt="" fetchpriority="high"></div>
   <div class="fam-hero-overlay"></div>
   <div class="fam-hero-content">
     <nav class="breadcrumb" aria-label="Estás en">

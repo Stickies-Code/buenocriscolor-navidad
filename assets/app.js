@@ -9,8 +9,9 @@ const STAR_SET = new Set(STAR_CODES);
 
 /* Rutas */
 const familyUrl = id => `/familia/${id}`;
-const famImg = id => `/img/familias/${id}.webp`;
-const famCardImg = id => `/img/familias/${id}-card.webp`;
+const IMG_V = { bobinas: '?v=2' }; // subir al cambiar una portada
+const famImg = id => `/img/familias/${id}.webp${IMG_V[id] || ''}`;
+const famCardImg = id => `/img/familias/${id}-card.webp${IMG_V[id] || ''}`;
 const photoFoto = ean => `/productos/foto/${ean}.webp`;
 const photoMini = ean => `/productos/mini/${ean}.webp`;
 const photoFicha = ean => `/productos/ficha/${ean}.webp`;

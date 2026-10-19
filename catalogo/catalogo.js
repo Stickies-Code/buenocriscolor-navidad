@@ -47,7 +47,8 @@ MODELS.forEach(m => m.v.forEach(v => { MODEL_OF[v.c] = m.id; }));
 const foto = e => `/productos/foto/${e}.webp`;
 const mini = e => `/productos/mini/${e}.webp`;
 const ficha = e => `/productos/ficha/${e}.webp`;
-const famImg = id => `/img/familias/${id}.webp`;
+const IMG_V = { bobinas: '?v=2' }; // subir al cambiar una portada
+const famImg = id => `/img/familias/${id}.webp${IMG_V[id] || ''}`;
 const famCard = id => `/img/familias/${id}-card.webp`;
 
 const $ = (s, el = document) => el.querySelector(s);
