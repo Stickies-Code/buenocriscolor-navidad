@@ -22,9 +22,10 @@ const VIDEOS = {
   '06375': { src: '/media/lazos/video.mp4?v=2', poster: '/media/lazos/poster.webp?v=2' },
   '44090': { src: '/media/cajas/video.mp4?v=1', poster: '/media/cajas/poster.webp?v=1' },
   '45033': { src: '/media/sacos/video.mp4?v=2', poster: '/media/sacos/poster.webp?v=2' },
-  '44981': { src: '/media/decoracion/video.mp4?v=1', poster: '/media/decoracion/poster.webp?v=1' },
-  '44814': { src: '/media/pegatinas/video.mp4?v=2', poster: '/media/pegatinas/poster.webp?v=2' },
-  '44251': { src: '/media/fiesta/video.mp4?v=2', poster: '/media/fiesta/poster.webp?v=2' },
+  '44981': { src: '/media/decoracion/video.mp4?v=3', poster: '/media/decoracion/poster.webp?v=3' },
+  '44814': { src: '/media/pegatinas/video.mp4?v=3', poster: '/media/pegatinas/poster.webp?v=3' },
+  '44011': { src: '/media/globos/video.mp4?v=3', poster: '/media/globos/poster.webp?v=3' },
+  '44251': { src: '/media/fiesta/video.mp4?v=3', poster: '/media/fiesta/poster.webp?v=3' },
   '44611': { src: '/media/vajilla/video.mp4?v=2', poster: '/media/vajilla/poster.webp?v=2' },
   '44891': { src: '/media/calefaccion/video.mp4?v=1', poster: '/media/calefaccion/poster.webp?v=1' }
 };
