@@ -13,11 +13,11 @@
    (sirve cualquier referencia del modelo). La ficha lo reproduce
    y la tarjeta del libro muestra un icono de vídeo.
    Página de ambiente por familia (foto o vídeo IA a sangre):
-     papel: { img: '/media/catalogo/papel.webp?v=2' }  o  { video: '…mp4', poster: '…webp' }
+     papel: { img: '/media/catalogo/papel.webp' }  o  { video: '…mp4', poster: '…webp' }
 ────────────────────────────────────────────────────────── */
 const VIDEOS = {};
 const AMBIENTES = {
-  papel: { img: '/media/catalogo/papel.webp?v=2' },
+  papel: { img: '/media/catalogo/papel.webp?v=3' },
   bobinas: { img: '/media/catalogo/bobinas.webp' },
   bolsas: { img: '/media/catalogo/bolsas.webp' },
   lazos: { img: '/media/lazos/1.webp' },

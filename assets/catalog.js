@@ -27,11 +27,11 @@ const FAMILIES = [
    /media/<familia>/ y rellena aquí, por ejemplo:
      papel: { video: '/media/papel/video.mp4',
               poster: '/media/papel/poster.webp',
-              fotos: ['/media/papel/1.webp?v=2', '/media/papel/2.webp?v=2'] }
+              fotos: ['/media/papel/1.webp?v=3', '/media/papel/2.webp?v=3'] }
    Cada página tiene 1 hueco de vídeo y 5 de foto.
 ─────────────────────────────────────────────────────────── */
 const MEDIA = {
-  papel: { video: null, poster: null, fotos: ['/media/papel/1.webp?v=2', '/media/papel/2.webp?v=2', '/media/papel/3.webp?v=2', '/media/papel/4.webp?v=2', '/media/papel/5.webp?v=2'] },
+  papel: { video: null, poster: null, fotos: ['/media/papel/1.webp?v=3', '/media/papel/2.webp?v=3', '/media/papel/3.webp?v=3', '/media/papel/4.webp?v=3', '/media/papel/5.webp?v=3'] },
   bobinas: { video: null, poster: null, fotos: ['/media/bobinas/1.webp', '/media/bobinas/2.webp', '/media/bobinas/3.webp', '/media/bobinas/4.webp', '/media/bobinas/5.webp'] },
   bolsas: { video: null, poster: null, fotos: ['/media/bolsas/1.webp', '/media/bolsas/2.webp', '/media/bolsas/3.webp', '/media/bolsas/4.webp', '/media/bolsas/5.webp'] },
   lazos: { video: null, poster: null, fotos: ['/media/lazos/1.webp', '/media/lazos/2.webp', '/media/lazos/3.webp', '/media/lazos/4.webp', '/media/lazos/5.webp'] },
