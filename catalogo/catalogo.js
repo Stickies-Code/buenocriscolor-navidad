@@ -16,7 +16,20 @@
      papel: { img: '/media/catalogo/papel.webp' }  o  { video: '…mp4', poster: '…webp' }
 ────────────────────────────────────────────────────────── */
 const VIDEOS = {};
-const AMBIENTES = {};
+const AMBIENTES = {
+  papel: { img: '/media/catalogo/papel.webp' },
+  bobinas: { img: '/media/catalogo/bobinas.webp' },
+  bolsas: { img: '/media/catalogo/bolsas.webp' },
+  lazos: { img: '/media/lazos/1.webp' },
+  cajas: { img: '/media/cajas/1.webp' },
+  sacos: { img: '/media/sacos/1.webp' },
+  globos: { img: '/media/globos/1.webp' },
+  decoracion: { img: '/media/decoracion/1.webp' },
+  pegatinas: { img: '/media/pegatinas/1.webp' },
+  fiesta: { img: '/media/fiesta/1.webp' },
+  vajilla: { img: '/media/vajilla/1.webp' },
+  calefaccion: { img: '/media/calefaccion/1.webp' }
+};
 
 const PER_PAGE = 6;
 const FEATURE = 3;
