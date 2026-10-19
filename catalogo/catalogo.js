@@ -13,22 +13,22 @@
    (sirve cualquier referencia del modelo). La ficha lo reproduce
    y la tarjeta del libro muestra un icono de vídeo.
    Página de ambiente por familia (foto o vídeo IA a sangre):
-     papel: { img: '/media/catalogo/papel.webp' }  o  { video: '…mp4', poster: '…webp' }
+     papel: { img: '/media/catalogo/papel.webp?v=4' }  o  { video: '…mp4', poster: '…webp' }
 ────────────────────────────────────────────────────────── */
 const VIDEOS = {};
 const AMBIENTES = {
-  papel: { img: '/media/catalogo/papel.webp?v=3' },
-  bobinas: { img: '/media/catalogo/bobinas.webp?v=2' },
-  bolsas: { img: '/media/catalogo/bolsas.webp' },
-  lazos: { img: '/media/lazos/1.webp' },
-  cajas: { img: '/media/cajas/1.webp' },
-  sacos: { img: '/media/sacos/1.webp' },
-  globos: { img: '/media/globos/1.webp' },
-  decoracion: { img: '/media/decoracion/1.webp' },
-  pegatinas: { img: '/media/pegatinas/1.webp' },
-  fiesta: { img: '/media/fiesta/1.webp' },
-  vajilla: { img: '/media/vajilla/1.webp' },
-  calefaccion: { img: '/media/calefaccion/1.webp' }
+  papel: { img: '/media/catalogo/papel.webp?v=4' },
+  bobinas: { img: '/media/catalogo/bobinas.webp?v=4' },
+  bolsas: { img: '/media/catalogo/bolsas.webp?v=4' },
+  lazos: { img: '/media/lazos/1.webp?v=4' },
+  cajas: { img: '/media/cajas/1.webp?v=4' },
+  sacos: { img: '/media/sacos/1.webp?v=4' },
+  globos: { img: '/media/globos/1.webp?v=4' },
+  decoracion: { img: '/media/decoracion/1.webp?v=4' },
+  pegatinas: { img: '/media/pegatinas/1.webp?v=4' },
+  fiesta: { img: '/media/fiesta/1.webp?v=4' },
+  vajilla: { img: '/media/vajilla/1.webp?v=4' },
+  calefaccion: { img: '/media/calefaccion/1.webp?v=4' }
 };
 
 const PER_PAGE = 6;

@@ -22,15 +22,30 @@ function renderMedia() {
   const video = m.video
     ? `<video src="${m.video}" ${m.poster ? `poster="${m.poster}"` : ''} autoplay muted loop playsinline preload="metadata" aria-label="Vídeo de ${escHTML(FAM.name)}"></video>`
     : ph('video', 'Vídeo IA');
-  // La galería se adapta al número de fotos (0–5): sin huecos vacíos.
+  // La galería se adapta a lo que haya: sin vídeo no se reserva hueco,
+  // y las fotos se muestran siempre completas (4:3), sin recortar el producto.
   const fotos = (m.fotos || []).slice(0, 5);
   const n = fotos.length;
+  const sec = document.getElementById('mediaGrid').closest('section');
+  if (!m.video && !n) { if (sec) sec.hidden = true; return; }
   const img = (src, i) => `<img src="${src}" alt="${escHTML(FAM.name)}: imagen ${i + 1}" loading="lazy">`;
-  const kind = i => (n === 3 ? 'is-photo' : i < 2 ? 'is-side' : 'is-photo');
+  // Reparto de columnas (de 12) para las fotos
+  const cols = k => k === 1 ? [12] : k === 2 ? [6, 6] : k === 3 ? [4, 4, 4] : k === 4 ? [6, 6, 6, 6] : [6, 6, 4, 4, 4];
+  let slots = [];
+  if (m.video && n === 1) {
+    slots.push(`<div class="media-slot is-video is-stretch" style="--col:span 7">${video}</div>`);
+    slots.push(`<div class="media-slot is-photo" style="--col:span 5">${img(fotos[0], 0)}</div>`);
+  } else {
+    if (m.video) slots.push(`<div class="media-slot is-video" style="--col:1 / -1">${video}</div>`);
+    const c = cols(n);
+    fotos.forEach((src, i) => {
+      const lastOdd = n % 2 === 1 && i === n - 1 ? ' is-last-odd' : '';
+      slots.push(`<div class="media-slot is-photo${lastOdd}" style="--col:span ${c[i]}">${img(src, i)}</div>`);
+    });
+  }
   const grid = document.getElementById('mediaGrid');
-  grid.className = `media-grid media-n${n}`;
-  grid.innerHTML = `<div class="media-slot is-video">${video}</div>` +
-    fotos.map((src, i) => `<div class="media-slot ${kind(i)}">${img(src, i)}</div>`).join('');
+  grid.className = 'media-grid';
+  grid.innerHTML = slots.join('');
   revealChildren(grid, '.media-slot', 0.06, 6);
 }
 
