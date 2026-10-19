@@ -942,6 +942,7 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 
 .fam-section { padding: 112px 0 120px; }
 .fam-section.is-white { background: #fff; }
+.fam-section.fam-gallery { padding: 88px 0; }
 .fam-section.is-paper { background: var(--paper); }
 
 /* Galería de fotos y vídeos IA */
@@ -1058,6 +1059,7 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 }
 @media (max-width: 768px) {
   .fam-section { padding: 80px 0 88px; }
+  .fam-section.fam-gallery { padding: 48px 0; }
   .fam-hero-content { padding-top: 120px; padding-bottom: 52px; }
   .ref-row { grid-template-columns: 52px minmax(0, 1fr); gap: 4px 12px; }
   .ref-row-thumb { grid-row: span 3; }

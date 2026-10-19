@@ -85,12 +85,8 @@ for f in FAMS:
   </div>
 </header>
 
-<section class="fam-section is-white" aria-labelledby="mediaTitle">
+<section class="fam-section fam-gallery is-white" aria-label="Fotos de {e['name']}">
   <div class="container">
-    <div class="section-head reveal">
-      <h2 class="section-title" id="mediaTitle">{e['name']} <em>en imágenes</em></h2>
-      <p class="section-subtitle">El producto de cerca: acabados, estampados y detalles de la colección.</p>
-    </div>
     <div class="media-grid" id="mediaGrid"></div>
   </div>
 </section>
