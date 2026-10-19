@@ -16,7 +16,18 @@
      papel: { img: '/media/catalogo/papel.webp?v=4' }  o  { video: '…mp4', poster: '…webp' }
 ────────────────────────────────────────────────────────── */
 const VIDEOS = {
-  '45049': { src: '/media/papel/video.mp4?v=1', poster: '/media/papel/poster.webp?v=1' }
+  '45049': { src: '/media/papel/video.mp4?v=1', poster: '/media/papel/poster.webp?v=1' },
+  '44950': { src: '/media/bobinas/video.mp4?v=1', poster: '/media/bobinas/poster.webp?v=1' },
+  '42650': { src: '/media/bolsas/video.mp4?v=1', poster: '/media/bolsas/poster.webp?v=1' },
+  '06375': { src: '/media/lazos/video.mp4?v=1', poster: '/media/lazos/poster.webp?v=1' },
+  '44090': { src: '/media/cajas/video.mp4?v=1', poster: '/media/cajas/poster.webp?v=1' },
+  '45033': { src: '/media/sacos/video.mp4?v=1', poster: '/media/sacos/poster.webp?v=1' },
+  '44011': { src: '/media/globos/video.mp4?v=1', poster: '/media/globos/poster.webp?v=1' },
+  '44981': { src: '/media/decoracion/video.mp4?v=1', poster: '/media/decoracion/poster.webp?v=1' },
+  '44814': { src: '/media/pegatinas/video.mp4?v=1', poster: '/media/pegatinas/poster.webp?v=1' },
+  '44251': { src: '/media/fiesta/video.mp4?v=1', poster: '/media/fiesta/poster.webp?v=1' },
+  '44611': { src: '/media/vajilla/video.mp4?v=1', poster: '/media/vajilla/poster.webp?v=1' },
+  '44891': { src: '/media/calefaccion/video.mp4?v=1', poster: '/media/calefaccion/poster.webp?v=1' }
 };
 /* Fotos de producto extra por referencia: se ven en la ficha junto a la foto
    del catálogo, y la tarjeta del libro lleva una marca discreta. Si una variante
@@ -491,7 +502,8 @@ function renderFicha() {
   const th = $('#fichaThumbs');
   th.hidden = views.length < 2;
   th.innerHTML = views.length < 2 ? '' : views.map((u, i) => `<button type="button" class="ficha-thumb" data-view="${i}" aria-pressed="${i === fview}" aria-label="${i ? `Foto de producto ${i}` : 'Ficha de catálogo'}"><img src="${i ? u : mini(p.e)}" alt="" loading="lazy" draggable="false"></button>`).join('');
-  const vid = VIDEOS[v.c] || m.v.map(x => VIDEOS[x.c]).find(Boolean);
+  const vsame = m.v.find(x => VIDEOS[x.c] && m.d.every(d => LOOK_DIMS.includes(d) || x.a[d] === v.a[d]));
+  const vid = VIDEOS[v.c] || (vsame && VIDEOS[vsame.c]);
   $('#fichaVideo').innerHTML = vid ? `<div class="ficha-video"><video src="${vid.src}" ${vid.poster ? `poster="${vid.poster}"` : ''} controls playsinline preload="metadata"></video></div>` : '';
 
   const dims = DIM_ORDER.filter(d => m.d.includes(d));

@@ -34,7 +34,7 @@ function renderMedia() {
   let slots = [];
   if (m.video && n === 1) {
     slots.push(`<div class="media-slot is-video is-stretch" style="--col:span 7">${video}</div>`);
-    slots.push(`<div class="media-slot is-photo" style="--col:span 5">${img(fotos[0], 0)}</div>`);
+    slots.push(`<div class="media-slot is-photo is-last-odd" style="--col:span 5">${img(fotos[0], 0)}</div>`);
   } else {
     if (m.video) slots.push(`<div class="media-slot is-video" style="--col:1 / -1">${video}</div>`);
     const c = cols(n);

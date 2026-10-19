@@ -32,17 +32,17 @@ const FAMILIES = [
 ─────────────────────────────────────────────────────────── */
 const MEDIA = {
   papel: { video: '/media/papel/video.mp4?v=1', poster: '/media/papel/poster.webp?v=1', fotos: ['/media/papel/1.webp?v=4', '/media/papel/2.webp?v=4'] },
-  bobinas: { video: null, poster: null, fotos: ['/media/bobinas/1.webp?v=4', '/media/bobinas/2.webp?v=4'] },
-  bolsas: { video: null, poster: null, fotos: ['/media/bolsas/1.webp?v=4', '/media/bolsas/2.webp?v=4'] },
-  lazos: { video: null, poster: null, fotos: ['/media/lazos/1.webp?v=4', '/media/lazos/2.webp?v=4'] },
-  cajas: { video: null, poster: null, fotos: ['/media/cajas/1.webp?v=4', '/media/cajas/2.webp?v=4'] },
-  sacos: { video: null, poster: null, fotos: ['/media/sacos/1.webp?v=4', '/media/sacos/2.webp?v=4'] },
-  globos: { video: null, poster: null, fotos: ['/media/globos/1.webp?v=4', '/media/globos/2.webp?v=4'] },
-  decoracion: { video: null, poster: null, fotos: ['/media/decoracion/1.webp?v=4', '/media/decoracion/2.webp?v=4'] },
-  pegatinas: { video: null, poster: null, fotos: ['/media/pegatinas/1.webp?v=4', '/media/pegatinas/2.webp?v=4'] },
-  fiesta: { video: null, poster: null, fotos: ['/media/fiesta/1.webp?v=4', '/media/fiesta/2.webp?v=4'] },
-  vajilla: { video: null, poster: null, fotos: ['/media/vajilla/1.webp?v=4', '/media/vajilla/2.webp?v=4'] },
-  calefaccion: { video: null, poster: null, fotos: ['/media/calefaccion/1.webp?v=4', '/media/calefaccion/2.webp?v=4'] }
+  bobinas: { video: '/media/bobinas/video.mp4?v=1', poster: '/media/bobinas/poster.webp?v=1', fotos: ['/media/bobinas/2.webp?v=4'] },
+  bolsas: { video: '/media/bolsas/video.mp4?v=1', poster: '/media/bolsas/poster.webp?v=1', fotos: ['/media/bolsas/2.webp?v=4'] },
+  lazos: { video: '/media/lazos/video.mp4?v=1', poster: '/media/lazos/poster.webp?v=1', fotos: ['/media/lazos/2.webp?v=4'] },
+  cajas: { video: '/media/cajas/video.mp4?v=1', poster: '/media/cajas/poster.webp?v=1', fotos: ['/media/cajas/2.webp?v=4'] },
+  sacos: { video: '/media/sacos/video.mp4?v=1', poster: '/media/sacos/poster.webp?v=1', fotos: ['/media/sacos/1.webp?v=4'] },
+  globos: { video: '/media/globos/video.mp4?v=1', poster: '/media/globos/poster.webp?v=1', fotos: ['/media/globos/2.webp?v=4'] },
+  decoracion: { video: '/media/decoracion/video.mp4?v=1', poster: '/media/decoracion/poster.webp?v=1', fotos: ['/media/decoracion/1.webp?v=4'] },
+  pegatinas: { video: '/media/pegatinas/video.mp4?v=1', poster: '/media/pegatinas/poster.webp?v=1', fotos: ['/media/pegatinas/1.webp?v=4'] },
+  fiesta: { video: '/media/fiesta/video.mp4?v=1', poster: '/media/fiesta/poster.webp?v=1', fotos: ['/media/fiesta/2.webp?v=4'] },
+  vajilla: { video: '/media/vajilla/video.mp4?v=1', poster: '/media/vajilla/poster.webp?v=1', fotos: ['/media/vajilla/2.webp?v=4'] },
+  calefaccion: { video: '/media/calefaccion/video.mp4?v=1', poster: '/media/calefaccion/poster.webp?v=1', fotos: ['/media/calefaccion/1.webp?v=4'] }
 };
 
 /* 27 productos estrella (2-3 por familia) */

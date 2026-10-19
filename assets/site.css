@@ -986,7 +986,7 @@ textarea.form-input { resize: vertical; min-height: 120px; }
   box-shadow: inset 0 0 0 1px var(--line);
 }
 .media-slot { grid-column: var(--col, span 6); }
-.media-slot.is-video { aspect-ratio: 2 / 1; }
+.media-slot.is-video { aspect-ratio: 16 / 9; }
 .media-slot.is-video.is-stretch { aspect-ratio: auto; min-height: 100%; }
 .media-slot.is-photo { aspect-ratio: 4 / 3; }
 .media-slot img, .media-slot video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
