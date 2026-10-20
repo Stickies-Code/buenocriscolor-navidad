@@ -93,6 +93,10 @@ function openProduct(code) {
   document.getElementById('modalEan').textContent = p.ean;
   document.getElementById('modalUds').textContent = p.uds ? `${p.uds} unidades` : '—';
   document.getElementById('modalMedida').textContent = p.pack ? `${p.pack} unidades` : '—';
+  const surt = document.getElementById('modalSurtRow');
+  if (surt) { surt.hidden = !raw.s; document.getElementById('modalSurt').textContent = surtidoCorto(raw.s); }
+  const cont = document.getElementById('modalContRow');
+  if (cont) { cont.hidden = !raw.i; document.getElementById('modalCont').textContent = raw.i || ''; }
   document.getElementById('modalMat').textContent = p.familyName;
   const link = document.getElementById('modalFamilyLink');
   if (link) {

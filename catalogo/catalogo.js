@@ -7,13 +7,11 @@
 (() => {
 'use strict';
 
-/* ── VÍDEOS Y AMBIENTES ────────────────────────────────────
+/* ── VÍDEOS ────────────────────────────────────────────────
    Vídeo en un producto: añade su código de referencia, p. ej.
      '43030': { src: '/media/catalogo/43030.mp4', poster: '/media/catalogo/43030.webp' }
    (sirve cualquier referencia del modelo). La ficha lo reproduce
    y la tarjeta del libro muestra un icono de vídeo.
-   Página de ambiente por familia (foto o vídeo IA a sangre):
-     papel: { img: '/media/catalogo/papel.webp?v=4' }  o  { video: '…mp4', poster: '…webp' }
 ────────────────────────────────────────────────────────── */
 const VIDEOS = {
   '45049': { src: '/media/papel/video.mp4?v=1', poster: '/media/papel/poster.webp?v=1' },
@@ -56,20 +54,6 @@ const FOTOS = {
   '44782': ['/media/catalogo/fotos/44782-1.webp'],
   '44884': ['/media/catalogo/fotos/44884-1.webp'],
   '44891': ['/media/catalogo/fotos/44891-1.webp']
-};
-const AMBIENTES = {
-  papel: { img: '/media/catalogo/papel.webp?v=4' },
-  bobinas: { img: '/media/catalogo/bobinas.webp?v=4' },
-  bolsas: { img: '/media/catalogo/bolsas.webp?v=4' },
-  lazos: { img: '/media/lazos/1.webp?v=4' },
-  cajas: { img: '/media/cajas/1.webp?v=4' },
-  sacos: { img: '/media/sacos/1.webp?v=4' },
-  globos: { img: '/media/globos/1.webp?v=4' },
-  decoracion: { img: '/media/decoracion/1.webp?v=4' },
-  pegatinas: { img: '/media/pegatinas/1.webp?v=4' },
-  fiesta: { img: '/media/fiesta/1.webp?v=4' },
-  vajilla: { img: '/media/vajilla/1.webp?v=4' },
-  calefaccion: { img: '/media/calefaccion/1.webp?v=4' }
 };
 
 const PER_PAGE = 6;
@@ -284,12 +268,12 @@ function build() {
         </div>` });
     });
     if ((PAGES.length - start) % 2) {
-      const amb = AMBIENTES[f.id] || {};
-      PAGES.push({ kind: 'ambient', family: f.id, html: () => `
-        <div class="pg-bleed">
-          ${amb.video ? `<video src="${amb.video}" ${amb.poster ? `poster="${amb.poster}"` : ''} muted loop playsinline autoplay preload="none"></video>`
-            : `<img src="${amb.img || famImg(f.id)}" alt="" loading="lazy" draggable="false" style="object-position:${amb.img ? 'center' : '78% 40%'};${amb.img ? '' : 'transform:scale(1.35)'}">`}
-          <div class="pg-bleed-content"><div class="ambient-caption"><strong>${esc(f.name)}</strong>Colección Navidad 2026 · Criscolor</div></div>
+      // Página par de cierre de familia: en blanco, solo cabecera y folio
+      PAGES.push({ kind: 'rest', family: f.id, html: i => `
+        <div class="pg pg-rest">
+          ${head(f, '')}
+          <div class="pg-rest-body"></div>
+          ${foot(i)}
         </div>` });
     }
   });
@@ -519,6 +503,8 @@ function renderFicha() {
     <div class="fact"><span>Referencia</span><strong>${esc(p.c)}</strong></div>
     <div class="fact"><span>Código EAN</span><strong>${esc(p.e)}</strong></div>
     <div class="fact"><span>Unidades por paquete</span><strong>${p.p || '—'}</strong></div>
+    ${p.s ? `<div class="fact"><span>Surtido</span><strong>${esc(surtidoCorto(p.s))}</strong></div>` : ''}
+    ${p.i ? `<div class="fact"><span>Contenido</span><strong>${esc(p.i)}</strong></div>` : ''}
     <div class="fact"><span>Unidades por caja</span><strong>${p.x || '—'}</strong></div>
     <div class="fact"><span>Familia</span><strong>${esc(FAM[m.f].name)}</strong></div>
     <div class="fact"><span>Descripción</span><strong>${esc(p.n)}</strong></div>`;

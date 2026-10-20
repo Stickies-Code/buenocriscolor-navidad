@@ -518,3 +518,4 @@ input[type="range"].scrub-range {
 .filler-text strong { color: #fff; white-space: nowrap; }
 .filler-cta { display: inline-flex; align-items: center; gap: 1cqw; font-size: 1.9cqw; font-weight: 700; color: var(--gold-bright); }
 .filler * { pointer-events: none; }
+.pg-rest-body { flex: 1; }
