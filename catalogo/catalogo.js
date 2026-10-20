@@ -7,54 +7,6 @@
 (() => {
 'use strict';
 
-/* ── VÍDEOS ────────────────────────────────────────────────
-   Vídeo en un producto: añade su código de referencia, p. ej.
-     '43030': { src: '/media/catalogo/43030.mp4', poster: '/media/catalogo/43030.webp' }
-   (sirve cualquier referencia del modelo). La ficha lo reproduce
-   y la tarjeta del libro muestra un icono de vídeo.
-────────────────────────────────────────────────────────── */
-const VIDEOS = {
-  '45049': { src: '/media/papel/video.mp4?v=1', poster: '/media/papel/poster.webp?v=1' },
-  '44950': { src: '/media/bobinas/video.mp4?v=2', poster: '/media/bobinas/poster.webp?v=2' },
-  '42650': { src: '/media/bolsas/video.mp4?v=1', poster: '/media/bolsas/poster.webp?v=1' },
-  '06375': { src: '/media/lazos/video.mp4?v=2', poster: '/media/lazos/poster.webp?v=2' },
-  '44090': { src: '/media/cajas/video.mp4?v=1', poster: '/media/cajas/poster.webp?v=1' },
-  '45033': { src: '/media/sacos/video.mp4?v=2', poster: '/media/sacos/poster.webp?v=2' },
-  '44981': { src: '/media/decoracion/video.mp4?v=3', poster: '/media/decoracion/poster.webp?v=3' },
-  '44814': { src: '/media/pegatinas/video.mp4?v=3', poster: '/media/pegatinas/poster.webp?v=3' },
-  '44011': { src: '/media/globos/video.mp4?v=3', poster: '/media/globos/poster.webp?v=3' },
-  '44251': { src: '/media/fiesta/video.mp4?v=3', poster: '/media/fiesta/poster.webp?v=3' },
-  '44611': { src: '/media/vajilla/video.mp4?v=2', poster: '/media/vajilla/poster.webp?v=2' },
-  '44891': { src: '/media/calefaccion/video.mp4?v=1', poster: '/media/calefaccion/poster.webp?v=1' }
-};
-/* Fotos de producto extra por referencia: se ven en la ficha junto a la foto
-   del catálogo, y la tarjeta del libro lleva una marca discreta. Si una variante
-   no tiene fotos propias, usa las de la misma variante en otra medida. */
-const FOTOS = {
-  '45049': ['/media/catalogo/fotos/45049-1.webp', '/media/catalogo/fotos/45049-2.webp', '/media/catalogo/fotos/45049-3.webp'],
-  '45045': ['/media/catalogo/fotos/45045-1.webp'],
-  '44950': ['/media/catalogo/fotos/44950-1.webp', '/media/catalogo/fotos/44950-2.webp'],
-  '42617': ['/media/catalogo/fotos/42617-1.webp', '/media/catalogo/fotos/42617-2.webp'],
-  '42615': ['/media/catalogo/fotos/42617-2.webp'],
-  '42650': ['/media/catalogo/fotos/42650-1.webp'],
-  '42655': ['/media/catalogo/fotos/42655-1.webp'],
-  '06375': ['/media/catalogo/fotos/06375-1.webp'],
-  '43030': ['/media/catalogo/fotos/43030-1.webp'],
-  '44090': ['/media/catalogo/fotos/44090-1.webp'],
-  '44835': ['/media/catalogo/fotos/44835-1.webp'],
-  '45033': ['/media/catalogo/fotos/45033-1.webp', '/media/catalogo/fotos/45033-2.webp'],
-  '44011': ['/media/catalogo/fotos/44011-1.webp'],
-  '44121': ['/media/catalogo/fotos/44121-1.webp'],
-  '44981': ['/media/catalogo/fotos/44981-1.webp', '/media/catalogo/fotos/44981-2.webp'],
-  '44816': ['/media/catalogo/fotos/44816-1.webp'],
-  '44814': ['/media/catalogo/fotos/44814-1.webp'],
-  '44251': ['/media/catalogo/fotos/44251-1.webp'],
-  '45035': ['/media/catalogo/fotos/45035-1.webp'],
-  '44611': ['/media/catalogo/fotos/44611-1.webp'],
-  '44782': ['/media/catalogo/fotos/44782-1.webp'],
-  '44884': ['/media/catalogo/fotos/44884-1.webp'],
-  '44891': ['/media/catalogo/fotos/44891-1.webp']
-};
 
 const PER_PAGE = 6;
 const FEATURE = 3;
@@ -123,20 +75,12 @@ const MODEL_PAGE = {};     // id modelo → índice de página
 const FAMILY_PAGE = {};    // id familia → página de apertura
 
 /* Fotos extra de una variante (o de la misma variante en otra medida/cantidad) */
-const LOOK_DIMS = ['Medida', 'Cantidad'];
-function photosFor(m, v) {
-  if (FOTOS[v.c]) return FOTOS[v.c];
-  const same = m.v.find(x => FOTOS[x.c] && m.d.every(d => LOOK_DIMS.includes(d) || x.a[d] === v.a[d]));
-  return same ? FOTOS[same.c] : [];
-}
 
 function tileHTML(m, feature) {
   const lead = CAT[m.k];
   const n = m.v.length;
   const colors = m.d.includes('Color') ? [...new Set(m.v.map(v => v.a.Color))] : [];
   const sizes = m.d.includes('Medida') ? [...new Set(m.v.map(v => v.a.Medida))] : [];
-  const hasVideo = m.v.some(v => VIDEOS[v.c]);
-  const hasPhotos = !hasVideo && m.v.some(v => FOTOS[v.c]);
   const sw = colors.filter(swatchFor).slice(0, feature ? 10 : 6);
   const more = colors.length - sw.length;
   let meta;
@@ -155,7 +99,7 @@ function tileHTML(m, feature) {
         <span class="tile-meta">${meta}</span>
         ${feature ? `<span class="tile-cta">Ver ficha ${I.arrow}</span>` : ''}
       </div>
-      <div class="tile-badges">${hasVideo ? `<span class="tile-video" title="Con vídeo">${I.play}</span>` : hasPhotos ? `<span class="tile-photo" title="Con fotos de producto">${I.photo}</span>` : ''}${m.s ? `<span class="tile-star" title="Producto destacado">${I.star}</span>` : ''}</div>
+      <div class="tile-badges">${m.s ? `<span class="tile-star" title="Producto destacado">${I.star}</span>` : ''}</div>
     </div>`;
 }
 
@@ -452,14 +396,11 @@ document.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click
 /* ── Ficha ── */
 let fm = null;      // modelo abierto
 let fsel = {};      // selección de dimensiones
-let fview = 0;      // imagen visible en la ficha (0 = foto de catálogo)
-let fcode = null;   // variante mostrada (para reiniciar la imagen al cambiar)
 function variantFor(m, sel) { return m.v.find(v => m.d.every(d => v.a[d] === sel[d])); }
 function openModel(id, code) {
   const m = MODEL[id];
   if (!m) return;
   fm = m;
-  fcode = null;
   const v0 = (code && m.v.find(v => v.c === code)) || m.v.find(v => v.c === m.k) || m.v[0];
   fsel = { ...v0.a };
   $('#fichaKicker').textContent = `${FAM[m.f].num} · ${FAM[m.f].name}${m.s ? ' · Destacado' : ''}`;
@@ -472,32 +413,28 @@ function renderFicha() {
   const m = fm;
   const v = variantFor(m, fsel) || m.v[0];
   const p = CAT[v.c];
-  const views = [ficha(p.e), ...photosFor(m, v)];
-  if (fcode !== v.c) { fcode = v.c; fview = 0; }
-  if (fview >= views.length) fview = 0;
   const img = $('#fichaImg');
-  const src = views[fview];
+  const src = ficha(p.e);
   if (!img.src.endsWith(src)) {
     img.classList.add('is-loading');
     img.onload = () => img.classList.remove('is-loading');
     img.src = src;
   }
-  img.alt = fview ? `Foto de producto: ${p.n}` : `Ficha de ${p.n}`;
-  const th = $('#fichaThumbs');
-  th.hidden = views.length < 2;
-  th.innerHTML = views.length < 2 ? '' : views.map((u, i) => `<button type="button" class="ficha-thumb" data-view="${i}" aria-pressed="${i === fview}" aria-label="${i ? `Foto de producto ${i}` : 'Ficha de catálogo'}"><img src="${i ? u : mini(p.e)}" alt="" loading="lazy" draggable="false"></button>`).join('');
-  const vsame = m.v.find(x => VIDEOS[x.c] && m.d.every(d => LOOK_DIMS.includes(d) || x.a[d] === v.a[d]));
-  const vid = VIDEOS[v.c] || (vsame && VIDEOS[vsame.c]);
-  $('#fichaVideo').innerHTML = vid ? `<div class="ficha-video"><video src="${vid.src}" ${vid.poster ? `poster="${vid.poster}"` : ''} controls playsinline preload="metadata"></video></div>` : '';
+  img.alt = `Ficha de ${p.n}`;
 
+  // Variantes: botón que baja a la lista de todas las referencias del modelo
   const dims = DIM_ORDER.filter(d => m.d.includes(d));
-  $('#fichaOpts').innerHTML = dims.map(d => {
-    const vals = [...new Set(m.v.map(x => x.a[d]))];
-    return `<div><div class="opt-label">${DIM_LABEL[d]}<b>${esc(fsel[d])}</b></div><div class="chips" role="group" aria-label="${DIM_LABEL[d]}">${vals.map(val => {
-      const avail = !!variantFor(m, { ...fsel, [d]: val });
-      return `<button type="button" class="chip${avail ? '' : ' is-unavail'}" aria-pressed="${fsel[d] === val}" data-dim="${esc(d)}" data-val="${esc(val)}">${d === 'Color' ? swHTML(val) : ''}${esc(val)}</button>`;
-    }).join('')}</div></div>`;
-  }).join('');
+  const lab = x => dims.map(d => x.a[d]).join(' · ');
+  $('#fichaOpts').innerHTML = m.v.length > 1
+    ? `<div class="vcurrent"><span>Variante</span><strong>${esc(lab(v))}</strong></div><button type="button" class="btn btn-ghost vjump" id="fichaJump">Ver las ${m.v.length} variantes ${I.arrow}</button>`
+    : '';
+  const vl = $('#fichaVariants');
+  vl.hidden = m.v.length < 2;
+  if (m.v.length > 1) {
+    vl.querySelector('.opt-label').textContent = `Las ${m.v.length} referencias de este modelo`;
+    vl.querySelector('.vlist').innerHTML = m.v.map(x => `<button type="button" class="vrow${x.c === v.c ? ' is-current' : ''}" data-code="${esc(x.c)}" aria-current="${x.c === v.c}"><img src="${mini(CAT[x.c].e)}" alt="" loading="lazy"><span class="vrow-code">${esc(x.c)}</span><span>${dims.includes('Color') ? swHTML(x.a.Color) : ''}${esc(lab(x))}</span></button>`).join('');
+  }
+
 
   $('#fichaFacts').innerHTML = `
     <div class="fact"><span>Referencia</span><strong>${esc(p.c)}</strong></div>
@@ -509,16 +446,6 @@ function renderFicha() {
     <div class="fact"><span>Familia</span><strong>${esc(FAM[m.f].name)}</strong></div>
     <div class="fact"><span>Descripción</span><strong>${esc(p.n)}</strong></div>`;
 
-  const vl = $('#fichaVariants');
-  if (m.v.length > 1) {
-    vl.hidden = false;
-    vl.querySelector('summary span').textContent = `Las ${m.v.length} referencias de este modelo`;
-    vl.querySelector('.vlist').innerHTML = m.v.map(x => {
-      const q = CAT[x.c];
-      const lab = m.d.map(d => x.a[d]).join(' · ');
-      return `<button type="button" class="vrow${x.c === v.c ? ' is-current' : ''}" data-code="${esc(x.c)}"><img src="${mini(q.e)}" alt="" loading="lazy"><span class="vrow-code">${esc(x.c)}</span><span>${esc(lab)}</span></button>`;
-    }).join('');
-  } else vl.hidden = true;
 
   const add = $('#fichaAdd');
   const inSel = SEL.some(s => s.c === v.c);
@@ -527,22 +454,18 @@ function renderFicha() {
   $('#fichaWeb').href = `/familia/${m.f}`;
 }
 $('#fichaOpts').addEventListener('click', e => {
-  const b = e.target.closest('.chip');
-  if (!b) return;
-  const d = b.dataset.dim, val = b.dataset.val;
-  let next = { ...fsel, [d]: val };
-  if (!variantFor(fm, next)) {
-    const alt = fm.v.find(x => x.a[d] === val);
-    if (alt) next = { ...alt.a };
-  }
-  fsel = next;
-  renderFicha();
+  if (!e.target.closest('#fichaJump')) return;
+  const body = $('#fichaBody');
+  body.scrollTo({ top: body.scrollTop + $('#fichaVariants').getBoundingClientRect().top - body.getBoundingClientRect().top - 8, behavior: 'smooth' });
 });
 $('#fichaVariants').addEventListener('click', e => {
   const b = e.target.closest('.vrow');
   if (!b) return;
   const x = fm.v.find(v => v.c === b.dataset.code);
-  if (x) { fsel = { ...x.a }; renderFicha(); }
+  if (!x) return;
+  fsel = { ...x.a };
+  renderFicha();
+  $('#fichaBody').scrollTo({ top: 0, behavior: 'smooth' });
 });
 $('#fichaAdd').addEventListener('click', () => {
   const v = variantFor(fm, fsel) || fm.v[0];
@@ -552,15 +475,9 @@ $('#fichaAdd').addEventListener('click', () => {
   renderFicha();
   toast(`Añadida la ref. ${v.c} a tu selección`);
 });
-$('#fichaThumbs').addEventListener('click', e => {
-  const b = e.target.closest('.ficha-thumb');
-  if (!b) return;
-  fview = +b.dataset.view;
-  renderFicha();
-});
 $('#fichaImgBtn').addEventListener('click', () => {
   const v = variantFor(fm, fsel) || fm.v[0];
-  openZoom(CAT[v.c], fview ? $('#fichaImg').getAttribute('src') : null);
+  openZoom(CAT[v.c]);
 });
 $('#fichaDownload').addEventListener('click', () => {
   const v = variantFor(fm, fsel) || fm.v[0];
@@ -590,10 +507,10 @@ function saveBlob(blob, name) {
 
 /* ── Visor de ampliación ── */
 const zoom = $('#zoom');
-function openZoom(p, src) {
+function openZoom(p) {
   const img = $('#zoomImg');
-  img.src = src || ficha(p.e);
-  img.alt = src ? `Foto de producto: ${p.n}` : `Ficha de ${p.n}`;
+  img.src = ficha(p.e);
+  img.alt = `Ficha de ${p.n}`;
   $('#zoomTitle').textContent = `Ref. ${p.c} · ${p.n}`;
   zoom.classList.remove('is-zoomed');
   img.style.width = '';
