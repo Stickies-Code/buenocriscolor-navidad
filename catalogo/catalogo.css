@@ -219,8 +219,10 @@ input[type="range"].scrub-range {
 
 /* Portada */
 .cover .pg-bleed::after { background: linear-gradient(180deg, rgba(0, 6, 63, 0.55) 0%, rgba(0, 6, 63, 0.18) 34%, rgba(0, 6, 63, 0.88) 74%); }
-.cover-logo { position: absolute; top: 7cqw; left: 7cqw; z-index: 2; width: 34cqw; }
-.cover-logo img { width: 100%; height: auto; filter: brightness(0) invert(1); }
+/* Escaparate a altura completa (como object-fit: cover) con el logo vectorial dentro del cartel */
+.cover-stage { position: absolute; top: 0; bottom: 0; left: 50%; aspect-ratio: 2048 / 1152; transform: translateX(-50%); background: url('/img/hero.webp?v=3') center / 100% 100% no-repeat; }
+.cover-stage.is-sign { background: none; z-index: 2; }
+.cover-sign { position: absolute; left: 50.07%; top: 25.9%; width: 26%; height: auto; transform: translate(-50%, -50%); filter: drop-shadow(0 0 0.35cqw rgba(255, 210, 140, 0.55)); }
 .cover-season { position: absolute; top: 7.4cqw; right: 7cqw; z-index: 2; font-size: 1.9cqw; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255, 255, 255, 0.85); font-weight: 600; text-align: right; line-height: 1.5; }
 .cover-title { font-family: var(--font-display); font-size: 15cqw; line-height: 0.92; letter-spacing: -0.015em; }
 .cover-title span { color: var(--gold-bright); display: block; }

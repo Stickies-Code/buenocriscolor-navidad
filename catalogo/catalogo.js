@@ -193,8 +193,8 @@ function build() {
   // 0 · Portada
   PAGES.push({ kind: 'cover', html: () => `
     <div class="pg-bleed">
-      <img src="/img/hero.webp" alt="" draggable="false">
-      <div class="cover-logo"><img src="/img/logo.png" alt="Criscolor" draggable="false"></div>
+      <div class="cover-stage"></div>
+      <div class="cover-stage is-sign"><img class="cover-sign" src="/img/logo-cartel.svg" alt="Criscolor" draggable="false"></div>
       <div class="cover-season">Campaña<br>Navidad 2026</div>
       <div class="pg-bleed-content">
         <div class="cover-title">Catálogo<span>Navidad 2026</span></div>
