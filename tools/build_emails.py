@@ -2,8 +2,8 @@
 """Genera las campañas de email de Navidad 2026 (HTML compatible con Klaviyo).
 
 Salida en /email:
-  navidad-1-lanzamiento.html          → para pegar en Klaviyo (con etiquetas de Klaviyo)
-  navidad-2-mas-pedidos.html          → idem
+  navidad-a-imprescindibles.html      → correo A, para pegar en Klaviyo (con etiquetas de Klaviyo)
+  navidad-b-calendario.html           → correo B, idem
   preview/…                           → mismas piezas con las etiquetas resueltas, para verlas en el navegador
 
 Cambiar BASE cuando la web se publique en su dominio definitivo y volver a ejecutar.
@@ -75,6 +75,8 @@ def head(title, preheader):
     .stack {{ padding-left: 0 !important; padding-right: 0 !important; }}
     .stack-pad {{ padding: 0 0 18px 0 !important; }}
     .col3 {{ max-width: 50% !important; }}
+    .keep3 {{ max-width: 33.33% !important; }}
+    .keep3 p {{ font-size: 12px !important; line-height: 16px !important; }}
     .h1 {{ font-size: 34px !important; line-height: 38px !important; }}
     .h2 {{ font-size: 27px !important; line-height: 32px !important; }}
     .fluid {{ width: 100% !important; max-width: 100% !important; }}
@@ -260,130 +262,227 @@ def urgency(title, text):
 </td></tr>'''
 
 
-# ── Campaña 1 · Lanzamiento ─────────────────────────────────
+# ── Productos «imprescindibles» (datos del catálogo) ───────────
 
-def email_lanzamiento():
-    h = head('Ya está aquí el Catálogo Navidad 2026 · Criscolor',
-             '790 referencias en 12 familias. Ábrelo, elige y prepara tu pedido antes de que empiece la campaña.')
-    h += topbar('Campaña Navidad 2026')
-    h += f'''
-<!-- Hero -->
-<tr><td><a href="{CAT}"><img src="{IMG}hero.jpg" width="600" alt="Escaparate navideño de Criscolor" class="fluid" style="width:600px;max-width:100%;"></a></td></tr>
-<tr><td class="px" style="padding:40px 40px 42px;background:{NAVY};">
-  {kicker('Nueva campaña · Navidad 2026', GOLD)}
-  <h1 class="h1" style="margin:0 0 16px;font-family:{SERIF};font-weight:400;font-size:44px;line-height:48px;color:#FFFFFF;">La Navidad ya ha llegado a <span style="color:{GOLD};">Criscolor</span></h1>
-  {p('Hola{% if first_name %} {{ first_name }}{% endif %}, ya tienes disponible el catálogo completo de la campaña: papel de regalo, bolsas, lazos, cajas, globos, decoración, vajilla y calefacción. Todo lo que tu tienda necesita para la temporada, en un solo sitio y listo para pedir.', color='#C9CCE6', mb=28)}
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-    <td class="stack stack-pad" valign="top" style="padding:0 8px 0 0;">{button('Abrir el catálogo interactivo', CAT)}</td>
-    <td class="stack" valign="top" style="padding:0 0 0 8px;">{button('Ver la web de la campaña', BASE + '/', bg=NAVY, fg='#FFFFFF', border='#FFFFFF')}</td>
+P = {
+    '44981': dict(name='Papá Noel en escalera', img='decoracion.gif', gif=True,
+                  pack='40, 70 y 100 cm · paquete de 6',
+                  why='Se ve desde la calle. Colgado en tu escaparate se vende solo, y el cliente lo quiere para su ventana o balcón.'),
+    '44011': dict(name='Globos Reyes Magos 110 cm', img='globos.gif', gif=True,
+                  pack='Pack de 3 globos · paquete de 12',
+                  why='Melchor, Gaspar y Baltasar a tamaño gigante. Es el reclamo de la semana de Reyes y alarga tu campaña hasta el 6 de enero.'),
+    '45045': dict(name='Papel Regalo Stars', img='p-papel-2.jpg',
+                  pack='Expositor de 60 rollos · 5 diseños surtidos',
+                  why='Llega en expositor listo para el mostrador. Cinco colores con estrellas doradas que combinan con cualquier regalo.'),
+    '45049': dict(name='Papel Regalo Reyes Magos', img='p-papel-1.jpg',
+                  pack='Expositor de 60 rollos · 5 diseños surtidos',
+                  why='El papel que se pide para los regalos del 6 de enero. Con él alargas tus ventas hasta el 6 de enero.'),
+    '45033': dict(name='Sacos navideños', img='p-sacos-2.jpg',
+                  pack='12 uds surtidas · cinta incluida',
+                  why='Para juguetes y regalos grandes que no se pueden envolver. Venta segura en diciembre y cero trabajo en el mostrador.'),
+    '44251': dict(name='Cañón de confeti Gold 40 cm', img='p-fiesta-1.jpg',
+                  pack='Paquete de 12 · también 30 y 60 cm',
+                  why='Nochevieja, cumpleaños y celebraciones. Compra de impulso que se vende por unidades y se repite todo el año.'),
+    '44988': dict(name='Gafas Fin de Año 2027', img='pf-44988.jpg',
+                  pack='4 modelos surtidos · paquete de 12',
+                  why='Junto a la caja, imprescindibles para la foto de Nochevieja. Fáciles de vender por unidad.'),
+    '42650': dict(name='Bolsa de papel kraft con asa', img='p-bolsas-1.jpg',
+                  pack='6 medidas · paquete de 25',
+                  why='La bolsa que se vende todo el año y se dispara en diciembre. En kraft, blanco y colores.'),
+    '43030': dict(name='Lazos estrella adhesivos', img='p-lazos-2.jpg',
+                  pack='Bandeja de 100 uds · metalizados',
+                  why='El remate de cada regalo. Una venta añadida en el mostrador que casi nadie rechaza.'),
+    '44611': dict(name='Vasos y platos metalizados oro', img='p-vajilla-1.jpg',
+                  pack='6 uds por paquete · oro, plata y rojo',
+                  why='La mesa de Nochebuena y Nochevieja. Se venden juntos, vasos y platos a juego.'),
+}
+
+
+def rank_row(n, code, big=False):
+    """Una posición del ranking: número, imagen y por qué se vende."""
+    d = P[code]
+    href = ref_url(code)
+    num = f'<p style="margin:0;font-family:{SERIF};font-size:46px;line-height:46px;color:{GOLD_DARK};">{n:02d}</p>'
+    info = f"""<p style="margin:0 0 4px;font-family:{SANS};font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:{TEXT2};font-weight:700;">Ref. {code}</p>
+      <h3 style="margin:0 0 8px;font-family:{SERIF};font-weight:400;font-size:{26 if big else 22}px;line-height:{30 if big else 26}px;color:{TEXT};">{d['name']}</h3>
+      <p style="margin:0 0 10px;font-family:{SANS};font-size:14px;line-height:22px;color:{TEXT2};"><strong style="color:{TEXT};">Por qué se vende:</strong> {d['why']}</p>
+      <p style="margin:0 0 12px;font-family:{SANS};font-size:13px;line-height:19px;color:{GOLD_DARK};font-weight:700;">{d['pack']}</p>
+      <a href="{href}" style="font-family:{SANS};font-size:14px;font-weight:700;color:{INK};text-decoration:none;">Ver ficha en el catálogo &rarr;</a>"""
+    if big:
+        return f"""
+<tr><td class="px" style="padding:0 40px 36px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr><td style="padding:0 0 14px;">{num}</td></tr>
+    <tr><td><a href="{href}"><img src="{IMG}{d['img']}" width="520" alt="{d['name']}" class="fluid" style="width:520px;max-width:100%;border-radius:14px;"></a></td></tr>
+    <tr><td style="padding:18px 0 0;">{info}</td></tr>
+  </table>
+</td></tr>"""
+    return f"""
+<tr><td class="px" style="padding:0 40px 30px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid {LINE};"><tr>
+    <td class="stack" width="64" valign="top" style="padding:22px 0 0;">{num}</td>
+    <td class="stack stack-pad" width="190" valign="top" style="padding:24px 18px 0 0;"><a href="{href}"><img src="{IMG}{d['img']}" width="190" alt="{d['name']}" class="fluid" style="width:190px;max-width:100%;border-radius:12px;"></a></td>
+    <td class="stack" valign="top" style="padding:24px 0 0;">{info}</td>
   </tr></table>
-</td></tr>'''
-    h += stats([('790', 'referencias'), ('12', 'familias'), ('24 h', 'respuesta')])
-    h += media_block('bobinas.gif', fam_url('bobinas'), 'Bobina de papel de regalo de elfos desenrollándose',
-                     'Míralo en movimiento', 'Bobinas de 62 cm con diseños exclusivos',
-                     'Elfos, liso oro, plata y metalizados en formato profesional para envolver en mostrador. Tus clientes se llevan el regalo listo.',
-                     'Ver las bobinas de regalo')
-    h += f'''
-<tr><td class="px" style="padding:40px 40px 18px;border-top:1px solid {LINE};">
-  {kicker('Lo más destacado')}{h2('Los productos estrella de la temporada')}{p('Una selección de lo que más pedirán tus clientes. Toca cualquier producto para ver su ficha completa en el catálogo.', mb=6)}
-</td></tr>'''
-    h += product_pair([
-        ('p-papel-2.jpg', 'Papel Regalo Stars 70 cm × 2 m', '45045', '60 rollos en 5 diseños surtidos.', ref_url('45045')),
-        ('p-globos-1.jpg', 'Globos Reyes Magos 110 cm', '44011', 'Melchor, Gaspar y Baltasar en foil metalizado.', ref_url('44011')),
-    ])
-    h += product_pair([
-        ('p-lazos-2.jpg', 'Lazos Estrella adhesivos', '43030', 'Metalizados, en bandejas de 36 a 100 unidades.', ref_url('43030')),
-        ('p-cajas-1.jpg', 'Cajas Navidad Metal Oro', '44090', 'Set de 3 tamaños surtidos.', ref_url('44090')),
-    ])
-    h += f'<tr><td class="px" style="padding:4px 40px 40px;">{button("Ver todos los destacados", BASE + "/#destacados", bg="#FFFFFF", fg=INK, border=INK)}</td></tr>'
-    h += families_grid()
-    h += media_block('decoracion.gif', ref_url('44981'), 'Papá Noel en escalera colgado en una ventana',
-                     'Decoración que vende', 'Papá Noel en escalera',
-                     'El clásico que no falta en ningún escaparate. Disponible en 40, 70 y 100 cm.',
-                     'Ver Papá Noel en escalera')
-    h += urgency('No esperes a diciembre',
-                 'Las referencias más pedidas se agotan pronto. Reserva ahora tu stock de campaña y asegúrate el surtido completo para tu tienda.')
-    h += steps()
+</td></tr>"""
+
+
+def order_steps(title='Así se pide'):
+    st = [('1', 'Haz tu selección', 'Abre el catálogo interactivo y añade las referencias que quieras con sus cantidades.'),
+          ('2', 'Descárgala en Excel', 'Con un toque tienes tu pedido con referencias, EAN y unidades por caja.'),
+          ('3', 'Envíala o llámanos', 'Mándala a tu comercial o llama al (+34) 961 53 21 09 y te damos precio.')]
+    cells = ''.join(f"""<td class="stack stack-pad" width="33%" valign="top" style="padding:0 16px 0 0;">
+      <p style="margin:0 0 10px;width:38px;height:38px;line-height:38px;border-radius:19px;background:{GOLD};color:{NAVY};font-family:{SANS};font-size:16px;font-weight:700;text-align:center;">{n}</p>
+      <p style="margin:0 0 4px;font-family:{SANS};font-size:15px;font-weight:700;color:#FFFFFF;">{t}</p>
+      <p style="margin:0;font-family:{SANS};font-size:13px;line-height:20px;color:#B9BCD6;">{d}</p>
+    </td>""" for n, t, d in st)
+    return f"""
+<tr><td class="px" style="padding:44px 40px 10px;background:{NAVY};">
+  {kicker(title, GOLD)}{h2('Tu pedido, en tres pasos', color='#FFFFFF')}
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:14px;"><tr>{cells}</tr></table>
+</td></tr>
+<tr><td class="px" style="padding:22px 40px 44px;background:{NAVY};">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+    <td class="stack stack-pad" valign="top" style="padding:0 8px 0 0;">{button('Hacer mi selección', CAT)}</td>
+    <td class="stack" valign="top" style="padding:0 0 0 8px;">{button('Llamar a mi comercial', 'tel:+34961532109', bg=NAVY, fg='#FFFFFF', border='#FFFFFF')}</td>
+  </tr></table>
+</td></tr>"""
+
+
+# ── Correo A · Los 10 imprescindibles ───────────────────────
+
+def email_imprescindibles():
+    h = head('Los 10 imprescindibles de tu tienda esta Navidad · Criscolor',
+             'Nuestra selección de lo que más rota en bazares y tiendas de regalo. Que no te falte ninguno.')
+    h += topbar('Selección Navidad 2026')
+    h += f"""
+<tr><td class="px" style="padding:44px 40px 36px;background:{PAPER};border-top:1px solid {LINE};">
+  {kicker('Top 10 · Navidad 2026')}
+  <h1 class="h1" style="margin:0 0 18px;font-family:{SERIF};font-weight:400;font-size:46px;line-height:50px;color:{TEXT};">Los 10 imprescindibles de tu tienda esta&nbsp;Navidad</h1>
+  {p('Hola{% if first_name %} {{ first_name }}{% endif %}, de las 790 referencias de nuestro catálogo de Navidad, estas son las diez que no deberían faltar en tu tienda. Son productos de rotación alta, fáciles de vender y que tus clientes van a buscar. Te contamos por qué funciona cada uno.', mb=26)}
+  {button('Ver el catálogo completo', CAT, bg=INK, fg='#FFFFFF', full=False)}
+</td></tr>
+<tr><td class="px" style="padding:40px 40px 22px;">
+  {kicker('Los dos que más llaman la atención')}{h2('Empieza por el escaparate')}
+</td></tr>"""
+    h += rank_row(1, '44981', big=True)
+    h += rank_row(2, '44011', big=True)
+    h += f"""
+<tr><td class="px" style="padding:8px 40px 6px;">
+  {kicker('Envolver y regalar')}{h2('Lo que se vende cada día de diciembre')}
+</td></tr>"""
+    for n, c in [(3, '45045'), (4, '45049'), (5, '45033'), (6, '42650'), (7, '43030')]:
+        h += rank_row(n, c)
+    h += f"""
+<tr><td class="px" style="padding:8px 40px 6px;">
+  {kicker('Nochebuena y Nochevieja')}{h2('La fiesta también se compra en tu tienda')}
+</td></tr>"""
+    for n, c in [(8, '44251'), (9, '44988'), (10, '44611')]:
+        h += rank_row(n, c)
+    h += f"""
+<tr><td class="px" style="padding:6px 40px 40px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:{GOLD_SOFT};border-radius:14px;"><tr>
+    <td class="stack stack-pad" width="150" valign="middle" style="padding:20px 0 20px 20px;"><a href="{ref_url('44884')}"><img src="{IMG}p-calefaccion-1.jpg" width="130" alt="Calefactor Atlas" style="width:130px;border-radius:10px;"></a></td>
+    <td class="stack" valign="middle" style="padding:20px 22px;">
+      <p style="margin:0 0 4px;font-family:{SANS};font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:{GOLD_DARK};font-weight:700;">Y además, el frío</p>
+      <p style="margin:0 0 6px;font-family:{SERIF};font-size:22px;line-height:26px;color:{TEXT};">Calefactores y estufas</p>
+      <p style="margin:0 0 10px;font-family:{SANS};font-size:14px;line-height:21px;color:#4B3B17;">La compra de invierno que llega con el primer frío. Calefactor Atlas de 2000 W, en blanco y negro.</p>
+      <a href="{fam_url('calefaccion')}" style="font-family:{SANS};font-size:14px;font-weight:700;color:{INK};text-decoration:none;">Ver calefacción &rarr;</a>
+    </td>
+  </tr></table>
+</td></tr>"""
+    h += order_steps('¿Te lo preparamos?')
     return h + foot()
 
 
-# ── Campaña 2 · Lo más pedido ───────────────────────────────
+# ── Correo B · Calendario de ventas ─────────────────────────
 
-def alt_row(img, href, kick, title, text, meta, flip=False, is_gif=False):
-    """Fila imagen + texto (alterna lados en ordenador, apila en móvil)."""
-    img_td = f'''<td class="stack stack-pad" width="50%" valign="middle" style="padding:{'0 0 0 12px' if flip else '0 12px 0 0'};">
-      <a href="{href}"><img src="{IMG}{img}" width="254" alt="{title}" class="fluid" style="width:100%;max-width:100%;border-radius:14px;"></a>
-    </td>'''
-    txt_td = f'''<td class="stack" width="50%" valign="middle" style="padding:{'0 12px 0 0' if flip else '0 0 0 12px'};">
-      {kicker(kick)}
-      <h3 style="margin:0 0 8px;font-family:{SERIF};font-weight:400;font-size:25px;line-height:29px;color:{TEXT};">{title}</h3>
-      {p(text, size=15, mb=10)}
-      <p style="margin:0 0 14px;font-family:{SANS};font-size:13px;line-height:19px;color:{GOLD_DARK};font-weight:700;">{meta}</p>
-      <a href="{href}" style="font-family:{SANS};font-size:15px;font-weight:700;color:{INK};text-decoration:none;">Ver ficha en el catálogo &rarr;</a>
-    </td>'''
-    # En móvil la imagen debe ir siempre primero: con dir=rtl se invierte el orden visual solo en ordenador
-    if flip:
-        row = f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" dir="rtl"><tr>{img_td.replace("<td ", "<td dir=\"ltr\" ", 1)}{txt_td.replace("<td ", "<td dir=\"ltr\" ", 1)}</tr></table>'
-    else:
-        row = f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>{img_td}{txt_td}</tr></table>'
-    return f'<tr><td class="px" style="padding:0 40px 34px;">{row}</td></tr>'
+def mini_card(code, img, name, pack, cls='col3'):
+    return f"""<!--[if mso]><td width="177" valign="top"><![endif]--><div class="{cls}" style="display:inline-block;width:100%;max-width:177px;vertical-align:top;font-size:14px;">
+      <div style="padding:0 6px 18px;"><a href="{ref_url(code)}" style="text-decoration:none;">
+        <img src="{IMG}{img}" width="165" alt="{name}" class="fluid" style="width:100%;max-width:100%;border-radius:10px;background:#FFFFFF;">
+        <p style="margin:10px 0 0;font-family:{SANS};font-size:14px;line-height:18px;font-weight:700;color:#FFFFFF;">{name}</p>
+        <p style="margin:3px 0 0;font-family:{SANS};font-size:12px;line-height:17px;color:#B9BCD6;">{pack}</p>
+      </a></div>
+    </div><!--[if mso]></td><![endif]-->"""
 
 
-def email_mas_pedidos():
-    h = head('Lo que más se va a vender esta Navidad · Criscolor',
-             'Novedades 2026, los productos más pedidos y cómo tenerlo todo en tu tienda a tiempo.')
-    h += topbar('Novedades · Navidad 2026')
-    h += f'''
-<tr><td class="px" style="padding:40px 40px 30px;background:{NAVY};">
-  {kicker('Novedades 2026', GOLD)}
-  <h1 class="h1" style="margin:0 0 16px;font-family:{SERIF};font-weight:400;font-size:44px;line-height:48px;color:#FFFFFF;">Lo que más se va a vender <span style="color:{GOLD};">esta Navidad</span></h1>
-  {p('Hola{% if first_name %} {{ first_name }}{% endif %}, hemos reunido las referencias que más rotan en campaña y las novedades de este año. Prepara tu tienda con tiempo y que no te falte nada cuando lleguen las prisas.', color='#C9CCE6', mb=0)}
-</td></tr>
-<tr><td style="background:{NAVY};padding:0 40px;" class="px">
-  <a href="{ref_url('44251')}"><img src="{IMG}fiesta.gif" width="520" alt="Cañón de confeti dorado disparándose" class="fluid" style="width:520px;max-width:100%;border-radius:14px;"></a>
-</td></tr>
-<tr><td class="px" style="padding:22px 40px 42px;background:{NAVY};">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-    <td class="stack stack-pad" valign="middle" style="padding:0 12px 0 0;">
-      <p style="margin:0;font-family:{SANS};font-size:15px;line-height:22px;color:#FFFFFF;font-weight:700;">Cañón Fiesta Gold 40 cm</p>
-      <p style="margin:2px 0 0;font-family:{SANS};font-size:13px;line-height:19px;color:#B9BCD6;">Ref. 44251 · Para Nochevieja y celebraciones</p>
-    </td>
-    <td class="stack" valign="middle" width="220" style="padding:0;">{button('Ver novedades', fam_url('fiesta'))}</td>
+def phase(n, when, title, text, cards, gif=None, gif_href=None, gif_alt=''):
+    g = ''
+    if gif:
+        g = f"""<tr><td class="px" style="padding:0 40px 22px;background:{NAVY};"><a href="{gif_href}"><img src="{IMG}{gif}" width="520" alt="{gif_alt}" class="fluid" style="width:520px;max-width:100%;border-radius:14px;"></a></td></tr>"""
+    return f"""
+<tr><td class="px" style="padding:40px 40px 18px;background:{NAVY};border-top:1px solid #1B2160;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;"><tr>
+    <td style="background:{GOLD};border-radius:20px;padding:6px 14px;font-family:{SANS};font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:{NAVY};">Fase {n} · {when}</td>
   </tr></table>
+  <h2 class="h2" style="margin:16px 0 10px;font-family:{SERIF};font-weight:400;font-size:32px;line-height:36px;color:#FFFFFF;">{title}</h2>
+  {p(text, color='#C9CCE6', mb=6)}
 </td></tr>
-<tr><td class="px" style="padding:44px 40px 26px;">
-  {kicker('Los imprescindibles')}{h2('Las referencias que no pueden faltar')}{p('Cinco productos que tus clientes buscarán esta campaña. Toca cualquiera para ver su ficha, medidas y unidades por caja.', mb=0)}
-</td></tr>'''
-    h += alt_row('p-papel-2.jpg', ref_url('45045'), 'Papel de regalo', 'Papel Regalo Stars',
-                 'Estrellas doradas sobre cinco colores, en expositor listo para colocar en tienda.',
-                 '60 rollos de 70 cm × 2 m · 5 diseños surtidos')
-    h += alt_row('sacos.gif', ref_url('45033'), 'Sacos navideños', 'Sacos para regalos grandes',
-                 'La solución rápida para juguetes y regalos voluminosos: se mete, se cierra y listo.',
-                 'Paquetes de 12 uds surtidas · Cinta incluida', flip=True)
-    h += alt_row('globos.gif', ref_url('44011'), 'Globos', 'Globos Reyes Magos 110 cm',
-                 'Melchor, Gaspar y Baltasar en foil metalizado. El reclamo perfecto para la semana de Reyes.',
-                 'Pack de 3 globos · 110 cm de alto')
-    h += alt_row('p-vajilla-1.jpg', ref_url('44611'), 'Vajilla desechable', 'Vasos metalizados oro',
-                 'Para las mesas de Nochebuena y Nochevieja. También en plata, rojo y verde, y con platos a juego.',
-                 'Vaso de cartón 270 cc · 6 uds por paquete', flip=True)
-    h += alt_row('p-calefaccion-1.jpg', ref_url('44884'), 'Calefacción', 'Calefactor Atlas 2000 W',
-                 'El invierno también se vende: calefactores cerámicos y estufas en varios modelos y acabados.',
-                 'Blanco y negro · 26,5 cm · 2000 W')
-    h += f'''
-<tr><td class="px" style="padding:6px 40px 44px;">{button('Ver el catálogo completo', CAT, bg=INK, fg='#FFFFFF')}</td></tr>
-<tr><td class="px" style="padding:40px;background:{PAPER};">
-  {kicker('Para tu escaparate')}{h2('Envolver, decorar y regalar')}{p('Completa la venta con lazos, pegatinas y cajas a juego con el papel. Pequeños complementos que suben el ticket de cada cliente.', mb=22)}
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-    <td width="33%" valign="top" style="padding:0 6px 0 0;"><a href="{fam_url('lazos')}" style="text-decoration:none;"><img src="{IMG}p-lazos-2.jpg" width="168" alt="Lazos estrella" class="fluid" style="width:100%;border-radius:10px;"><p style="margin:8px 0 0;font-family:{SANS};font-size:14px;font-weight:700;color:{TEXT};">Lazos y cintas</p></a></td>
-    <td width="33%" valign="top" style="padding:0 3px;"><a href="{fam_url('pegatinas')}" style="text-decoration:none;"><img src="{IMG}p-pegatinas-2.jpg" width="168" alt="Pegatinas de ventana" class="fluid" style="width:100%;border-radius:10px;"><p style="margin:8px 0 0;font-family:{SANS};font-size:14px;font-weight:700;color:{TEXT};">Pegatinas</p></a></td>
-    <td width="33%" valign="top" style="padding:0 0 0 6px;"><a href="{fam_url('cajas')}" style="text-decoration:none;"><img src="{IMG}p-cajas-1.jpg" width="168" alt="Cajas metalizadas" class="fluid" style="width:100%;border-radius:10px;"><p style="margin:8px 0 0;font-family:{SANS};font-size:14px;font-weight:700;color:{TEXT};">Cajas</p></a></td>
+{g}
+<tr><td class="px" style="padding:4px 34px 18px;background:{NAVY};font-size:0;line-height:0;">
+  <!--[if mso]><table role="presentation" width="531" cellpadding="0" cellspacing="0" border="0"><tr><![endif]-->{'<!--[if mso]></tr><tr><![endif]-->'.join(''.join(mini_card(*c, cls='col3' if len(cards) > 3 else 'col3 keep3') for c in cards[i:i + 3]) for i in range(0, len(cards), 3))}<!--[if mso]></tr></table><![endif]-->
+</td></tr>"""
+
+
+def email_calendario():
+    h = head('Tu calendario de ventas de Navidad · Criscolor',
+             'Qué vender en cada momento, de noviembre a Reyes, y cuándo pedirlo para no quedarte sin stock.')
+    h += topbar('Planifica tu campaña')
+    h += f"""
+<tr><td><a href="{CAT}"><img src="{IMG}hero.jpg" width="600" alt="Escaparate navideño de Criscolor" class="fluid" style="width:600px;max-width:100%;"></a></td></tr>
+<tr><td class="px" style="padding:40px 40px 36px;background:{NAVY};">
+  {kicker('De noviembre a Reyes', GOLD)}
+  <h1 class="h1" style="margin:0 0 16px;font-family:{SERIF};font-weight:400;font-size:44px;line-height:48px;color:#FFFFFF;">Tu calendario de ventas de <span style="color:{GOLD};">Navidad</span></h1>
+  {p('Hola{% if first_name %} {{ first_name }}{% endif %}, la campaña de Navidad no es un solo momento: son cuatro, y en cada uno tu cliente busca cosas distintas. Te lo hemos ordenado para que tengas en tienda lo que toca, justo cuando toca.', color='#C9CCE6', mb=22)}
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;background:#0B1257;border-radius:14px;"><tr>
+    <td style="padding:16px 18px;font-family:{SANS};font-size:14px;line-height:22px;color:#FFFFFF;"><strong style="color:{GOLD};">Consejo:</strong> pide cada fase con 3 o 4 semanas de antelación. Lo más vendido es lo primero que se agota.</td>
   </tr></table>
-  <div style="height:24px;line-height:24px;font-size:0;">&nbsp;</div>
-  {button('Ver todas las familias', BASE + '/#familias', bg='#FFFFFF', fg=INK, border=INK)}
-</td></tr>'''
-    h += urgency('Cuanto antes pidas, mejor surtido',
-                 'En campaña de Navidad las referencias más vendidas se agotan rápido. Pide ahora tus precios y deja tu pedido preparado con tu comercial.')
-    h += steps()
+</td></tr>"""
+    h += phase(1, 'Noviembre', 'Viste el escaparate',
+               'Lo primero que ve tu cliente es tu escaparate. Decoración que se vende sola y anuncia que en tu tienda ya es Navidad.',
+               [('44981', 'p-decoracion-1.jpg', 'Papá Noel en escalera', '40, 70 y 100 cm'),
+                ('44984', 'pf-44984.jpg', 'Figura Papá Noel 40 cm', 'Con caja expositora'),
+                ('44117', 'pf-44117.jpg', 'Globos «Feliz Navidad»', 'Letras de 33 cm'),
+                ('44814', 'p-pegatinas-2.jpg', 'Pegatinas de ventana', 'Metalizadas, surtidas'),
+                ('44816', 'p-pegatinas-1.jpg', 'Pegatinas 3D', 'Diseños surtidos'),
+                ('44018', 'pf-44018.jpg', 'Plantillas huellas', 'Pack de 3')])
+    h += phase(2, '1 – 24 de diciembre', 'Temporada de regalos',
+               'El pico de ventas. Todo lo necesario para envolver y llevar: papel, bobinas, bolsas, lazos, cajas y sacos.',
+               [('45045', 'p-papel-2.jpg', 'Papel Regalo Stars', 'Expositor de 60 rollos'),
+                ('42650', 'p-bolsas-1.jpg', 'Bolsa kraft con asa', '6 medidas'),
+                ('06375', 'p-lazos-1.jpg', 'Lazo automático rojo', 'Paquete de 12'),
+                ('44090', 'p-cajas-1.jpg', 'Cajas metal oro', '3 tamaños surtidos'),
+                ('45033', 'p-sacos-2.jpg', 'Sacos navideños', 'Cinta incluida'),
+                ('43030', 'p-lazos-2.jpg', 'Lazos estrella', 'Bandeja de 100 uds')],
+               gif='bobinas.gif', gif_href=ref_url('44950'), gif_alt='Bobina de papel de regalo de elfos desenrollándose')
+    h += phase(3, '24 – 31 de diciembre', 'La mesa y la fiesta',
+               'Nochebuena y Nochevieja se compran a última hora. Vajilla a juego, confeti, gafas y las bolsas para las uvas.',
+               [('44611', 'p-vajilla-1.jpg', 'Vasos metalizados', 'Oro, plata y rojo'),
+                ('44782', 'p-vajilla-2.jpg', 'Platos metalizados', 'A juego con los vasos'),
+                ('44988', 'pf-44988.jpg', 'Gafas Fin de Año 2027', '4 modelos surtidos'),
+                ('43424', 'pf-43424.jpg', 'Bolsas uvas de la suerte', '12 uds por paquete'),
+                ('44251', 'p-fiesta-1.jpg', 'Cañón de confeti Gold', '30, 40 y 60 cm'),
+                ('44115', 'pf-44115.jpg', 'Globos «Happy New Year»', 'Letras oro de 30 cm')],
+               gif='fiesta.gif', gif_href=ref_url('44251'), gif_alt='Cañón de confeti dorado disparándose')
+    h += phase(4, '1 – 6 de enero', 'Llegan los Reyes',
+               'La campaña no acaba en Nochevieja. Los regalos de Reyes te dan una semana más de ventas: papel, bolsas y cajas con Melchor, Gaspar y Baltasar.',
+               [('44011', 'p-globos-1.jpg', 'Globos Reyes Magos', '110 cm · pack de 3'),
+                ('45049', 'p-papel-1.jpg', 'Papel Reyes Magos', 'Expositor de 60 rollos'),
+                ('44979', 'pf-44979.jpg', 'Bandera Reyes Magos', '2 × 1,5 m · 2 modelos'),
+                ('44985', 'pf-44985.jpg', 'Figuras Reyes Magos', '44 cm · los tres Reyes'),
+                ('43967', 'pf-43967.jpg', 'Bolsas Reyes Magos', '12 uds surtidas'),
+                ('44968', 'pf-44968.jpg', 'Cajas Reyes Magos', '10 tamaños surtidos')])
+    h += f"""
+<tr><td class="px" style="padding:40px;background:{GOLD_SOFT};">
+  {kicker('Venta a profesionales', GOLD_DARK)}{h2('¿Quieres que te ayudemos a planificarlo?')}
+  {p('Tu comercial te prepara el pedido de cada fase según el tamaño de tu tienda y lo que más te funcionó el año pasado. Llámanos o escríbenos y lo vemos juntos.', color='#4B3B17', mb=22)}
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+    <td class="stack stack-pad" valign="top" style="padding:0 8px 0 0;">{button('Llamar al (+34) 961 53 21 09', 'tel:+34961532109', bg=NAVY, fg='#FFFFFF')}</td>
+    <td class="stack" valign="top" style="padding:0 0 0 8px;">{button('Escribir a comercial', 'mailto:comercial@criscolor.com?subject=Pedido%20campa%C3%B1a%20Navidad%202026', bg='#FFFFFF', fg=NAVY, border=NAVY)}</td>
+  </tr></table>
+</td></tr>"""
+    h += order_steps('O hazlo tú en dos minutos')
     return h + foot()
 
 
@@ -396,7 +495,7 @@ def preview(html):
 
 if __name__ == '__main__':
     os.makedirs(os.path.join(ROOT, 'preview'), exist_ok=True)
-    for name, fn in [('navidad-1-lanzamiento', email_lanzamiento), ('navidad-2-mas-pedidos', email_mas_pedidos)]:
+    for name, fn in [('navidad-a-imprescindibles', email_imprescindibles), ('navidad-b-calendario', email_calendario)]:
         html = fn()
         open(os.path.join(ROOT, name + '.html'), 'w', encoding='utf-8').write(html)
         open(os.path.join(ROOT, 'preview', name + '.html'), 'w', encoding='utf-8').write(preview(html))
