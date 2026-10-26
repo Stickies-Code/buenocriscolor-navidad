@@ -76,6 +76,8 @@ def head(title, preheader):
     .stack-pad {{ padding: 0 0 18px 0 !important; }}
     .col3 {{ max-width: 50% !important; }}
     .keep3 {{ max-width: 33.33% !important; }}
+    .col2 {{ max-width: 50% !important; }}
+    .col2 p {{ font-size: 15px !important; line-height: 20px !important; }}
     .keep3 p {{ font-size: 12px !important; line-height: 16px !important; }}
     .h1 {{ font-size: 34px !important; line-height: 38px !important; }}
     .h2 {{ font-size: 27px !important; line-height: 32px !important; }}
@@ -486,6 +488,73 @@ def email_calendario():
     return h + foot()
 
 
+# ── Correo B · Sencillo: «Ya tenemos la Navidad» ─────────────
+
+def big_button(text, href, bg, fg, border=None):
+    b = border or bg
+    return f"""<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:separate;"><tr>
+  <td align="center" bgcolor="{bg}" style="border-radius:14px;background:{bg};">
+    <a href="{href}" style="display:block;padding:18px 20px;font-family:{SANS};font-size:19px;line-height:24px;font-weight:700;color:{fg};text-decoration:none;border-radius:14px;border:2px solid {b};background:{bg};">{text}</a>
+  </td></tr></table>"""
+
+
+def simple_card(code, img, name, line):
+    href = ref_url(code)
+    return f"""<!--[if mso]><td width="265" valign="top"><![endif]--><div class="col2" style="display:inline-block;width:100%;max-width:265px;vertical-align:top;font-size:16px;">
+      <div style="padding:0 8px 22px;"><a href="{href}" style="text-decoration:none;">
+        <img src="{IMG}{img}" width="249" alt="{name}" class="fluid" style="width:100%;max-width:100%;border-radius:12px;border:1px solid {LINE};">
+        <p style="margin:12px 0 2px;font-family:{SANS};font-size:18px;line-height:23px;font-weight:700;color:{TEXT};">{name}</p>
+        <p style="margin:0 0 10px;font-family:{SANS};font-size:15px;line-height:21px;color:{TEXT2};">{line}</p>
+        <span style="font-family:{SANS};font-size:16px;font-weight:700;color:{INK};">Ver producto &rarr;</span>
+      </a></div>
+    </div><!--[if mso]></td><![endif]-->"""
+
+
+def email_sencillo():
+    h = head('Ya tenemos lo de Navidad para tu tienda · Criscolor',
+             'Papá Noel en escalera, globos de Reyes, papel de regalo y mucho más. Míralo en un minuto.')
+    h += topbar('Campaña Navidad 2026')
+    h += f"""
+<tr><td><a href="{CAT}"><img src="{IMG}hero.jpg" width="600" alt="Escaparate de Navidad de Criscolor" class="fluid" style="width:600px;max-width:100%;"></a></td></tr>
+<tr><td class="px" align="center" style="padding:40px 40px 36px;background:{NAVY};">
+  <h1 class="h1" style="margin:0 0 16px;font-family:{SERIF};font-weight:400;font-size:44px;line-height:50px;color:#FFFFFF;text-align:center;">Ya tenemos lo de <span style="color:{GOLD};">Navidad</span> para tu tienda</h1>
+  <p style="margin:0 0 28px;font-family:{SANS};font-size:19px;line-height:29px;color:#DADCF0;text-align:center;">Hola{{% if first_name %}} {{{{ first_name }}}}{{% endif %}}, lo que más se vende estas fiestas ya está en Criscolor. Echa un vistazo y haz tu pedido antes de que se agote.</p>
+  {big_button('Ver todos los productos', CAT, GOLD, NAVY)}
+  <div style="height:12px;line-height:12px;font-size:0;">&nbsp;</div>
+  {big_button('Llamar al 961 53 21 09', 'tel:+34961532109', NAVY, '#FFFFFF', border='#FFFFFF')}
+</td></tr>
+<tr><td class="px" align="center" style="padding:40px 40px 22px;">
+  <h2 class="h2" style="margin:0 0 8px;font-family:{SERIF};font-weight:400;font-size:32px;line-height:37px;color:{TEXT};text-align:center;">Lo que más vas a vender</h2>
+  <p style="margin:0;font-family:{SANS};font-size:17px;line-height:26px;color:{TEXT2};text-align:center;">Toca cualquier producto para verlo.</p>
+</td></tr>
+<tr><td class="px" style="padding:0 32px 10px;font-size:0;line-height:0;">
+  <!--[if mso]><table role="presentation" width="536" cellpadding="0" cellspacing="0" border="0"><tr><![endif]-->"""
+    cards = [
+        ('44981', 'p-decoracion-1.jpg', 'Papá Noel en escalera', 'Para el escaparate y la ventana'),
+        ('44011', 'p-globos-1.jpg', 'Globos Reyes Magos', 'Gigantes, de 110 cm'),
+        ('45045', 'p-papel-2.jpg', 'Papel de regalo', 'Rollos de 2 y 5 metros'),
+        ('42650', 'p-bolsas-1.jpg', 'Bolsas de regalo', 'Kraft, blancas y de colores'),
+        ('45033', 'p-sacos-2.jpg', 'Sacos de regalo', 'Para los regalos grandes'),
+        ('44251', 'p-fiesta-1.jpg', 'Cañón de confeti', 'Para Nochevieja'),
+    ]
+    rows = []
+    for i in range(0, len(cards), 2):
+        rows.append(''.join(simple_card(*c) for c in cards[i:i + 2]))
+    h += '<!--[if mso]></tr><tr><![endif]-->'.join(rows)
+    h += f"""<!--[if mso]></tr></table><![endif]-->
+</td></tr>
+<tr><td class="px" style="padding:0 40px 44px;">{big_button('Ver el catálogo completo', CAT, INK, '#FFFFFF')}</td></tr>
+<tr><td class="px" align="center" style="padding:40px;background:{GOLD_SOFT};">
+  <h2 class="h2" style="margin:0 0 10px;font-family:{SERIF};font-weight:400;font-size:32px;line-height:37px;color:{TEXT};text-align:center;">¿Hacemos tu pedido?</h2>
+  <p style="margin:0 0 24px;font-family:{SANS};font-size:18px;line-height:27px;color:#4B3B17;text-align:center;">Llámanos y te lo preparamos. Así de fácil.</p>
+  {big_button('Llamar al 961 53 21 09', 'tel:+34961532109', NAVY, '#FFFFFF')}
+  <div style="height:12px;line-height:12px;font-size:0;">&nbsp;</div>
+  {big_button('Escribir un email', 'mailto:comercial@criscolor.com?subject=Pedido%20Navidad%202026', '#FFFFFF', NAVY, border=NAVY)}
+  <p style="margin:20px 0 0;font-family:{SANS};font-size:15px;line-height:22px;color:#4B3B17;text-align:center;">De lunes a viernes, de 8:00 a 13:30 y de 15:30 a 18:00</p>
+</td></tr>"""
+    return h + foot()
+
+
 def preview(html):
     """Resuelve las etiquetas de Klaviyo para ver el correo en el navegador."""
     return (html.replace('{% if first_name %} {{ first_name }}{% endif %}', '')
@@ -495,7 +564,7 @@ def preview(html):
 
 if __name__ == '__main__':
     os.makedirs(os.path.join(ROOT, 'preview'), exist_ok=True)
-    for name, fn in [('navidad-a-imprescindibles', email_imprescindibles), ('navidad-b-calendario', email_calendario)]:
+    for name, fn in [('navidad-a-imprescindibles', email_imprescindibles), ('navidad-b-sencillo', email_sencillo)]:
         html = fn()
         open(os.path.join(ROOT, name + '.html'), 'w', encoding='utf-8').write(html)
         open(os.path.join(ROOT, 'preview', name + '.html'), 'w', encoding='utf-8').write(preview(html))
