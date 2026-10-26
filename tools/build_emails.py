@@ -511,17 +511,17 @@ def simple_card(code, img, name, line):
 
 
 def email_sencillo():
-    h = head('Ya tenemos lo de Navidad para tu tienda · Criscolor',
+    h = head('Ya ha llegado la Navidad a Criscolor',
              'Papá Noel en escalera, globos de Reyes, papel de regalo y mucho más. Míralo en un minuto.')
     h += topbar('Campaña Navidad 2026')
     h += f"""
 <tr><td><a href="{CAT}"><img src="{IMG}hero.jpg" width="600" alt="Escaparate de Navidad de Criscolor" class="fluid" style="width:600px;max-width:100%;"></a></td></tr>
 <tr><td class="px" align="center" style="padding:40px 40px 36px;background:{NAVY};">
-  <h1 class="h1" style="margin:0 0 16px;font-family:{SERIF};font-weight:400;font-size:44px;line-height:50px;color:#FFFFFF;text-align:center;">Ya tenemos lo de <span style="color:{GOLD};">Navidad</span> para tu tienda</h1>
-  <p style="margin:0 0 28px;font-family:{SANS};font-size:19px;line-height:29px;color:#DADCF0;text-align:center;">Hola{{% if first_name %}} {{{{ first_name }}}}{{% endif %}}, lo que más se vende estas fiestas ya está en Criscolor. Echa un vistazo y haz tu pedido antes de que se agote.</p>
-  {big_button('Ver todos los productos', CAT, GOLD, NAVY)}
+  <h1 class="h1" style="margin:0 0 16px;font-family:{SERIF};font-weight:400;font-size:44px;line-height:50px;color:#FFFFFF;text-align:center;">Ya ha llegado la <span style="color:{GOLD};">Navidad</span> a Criscolor</h1>
+  <p style="margin:0 0 28px;font-family:{SANS};font-size:19px;line-height:29px;color:#DADCF0;text-align:center;">Hola{{% if first_name %}} {{{{ first_name }}}}{{% endif %}}, ya tienes disponibles los productos que más se venden estas fiestas. Échales un vistazo y haz tu pedido antes de que se agoten.</p>
+  {big_button('Ver catálogo', CAT, GOLD, NAVY)}
   <div style="height:12px;line-height:12px;font-size:0;">&nbsp;</div>
-  {big_button('Llamar al 961 53 21 09', 'tel:+34961532109', NAVY, '#FFFFFF', border='#FFFFFF')}
+  {big_button('Contacta con nosotros', BASE + '/#contacto', NAVY, '#FFFFFF', border='#FFFFFF')}
 </td></tr>
 <tr><td class="px" align="center" style="padding:40px 40px 22px;">
   <h2 class="h2" style="margin:0 0 8px;font-family:{SERIF};font-weight:400;font-size:32px;line-height:37px;color:{TEXT};text-align:center;">Lo que más vas a vender</h2>
@@ -543,14 +543,13 @@ def email_sencillo():
     h += '<!--[if mso]></tr><tr><![endif]-->'.join(rows)
     h += f"""<!--[if mso]></tr></table><![endif]-->
 </td></tr>
-<tr><td class="px" style="padding:0 40px 44px;">{big_button('Ver el catálogo completo', CAT, INK, '#FFFFFF')}</td></tr>
+<tr><td class="px" style="padding:0 40px 44px;">{big_button('Ver catálogo completo', CAT, INK, '#FFFFFF')}</td></tr>
 <tr><td class="px" align="center" style="padding:40px;background:{GOLD_SOFT};">
-  <h2 class="h2" style="margin:0 0 10px;font-family:{SERIF};font-weight:400;font-size:32px;line-height:37px;color:{TEXT};text-align:center;">¿Hacemos tu pedido?</h2>
-  <p style="margin:0 0 24px;font-family:{SANS};font-size:18px;line-height:27px;color:#4B3B17;text-align:center;">Llámanos y te lo preparamos. Así de fácil.</p>
-  {big_button('Llamar al 961 53 21 09', 'tel:+34961532109', NAVY, '#FFFFFF')}
+  <h2 class="h2" style="margin:0 0 10px;font-family:{SERIF};font-weight:400;font-size:32px;line-height:37px;color:{TEXT};text-align:center;">Solicita tu catálogo y precios</h2>
+  <p style="margin:0 0 24px;font-family:{SANS};font-size:18px;line-height:27px;color:#4B3B17;text-align:center;">Déjanos tus datos y te contestamos en menos de 24 horas.</p>
+  {big_button('Contacta con nosotros', BASE + '/#contacto', NAVY, '#FFFFFF')}
   <div style="height:12px;line-height:12px;font-size:0;">&nbsp;</div>
-  {big_button('Escribir un email', 'mailto:comercial@criscolor.com?subject=Pedido%20Navidad%202026', '#FFFFFF', NAVY, border=NAVY)}
-  <p style="margin:20px 0 0;font-family:{SANS};font-size:15px;line-height:22px;color:#4B3B17;text-align:center;">De lunes a viernes, de 8:00 a 13:30 y de 15:30 a 18:00</p>
+  {big_button('Ver catálogo', CAT, '#FFFFFF', NAVY, border=NAVY)}
 </td></tr>"""
     return h + foot()
 
