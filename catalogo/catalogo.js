@@ -8,8 +8,6 @@
 'use strict';
 
 
-const PER_PAGE = 6;
-const FEATURE = 3;
 const SEL_KEY = 'cc-catalogo-seleccion';
 const DIM_ORDER = ['Medida', 'Color', 'Cantidad', 'Capas', 'Modelo', 'Composición'];
 const DIM_LABEL = { Medida: 'Medida', Color: 'Color', Cantidad: 'Cantidad', Capas: 'Capas', Modelo: 'Modelo', 'Composición': 'Composición' };
@@ -23,7 +21,7 @@ MODELS.forEach(m => m.v.forEach(v => { MODEL_OF[v.c] = m.id; }));
 
 const foto = e => `/productos/foto/${e}.webp`;
 const mini = e => `/productos/mini/${e}.webp`;
-const ficha = e => `/productos/ficha/${e}.webp`;
+const ficha = e => `/productos/ficha-hd/${e}.webp`;   // ficha recortada a su contenido, a 1024 px
 const IMG_V = { bobinas: '?v=2' }; // subir al cambiar una portada
 const famImg = id => `/img/familias/${id}.webp${IMG_V[id] || ''}`;
 const famCard = id => `/img/familias/${id}-card.webp`;
@@ -76,12 +74,12 @@ const FAMILY_PAGE = {};    // id familia → página de apertura
 
 /* Fotos extra de una variante (o de la misma variante en otra medida/cantidad) */
 
-function tileHTML(m, feature) {
+function tileHTML(m) {
   const lead = CAT[m.k];
   const n = m.v.length;
   const colors = m.d.includes('Color') ? [...new Set(m.v.map(v => v.a.Color))] : [];
   const sizes = m.d.includes('Medida') ? [...new Set(m.v.map(v => v.a.Medida))] : [];
-  const sw = colors.filter(swatchFor).slice(0, feature ? 10 : 6);
+  const sw = colors.filter(swatchFor).slice(0, 8);
   const more = colors.length - sw.length;
   let meta;
   if (n === 1) meta = `<span>Ref. ${esc(lead.c)}</span>`;
@@ -92,30 +90,33 @@ function tileHTML(m, feature) {
   }
   return `
     <div class="tile" role="button" tabindex="0" data-model="${m.id}" aria-label="${esc(m.t)}${n > 1 ? `, ${n} variantes` : ''}">
-      <div class="tile-img"><img src="${foto(lead.e)}" alt="" loading="lazy" draggable="false"></div>
-      <div class="tile-body">
-        ${feature ? `<span class="tile-kicker">${m.s ? 'Producto destacado' : esc(FAM[m.f].name)}</span>` : ''}
-        <span class="tile-name">${esc(m.t)}</span>
+      <div class="tile-img"><img data-src="${ficha(lead.e)}" alt="" draggable="false"></div>
+      <div class="tile-cap">
+        <span class="tile-name">${m.s ? `<span class="tile-star" title="Producto destacado">${I.star}</span>` : ''}${esc(m.t)}</span>
         <span class="tile-meta">${meta}</span>
-        ${feature ? `<span class="tile-cta">Ver ficha ${I.arrow}</span>` : ''}
+        <span class="tile-cta">Ver ficha ${I.arrow}</span>
       </div>
-      <div class="tile-badges">${m.s ? `<span class="tile-star" title="Producto destacado">${I.star}</span>` : ''}</div>
     </div>`;
 }
 
-/* Relleno de los huecos de la última página de cada familia */
-function fillerHTML(f, free) {
-  if (free <= 0) return '';
-  let out = '';
-  if (free % 2) out += `
-    <div class="filler is-cell" role="button" tabindex="0" data-href="/familia/${f.id}">
-      <span class="filler-kicker">${f.count} referencias</span>
-      <span class="filler-title">Toda la familia en la web</span>
-      <span class="filler-cta">Ver ${esc(f.name)} ${I.arrow}</span>
-    </div>`;
-  const rows = Math.floor(free / 2);
-  if (rows) out += `
-    <div class="filler is-row" style="grid-row: span ${rows}" role="button" tabindex="0" data-href="/#contacto">
+/* Reparto variable: páginas de 2 y 3 fichas, sin dejar nunca una ficha sola */
+function chunkSizes(n) {
+  if (n <= 3) return [n];
+  const out = [];
+  let rem = n, k = 0;
+  while (rem > 0) {
+    let size = k % 2 ? 3 : 2;
+    if (rem <= 3) size = rem;
+    else if (rem - size === 1) size = size === 2 ? 3 : 2;
+    out.push(size); rem -= size; k++;
+  }
+  return out;
+}
+
+/* Relleno cuando una familia tiene un solo modelo en la página */
+function fillerHTML(f) {
+  return `
+    <div class="filler" role="button" tabindex="0" data-href="/#contacto">
       <span class="filler-body">
         <span class="filler-kicker">Venta a profesionales</span>
         <span class="filler-title">¿Te interesa ${esc(f.name)}?</span>
@@ -123,7 +124,6 @@ function fillerHTML(f, free) {
         <span class="filler-cta">Solicitar precios ${I.arrow}</span>
       </span>
     </div>`;
-  return out;
 }
 
 function head(f, label) {
@@ -189,7 +189,7 @@ function build() {
     FAMILY_PAGE[f.id] = start;
     PAGES.push({ kind: 'opener', family: f.id, html: () => `
       <div class="pg-bleed">
-        <img src="${famImg(f.id)}" alt="" loading="lazy" draggable="false">
+        <img data-src="${famImg(f.id)}" alt="" draggable="false">
         <div class="pg-bleed-top"><span>Familia ${f.num} de 12</span><span>Navidad 2026</span></div>
         <div class="pg-bleed-content">
           <div class="opener-num">${f.num}</div>
@@ -198,16 +198,16 @@ function build() {
           <div class="opener-meta"><span><strong>${list.length}</strong> modelos</span><span><strong>${f.count}</strong> referencias</span><span><strong>${list.filter(m => m.s).length}</strong> ${list.filter(m => m.s).length === 1 ? 'destacado' : 'destacados'}</span></div>
         </div>
       </div>` });
-    const chunks = [list.slice(0, FEATURE)];
-    for (let k = FEATURE; k < list.length; k += PER_PAGE) chunks.push(list.slice(k, k + PER_PAGE));
-    chunks.forEach((chunk, ci) => {
+    let k = 0;
+    chunkSizes(list.length).forEach(size => {
+      const chunk = list.slice(k, k + size); k += size;
       const idx = PAGES.length;
       chunk.forEach(m => { MODEL_PAGE[m.id] = idx; });
-      const feature = ci === 0 && chunk.length === FEATURE;
+      const first = idx === start + 1;
       PAGES.push({ kind: 'grid', family: f.id, html: i => `
         <div class="pg">
-          ${head(f, ci === 0 ? 'Selección destacada' : `${plural(chunk.length, 'modelo', 'modelos')}`)}
-          <div class="pg-grid${feature ? ' is-feature' : ''}">${chunk.map((m, j) => tileHTML(m, feature && j === 0)).join('')}${feature ? '' : fillerHTML(f, PER_PAGE - chunk.length)}</div>
+          ${head(f, first && chunk.some(m => m.s) ? 'Selección destacada' : plural(chunk.length, 'modelo', 'modelos'))}
+          <div class="pg-grid n${chunk.length}">${chunk.map(m => tileHTML(m)).join('')}${chunk.length === 1 ? fillerHTML(f) : ''}</div>
           ${foot(i)}
         </div>` });
     });
@@ -264,7 +264,7 @@ function layout() {
   const cs = getComputedStyle(stage);
   const availW = r.width - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
   const availH = r.height - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
-  const ratio = 3 / 4;
+  const ratio = 0.62;   // página alta: caben 2 o 3 fichas grandes
   const spread = availW >= 700 && availW > availH * 1.05;
   const pageW = Math.floor(Math.min(spread ? availW / 2 : availW, availH * ratio));
   return { spread, pageW, pageH: Math.floor(pageW / ratio) };
@@ -330,6 +330,17 @@ function onPage() {
   $('#nextBtn').disabled = current >= LAST || (vis.length > 1 && vis[1] >= LAST);
   try { history.replaceState(null, '', first ? `#p${first}` : location.pathname + location.search); } catch (e) {}
   vis.forEach(i => { const v = host.querySelector(`.page[data-index="${i}"] video`); if (v) v.play().catch(() => {}); });
+  loadNear();
+}
+/* Carga perezosa: solo las imágenes de las páginas cercanas a la actual */
+function loadNear() {
+  const from = Math.max(0, current - 3), to = Math.min(LAST, current + 6);
+  for (let i = from; i <= to; i++) {
+    host.querySelectorAll(`.page[data-index="${i}"] img[data-src]`).forEach(img => {
+      img.src = img.dataset.src;
+      img.removeAttribute('data-src');
+    });
+  }
 }
 function goTo(i) {
   if (!flip) return;
@@ -343,21 +354,50 @@ $('#nextBtn').addEventListener('click', () => flip && flip.flipNext());
 range.addEventListener('input', () => { range.style.setProperty('--pct', `${(range.value / LAST) * 100}%`); });
 range.addEventListener('change', () => goTo(+range.value));
 
-/* Toques en el libro: abrir ficha sin interferir con el deslizamiento */
+/* Toques en el libro: abrir ficha sin interferir con el deslizamiento.
+   En móvil la librería del libro anula el «click» al tocar, así que el toque
+   se detecta a mano (touchstart → touchend sin apenas movimiento). */
+function activate(target) {
+  const tile = target.closest('.tile');
+  if (tile) { openModel(tile.dataset.model); return true; }
+  const go = target.closest('[data-goto]');
+  if (go) { goTo(+go.dataset.goto); return true; }
+  const link = target.closest('[data-href]');
+  if (link) { window.open(link.dataset.href, '_blank', 'noopener'); return true; }
+  return false;
+}
 let down = null;
-host.addEventListener('pointerdown', e => {
-  down = { x: e.clientX, y: e.clientY, t: Date.now() };
-  const tile = e.target.closest('.tile');
+let lastTouch = 0;
+function press(target) {
+  const tile = target.closest('.tile');
   if (tile) { tile.classList.add('is-pressed'); setTimeout(() => tile.classList.remove('is-pressed'), 180); }
+}
+host.addEventListener('touchstart', e => {
+  const t = e.changedTouches[0];
+  down = { x: t.clientX, y: t.clientY, t: Date.now(), multi: e.touches.length > 1 };
+  press(e.target);
+}, { capture: true, passive: true });
+host.addEventListener('touchend', e => {
+  lastTouch = Date.now();
+  if (!down || down.multi) return;
+  const t = e.changedTouches[0];
+  const moved = Math.hypot(t.clientX - down.x, t.clientY - down.y);
+  const quick = Date.now() - down.t < 600;
+  down = null;
+  if (moved < 12 && quick) {
+    const target = document.elementFromPoint(t.clientX, t.clientY) || e.target;
+    if (activate(target)) e.preventDefault();
+  }
+}, { capture: true });
+host.addEventListener('pointerdown', e => {
+  if (e.pointerType === 'touch') return;
+  down = { x: e.clientX, y: e.clientY, t: Date.now() };
+  press(e.target);
 }, true);
 host.addEventListener('click', e => {
+  if (Date.now() - lastTouch < 800) return;   // ya gestionado por el toque
   if (down && (Math.hypot(e.clientX - down.x, e.clientY - down.y) > 10 || Date.now() - down.t > 700)) return;
-  const tile = e.target.closest('.tile');
-  if (tile) { openModel(tile.dataset.model); return; }
-  const go = e.target.closest('[data-goto]');
-  if (go) { goTo(+go.dataset.goto); return; }
-  const link = e.target.closest('[data-href]');
-  if (link) window.open(link.dataset.href, '_blank', 'noopener');
+  activate(e.target);
 });
 host.addEventListener('keydown', e => {
   if (e.key !== 'Enter' && e.key !== ' ') return;
@@ -396,6 +436,9 @@ document.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click
 /* ── Ficha ── */
 let fm = null;      // modelo abierto
 let fsel = {};      // selección de dimensiones
+/* En pantalla ancha se desplaza la columna de datos; en móvil, toda la ficha */
+const WIDE = window.matchMedia('(min-width: 900px) and (min-height: 560px)');
+const fScroller = () => WIDE.matches ? $('#fichaInfo') : $('#fichaBody');
 function variantFor(m, sel) { return m.v.find(v => m.d.every(d => v.a[d] === sel[d])); }
 function openModel(id, code) {
   const m = MODEL[id];
@@ -407,7 +450,7 @@ function openModel(id, code) {
   $('#fichaTitle').textContent = m.t;
   renderFicha();
   showSheet('fichaSheet');
-  $('#fichaBody').scrollTop = 0;
+  fScroller().scrollTop = 0;
 }
 function renderFicha() {
   const m = fm;
@@ -455,7 +498,7 @@ function renderFicha() {
 }
 $('#fichaOpts').addEventListener('click', e => {
   if (!e.target.closest('#fichaJump')) return;
-  const body = $('#fichaBody');
+  const body = fScroller();
   body.scrollTo({ top: body.scrollTop + $('#fichaVariants').getBoundingClientRect().top - body.getBoundingClientRect().top - 8, behavior: 'smooth' });
 });
 $('#fichaVariants').addEventListener('click', e => {
@@ -465,7 +508,7 @@ $('#fichaVariants').addEventListener('click', e => {
   if (!x) return;
   fsel = { ...x.a };
   renderFicha();
-  $('#fichaBody').scrollTo({ top: 0, behavior: 'smooth' });
+  fScroller().scrollTo({ top: 0, behavior: 'smooth' });
 });
 $('#fichaAdd').addEventListener('click', () => {
   const v = variantFor(fm, fsel) || fm.v[0];
