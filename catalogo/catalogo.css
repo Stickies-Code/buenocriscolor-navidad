@@ -361,8 +361,8 @@ input[type="range"].scrub-range {
 }
 .result:hover, .result:focus-visible { background: var(--paper); }
 .result img { width: 56px; height: 56px; object-fit: contain; border-radius: 10px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); }
-.result-name { font-size: 0.92rem; font-weight: 650; line-height: 1.3; }
-.result-sub { font-size: 0.8rem; color: var(--text-3); margin-top: 2px; font-variant-numeric: tabular-nums; }
+.result-name { display: block; font-size: 0.92rem; font-weight: 650; line-height: 1.3; }
+.result-sub { display: block; font-size: 0.8rem; color: var(--text-3); margin-top: 2px; font-variant-numeric: tabular-nums; }
 .result-page { font-size: 0.78rem; font-weight: 700; color: var(--ink); white-space: nowrap; }
 .empty { padding: 36px 10px; text-align: center; color: var(--text-2); font-size: 0.94rem; line-height: 1.6; }
 .empty strong { color: var(--text); }
@@ -377,8 +377,8 @@ input[type="range"].scrub-range {
 .idx-row:hover { background: var(--paper); }
 .idx-row.is-current { background: var(--ink-soft); }
 .idx-row img { width: 64px; height: 48px; object-fit: cover; border-radius: 10px; }
-.idx-name { font-weight: 700; font-size: 0.96rem; }
-.idx-sub { font-size: 0.8rem; color: var(--text-3); margin-top: 2px; }
+.idx-name { display: block; font-weight: 700; font-size: 0.96rem; }
+.idx-sub { display: block; font-size: 0.8rem; color: var(--text-3); margin-top: 2px; }
 .idx-page { font-size: 0.82rem; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
 .idx-sep { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); margin: 18px 8px 8px; }
 

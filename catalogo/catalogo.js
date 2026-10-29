@@ -195,7 +195,7 @@ function build() {
           <div class="opener-num">${f.num}</div>
           <h2 class="opener-name">${esc(f.name)}</h2>
           <p class="opener-desc">${esc(f.desc)}</p>
-          <div class="opener-meta"><span><strong>${list.length}</strong> modelos</span><span><strong>${f.count}</strong> referencias</span><span><strong>${list.filter(m => m.s).length}</strong> destacados</span></div>
+          <div class="opener-meta"><span><strong>${list.length}</strong> modelos</span><span><strong>${f.count}</strong> referencias</span><span><strong>${list.filter(m => m.s).length}</strong> ${list.filter(m => m.s).length === 1 ? 'destacado' : 'destacados'}</span></div>
         </div>
       </div>` });
     const chunks = [list.slice(0, FEATURE)];
@@ -639,7 +639,7 @@ function renderSelection() {
       <img src="${mini(p.e)}" alt="" data-open="${esc(s.c)}">
       <div>
         <div class="sel-name" data-open="${esc(s.c)}">${esc(m.v.length > 1 ? m.t : p.n)}</div>
-        <div class="sel-sub">Ref. ${esc(p.c)}${lab ? ` · ${esc(lab)}` : ''} · ${p.x || '—'} uds/caja</div>
+        <div class="sel-sub">Ref. ${esc(p.c)}${lab ? ` · ${esc(lab)}` : ''} · ${p.x || '—'} ${p.x == 1 ? 'ud' : 'uds'}/caja</div>
         <div class="sel-ctrl">
           <span style="display:inline-flex;align-items:center"><span class="stepper"><button type="button" data-step="-1" aria-label="Una caja menos">−</button><input type="number" min="1" inputmode="numeric" value="${s.q}" aria-label="Cajas de la ref. ${esc(p.c)}"><button type="button" data-step="1" aria-label="Una caja más">+</button></span><span class="stepper-unit">${s.q === 1 ? 'caja' : 'cajas'}</span></span>
           <button type="button" class="sel-remove" data-remove>Quitar</button>

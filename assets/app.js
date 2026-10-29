@@ -50,8 +50,8 @@ function productCardHTML(p) {
         <div class="product-card-ref">Ref. ${p.ref}</div>
         <div class="product-card-name">${escHTML(p.name)}</div>
         <div class="product-card-specs">
-          ${p.uds ? `<span class="spec-chip">${ICON.box} ${p.uds} uds/caja</span>` : ''}
-          ${p.pack ? `<span class="spec-chip">${ICON.pack} ${p.pack} uds/paquete</span>` : ''}
+          ${p.uds ? `<span class="spec-chip">${ICON.box} ${p.uds} ${p.uds == 1 ? 'ud' : 'uds'}/caja</span>` : ''}
+          ${p.pack ? `<span class="spec-chip">${ICON.pack} ${p.pack} ${p.pack == 1 ? 'ud' : 'uds'}/paquete</span>` : ''}
         </div>
         <div class="product-card-footer">
           <div class="product-card-ean">EAN ${p.ean}</div>
@@ -91,8 +91,8 @@ function openProduct(code) {
   document.getElementById('modalDesc').textContent = `Referencia de la familia ${p.familyName} del catálogo Navidad 2026. Venta exclusiva a profesionales: consulta precios y disponibilidad con nuestro equipo comercial.`;
   document.getElementById('modalRef').textContent = p.ref;
   document.getElementById('modalEan').textContent = p.ean;
-  document.getElementById('modalUds').textContent = p.uds ? `${p.uds} unidades` : '—';
-  document.getElementById('modalMedida').textContent = p.pack ? `${p.pack} unidades` : '—';
+  document.getElementById('modalUds').textContent = p.uds ? `${p.uds} ${p.uds == 1 ? 'unidad' : 'unidades'}` : '—';
+  document.getElementById('modalMedida').textContent = p.pack ? `${p.pack} ${p.pack == 1 ? 'unidad' : 'unidades'}` : '—';
   const surt = document.getElementById('modalSurtRow');
   if (surt) { surt.hidden = !raw.s; document.getElementById('modalSurt').textContent = surtidoCorto(raw.s); }
   const cont = document.getElementById('modalContRow');

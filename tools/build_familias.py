@@ -79,7 +79,7 @@ for f in FAMS:
     <div class="hero-meta">
       <span>Familia <strong>{e['num']}</strong> de 12</span>
       <span><strong>{e['count']}</strong> referencias</span>
-      <span><strong>{stars}</strong> destacados</span>
+      <span><strong>{stars}</strong> {'destacado' if stars == 1 else 'destacados'}</span>
       <span>Temporada <strong>2026</strong></span>
     </div>
   </div>
