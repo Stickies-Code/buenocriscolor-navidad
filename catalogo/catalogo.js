@@ -245,6 +245,7 @@ build();
 const LAST = PAGES.length - 1;
 
 /* ═══ LIBRO (StPageFlip) ═══ */
+const TOUCH = window.matchMedia('(pointer: coarse)').matches || ('ontouchstart' in window && navigator.maxTouchPoints > 0);
 let flip = null;
 let mode = null;
 let current = 0;
@@ -285,7 +286,8 @@ function initBook(startAt) {
     width: L.pageW, height: L.pageH, size: 'fixed',
     showCover: true, usePortrait: !L.spread, autoSize: false,
     maxShadowOpacity: 0.45, flippingTime: 760,
-    mobileScrollSupport: false, disableFlipByClick: true, showPageCorners: true,
+    mobileScrollSupport: false, disableFlipByClick: true, showPageCorners: !TOUCH,
+    useMouseEvents: !TOUCH,   // en pantallas táctiles el deslizamiento lo gestionamos nosotros (más fácil)
     startPage: Math.max(0, Math.min(LAST, startAt || 0)),
   });
   flip.loadFromHTML(book.querySelectorAll('.page'));
@@ -381,12 +383,19 @@ host.addEventListener('touchend', e => {
   lastTouch = Date.now();
   if (!down || down.multi) return;
   const t = e.changedTouches[0];
+  const start = down;
   const moved = Math.hypot(t.clientX - down.x, t.clientY - down.y);
   const quick = Date.now() - down.t < 600;
   down = null;
+  const dx = t.clientX - start.x, dy = t.clientY - start.y;
   if (moved < 12 && quick) {
     const target = document.elementFromPoint(t.clientX, t.clientY) || e.target;
     if (activate(target)) e.preventDefault();
+    return;
+  }
+  // Deslizar a un lado en cualquier punto de la página, sin prisa ni esquinas
+  if (TOUCH && flip && Math.abs(dx) > 35 && Math.abs(dx) > Math.abs(dy) * 1.1) {
+    if (dx < 0) flip.flipNext(); else flip.flipPrev();
   }
 }, { capture: true });
 host.addEventListener('pointerdown', e => {
