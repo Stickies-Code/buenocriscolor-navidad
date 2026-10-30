@@ -137,12 +137,14 @@ function build() {
   // 0 · Portada
   PAGES.push({ kind: 'cover', html: () => `
     <div class="pg-bleed">
-      <div class="cover-stage"></div>
-      <div class="cover-stage is-sign"><img class="cover-sign" src="/img/logo-cartel.svg" alt="Criscolor" draggable="false"></div>
-      <div class="cover-season">Campaña<br>Invierno 2026</div>
-      <div class="pg-bleed-content">
-        <div class="cover-title">Catálogo<span>Invierno 2026</span></div>
-        <p class="cover-sub">Papel de regalo, bolsas, lazos, cajas, globos, decoración, vajilla y calefacción para surtir tu tienda esta temporada.</p>
+      <div class="cover-bg"></div>
+      <div class="cover-center">
+        <img class="cover-logo" src="/img/logo-cartel.svg" alt="Criscolor" draggable="false">
+        <div class="cover-eyebrow">Catálogo</div>
+        <div class="cover-title">Invierno <em>2026</em></div>
+        <div class="cover-kicker"><span>Calefacción</span><i>·</i><span>Papel de regalo</span><i>·</i><span>Embalaje</span></div>
+      </div>
+      <div class="cover-foot">
         <div class="cover-meta"><span><strong>${TOTAL_REFS}</strong> referencias</span><span><strong>${MODELS.length}</strong> modelos</span><span><strong>12</strong> familias</span></div>
         <div class="cover-hint">Desliza para abrir ${I.arrow}</div>
       </div>
@@ -643,7 +645,7 @@ function renderIndex() {
   const vis = visiblePages();
   const curFam = PAGES[vis[vis.length - 1]].family;
   $('#indexList').innerHTML = `
-    <button type="button" class="idx-row" data-goto="0"><img src="/img/hero-m.webp" alt=""><span><span class="idx-name">Portada</span><span class="idx-sub">Índice y cómo usar el catálogo</span></span><span class="idx-page">Pág. 1</span></button>
+    <button type="button" class="idx-row" data-goto="0"><img src="/img/invierno-m.webp" alt=""><span><span class="idx-name">Portada</span><span class="idx-sub">Índice y cómo usar el catálogo</span></span><span class="idx-page">Pág. 1</span></button>
     <div class="idx-sep">Familias</div>
     ${FAMILIES.map(f => `
       <button type="button" class="idx-row${curFam === f.id ? ' is-current' : ''}" data-goto="${FAMILY_PAGE[f.id]}">

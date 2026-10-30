@@ -861,43 +861,38 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 ═══════════════════════════════════════════════════════════ */
 
 /* Hero de portada: imagen optimizada */
-/* Hero: escaparate Criscolor. La foto lleva el cartel vacío y el logo va encima
-   en vector, anclado al cartel (coordenadas en % de la foto 2048×1152). */
-.hero-bg { background: none; container-type: size; overflow: hidden; }
-.hero-stage {
-  position: absolute; left: 50%;
-  width: max(100cqw, 177.778cqh); aspect-ratio: 2048 / 1152;
-  top: calc((100cqh - max(56.25cqw, 100cqh)) * 0.28);
-  transform: translateX(-50%);
-  background: url('/img/hero.webp?v=3') center / 100% 100% no-repeat;
-}
-.hero-logo {
-  position: absolute; left: 50.07%; top: 25.9%; width: 27.4%; height: auto;
-  transform: translate(-50%, -50%);
-  color: #fff6e4;
-  filter: drop-shadow(0 0 0.35vw rgba(255, 210, 140, 0.55));
-}
-.hero { align-items: flex-end; }
+/* Hero: Campaña Invierno 2026. Fondo de nieve sobre azul Criscolor; logo y textos en vivo. */
+.hero { align-items: center; }
+.hero-bg { background: url('/img/invierno.webp?v=1') center / cover no-repeat; }
 .hero-overlay {
   background:
-    linear-gradient(180deg, rgba(0, 6, 63, 0.55) 0%, rgba(0, 6, 63, 0) 18%),
-    linear-gradient(0deg, rgba(0, 6, 63, 0.96) 0%, rgba(0, 6, 63, 0.84) 30%, rgba(0, 6, 63, 0.35) 46%, rgba(0, 6, 63, 0) 60%);
+    radial-gradient(56% 50% at 50% 50%, rgba(0, 6, 63, 0.32) 0%, rgba(0, 6, 63, 0) 72%),
+    linear-gradient(180deg, rgba(0, 6, 63, 0.5) 0%, rgba(0, 6, 63, 0) 20%, rgba(0, 6, 63, 0) 72%, rgba(0, 6, 63, 0.55) 100%);
 }
-.hero-content { text-align: center; padding-top: 0; padding-bottom: 56px; }
-.hero h1 { max-width: none; margin-left: auto; margin-right: auto; font-size: clamp(2.6rem, 4.6vw, 4.4rem); line-height: 1.02; margin-bottom: 30px; text-shadow: 0 2px 24px rgba(0, 6, 63, 0.85), 0 0 60px rgba(0, 6, 63, 0.6); }
+.hero-content { display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 112px; padding-bottom: 48px; }
+.hero-logo { display: block; width: clamp(220px, 23vw, 360px); height: auto; color: #fff; filter: drop-shadow(0 4px 22px rgba(0, 8, 60, 0.55)); margin-bottom: clamp(26px, 4.4vh, 48px); }
+.hero h1 { max-width: none; margin: 0 0 clamp(22px, 3.4vh, 36px); font-size: clamp(3.6rem, 8.6vw, 8.4rem); line-height: 1; letter-spacing: -0.01em; text-shadow: 0 6px 40px rgba(0, 8, 60, 0.6); }
+.hero h1 em { font-style: italic; color: var(--gold-bright); padding-right: 0.08em; margin-right: -0.04em; }
+.hero-kicker { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0 1.1em; color: var(--gold-bright); font-size: clamp(0.72rem, 0.95vw, 0.92rem); font-weight: 600; letter-spacing: 0.42em; text-transform: uppercase; margin: 0 0 clamp(30px, 4.6vh, 50px); position: relative; padding-top: clamp(18px, 2.6vh, 26px); }
+.hero-kicker::before { content: ''; position: absolute; top: 0; left: 50%; width: min(300px, 48vw); height: 1px; transform: translateX(-50%); background: linear-gradient(90deg, transparent, var(--gold-bright), transparent); }
+.hero-kicker span { margin-right: -0.42em; }
+.hero-kicker i { font-style: normal; letter-spacing: 0; }
 .hero-ctas { justify-content: center; }
-.hero-meta { justify-content: center; margin-left: auto; margin-right: auto; margin-top: 40px; max-width: 640px; }
+.hero-meta { justify-content: center; margin: clamp(28px, 4.6vh, 44px) auto 0; max-width: 640px; }
+.js .hero-logo, .js .hero-kicker { opacity: 0; transform: translateY(14px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+.js .hero-logo { transition-delay: .05s; }
+.js .hero-kicker { transition-delay: .3s; }
+.js.is-loaded .hero-logo, .js.is-loaded .hero-kicker { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .js .hero-logo, .js .hero-kicker { opacity: 1; transform: none; } }
 @media (max-width: 760px) {
-  .hero { display: block; height: auto; min-height: 0; max-height: none; }
-  .hero-bg { bottom: auto; height: 144vw; container-type: normal; }
-  .hero-stage { width: 256vw; top: 0; background: url('/img/hero-m.webp?v=3') center top / 39.0625% 100% no-repeat; }
-  .hero-overlay {
-    background:
-      linear-gradient(180deg, rgba(0, 6, 63, 0.5) 0, rgba(0, 6, 63, 0) 22vw),
-      linear-gradient(180deg, rgba(0, 6, 63, 0) 72vw, rgba(0, 6, 63, 0.86) 112vw, var(--ink-night) 144vw);
-  }
-  .hero-content { padding-top: 104vw; padding-bottom: 52px; }
-  .hero h1 { font-size: clamp(2.2rem, 10vw, 3rem); }
+  .hero { height: auto; min-height: 100svh; max-height: none; }
+  .hero-bg { background-image: url('/img/invierno-m.webp?v=1'); }
+  .hero-content { padding-top: 104px; padding-bottom: 44px; }
+  .hero-logo { width: min(62vw, 250px); }
+  .hero h1 { font-size: clamp(3.2rem, 16.5vw, 4.6rem); }
+  .hero-kicker { font-size: clamp(0.56rem, 2.9vw, 0.68rem); letter-spacing: 0.16em; gap: 0 0.7em; flex-wrap: nowrap; white-space: nowrap; }
+  .hero-kicker span { margin-right: -0.16em; }
+  .hero-meta { gap: 6px 18px; }
 }
 
 /* Las fotos de producto son recortes cuadrados sobre blanco */
