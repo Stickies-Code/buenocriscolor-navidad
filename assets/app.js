@@ -228,7 +228,6 @@ function submitForm(e) {
     [nombre, nombre.value.trim().length >= 2],
     [tel, tel.value.replace(/\D/g, '').length >= 9],
     [email, !email.value.trim() || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())],
-    [form.querySelector('#f-cif'), /^[A-Z0-9]{9}$/.test(form.querySelector('#f-cif').value.replace(/[\s.-]/g, '').toUpperCase())],
     [form.querySelector('#f-prov'), form.querySelector('#f-prov').value.trim().length >= 2],
     [form.querySelector('#f-tipo'), !!form.querySelector('#f-tipo').value],
     [form.querySelector('#f-vol'), !!form.querySelector('#f-vol').value],
