@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Todas las referencias — Catálogo Invierno 2026 · Criscolor</title>
+<meta name="description" content="Las 790 referencias del catálogo mayorista Invierno 2026 de Criscolor, por familias, con código, EAN y unidades por caja.">
+<link rel="canonical" href="https://buenocriscolor-navidad.vercel.app/referencias">
+<meta name="theme-color" content="#00109E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2300109E'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-weight='700' fill='%23fff'%3EC%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="/fonts/libre-caslon-display-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>document.documentElement.classList.add('js');</script>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body data-page="referencias">
+<a href="#referencias" class="skip-link">Saltar a las referencias</a>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="/img/logo.png" alt="Criscolor — inicio" width="900" height="309">
+    </a>
+
+    <div class="nav-search">
+      <svg class="nav-search-icon" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="search" id="globalSearch" aria-label="Buscar en el catálogo" placeholder="Buscar producto, código o EAN…" oninput="doSearch(this.value)" onfocus="if(this.value) showSearchResults()" onblur="setTimeout(hideSearchResults, 200)">
+    </div>
+
+    <div class="nav-actions">
+      <a href="/" class="btn btn-outline nav-cat-link" aria-label="Inicio"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 10.5 12 4l8.5 6.5"/><path d="M5.5 9v10.5h13V9"/><path d="M10 19.5v-5h4v5"/></svg><span class="nav-cat-label">Inicio</span></a>
+      <a href="/catalogo/" class="btn btn-outline nav-cat-link" aria-label="Catálogo interactivo"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.5C10 5 7 4.5 3.5 5v13c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5c-3.5-.5-6.5 0-8.5 1.5Z"/><path d="M12 6.5v13"/></svg><span class="nav-cat-label">Catálogo</span></a>
+      <div class="nav-familias-dropdown" id="navFamiliasDropdown">
+        <button class="btn btn-outline nav-familias-btn" onclick="toggleFamiliasMenu()" aria-expanded="false" aria-haspopup="true">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          Familias
+          <svg class="nav-familias-chevron" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="nav-familias-menu" id="navFamiliasMenu">
+          <a href="/familia/papel" class="nav-familias-item"><span class="nav-familias-num">01</span>Papel de Regalo</a>
+          <a href="/familia/bobinas" class="nav-familias-item"><span class="nav-familias-num">02</span>Bobinas de Regalo</a>
+          <a href="/familia/bolsas" class="nav-familias-item"><span class="nav-familias-num">03</span>Bolsas</a>
+          <a href="/familia/lazos" class="nav-familias-item"><span class="nav-familias-num">04</span>Lazos y Cintas</a>
+          <a href="/familia/cajas" class="nav-familias-item"><span class="nav-familias-num">05</span>Cajas Cartón</a>
+          <a href="/familia/sacos" class="nav-familias-item"><span class="nav-familias-num">06</span>Sacos Navideños</a>
+          <a href="/familia/globos" class="nav-familias-item"><span class="nav-familias-num">07</span>Globos</a>
+          <a href="/familia/decoracion" class="nav-familias-item"><span class="nav-familias-num">08</span>Decoración Navidad</a>
+          <a href="/familia/pegatinas" class="nav-familias-item"><span class="nav-familias-num">09</span>Pegatinas y Tarjetas</a>
+          <a href="/familia/fiesta" class="nav-familias-item"><span class="nav-familias-num">10</span>Fiesta y Novedades</a>
+          <a href="/familia/vajilla" class="nav-familias-item"><span class="nav-familias-num">11</span>Vajilla Desechable</a>
+          <a href="/familia/calefaccion" class="nav-familias-item"><span class="nav-familias-num">12</span>Calefacción</a>
+        </div>
+      </div>
+      <a href="/#contacto" class="btn btn-primary">
+        Contáctanos
+        <span class="btn-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Search Results Dropdown -->
+<div class="search-results" id="searchResults">
+  <div class="search-results-inner" id="searchResultsInner"></div>
+</div>
+
+<main>
+<header class="refs-hero">
+  <div class="container">
+    <nav class="breadcrumb is-dark" aria-label="Estás en"><a href="/">Catálogo Invierno 2026</a> <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg> <span aria-current="page">Todas las referencias</span></nav>
+    <h1 class="section-title">Todas las <em>referencias</em></h1>
+    <p class="section-subtitle">Elige una familia y verás debajo todas sus referencias. Pulsa cualquiera para ver su ficha en grande.</p>
+  </div>
+</header>
+
+<section class="fam-section is-white refs-page" id="referencias" aria-label="Referencias">
+  <div class="container">
+    <div class="refs-fams" role="group" aria-label="Elegir familia">
+        <button type="button" class="filter-chip active" data-fam="all" aria-pressed="true">Todas</button>
+        <button type="button" class="filter-chip" data-fam="papel" aria-pressed="false">Papel de Regalo</button>
+        <button type="button" class="filter-chip" data-fam="bobinas" aria-pressed="false">Bobinas de Regalo</button>
+        <button type="button" class="filter-chip" data-fam="bolsas" aria-pressed="false">Bolsas</button>
+        <button type="button" class="filter-chip" data-fam="lazos" aria-pressed="false">Lazos y Cintas</button>
+        <button type="button" class="filter-chip" data-fam="cajas" aria-pressed="false">Cajas Cartón</button>
+        <button type="button" class="filter-chip" data-fam="sacos" aria-pressed="false">Sacos Navideños</button>
+        <button type="button" class="filter-chip" data-fam="globos" aria-pressed="false">Globos</button>
+        <button type="button" class="filter-chip" data-fam="decoracion" aria-pressed="false">Decoración Navidad</button>
+        <button type="button" class="filter-chip" data-fam="pegatinas" aria-pressed="false">Pegatinas y Tarjetas</button>
+        <button type="button" class="filter-chip" data-fam="fiesta" aria-pressed="false">Fiesta y Novedades</button>
+        <button type="button" class="filter-chip" data-fam="vajilla" aria-pressed="false">Vajilla Desechable</button>
+        <button type="button" class="filter-chip" data-fam="calefaccion" aria-pressed="false">Calefacción</button>
+    </div>
+    <div class="refs-toolbar">
+      <input type="search" class="ref-search" id="refSearch" placeholder="Buscar por nombre, código o EAN…" aria-label="Buscar referencias">
+      <div class="refs-tools-right">
+        <span class="refs-count" id="refsCount" aria-live="polite"></span>
+        <div class="view-toggle" role="group" aria-label="Vista de referencias">
+          <button type="button" data-view="lista" aria-pressed="true"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg> Lista</button>
+          <button type="button" data-view="fotos" aria-pressed="false"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg> Fotos</button>
+        </div>
+      </div>
+    </div>
+    <div id="refsBox" class="ref-list"></div>
+    <div class="refs-more" id="refsMore" hidden><button type="button" class="btn btn-outline">Ver más referencias</button></div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="/img/logo.png" alt="Criscolor" width="900" height="309" loading="lazy">
+        <p>Artículos de regalo, fiesta y temporada desde Paterna, Valencia. Más de 25 años en el sector.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Familias</div>
+        <div class="footer-links">
+          <a href="/familia/papel" class="footer-link">Papel de Regalo</a>
+          <a href="/familia/bobinas" class="footer-link">Bobinas de Regalo</a>
+          <a href="/familia/bolsas" class="footer-link">Bolsas</a>
+          <a href="/familia/lazos" class="footer-link">Lazos y Cintas</a>
+          <a href="/familia/cajas" class="footer-link">Cajas Cartón</a>
+          <a href="/familia/sacos" class="footer-link">Sacos Navideños</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Más Familias</div>
+        <div class="footer-links">
+          <a href="/familia/globos" class="footer-link">Globos</a>
+          <a href="/familia/decoracion" class="footer-link">Decoración Navidad</a>
+          <a href="/familia/pegatinas" class="footer-link">Pegatinas y Tarjetas</a>
+          <a href="/familia/fiesta" class="footer-link">Fiesta y Novedades</a>
+          <a href="/familia/vajilla" class="footer-link">Vajilla Desechable</a>
+          <a href="/familia/calefaccion" class="footer-link">Calefacción</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Empresa</div>
+        <div class="footer-links">
+          <a href="https://www.criscolor.com" class="footer-link" target="_blank" rel="noopener">criscolor.com</a>
+          <a href="/#contacto" class="footer-link">Contacto comercial</a>
+          <a href="/#familias" class="footer-link">Ver catálogo</a>
+          <a href="/catalogo/" class="footer-link">Catálogo interactivo</a>
+        </div>
+      </div>
+    </div>
+    <!-- Banner institucional -->
+    <div class="footer-eu">
+      <img src="/img/banner-eu.png" alt="Generalitat Valenciana · IVACE · Finançat per la Unió Europea · Fons Europeus · Programa FEDER Comunitat Valenciana 2021-2027" width="1537" height="88">
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 CRISCOLOR Distribuciones de Levante, S.L.U. · Paterna, Valencia · Todos los derechos reservados</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     PRODUCT MODAL
+════════════════════════════════════════════ -->
+<div class="modal-overlay" id="productModal" onclick="closeModal(event)" role="dialog" aria-modal="true" aria-labelledby="modalName">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-family" id="modalFamily"></div>
+        <div class="modal-name" id="modalName"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()" aria-label="Cerrar ficha"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <button type="button" class="modal-img" onclick="openFull()" aria-label="Ver la ficha a pantalla completa">
+        <img id="modalImg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
+        <span class="modal-img-hint"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>Pantalla completa</span>
+      </button>
+      <div class="modal-info">
+        <p class="modal-desc" id="modalDesc"></p>
+        <div class="modal-ficha">
+          <div class="modal-ficha-title">Ficha técnica</div>
+          <div class="modal-ficha-row">
+            <span class="modal-ficha-key">Código ref.</span>
+            <span class="modal-ficha-val" id="modalRef">—</span>
+          </div>
+          <div class="modal-ficha-row">
+            <span class="modal-ficha-key">Código EAN</span>
+            <span class="modal-ficha-val" id="modalEan">—</span>
+          </div>
+          <div class="modal-ficha-row">
+            <span class="modal-ficha-key">Uds. por caja</span>
+            <span class="modal-ficha-val" id="modalUds">—</span>
+          </div>
+          <div class="modal-ficha-row" id="modalMedidaRow">
+            <span class="modal-ficha-key">Uds. por paquete</span>
+            <span class="modal-ficha-val" id="modalMedida">—</span>
+          </div>
+          <div class="modal-ficha-row" id="modalSurtRow" hidden>
+            <span class="modal-ficha-key">Surtido</span>
+            <span class="modal-ficha-val" id="modalSurt">—</span>
+          </div>
+          <div class="modal-ficha-row" id="modalContRow" hidden>
+            <span class="modal-ficha-key">Contenido</span>
+            <span class="modal-ficha-val" id="modalCont">—</span>
+          </div>
+          <div class="modal-ficha-row" id="modalMatRow">
+            <span class="modal-ficha-key">Familia</span>
+            <span class="modal-ficha-val" id="modalMat">—</span>
+          </div>
+        </div>
+        <div class="modal-mayorista-note">
+          Contacta con nuestro equipo comercial para conocer precios y condiciones de pedido.
+        </div>
+        <a id="modalFamilyLink" class="modal-family-link" href="/" hidden><span>Ver toda la familia</span> <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="/#contacto" class="modal-contact-btn" onclick="closeModal()">
+          Consultar disponibilidad
+          <span class="btn-icon"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="full-view" id="fullView" role="dialog" aria-modal="true" aria-label="Ficha a pantalla completa" aria-hidden="true">
+  <div class="full-bar">
+    <span class="full-title" id="fullTitle"></span>
+    <button type="button" class="full-close" onclick="closeFull()" aria-label="Cerrar"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <div class="full-scroll" id="fullScroll"><img id="fullImg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""></div>
+  <p class="full-hint">Toca la ficha para acercar</p>
+</div>
+
+<script src="/assets/catalog.js"></script>
+<script src="/assets/app.js"></script>
+<script src="/assets/referencias.js"></script>
+</body>
+</html>

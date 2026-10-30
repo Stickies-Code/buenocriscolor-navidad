@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   CRISCOLOR · Catálogo Navidad 2026 — datos compartidos
+   CRISCOLOR · Catálogo Invierno 2026 — datos compartidos
    Fuente: CRISCOLOR_CAMPANA_NAVIDAD_2026.xls (790 referencias)
    Fotos de producto: /productos/{ficha|foto|mini}/<EAN>.webp
 ═══════════════════════════════════════════════════════════ */
@@ -46,6 +46,8 @@ const MEDIA = {
 };
 
 /* 27 productos estrella (2-3 por familia) */
+/* Los 10 más vendidos de la temporada (portada) */
+const BESTSELLERS = ["44981", "44011", "45045", "45049", "45033", "42650", "43030", "44251", "44988", "44611"];
 const STAR_CODES = ["45049", "45045", "44096", "42615", "42617", "44950", "45011", "45014", "42650", "43030", "43032", "06457", "44090", "44835", "44992", "45033", "44011", "44117", "44981", "44018", "44816", "44814", "44988", "44251", "44611", "44782", "44884"];
 
 /* c = código · n = nombre · e = EAN · p = uds/paquete · x = uds/caja · f = familia */

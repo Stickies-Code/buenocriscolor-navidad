@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   CRISCOLOR · Catálogo Navidad 2026 — lógica compartida
+   CRISCOLOR · Catálogo Invierno 2026 — lógica compartida
    (portada y páginas de familia). Requiere assets/catalog.js
 ═══════════════════════════════════════════════════════════ */
 
@@ -14,7 +14,7 @@ const famImg = id => `/img/familias/${id}.webp${IMG_V[id] || ''}`;
 const famCardImg = id => `/img/familias/${id}-card.webp${IMG_V[id] || ''}`;
 const photoFoto = ean => `/productos/foto/${ean}.webp`;
 const photoMini = ean => `/productos/mini/${ean}.webp`;
-const photoFicha = ean => `/productos/ficha/${ean}.webp`;
+const photoFicha = ean => `/productos/ficha-hd/${ean}.webp`;   // ficha recortada, 1024 px
 
 function escHTML(s) { return String(s).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch])); }
 function norm(s) { return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
@@ -61,6 +61,30 @@ function productCardHTML(p) {
     </div>`;
 }
 
+/* ── Filas y fichas de referencia (familias y «Todas las referencias») ── */
+function refRowHTML(p) {
+  return `
+    <button type="button" class="ref-row" onclick="openProduct('${p.c}')">
+      <span class="ref-row-thumb"><img src="${photoMini(p.e)}" alt="" loading="lazy"></span>
+      <span class="ref-row-code">${escHTML(p.c)}</span>
+      <span class="ref-row-name">${escHTML(p.n)}${STAR_SET.has(p.c) ? ' <span class="ref-row-star">Destacado</span>' : ''}</span>
+      <span class="ref-row-meta">${p.p ? `<span>${p.p} ${p.p == 1 ? 'ud' : 'uds'}/paq.</span>` : ''}${p.x ? `<span>${p.x} ${p.x == 1 ? 'ud' : 'uds'}/caja</span>` : ''}${p.s ? `<span>${escHTML(p.s)}</span>` : ''}</span>
+      <span class="ref-row-ean">EAN ${p.e}</span>
+    </button>`;
+}
+function refTileHTML(p) {
+  return `
+    <button type="button" class="ref-tile" onclick="openProduct('${p.c}')">
+      <span class="ref-tile-img"><img src="${photoFoto(p.e)}" alt="" loading="lazy"></span>
+      <span class="ref-tile-body">
+        <span class="ref-tile-code">Ref. ${escHTML(p.c)}</span>
+        <span class="ref-tile-name">${escHTML(p.n)}</span>
+        <span class="ref-tile-meta">${p.x ? `${p.x} ${p.x == 1 ? 'ud' : 'uds'}/caja` : ''}${p.x && p.p ? ' · ' : ''}${p.p ? `${p.p} ${p.p == 1 ? 'ud' : 'uds'}/paq.` : ''}${p.s ? ` · ${escHTML(p.s)}` : ''}</span>
+      </span>
+    </button>`;
+}
+
+
 /* ── Revelado al hacer scroll ── */
 const revealObserver = 'IntersectionObserver' in window
   ? new IntersectionObserver(entries => entries.forEach(e => {
@@ -88,7 +112,7 @@ function openProduct(code) {
   const img = document.getElementById('modalImg');
   img.src = p.ficha;
   img.alt = `Ficha de ${p.name}`;
-  document.getElementById('modalDesc').textContent = `Referencia de la familia ${p.familyName} del catálogo Navidad 2026. Venta exclusiva a profesionales: consulta precios y disponibilidad con nuestro equipo comercial.`;
+  document.getElementById('modalDesc').textContent = `Referencia de la familia ${p.familyName} del catálogo Invierno 2026. Venta exclusiva a profesionales: consulta precios y disponibilidad con nuestro equipo comercial.`;
   document.getElementById('modalRef').textContent = p.ref;
   document.getElementById('modalEan').textContent = p.ean;
   document.getElementById('modalUds').textContent = p.uds ? `${p.uds} ${p.uds == 1 ? 'unidad' : 'unidades'}` : '—';
@@ -109,6 +133,33 @@ function openProduct(code) {
   document.body.style.overflow = 'hidden';
   setTimeout(() => document.querySelector('#productModal .modal-close')?.focus(), 60);
 }
+/* Ficha a pantalla completa, con toque para acercar */
+function openFull() {
+  const v = document.getElementById('fullView');
+  const img = document.getElementById('fullImg');
+  img.src = document.getElementById('modalImg').src;
+  img.alt = document.getElementById('modalImg').alt;
+  document.getElementById('fullTitle').textContent = document.getElementById('modalName').textContent;
+  v.classList.remove('is-zoomed'); img.style.width = '';
+  v.classList.add('active'); v.setAttribute('aria-hidden', 'false');
+}
+function closeFull() {
+  const v = document.getElementById('fullView');
+  if (!v || !v.classList.contains('active')) return false;
+  v.classList.remove('active'); v.setAttribute('aria-hidden', 'true');
+  return true;
+}
+document.addEventListener('click', e => {
+  const img = e.target.closest && e.target.closest('#fullImg');
+  if (!img) return;
+  const v = document.getElementById('fullView'), box = document.getElementById('fullScroll');
+  if (v.classList.contains('is-zoomed')) { v.classList.remove('is-zoomed'); img.style.width = ''; return; }
+  const r = img.getBoundingClientRect();
+  const fx = (e.clientX - r.left) / r.width, fy = (e.clientY - r.top) / r.height;
+  v.classList.add('is-zoomed');
+  img.style.width = Math.max(r.width * 2.2, 1200) + 'px';
+  requestAnimationFrame(() => { box.scrollLeft = fx * img.offsetWidth - box.clientWidth / 2; box.scrollTop = fy * img.offsetHeight - box.clientHeight / 2; });
+});
 function closeModal(e) {
   const modal = document.getElementById('productModal');
   if (!modal.classList.contains('active')) return;
@@ -163,7 +214,7 @@ document.addEventListener('click', e => {
   if (dd && !dd.contains(e.target)) closeFamiliasMenu();
 });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeModal(); closeFamiliasMenu(); hideSearchResults(); }
+  if (e.key === 'Escape') { if (closeFull()) return; closeModal(); closeFamiliasMenu(); hideSearchResults(); }
 });
 
 /* ── Formulario de contacto (pendiente de conectar a un servicio de envío) ── */
@@ -177,6 +228,10 @@ function submitForm(e) {
     [nombre, nombre.value.trim().length >= 2],
     [tel, tel.value.replace(/\D/g, '').length >= 9],
     [email, !email.value.trim() || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())],
+    [form.querySelector('#f-cif'), /^[A-Z0-9]{9}$/.test(form.querySelector('#f-cif').value.replace(/[\s.-]/g, '').toUpperCase())],
+    [form.querySelector('#f-prov'), form.querySelector('#f-prov').value.trim().length >= 2],
+    [form.querySelector('#f-tipo'), !!form.querySelector('#f-tipo').value],
+    [form.querySelector('#f-vol'), !!form.querySelector('#f-vol').value],
   ];
   let firstBad = null;
   checks.forEach(([input, ok]) => {

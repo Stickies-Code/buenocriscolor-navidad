@@ -46,11 +46,11 @@ for f in FAMS:
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>{e['name']} — Catálogo Navidad 2026 · Criscolor</title>
-<meta name="description" content="{e['count']} referencias de {e['name']} en el catálogo mayorista Navidad 2026 de Criscolor. {e['desc']}">
+<title>{e['name']} — Catálogo Invierno 2026 · Criscolor</title>
+<meta name="description" content="{e['count']} referencias de {e['name']} en el catálogo mayorista Invierno 2026 de Criscolor. {e['desc']}">
 <link rel="canonical" href="{SITE}/familia/{f['id']}">
 <meta property="og:type" content="website">
-<meta property="og:title" content="{e['name']} — Catálogo Navidad 2026 · Criscolor">
+<meta property="og:title" content="{e['name']} — Catálogo Invierno 2026 · Criscolor">
 <meta property="og:description" content="{e['count']} referencias de {e['name']}. Venta mayorista desde Paterna, Valencia.">
 <meta property="og:image" content="{SITE}/img/og/{f['id']}.jpg{IMG_V.get(f['id'],'')}">
 <meta property="og:url" content="{SITE}/familia/{f['id']}">
@@ -68,13 +68,13 @@ for f in FAMS:
   <div class="fam-hero-overlay"></div>
   <div class="fam-hero-content">
     <nav class="breadcrumb" aria-label="Estás en">
-      <a href="/">Catálogo Navidad 2026</a> {CHEV} <a href="/#familias">Familias</a> {CHEV} <span aria-current="page">{e['name']}</span>
+      <a href="/">Catálogo Invierno 2026</a> {CHEV} <a href="/#familias">Familias</a> {CHEV} <span aria-current="page">{e['name']}</span>
     </nav>
     <h1>{e['name']}</h1>
     <p class="fam-hero-desc">{e['desc']}</p>
     <div class="hero-ctas">
       <a href="#referencias" class="btn-hero-primary">Ver referencias <span class="btn-icon">{ARROW16}</span></a>
-      <a href="/#contacto" class="btn-hero-outline">Solicitar precios</a>
+      <a href="/#contacto" class="btn-hero-outline">Contáctanos</a>
     </div>
     <div class="hero-meta">
       <span>Familia <strong>{e['num']}</strong> de 12</span>
@@ -136,7 +136,7 @@ for f in FAMS:
       <p>Pide precios, condiciones y disponibilidad a nuestro equipo comercial. Venta exclusiva a profesionales.</p>
     </div>
     <div class="fam-cta-actions">
-      <a href="/#contacto" class="btn-hero-primary">Solicitar precios <span class="btn-icon">{ARROW16}</span></a>
+      <a href="/#contacto" class="btn-hero-primary">Contáctanos <span class="btn-icon">{ARROW16}</span></a>
       <span class="fam-cta-phone">o llama al <a href="tel:+34961532109">(+34) 961 53 21 09</a></span>
     </div>
   </div>
@@ -154,3 +154,63 @@ for f in FAMS:
 '''
     open(os.path.join(ROOT, 'familia', f"{f['id']}.html"), 'w', encoding='utf-8').write(page)
 print(f'{len(FAMS)} páginas generadas en familia/')
+
+# ── Página «Todas las referencias»: eliges familia y salen todas debajo ──
+chips = '\n'.join(f'        <button type="button" class="filter-chip" data-fam="{f["id"]}" aria-pressed="false">{html.escape(f["name"])}</button>' for f in FAMS)
+page = f'''<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Todas las referencias — Catálogo Invierno 2026 · Criscolor</title>
+<meta name="description" content="Las {len(CATALOG)} referencias del catálogo mayorista Invierno 2026 de Criscolor, por familias, con código, EAN y unidades por caja.">
+<link rel="canonical" href="{SITE}/referencias">
+{head}
+</head>
+<body data-page="referencias">
+<a href="#referencias" class="skip-link">Saltar a las referencias</a>
+
+{nav}
+
+<main>
+<header class="refs-hero">
+  <div class="container">
+    <nav class="breadcrumb is-dark" aria-label="Estás en"><a href="/">Catálogo Invierno 2026</a> {CHEV} <span aria-current="page">Todas las referencias</span></nav>
+    <h1 class="section-title">Todas las <em>referencias</em></h1>
+    <p class="section-subtitle">Elige una familia y verás debajo todas sus referencias. Pulsa cualquiera para ver su ficha en grande.</p>
+  </div>
+</header>
+
+<section class="fam-section is-white refs-page" id="referencias" aria-label="Referencias">
+  <div class="container">
+    <div class="refs-fams" role="group" aria-label="Elegir familia">
+        <button type="button" class="filter-chip active" data-fam="all" aria-pressed="true">Todas</button>
+{chips}
+    </div>
+    <div class="refs-toolbar">
+      <input type="search" class="ref-search" id="refSearch" placeholder="Buscar por nombre, código o EAN…" aria-label="Buscar referencias">
+      <div class="refs-tools-right">
+        <span class="refs-count" id="refsCount" aria-live="polite"></span>
+        <div class="view-toggle" role="group" aria-label="Vista de referencias">
+          <button type="button" data-view="lista" aria-pressed="true">{LIST} Lista</button>
+          <button type="button" data-view="fotos" aria-pressed="false">{GRID} Fotos</button>
+        </div>
+      </div>
+    </div>
+    <div id="refsBox" class="ref-list"></div>
+    <div class="refs-more" id="refsMore" hidden><button type="button" class="btn btn-outline">Ver más referencias</button></div>
+  </div>
+</section>
+</main>
+
+{footer}
+
+{modal}
+
+{scripts}
+<script src="/assets/referencias.js"></script>
+</body>
+</html>
+'''
+open(os.path.join(ROOT, 'referencias.html'), 'w', encoding='utf-8').write(page)
+print('referencias.html generada')

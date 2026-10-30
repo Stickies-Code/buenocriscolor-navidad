@@ -1,4 +1,4 @@
-/* Portada: familias y destacados */
+/* Portada: familias y los 10 más vendidos */
 
 function renderFamilies() {
   const grid = document.getElementById('familiesGrid');
@@ -22,20 +22,5 @@ function renderProducts(prods) {
   revealChildren(grid, '.product-card');
 }
 
-function renderFilters() {
-  const bar = document.getElementById('filtersBar');
-  const opts = [{ id: 'all', label: 'Todos' }, ...FAMILIES.map(f => ({ id: f.id, label: f.name.split(' ')[0] }))];
-  bar.innerHTML = opts.map((o, i) => `
-    <button type="button" class="filter-chip ${i === 0 ? 'active' : ''}" aria-pressed="${i === 0}" onclick="filterBy('${o.id}', this)">${o.label}</button>`).join('');
-}
-
-function filterBy(id, btn) {
-  document.querySelectorAll('.filter-chip').forEach(c => { c.classList.remove('active'); c.setAttribute('aria-pressed', 'false'); });
-  btn.classList.add('active');
-  btn.setAttribute('aria-pressed', 'true');
-  renderProducts(id === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.family === id));
-}
-
 renderFamilies();
-renderFilters();
-renderProducts(PRODUCTS);
+renderProducts(BESTSELLERS.map(c => CAT_BY_CODE[c]).filter(Boolean).map(toProduct));

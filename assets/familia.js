@@ -66,28 +66,6 @@ let refQuery = '';
 let refLimit = PAGE;
 try { refView = localStorage.getItem('cc-ref-view') || 'lista'; } catch (e) {}
 
-function refRowHTML(p) {
-  return `
-    <button type="button" class="ref-row" onclick="openProduct('${p.c}')">
-      <span class="ref-row-thumb"><img src="${photoMini(p.e)}" alt="" loading="lazy"></span>
-      <span class="ref-row-code">${escHTML(p.c)}</span>
-      <span class="ref-row-name">${escHTML(p.n)}${STAR_SET.has(p.c) ? ' <span class="ref-row-star">Destacado</span>' : ''}</span>
-      <span class="ref-row-meta">${p.p ? `<span>${p.p} ${p.p == 1 ? 'ud' : 'uds'}/paq.</span>` : ''}${p.x ? `<span>${p.x} ${p.x == 1 ? 'ud' : 'uds'}/caja</span>` : ''}${p.s ? `<span>${escHTML(p.s)}</span>` : ''}</span>
-      <span class="ref-row-ean">EAN ${p.e}</span>
-    </button>`;
-}
-function refTileHTML(p) {
-  return `
-    <button type="button" class="ref-tile" onclick="openProduct('${p.c}')">
-      <span class="ref-tile-img"><img src="${photoFoto(p.e)}" alt="" loading="lazy"></span>
-      <span class="ref-tile-body">
-        <span class="ref-tile-code">Ref. ${escHTML(p.c)}</span>
-        <span class="ref-tile-name">${escHTML(p.n)}</span>
-        <span class="ref-tile-meta">${p.x ? `${p.x} ${p.x == 1 ? 'ud' : 'uds'}/caja` : ''}${p.x && p.p ? ' · ' : ''}${p.p ? `${p.p} ${p.p == 1 ? 'ud' : 'uds'}/paq.` : ''}${p.s ? ` · ${escHTML(p.s)}` : ''}</span>
-      </span>
-    </button>`;
-}
-
 function filteredRefs() {
   const nq = norm(refQuery.trim());
   return FAM_REFS.filter(p => !nq || norm(p.n).includes(nq) || p.c.toLowerCase().includes(nq) || p.e.includes(nq));

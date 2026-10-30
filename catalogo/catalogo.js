@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   CRISCOLOR · Catálogo interactivo Navidad 2026
+   CRISCOLOR · Catálogo interactivo Invierno 2026
    Datos: /assets/catalog.js (CATALOG, FAMILIES, STAR_CODES)
           /catalogo/modelos.js (MODELS: referencias agrupadas)
    Libro: StPageFlip (MIT) en /catalogo/vendor
@@ -121,7 +121,7 @@ function fillerHTML(f) {
         <span class="filler-kicker">Venta a profesionales</span>
         <span class="filler-title">¿Te interesa ${esc(f.name)}?</span>
         <span class="filler-text">Pide precios y disponibilidad a tu comercial:<br><strong>(+34) 961 53 21 09</strong> · <strong>comercial@criscolor.com</strong></span>
-        <span class="filler-cta">Solicitar precios ${I.arrow}</span>
+        <span class="filler-cta">Contáctanos ${I.arrow}</span>
       </span>
     </div>`;
 }
@@ -130,7 +130,7 @@ function head(f, label) {
   return `<div class="pg-head"><span><strong>${f.num}</strong> · ${esc(f.name)}</span><span>${label}</span></div>`;
 }
 function foot(i) {
-  return `<div class="pg-foot"><span>Criscolor · Navidad 2026</span><span class="pg-folio">${i}</span></div>`;
+  return `<div class="pg-foot"><span>Criscolor · Invierno 2026</span><span class="pg-folio">${i}</span></div>`;
 }
 
 function build() {
@@ -139,9 +139,9 @@ function build() {
     <div class="pg-bleed">
       <div class="cover-stage"></div>
       <div class="cover-stage is-sign"><img class="cover-sign" src="/img/logo-cartel.svg" alt="Criscolor" draggable="false"></div>
-      <div class="cover-season">Campaña<br>Navidad 2026</div>
+      <div class="cover-season">Campaña<br>Invierno 2026</div>
       <div class="pg-bleed-content">
-        <div class="cover-title">Catálogo<span>Navidad 2026</span></div>
+        <div class="cover-title">Catálogo<span>Invierno 2026</span></div>
         <p class="cover-sub">Papel de regalo, bolsas, lazos, cajas, globos, decoración, vajilla y calefacción para surtir tu tienda esta temporada.</p>
         <div class="cover-meta"><span><strong>${TOTAL_REFS}</strong> referencias</span><span><strong>${MODELS.length}</strong> modelos</span><span><strong>12</strong> familias</span></div>
         <div class="cover-hint">Desliza para abrir ${I.arrow}</div>
@@ -167,7 +167,7 @@ function build() {
       <div class="pg-head"><span><strong>Criscolor</strong> · Desde el año 2000</span><span>Cómo usar este catálogo</span></div>
       <h2 class="pg-title">Un catálogo para <em>tocar</em></h2>
       <div class="howto">
-        <p class="howto-intro">Las ${TOTAL_REFS} referencias de la campaña de Navidad, agrupadas en ${MODELS.length} modelos: cada producto reúne sus colores, medidas y formatos en una sola ficha.</p>
+        <p class="howto-intro">Las ${TOTAL_REFS} referencias de la campaña de invierno, agrupadas en ${MODELS.length} modelos: cada producto reúne sus colores, medidas y formatos en una sola ficha.</p>
         <div class="howto-steps">
           <div class="howto-step"><span class="howto-icon">${I.swipe}</span><div><strong>Pasa las páginas</strong><span>Desliza con el dedo, usa las flechas o salta a cualquier familia desde el índice.</span></div></div>
           <div class="howto-step"><span class="howto-icon">${I.tap}</span><div><strong>Toca un producto</strong><span>Se abre su ficha: elige color o medida y verás la referencia, el EAN y las unidades por caja.</span></div></div>
@@ -190,7 +190,7 @@ function build() {
     PAGES.push({ kind: 'opener', family: f.id, html: () => `
       <div class="pg-bleed">
         <img data-src="${famImg(f.id)}" alt="" draggable="false">
-        <div class="pg-bleed-top"><span>Familia ${f.num} de 12</span><span>Navidad 2026</span></div>
+        <div class="pg-bleed-top"><span>Familia ${f.num} de 12</span><span>Invierno 2026</span></div>
         <div class="pg-bleed-content">
           <div class="opener-num">${f.num}</div>
           <h2 class="opener-name">${esc(f.name)}</h2>
@@ -732,21 +732,21 @@ $('#selCsv').addEventListener('click', () => {
   const q = v => `"${String(v).replace(/"/g, '""')}"`;
   const lines = [head.map(q).join(';'), ...selRows().map(r => [r.ref, `="${r.ean}"`, r.nombre, r.familia, r.paq, r.caja, r.cajas, r.uds].map((v, i) => i === 1 ? v : q(v)).join(';'))];
   const blob = new Blob(['﻿' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
-  saveBlob(blob, `Seleccion-Criscolor-Navidad-2026.csv`);
+  saveBlob(blob, `Seleccion-Criscolor-Invierno-2026.csv`);
 });
 $('#selMail').addEventListener('click', () => {
   const rows = selRows();
-  let body = 'Hola,\n\nMe interesan estas referencias del catálogo Navidad 2026:\n\n';
+  let body = 'Hola,\n\nMe interesan estas referencias del catálogo Invierno 2026:\n\n';
   body += rows.map(r => `· Ref. ${r.ref} — ${r.nombre} — ${r.cajas} ${r.cajas === 1 ? 'caja' : 'cajas'}`).join('\n');
   body += '\n\n¿Me podéis pasar precios y disponibilidad?\n\nGracias.\n';
-  const href = `mailto:comercial@criscolor.com?subject=${encodeURIComponent('Selección catálogo Navidad 2026')}&body=${encodeURIComponent(body)}`;
+  const href = `mailto:comercial@criscolor.com?subject=${encodeURIComponent('Selección catálogo Invierno 2026')}&body=${encodeURIComponent(body)}`;
   if (href.length > 1900) toast('Tu selección es larga: descárgala en Excel y adjúntala al email');
-  window.location.href = href.length > 1900 ? `mailto:comercial@criscolor.com?subject=${encodeURIComponent('Selección catálogo Navidad 2026')}&body=${encodeURIComponent('Hola,\n\nAdjunto mi selección del catálogo Navidad 2026 (' + rows.length + ' referencias). ¿Me podéis pasar precios y disponibilidad?\n\nGracias.\n')}` : href;
+  window.location.href = href.length > 1900 ? `mailto:comercial@criscolor.com?subject=${encodeURIComponent('Selección catálogo Invierno 2026')}&body=${encodeURIComponent('Hola,\n\nAdjunto mi selección del catálogo Invierno 2026 (' + rows.length + ' referencias). ¿Me podéis pasar precios y disponibilidad?\n\nGracias.\n')}` : href;
 });
 $('#selPrint').addEventListener('click', () => {
   const rows = selRows();
   $('#printSheet').innerHTML = `
-    <h1>Mi selección · Catálogo Navidad 2026</h1>
+    <h1>Mi selección · Catálogo Invierno 2026</h1>
     <p>Criscolor Distribuciones de Levante · comercial@criscolor.com · (+34) 961 53 21 09 · ${new Date().toLocaleDateString('es-ES')}</p>
     <table><thead><tr><th></th><th>Ref.</th><th>Descripción</th><th>EAN</th><th class="num">Uds/caja</th><th class="num">Cajas</th><th class="num">Unidades</th></tr></thead>
     <tbody>${rows.map(r => `<tr><td><img src="${mini(r.ean)}" alt=""></td><td>${esc(r.ref)}</td><td>${esc(r.nombre)}</td><td>${esc(r.ean)}</td><td class="num">${r.caja}</td><td class="num">${r.cajas}</td><td class="num">${r.uds}</td></tr>`).join('')}</tbody></table>`;
