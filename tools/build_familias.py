@@ -81,6 +81,7 @@ for f in FAMS:
       <span><strong>{e['count']}</strong> referencias</span>
       <span><strong>{stars}</strong> {'destacado' if stars == 1 else 'destacados'}</span>
       <span>Temporada <strong>2026</strong></span>
+      <span>Pedido mínimo <strong>500 €</strong></span>
     </div>
   </div>
 </header>
@@ -138,6 +139,7 @@ for f in FAMS:
     <div class="fam-cta-actions">
       <a href="/#contacto" class="btn-hero-primary">Contáctanos <span class="btn-icon">{ARROW16}</span></a>
       <span class="fam-cta-phone">o llama al <a href="tel:+34961532109">(+34) 961 53 21 09</a></span>
+      <p class="pro-pill"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5 4.5 4h15L21 9.5"/><path d="M3 9.5a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/><path d="M5 12.5V20h14v-7.5"/><path d="M10 20v-5h4v5"/></svg><span><strong>Venta exclusiva a profesionales</strong><i aria-hidden="true">·</i><span class="pp-b">Pedido mínimo <strong>500&nbsp;€</strong></span></span></p>
     </div>
   </div>
 </section>
@@ -178,6 +180,7 @@ page = f'''<!DOCTYPE html>
     <nav class="breadcrumb is-dark" aria-label="Estás en"><a href="/">Catálogo Invierno 2026</a> {CHEV} <span aria-current="page">Todas las referencias</span></nav>
     <h1 class="section-title">Todas las <em>referencias</em></h1>
     <p class="section-subtitle">Elige una familia y verás debajo todas sus referencias. Pulsa cualquiera para ver su ficha en grande.</p>
+    <p class="pro-pill is-light"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5 4.5 4h15L21 9.5"/><path d="M3 9.5a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/><path d="M5 12.5V20h14v-7.5"/><path d="M10 20v-5h4v5"/></svg><span><strong>Venta exclusiva a profesionales</strong><i aria-hidden="true">·</i><span class="pp-b">Pedido mínimo <strong>500&nbsp;€</strong></span></span></p>
   </div>
 </header>
 
