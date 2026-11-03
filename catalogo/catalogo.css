@@ -3,6 +3,11 @@
    Libro con efecto de pasar página, pensado para iPad.
 ═══════════════════════════════════════════════════════════ */
 
+@font-face { font-family: 'Montserrat'; font-style: normal; font-display: swap; font-weight: 900; src: url('/fonts/montserrat-latin-900-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Montserrat'; font-style: normal; font-display: swap; font-weight: 800; src: url('/fonts/montserrat-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Montserrat'; font-style: normal; font-display: swap; font-weight: 600; src: url('/fonts/montserrat-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Montserrat'; font-style: normal; font-display: swap; font-weight: 500; src: url('/fonts/montserrat-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Montserrat Black'; font-style: normal; font-display: swap; font-weight: 1 1000; src: url('/fonts/montserrat-latin-900-normal.woff2') format('woff2'); }
 @font-face { font-family: 'Libre Caslon Display'; font-style: normal; font-display: swap; font-weight: 400; src: url('/fonts/libre-caslon-display-latin-400-normal.woff2') format('woff2'); }
 @font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-display: swap; font-weight: 100 900; src: url('/fonts/hanken-grotesk-latin-wght-normal.woff2') format('woff2-variations'); }
 
@@ -30,8 +35,8 @@
   --shadow-lg: 0 4px 8px rgba(0, 10, 99, 0.05), 0 28px 56px -24px rgba(0, 10, 99, 0.36);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
-  --font-display: 'Libre Caslon Display', 'Big Caslon', Georgia, 'Times New Roman', serif;
-  --font-body: 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Montserrat Black', 'Arial Black', system-ui, sans-serif;
+  --font-body: 'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --bar-h: 60px;
   --ctl-h: 64px;
   --safe-t: env(safe-area-inset-top, 0px);
@@ -552,3 +557,16 @@ input[type="range"].scrub-range {
   .fview .sheet-title { font-size: 1.9rem; }
 }
 @media (min-width: 1400px) and (min-height: 560px) { .fview { grid-template-columns: minmax(0, 1fr) 440px; } }
+
+/* Tipografía Montserrat: titulares gruesos y más grandes */
+.cover-title, .opener-name, .pg-title, .back-title, .filler-title, .sheet-title, .coach-card h2, .ambient-caption strong, .cat-brand-title, .howto-stats strong, .opener-num, .toc-num { letter-spacing: -0.035em; }
+.cover-title { font-size: 18.48cqw; line-height: .9; white-space: normal; }
+.cover-title em { display: block; }
+.cover-logo { margin-bottom: 7cqw; }
+.opener-name { font-size: 11.76cqw; line-height: .92; }
+.pg-title { font-size: 6.27cqw; }
+.tile-name { font-size: 2.91cqw; font-weight: 800; letter-spacing: -0.01em; }
+.pg-grid.n3 .tile:not(:first-child) .tile-name { font-size: 2.58cqw; }
+.toc-name { font-weight: 800; }
+.sheet-title { font-size: 1.9rem; line-height: 1.02; }
+.cover-eyebrow, .cover-kicker { font-weight: 800; }
