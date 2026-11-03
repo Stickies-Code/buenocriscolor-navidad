@@ -1201,3 +1201,73 @@ h1, h2, h3, .section-title, .hero h1, .fam-hero h1 { letter-spacing: -0.03em; }
 .js.is-loaded .hero-logo { opacity: 0.62; }
 @media (min-width: 761px) { .hero-content { padding-top: 96px; } }
 @media (max-width: 760px) { .hero-content { padding-top: 84vw; } .hero-logo { margin-bottom: 22px; } }
+
+/* Enlace a la tienda online (pedidos < 500 €) */
+.shop-link { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; font-size: 1rem; font-weight: 700; color: inherit; margin-top: 12px; }
+.shop-link span { display: inline-flex; align-items: center; gap: 6px; color: var(--gold-bright); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.is-light + .shop-link span, .contact-header .shop-link span, .refs-hero .shop-link span, .featured-more .shop-link span { color: var(--ink); }
+.contact-header .shop-link, .featured-more .shop-link, .refs-hero .shop-link { color: var(--text); }
+.hero .shop-link { margin: -14px 0 28px; color: #fff; }
+.featured-more .shop-link { margin-top: -6px; }
+.footer-brand .shop-link { display: flex; font-size: 0.9rem; color: #fff; }
+.fam-cta-actions .shop-link { color: #fff; }
+.form-shop { display: inline-block; margin: 0 0 8px; font-size: 0.95rem; font-weight: 700; color: var(--ink); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.form-shop:hover, .shop-link:hover span { color: var(--gold); }
+.shop-inline { display: block; margin-top: 8px; font-weight: 700; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ═══ Versión contundente: más grande, más gruesa, más directa ═══ */
+html { font-size: 17.5px; }
+body { color: #0B0D26; }
+:root { --text-2: #24264A; --text-3: #4A4D6A; }
+.section-title { font-size: clamp(2.6rem, 5.6vw, 4.8rem); line-height: .98; text-transform: uppercase; letter-spacing: -0.02em; }
+.section-subtitle { font-size: 1.2rem; font-weight: 600; color: var(--text-2); }
+.hero h1 { text-transform: uppercase; font-size: clamp(3.6rem, 9vw, 9rem); line-height: .9; }
+.hero-kicker { font-size: clamp(0.95rem, 1.3vw, 1.2rem); font-weight: 800; letter-spacing: 0.22em; }
+.hero-kicker span { margin-right: -0.22em; }
+.pro-pill { font-size: 1.02rem; padding: 12px 22px 12px 16px; border-width: 2px; }
+.pro-pill strong { font-weight: 800; }
+.btn-hero-primary { height: 64px; font-size: 1.12rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em; padding-left: 30px; }
+.btn-hero-primary .btn-icon { width: 48px; height: 48px; }
+.btn-hero-outline { font-size: 1.1rem; font-weight: 800; text-transform: uppercase; border-bottom-width: 2px; }
+.btn { height: 48px; font-size: 0.95rem; font-weight: 800; }
+.hero-meta { font-size: 1rem; color: rgba(255,255,255,.9); }
+.hero-meta strong { font-weight: 900; }
+.b2b-ticker-item { font-size: 1rem; font-weight: 700; color: rgba(255,255,255,.9); }
+.b2b-ticker-item strong { font-weight: 900; }
+.family-card-name { font-family: var(--font-display); font-size: clamp(1.6rem, 2.2vw, 2.1rem) !important; text-transform: uppercase; letter-spacing: -0.02em; line-height: .98; }
+.family-card-refs { font-size: 0.95rem; font-weight: 700; color: #fff; }
+.family-card-btn { font-size: 0.95rem; font-weight: 800; text-transform: uppercase; }
+.product-card-name { font-size: 1.12rem; font-weight: 800; }
+.product-card-ref { font-size: 0.85rem; font-weight: 800; color: var(--ink); }
+.product-card-view { font-size: 0.95rem; font-weight: 800; text-transform: uppercase; }
+.product-card-family-tag { font-weight: 800; }
+.ref-row-name { font-size: 1rem; font-weight: 700; }
+.ref-tile-name { font-size: 0.98rem; font-weight: 800; }
+.contact-form-title { font-size: 2rem; text-transform: uppercase; letter-spacing: -0.02em; }
+.form-label { font-size: 0.95rem; font-weight: 800; }
+.form-input { font-size: 1.02rem; }
+.fam-hero h1 { text-transform: uppercase; font-size: clamp(3rem, 8vw, 7.4rem) !important; line-height: .92; }
+.fam-hero-desc { font-size: 1.2rem; font-weight: 600; }
+.fam-cta p { font-size: 1.12rem; font-weight: 600; }
+.fam-cta-phone { font-size: 1rem; font-weight: 700; }
+.b2b-section p { font-size: 1.05rem; }
+.brand-strip strong, .brand-strip b { font-weight: 900; }
+@media (max-width: 760px) {
+  html { font-size: 16.5px; }
+  .section-title { font-size: clamp(2.2rem, 11vw, 3rem); }
+  .hero h1 { font-size: clamp(3rem, 15vw, 4.2rem); }
+  .fam-hero h1 { font-size: clamp(2.4rem, 13vw, 3.6rem) !important; }
+  .btn-hero-primary { height: 58px; font-size: 1rem; }
+  .hero-kicker { font-size: 0.78rem; letter-spacing: 0.14em; }
+  .hero-kicker span { margin-right: -0.14em; }
+  .pro-pill { font-size: 0.9rem; }
+}
+.footer-brand .pro-pill { font-size: 0.85rem; padding: 10px 16px; }
+.footer-brand .pro-pill > span strong { white-space: nowrap; }
+.contact-header .shop-link { margin-left: 14px; }
+@media (max-width: 760px) { .contact-header .shop-link { margin-left: 0; display: flex; } }
+.hero .shop-link { justify-content: center; }
+@media (max-width: 760px) {
+  .hero-bg { background-size: cover !important; background-position: center top !important; }
+  .fam-hero h1 { font-size: clamp(2rem, 10.5vw, 3.2rem) !important; word-break: normal; }
+}
