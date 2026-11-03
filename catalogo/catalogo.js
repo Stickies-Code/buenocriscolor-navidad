@@ -101,15 +101,9 @@ function tileHTML(m) {
 
 /* Reparto variable: páginas de 2 y 3 fichas, sin dejar nunca una ficha sola */
 function chunkSizes(n) {
-  if (n <= 3) return [n];
+  // Dos fichas por página; si sobra una, va sola con el bloque de contacto.
   const out = [];
-  let rem = n, k = 0;
-  while (rem > 0) {
-    let size = k % 2 ? 3 : 2;
-    if (rem <= 3) size = rem;
-    else if (rem - size === 1) size = size === 2 ? 3 : 2;
-    out.push(size); rem -= size; k++;
-  }
+  for (let rem = n; rem > 0; rem -= 2) out.push(Math.min(2, rem));
   return out;
 }
 
