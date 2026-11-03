@@ -1195,3 +1195,9 @@ h1, h2, h3, .section-title, .hero h1, .fam-hero h1 { letter-spacing: -0.03em; }
 .hero h1 { font-size: clamp(3.2rem, 7.4vw, 7.2rem); line-height: .95; }
 .hero h1 em, .section-title em { font-style: normal; }
 @media (max-width: 760px) { .hero h1 { font-size: clamp(2.7rem, 13.5vw, 3.9rem); } }
+
+/* Portada: logo translúcido como los copos, más arriba */
+.hero-logo { color: #EEF3FF; opacity: 0.62; filter: drop-shadow(0 0 18px rgba(200, 220, 255, 0.35)); margin-bottom: clamp(36px, 6vh, 64px); }
+.js.is-loaded .hero-logo { opacity: 0.62; }
+@media (min-width: 761px) { .hero-content { padding-top: 96px; } }
+@media (max-width: 760px) { .hero-content { padding-top: 84vw; } .hero-logo { margin-bottom: 22px; } }

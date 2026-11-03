@@ -570,3 +570,7 @@ input[type="range"].scrub-range {
 .toc-name { font-weight: 800; }
 .sheet-title { font-size: 1.9rem; line-height: 1.02; }
 .cover-eyebrow, .cover-kicker { font-weight: 800; }
+
+/* Portada: logo translúcido como los copos, más arriba */
+.cover-center { top: 13%; }
+.cover-logo { width: 46cqw; filter: drop-shadow(0 0 2.2cqw rgba(200, 220, 255, 0.35)); opacity: 0.62; margin-bottom: 13cqw; }

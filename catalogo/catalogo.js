@@ -133,10 +133,10 @@ function build() {
     <div class="pg-bleed">
       <div class="cover-bg"></div>
       <div class="cover-center">
-        <img class="cover-logo" src="/img/logo-cartel.svg" alt="Criscolor" draggable="false">
+        <img class="cover-logo" src="/img/logo-sin-web.svg?v=1" alt="Criscolor" draggable="false">
         <div class="cover-eyebrow">Catálogo</div>
         <div class="cover-title">Invierno <em>2026</em></div>
-        <div class="cover-kicker"><span>Calefacción</span><i>·</i><span>Papel de regalo</span><i>·</i><span>Embalaje</span></div>
+        <div class="cover-kicker"><span>Todo para tu tienda este invierno</span></div>
       </div>
       <div class="cover-foot">
         <div class="cover-meta"><span><strong>${TOTAL_REFS}</strong> referencias</span><span><strong>${MODELS.length}</strong> modelos</span><span><strong>12</strong> familias</span></div>
