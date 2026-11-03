@@ -35,7 +35,7 @@ const MEDIA = {
   bobinas: { video: '/media/bobinas/video.mp4?v=2', poster: '/media/bobinas/poster.webp?v=2', fotos: ['/media/bobinas/1.webp?v=4', '/media/bobinas/2.webp?v=4'] },
   bolsas: { video: '/media/bolsas/video.mp4?v=1', poster: '/media/bolsas/poster.webp?v=1', fotos: ['/media/bolsas/2.webp?v=4'] },
   lazos: { video: '/media/lazos/video.mp4?v=2', poster: '/media/lazos/poster.webp?v=2', fotos: ['/media/lazos/1.webp?v=4', '/media/lazos/2.webp?v=4'] },
-  cajas: { video: '/media/cajas/video.mp4?v=1', poster: '/media/cajas/poster.webp?v=1', fotos: ['/media/cajas/1.webp?v=4'] },
+  cajas: { video: '/media/cajas/video.mp4?v=1', poster: '/media/cajas/poster.webp?v=1', fotos: ['/media/cajas/2.webp?v=4'] },
   sacos: { video: '/media/sacos/video.mp4?v=2', poster: '/media/sacos/poster.webp?v=2', fotos: ['/media/sacos/1.webp?v=4', '/media/sacos/2.webp?v=4'] },
   globos: { video: '/media/globos/video.mp4?v=3', poster: '/media/globos/poster.webp?v=3', fotos: ['/media/globos/1.webp?v=4', '/media/globos/2.webp?v=4'] },
   decoracion: { video: '/media/decoracion/video.mp4?v=3', poster: '/media/decoracion/poster.webp?v=3', fotos: ['/media/decoracion/1.webp?v=4'] },

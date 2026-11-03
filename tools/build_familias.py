@@ -8,7 +8,7 @@ o los datos de assets/catalog.js.
 """
 import html, json, os, re
 # Versión de imagen por familia (cambiar al sustituir una portada para saltar la caché)
-IMG_V = {k: '?v=5' for k in ['papel','bobinas','bolsas','lazos','cajas','sacos','globos','decoracion','pegatinas','fiesta','vajilla','calefaccion']}
+IMG_V = {'bobinas': '?v=2'}
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://buenocriscolor-navidad.vercel.app'
