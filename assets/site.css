@@ -4,6 +4,8 @@
    del logo (#00109E) como tinta y oro como único acento.
 ═══════════════════════════════════════════════════════════ */
 
+@font-face { font-family: 'Inter Tight Black'; font-style: normal; font-display: swap; font-weight: 900; src: url('/fonts/inter-tight-latin-wght-normal.woff2') format('woff2-variations'); }
+@font-face { font-family: 'Inter Tight'; font-style: normal; font-display: swap; font-weight: 100 900; src: url('/fonts/inter-tight-latin-wght-normal.woff2') format('woff2-variations'); }
 @font-face {
   font-family: 'Montserrat Black';
   font-style: normal;
@@ -63,8 +65,8 @@
   --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
 
   /* Tipografía */
-  --font-display: 'Montserrat Black', 'Arial Black', system-ui, sans-serif;
-  --font-body: 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Inter Tight Black', 'Arial Black', system-ui, sans-serif;
+  --font-body: 'Inter Tight', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* Alias heredados (usados en estilos en línea y en el JS) */
   --blue: var(--ink);
@@ -1190,8 +1192,8 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 .fam-cta-actions .pro-pill, .footer-brand .pro-pill { border-radius: 18px; }
 @media (max-width: 760px) { .pro-pill { border-radius: 18px; } }
 
-/* Titulares en Montserrat Black (texto corrido sigue en Hanken Grotesk) */
-h1, h2, h3, .section-title, .hero h1, .fam-hero h1 { letter-spacing: -0.03em; }
+/* Titulares en Inter Tight Black (texto corrido en Inter Tight) */
+h1, h2, h3, .section-title, .hero h1, .fam-hero h1 { letter-spacing: -0.02em; }
 .hero h1 { font-size: clamp(3.2rem, 7.4vw, 7.2rem); line-height: .95; }
 .hero h1 em, .section-title em { font-style: normal; }
 @media (max-width: 760px) { .hero h1 { font-size: clamp(2.7rem, 13.5vw, 3.9rem); } }
