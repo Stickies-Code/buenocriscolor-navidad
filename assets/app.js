@@ -12,9 +12,10 @@ const familyUrl = id => `/familia/${id}`;
 const IMG_V = { bobinas: '?v=2' }; // subir al cambiar una portada
 const famImg = id => `/img/familias/${id}.webp${IMG_V[id] || ''}`;
 const famCardImg = id => `/img/familias/${id}-card.webp${IMG_V[id] || ''}`;
-const photoFoto = ean => `/productos/foto/${ean}.webp`;
-const photoMini = ean => `/productos/mini/${ean}.webp`;
-const photoFicha = ean => `/productos/ficha-hd/${ean}.webp`;   // ficha recortada, 1024 px
+const IMGV = "?v=2";
+const photoFoto = ean => `/productos/foto/${ean}.webp${IMGV}`;
+const photoMini = ean => `/productos/mini/${ean}.webp${IMGV}`;
+const photoFicha = ean => `/productos/ficha-hd/${ean}.webp${IMGV}`;   // ficha recortada, 1024 px
 
 function escHTML(s) { return String(s).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch])); }
 function norm(s) { return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
