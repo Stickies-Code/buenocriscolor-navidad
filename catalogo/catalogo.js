@@ -19,7 +19,7 @@ const MODEL = Object.fromEntries(MODELS.map(m => [m.id, m]));
 const MODEL_OF = {};
 MODELS.forEach(m => m.v.forEach(v => { MODEL_OF[v.c] = m.id; }));
 
-const IMGV = "?v=2";
+const IMGV = "?v=3";
 const foto = e => `/productos/foto/${e}.webp${IMGV}`;
 const mini = e => `/productos/mini/${e}.webp${IMGV}`;
 const ficha = e => `/productos/ficha-hd/${e}.webp${IMGV}`;   // ficha recortada a su contenido, a 1024 px
