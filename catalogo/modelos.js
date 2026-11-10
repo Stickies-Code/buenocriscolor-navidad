@@ -5,8 +5,6 @@ const MODELS = [
 {"id":"celo-transparente-amarillo","t":"Celo Transparente Amarillo","f":"pegatinas","d":["Medida","Cantidad"],"v":[{"c":"41158","a":{"Medida":"18MMX30M","Cantidad":"2UDS."}},{"c":"41157","a":{"Medida":"12MMX30M","Cantidad":"3UDS"}}],"s":0,"k":"41158"},
 {"id":"bandera-reyes-magos-2mx1-5m","t":"Bandera Reyes Magos 2MX1,5M","f":"decoracion","d":[],"v":[{"c":"44979","a":{}}],"s":0,"k":"44979"},
 {"id":"papa-noel-en-escalera","t":"Papá Noel en Escalera","f":"decoracion","d":["Medida"],"v":[{"c":"44980","a":{"Medida":"40CM"}},{"c":"44981","a":{"Medida":"70CM"}},{"c":"44982","a":{"Medida":"100CM"}}],"s":1,"k":"44981"},
-{"id":"elfo-travieso-40cm","t":"Elfo Travieso 40CM","f":"decoracion","d":[],"v":[{"c":"44983","a":{}}],"s":0,"k":"44983"},
-{"id":"elfa-traviesa-40cm","t":"Elfa Traviesa 40CM","f":"decoracion","d":[],"v":[{"c":"45053","a":{}}],"s":0,"k":"45053"},
 {"id":"figura-papa-noel-40cm","t":"Figura Papá Noel 40CM","f":"decoracion","d":[],"v":[{"c":"44984","a":{}}],"s":0,"k":"44984"},
 {"id":"figura-melchor-44cm","t":"Figura Melchor 44CM","f":"decoracion","d":[],"v":[{"c":"44985","a":{}}],"s":0,"k":"44985"},
 {"id":"figura-gaspar-44cm","t":"Figura Gaspar 44CM","f":"decoracion","d":[],"v":[{"c":"44986","a":{}}],"s":0,"k":"44986"},
@@ -75,7 +73,6 @@ const MODELS = [
 {"id":"globo-rey-mago-melchor-40cm","t":"Globo Rey Mago Melchor 40CM","f":"globos","d":[],"v":[{"c":"44959","a":{}}],"s":0,"k":"44959"},
 {"id":"globo-rey-mago-gaspar-40cm","t":"Globo Rey Mago Gaspar 40CM","f":"globos","d":[],"v":[{"c":"44960","a":{}}],"s":0,"k":"44960"},
 {"id":"globo-rey-mago-baltasar-40cm","t":"Globo Rey Mago Baltasar 40CM","f":"globos","d":[],"v":[{"c":"44961","a":{}}],"s":0,"k":"44961"},
-{"id":"globos-reyes-magos-40cm-3uds","t":"Globos Reyes Magos 40CM 3UDS","f":"globos","d":[],"v":[{"c":"44962","a":{}}],"s":0,"k":"44962"},
 {"id":"figuras-navidad-bolas-4uds","t":"Figuras Navidad Bolas 4UDS","f":"decoracion","d":[],"v":[{"c":"44871","a":{}}],"s":0,"k":"44871"},
 {"id":"figuras-navidad-mod3-para-colgar-4uds","t":"Figuras Navidad MOD3 para Colgar 4UDS","f":"decoracion","d":[],"v":[{"c":"44867","a":{}}],"s":0,"k":"44867"},
 {"id":"figuras-navidad-mod5-para-colgar-6uds","t":"Figuras Navidad MOD5 para Colgar 6UDS","f":"decoracion","d":[],"v":[{"c":"44872","a":{}}],"s":0,"k":"44872"},
@@ -101,9 +98,6 @@ const MODELS = [
 {"id":"etiquetas-navidenas-5-5x7-5cm-8uds","t":"Etiquetas Navideñas 5,5x7,5CM 8UDS","f":"pegatinas","d":[],"v":[{"c":"43990","a":{}}],"s":0,"k":"43990"},
 {"id":"etiquetas-navidenas-efecto-4-5x8cm-8uds","t":"Etiquetas Navideñas Efecto 4,5x8CM 8UDS","f":"pegatinas","d":[],"v":[{"c":"43993","a":{}}],"s":0,"k":"43993"},
 {"id":"etiquetas-navidenas-metal-efecto-4-5x8cm-6uds","t":"Etiquetas Navideñas Metal Efecto 4,5x8CM 6UDS","f":"pegatinas","d":[],"v":[{"c":"43992","a":{}}],"s":0,"k":"43992"},
-{"id":"tarjeta-stitch-11-5x16-8cm-surtida-300gr","t":"Tarjeta Stitch 11,5X16,8CM Surtida 300GR","f":"pegatinas","d":[],"v":[{"c":"45017","a":{}}],"s":0,"k":"45017"},
-{"id":"tarjeta-mickey-y-minnie-11-5x16-8cm-surtida-300g","t":"Tarjeta Mickey y Minnie 11,5X16,8CM Surtida 300GR","f":"pegatinas","d":[],"v":[{"c":"45016","a":{}}],"s":0,"k":"45016"},
-{"id":"tarjeta-vengadores-11-5x16-8cm-surtida-300gr","t":"Tarjeta Vengadores 11,5X16,8CM Surtida 300GR","f":"pegatinas","d":[],"v":[{"c":"45018","a":{}}],"s":0,"k":"45018"},
 {"id":"sobre-papa-noel-200x110mm-10uds","t":"Sobre Papá Noel 200x110MM 10UDS","f":"pegatinas","d":[],"v":[{"c":"44883","a":{}}],"s":0,"k":"44883"},
 {"id":"sobre-reyes-magos-200x110mm-10uds","t":"Sobre Reyes Magos 200x110MM 10UDS","f":"pegatinas","d":[],"v":[{"c":"44019","a":{}}],"s":0,"k":"44019"},
 {"id":"cajas-redonda-con-asa-navidad-tamano-m-surtido-3","t":"Cajas Redonda con Asa Navidad Tamaño M Surtido 3UDS","f":"cajas","d":[],"v":[{"c":"44073","a":{}}],"s":0,"k":"44073"},
@@ -385,5 +379,4 @@ const MODELS = [
 {"id":"estufa-cuarzo-himalaya-34-5cm-800w","t":"Estufa Cuarzo Himalaya 34,5CM 800W","f":"calefaccion","d":["Color"],"v":[{"c":"44893","a":{"Color":"Blanca"}},{"c":"45076","a":{"Color":"Gris"}},{"c":"44894","a":{"Color":"Negra"}}],"s":0,"k":"44893"},
 {"id":"estufa-cuarzo-teide-52cm-1200w","t":"Estufa Cuarzo Teide 52CM 1200W","f":"calefaccion","d":["Color"],"v":[{"c":"44895","a":{"Color":"Blanca"}},{"c":"44896","a":{"Color":"Negra"}}],"s":0,"k":"44895"},
 {"id":"estufa-de-gas-criscolor","t":"Estufa de Gas Criscolor","f":"calefaccion","d":[],"v":[{"c":"42648","a":{}}],"s":0,"k":"42648"},
-{"id":"bolsa-de-agua-caliente-electrica-26x18cm","t":"Bolsa de Agua Caliente Eléctrica 26X18CM","f":"calefaccion","d":["Modelo"],"v":[{"c":"45059","a":{"Modelo":"Surtido colores"}},{"c":"45058","a":{"Modelo":"Colores lisos"}},{"c":"45060","a":{"Modelo":"Puntitos"}},{"c":"45061","a":{"Modelo":"Cuadrados"}},{"c":"45062","a":{"Modelo":"Animales"}},{"c":"45063","a":{"Modelo":"Corazones"}},{"c":"45064","a":{"Modelo":"Happy Day"}},{"c":"45065","a":{"Modelo":"Hello"}},{"c":"45066","a":{"Modelo":"Smile"}}],"s":0,"k":"45059"}
 ];

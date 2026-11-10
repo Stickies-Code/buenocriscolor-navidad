@@ -1,10 +1,10 @@
 /* ═══════════════════════════════════════════════════════════
    CRISCOLOR · Catálogo Invierno 2026 — datos compartidos
-   Fuente: CRISCOLOR_CAMPANA_NAVIDAD_2026.xls (874 referencias; 84 añadidas del PDF CRISCOLOR_NAVIDAD_2026_SIN_PRECIOS)
+   Fuente: CRISCOLOR_CAMPANA_NAVIDAD_2026.xls (859 referencias; las 15 que no se van a vender, retiradas)
    Fotos de producto: /productos/{ficha|foto|mini}/<EAN>.webp
 ═══════════════════════════════════════════════════════════ */
 
-const TOTAL_REFS = 874;
+const TOTAL_REFS = 859;
 
 const FAMILIES = [
   { id: 'papel', num: '01', name: 'Papel de Regalo', desc: "Rollos de 70 cm con diseños navideños exclusivos, Reyes Magos, licencias, lisos, kraft y metalizados. La familia de mayor rotación de la campaña.", count: 64 },
@@ -13,12 +13,12 @@ const FAMILIES = [
   { id: 'lazos', num: '04', name: 'Lazos y Cintas', desc: "Lazos estrella adhesivos y automáticos, cintas decorativas metalizadas y rafia en bobinas de todas las medidas.", count: 100 },
   { id: 'cajas', num: '05', name: 'Cajas Cartón', desc: "Cajas navideñas redondas, rectangulares y en estrella, metalizadas, con purpurina o estampadas, en sets surtidos de tallas M, L y XL.", count: 66 },
   { id: 'sacos', num: '06', name: 'Sacos Navideños', desc: "Sacos de polietileno estampados para regalos grandes y juguetes, en varios modelos y medidas.", count: 14 },
-  { id: 'globos', num: '07', name: 'Globos', desc: "Globos foil de Reyes Magos, Papá Noel y figuras navideñas, letras «Feliz Navidad» y globos de Fin de Año.", count: 58 },
-  { id: 'decoracion', num: '08', name: 'Decoración Navidad', desc: "Papá Noel en escalera, figuras de Reyes Magos, decoración para colgar, plantillas de huellas y figuras de pórex para manualidades.", count: 87 },
-  { id: 'pegatinas', num: '09', name: 'Pegatinas y Tarjetas', desc: "Pegatinas navideñas y de ventana, etiquetas de regalo, sobres de Papá Noel y Reyes Magos y celo para envolver.", count: 21 },
+  { id: 'globos', num: '07', name: 'Globos', desc: "Globos foil de Reyes Magos, Papá Noel y figuras navideñas, letras «Feliz Navidad» y globos de Fin de Año.", count: 57 },
+  { id: 'decoracion', num: '08', name: 'Decoración Navidad', desc: "Papá Noel en escalera, figuras de Reyes Magos, decoración para colgar, plantillas de huellas y figuras de pórex para manualidades.", count: 85 },
+  { id: 'pegatinas', num: '09', name: 'Pegatinas y Tarjetas', desc: "Pegatinas navideñas y de ventana, etiquetas de regalo, sobres de Papá Noel y Reyes Magos y celo para envolver.", count: 18 },
   { id: 'fiesta', num: '10', name: 'Fiesta y Novedades', desc: "Cañones de fiesta de 30, 40 y 60 cm, gafas de Navidad y Fin de Año 2027, bolsas para las uvas y viruta de relleno.", count: 26 },
   { id: 'vajilla', num: '11', name: 'Vajilla Desechable', desc: "Vasos, platos, boles y bandejas de cartón, servilletas y manteles de papel, metalizados y con diseños navideños para las mesas de Navidad, Nochevieja y Reyes.", count: 161 },
-  { id: 'calefaccion', num: '12', name: 'Calefacción', desc: "Calefactores de 1500 y 2000 W, estufas de cuarzo, estufa de gas y bolsas de agua caliente eléctricas, en varios modelos y colores.", count: 36 }
+  { id: 'calefaccion', num: '12', name: 'Calefacción', desc: "Calefactores de 1500 y 2000 W, estufas de cuarzo, estufa de gas y bolsas de agua caliente eléctricas, en varios modelos y colores.", count: 27 }
 ];
 
 /* ── FOTOS Y VÍDEOS IA POR FAMILIA ──────────────────────────
@@ -60,8 +60,6 @@ const CATALOG = [
 {"c":"44980","n":"Papá Noel en Escalera 40CM","e":"8435621449808","f":"decoracion","p":6,"x":144},
 {"c":"44981","n":"Papá Noel en Escalera 70CM","e":"8435621449815","f":"decoracion","p":6,"x":144},
 {"c":"44982","n":"Papá Noel en Escalera 100CM","e":"8435621449822","f":"decoracion","p":6,"x":144},
-{"c":"44983","n":"Elfo Travieso 40CM","e":"8435621449839","f":"decoracion","p":6},
-{"c":"45053","n":"Elfa Traviesa 40CM","e":"8435621450538","f":"decoracion","p":6},
 {"c":"44984","n":"Figura Papá Noel 40CM","e":"8435621449846","f":"decoracion","p":6,"x":48,"s":"Modelos surtidos","i":"Caja incluida"},
 {"c":"44985","n":"Figura Melchor 44CM","e":"8435621449853","f":"decoracion","p":6,"x":48},
 {"c":"44986","n":"Figura Gaspar 44CM","e":"8435621449860","f":"decoracion","p":6,"x":48},
@@ -89,7 +87,6 @@ const CATALOG = [
 {"c":"44959","n":"Globo Rey Mago Melchor 40CM","e":"8435621449594","f":"globos","p":12},
 {"c":"44960","n":"Globo Rey Mago Gaspar 40CM","e":"8435621449600","f":"globos","p":12},
 {"c":"44961","n":"Globo Rey Mago Baltasar 40CM","e":"8435621449617","f":"globos","p":12},
-{"c":"44962","n":"Globos Reyes Magos 40CM 3UDS","e":"8435621449624","f":"globos","p":12},
 {"c":"44109","n":"Globo Rey Mago Gaspar 110CM","e":"8435621441093","f":"globos","p":12,"x":144},
 {"c":"44110","n":"Globo Rey Mago Baltasar 110CM","e":"8435621441109","f":"globos","p":12,"x":144},
 {"c":"44011","n":"Globos Reyes Magos 110CM 3UDS","e":"8435621440119","f":"globos","p":12,"x":144},
@@ -169,9 +166,6 @@ const CATALOG = [
 {"c":"43990","n":"Etiquetas Navideñas 5,5x7,5CM 8UDS","e":"8435621439908","f":"pegatinas","p":12},
 {"c":"43993","n":"Etiquetas Navideñas Efecto 4,5x8CM 8UDS","e":"8435621439939","f":"pegatinas","p":12,"x":288},
 {"c":"43992","n":"Etiquetas Navideñas Metal Efecto 4,5x8CM 6UDS","e":"8435621439922","f":"pegatinas","p":12,"x":288},
-{"c":"45017","n":"Tarjeta Stitch 11,5X16,8CM Surtida 300GR","e":"8435621450170","f":"pegatinas","p":12},
-{"c":"45016","n":"Tarjeta Mickey y Minnie 11,5X16,8CM Surtida 300GR","e":"8435621450163","f":"pegatinas","p":12},
-{"c":"45018","n":"Tarjeta Vengadores 11,5X16,8CM Surtida 300GR","e":"8435621450187","f":"pegatinas","p":12},
 {"c":"44883","n":"Sobre Papá Noel 200x110MM 10UDS","e":"8435621448832","f":"pegatinas","p":12,"x":72},
 {"c":"44019","n":"Sobre Reyes Magos 200x110MM 10UDS","e":"8435621440195","f":"pegatinas","p":12,"x":72},
 {"c":"44073","n":"Cajas Redonda con Asa Navidad Tamaño M Surtido 3UDS","e":"8435621440737","f":"cajas","p":4,"x":4,"s":"3 tamaños surtidos"},
@@ -891,15 +885,6 @@ const CATALOG = [
 {"c":"44799","n":"Mantel Papel 1,4X2,2M Blanco Navideño","e":"8435621447996","f":"vajilla","p":12,"x":144},
 {"c":"44800","n":"Mantel Papel 1,4X2,2M Reyes Magos","e":"8435621448009","f":"vajilla","p":12,"x":144},
 {"c":"44977","n":"Calefactor Candanchú Blanco 24CM 2000W · Nº RII-AEE 8813","e":"8435621449778","f":"calefaccion","p":6,"x":6},
-{"c":"45058","n":"Bolsa de Agua Caliente Eléctrica 26X18CM Surtido Colores Lisos","e":"8435621450583","f":"calefaccion","p":12},
-{"c":"45059","n":"Bolsa de Agua Caliente Eléctrica 26X18CM Surtido Colores","e":"8435621450590","f":"calefaccion","p":12},
-{"c":"45060","n":"Bolsa de Agua Caliente Eléctrica 26X18CM Surtido Colores Puntitos","e":"8435621450606","f":"calefaccion","p":12},
-{"c":"45061","n":"Bolsa de Agua Caliente Eléctrica 26X18CM Surtido Colores Cuadrados","e":"8435621450613","f":"calefaccion","p":12},
-{"c":"45062","n":"Bolsa de Agua Caliente Eléctrica 26X18CM Surtido Colores Animales","e":"8435621450620","f":"calefaccion","p":12},
-{"c":"45063","n":"Bolsa de Agua Caliente Eléctrica 26X18CM Surtido Colores Corazones","e":"8435621450637","f":"calefaccion","p":12},
-{"c":"45064","n":"Bolsa de Agua Caliente Eléctrica 26X18CM Surtido Colores Happy Day","e":"8435621450644","f":"calefaccion","p":12},
-{"c":"45065","n":"Bolsa de Agua Caliente Eléctrica 26X18CM Surtido Colores Hello","e":"8435621450651","f":"calefaccion","p":12},
-{"c":"45066","n":"Bolsa de Agua Caliente Eléctrica 26X18CM Surtido Colores Smile","e":"8435621450668","f":"calefaccion","p":12},
 {"c":"44978","n":"Calefactor Candanchú Negro 24CM 2000W · Nº RII-AEE 8813","e":"8435621449785","f":"calefaccion","p":6,"x":6},
 {"c":"44884","n":"Calefactor Atlas Blanco 26,5CM 2000W · Nº RII-AEE 8813","e":"8435621448849","f":"calefaccion","p":6,"x":6},
 {"c":"44885","n":"Calefactor Atlas Negro 26,5CM 2000W · Nº RII-AEE 8813","e":"8435621448856","f":"calefaccion","p":6,"x":6},
