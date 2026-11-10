@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   CRISCOLOR · Catálogo interactivo Invierno 2026
+   CRISCOLOR · Catálogo interactivo Navidad 26/27
    Datos: /assets/catalog.js (CATALOG, FAMILIES, STAR_CODES)
           /catalogo/modelos.js (MODELS: referencias agrupadas)
    Libro: StPageFlip (MIT) en /catalogo/vendor
@@ -13,6 +13,20 @@ const DIM_ORDER = ['Medida', 'Color', 'Cantidad', 'Capas', 'Modelo', 'Composici�
 const DIM_LABEL = { Medida: 'Medida', Color: 'Color', Cantidad: 'Cantidad', Capas: 'Capas', Modelo: 'Modelo', 'Composición': 'Composición' };
 
 const CAT = Object.fromEntries(CATALOG.map(p => [p.c, p]));
+/* Una entrada por referencia: cada modelo se despliega en todas sus referencias,
+   que quedan juntas y en orden (destacados primero dentro de cada familia). */
+(() => {
+  const out = [];
+  const byFam = {};
+  MODELS.forEach(m => { (byFam[m.f] = byFam[m.f] || []).push(m); });
+  Object.values(byFam).forEach(list => {
+    [...list.filter(m => m.s), ...list.filter(m => !m.s)].forEach(m => {
+      const vs = [...m.v.filter(v => v.c === m.k), ...m.v.filter(v => v.c !== m.k)];
+      vs.forEach(v => { if (CAT[v.c]) out.push({ id: 'r' + v.c, t: CAT[v.c].n, f: m.f, d: [], v: [{ c: v.c, a: {} }], s: m.s && v.c === m.k ? 1 : 0, k: v.c, col: v.a.Color || '' }); });
+    });
+  });
+  MODELS.splice(0, MODELS.length, ...out);
+})();
 const FAM = Object.fromEntries(FAMILIES.map(f => [f.id, f]));
 const STARS = new Set(STAR_CODES);
 const MODEL = Object.fromEntries(MODELS.map(m => [m.id, m]));
@@ -66,7 +80,7 @@ const swHTML = val => { const s = swatchFor(val); return s ? `<span class="sw" s
 const famModels = {};
 FAMILIES.forEach(f => {
   const list = MODELS.filter(m => m.f === f.id);
-  famModels[f.id] = [...list.filter(m => m.s), ...list.filter(m => !m.s)];
+  famModels[f.id] = list;
 });
 
 const PAGES = [];          // { kind, html, family }
@@ -83,7 +97,7 @@ function tileHTML(m) {
   const sw = colors.filter(swatchFor).slice(0, 8);
   const more = colors.length - sw.length;
   let meta;
-  if (n === 1) meta = `<span>Ref. ${esc(lead.c)}</span>`;
+  if (n === 1) meta = `<span>Ref. <strong>${esc(lead.c)}</strong></span><span>EAN ${esc(lead.e)}</span>${m.col && swatchFor(m.col) ? `<span class="swatches">${swHTML(m.col)}</span>` : ''}`;
   else {
     meta = `<span class="tile-var">${n} variantes</span>`;
     if (sw.length) meta += `<span class="swatches">${sw.map(swHTML).join('')}${more > 0 ? `<span class="sw-more">+${more}</span>` : ''}</span>`;
@@ -115,7 +129,7 @@ function fillerHTML(f) {
       <span class="filler-body">
         <span class="filler-kicker">Venta a profesionales</span>
         <span class="filler-title">¿Te interesa ${esc(f.name)}?</span>
-        <span class="filler-text">Pide precios y disponibilidad a tu comercial:<br><strong>(+34) 961 53 21 09</strong> · <strong>comercial@criscolor.com</strong></span>
+        <span class="filler-text">Pide precios y disponibilidad a tu comercial:<br><strong>(+34) 961 53 21 09</strong> · <strong>info@criscolor.es</strong></span>
         <span class="filler-cta">Contáctanos ${I.arrow}</span>
       </span>
     </div>`;
@@ -125,7 +139,7 @@ function head(f, label) {
   return `<div class="pg-head"><span><strong>${f.num}</strong> · ${esc(f.name)}</span><span>${label}</span></div>`;
 }
 function foot(i) {
-  return `<div class="pg-foot"><span>Criscolor · Invierno 2026</span><span class="pg-folio">${i}</span></div>`;
+  return `<div class="pg-foot"><span>Criscolor · Navidad 26/27</span><span class="pg-folio">${i}</span></div>`;
 }
 
 function build() {
@@ -136,11 +150,11 @@ function build() {
       <div class="cover-center">
         <img class="cover-logo" src="/img/logo-sin-web.svg?v=1" alt="Criscolor" draggable="false">
         <div class="cover-eyebrow">Catálogo</div>
-        <div class="cover-title">Invierno <em>2026</em></div>
-        <div class="cover-kicker"><span>Todo para tu tienda este invierno</span></div>
+        <div class="cover-title">Navidad <em>26/27</em></div>
+        <div class="cover-kicker"><span>Todo para tu tienda esta Navidad</span></div>
       </div>
       <div class="cover-foot">
-        <div class="cover-meta"><span><strong>${TOTAL_REFS}</strong> referencias</span><span><strong>${MODELS.length}</strong> modelos</span><span><strong>12</strong> familias</span></div>
+        <div class="cover-meta"><span><strong>${TOTAL_REFS}</strong> referencias</span><span><strong>12</strong> familias</span></div>
         <div class="cover-hint">Desliza para abrir ${I.arrow}</div>
       </div>
     </div>` });
@@ -153,7 +167,7 @@ function build() {
       <div class="toc">${FAMILIES.map(f => `
         <div class="toc-row" role="button" tabindex="0" data-goto="${FAMILY_PAGE[f.id]}">
           <span class="toc-num">${f.num}</span>
-          <span class="toc-name">${esc(f.name)}<small>${plural(famModels[f.id].length, 'modelo', 'modelos')} · ${f.count} referencias</small></span>
+          <span class="toc-name">${esc(f.name)}<small>${famModels[f.id].length} referencias</small></span>
           <span class="toc-page">${FAMILY_PAGE[f.id]}</span>
         </div>`).join('')}
       </div>
@@ -164,10 +178,10 @@ function build() {
       <div class="pg-head"><span><strong>Criscolor</strong> · Desde el año 2000</span><span>Cómo usar este catálogo</span></div>
       <h2 class="pg-title">Un catálogo para <em>tocar</em></h2>
       <div class="howto">
-        <p class="howto-intro">Las ${TOTAL_REFS} referencias de la campaña de invierno, agrupadas en ${MODELS.length} modelos: cada producto reúne sus colores, medidas y formatos en una sola ficha.</p>
+        <p class="howto-intro">Las ${TOTAL_REFS} referencias de la campaña de Navidad, una a una: cada referencia tiene su propia ficha a gran tamaño, con su código, su EAN y sus unidades por caja.</p>
         <div class="howto-steps">
           <div class="howto-step"><span class="howto-icon">${I.swipe}</span><div><strong>Pasa las páginas</strong><span>Desliza con el dedo, usa las flechas o salta a cualquier familia desde el índice.</span></div></div>
-          <div class="howto-step"><span class="howto-icon">${I.tap}</span><div><strong>Toca un producto</strong><span>Se abre su ficha: elige color o medida y verás la referencia, el EAN y las unidades por caja.</span></div></div>
+          <div class="howto-step"><span class="howto-icon">${I.tap}</span><div><strong>Toca un producto</strong><span>Se abre su ficha a gran tamaño con la referencia, el EAN y las unidades por caja.</span></div></div>
           <div class="howto-step"><span class="howto-icon">${I.bag}</span><div><strong>Guarda tu selección</strong><span>Añade referencias con sus cajas y descárgala en Excel o envíala a tu comercial.</span></div></div>
         </div>
         <div class="howto-stats">
@@ -187,12 +201,12 @@ function build() {
     PAGES.push({ kind: 'opener', family: f.id, html: () => `
       <div class="pg-bleed">
         <img data-src="${famImg(f.id)}" alt="" draggable="false">
-        <div class="pg-bleed-top"><span>Familia ${f.num} de 12</span><span>Invierno 2026</span></div>
+        <div class="pg-bleed-top"><span>Familia ${f.num} de 12</span><span>Navidad 26/27</span></div>
         <div class="pg-bleed-content">
           <div class="opener-num">${f.num}</div>
           <h2 class="opener-name">${esc(f.name)}</h2>
           <p class="opener-desc">${esc(f.desc)}</p>
-          <div class="opener-meta"><span><strong>${list.length}</strong> modelos</span><span><strong>${f.count}</strong> referencias</span><span><strong>${list.filter(m => m.s).length}</strong> ${list.filter(m => m.s).length === 1 ? 'destacado' : 'destacados'}</span></div>
+          <div class="opener-meta"><span><strong>${list.length}</strong> referencias</span><span><strong>${list.filter(m => m.s).length}</strong> ${list.filter(m => m.s).length === 1 ? 'destacado' : 'destacados'}</span></div>
         </div>
       </div>` });
     let k = 0;
@@ -203,7 +217,7 @@ function build() {
       const first = idx === start + 1;
       PAGES.push({ kind: 'grid', family: f.id, html: i => `
         <div class="pg">
-          ${head(f, first && chunk.some(m => m.s) ? 'Selección destacada' : plural(chunk.length, 'modelo', 'modelos'))}
+          ${head(f, first && chunk.some(m => m.s) ? 'Selección destacada' : plural(chunk.length, 'referencia', 'referencias'))}
           <div class="pg-grid n${chunk.length}">${chunk.map(m => tileHTML(m)).join('')}${chunk.length === 1 ? fillerHTML(f) : ''}</div>
           ${foot(i)}
         </div>` });
@@ -228,7 +242,7 @@ function build() {
         <p class="back-text">Venta exclusiva a profesionales. Nuestro equipo comercial te atiende en 24 h laborables con precios, disponibilidad y plazos de entrega.</p>
         <div class="back-contact">
           <div><strong>(+34) 961 53 21 09</strong>L-V de 8:00 a 13:30 y de 15:30 a 18:00</div>
-          <div><strong>comercial@criscolor.com</strong>www.criscolor.com</div>
+          <div><strong>info@criscolor.es</strong>www.criscolor.com</div>
           <div><strong>Parc Empresarial Tàctica</strong>Carrer de l'Algepser, 125 · 46980 Paterna, Valencia</div>
         </div>
       </div>
@@ -606,7 +620,7 @@ function renderSearch() {
   const byModel = new Map();
   hits.forEach(p => { const id = MODEL_OF[p.c]; if (!byModel.has(id)) byModel.set(id, []); byModel.get(id).push(p); });
   const exact = hits.find(p => norm(p.c) === q || p.e === q);
-  $('#searchInfo').textContent = hits.length ? `${plural(hits.length, 'referencia', 'referencias')} en ${plural(byModel.size, 'modelo', 'modelos')}` : '';
+  $('#searchInfo').textContent = hits.length ? plural(hits.length, 'referencia', 'referencias') : '';
   if (!hits.length) {
     out.innerHTML = `<div class="empty"><div class="empty-icon">${I.search}</div>No hay resultados para «<strong>${esc(sInput.value)}</strong>».<br>Revisa la palabra o busca por código o EAN.</div>`;
     return;
@@ -621,7 +635,7 @@ function renderSearch() {
       <span class="result-page">Pág. ${MODEL_PAGE[m.id]}</span>
     </button>`;
   });
-  out.innerHTML = rows.join('') + (byModel.size > 60 ? `<p class="search-info">Mostrando 60 de ${byModel.size} modelos · afina la búsqueda</p>` : '');
+  out.innerHTML = rows.join('') + (byModel.size > 60 ? `<p class="search-info">Mostrando 60 de ${byModel.size} referencias · afina la búsqueda</p>` : '');
 }
 sInput.addEventListener('input', renderSearch);
 sInput.addEventListener('keydown', e => { if (e.key === 'Enter') { const r = $('#searchResults .result'); if (r) r.click(); } });
@@ -645,7 +659,7 @@ function renderIndex() {
     ${FAMILIES.map(f => `
       <button type="button" class="idx-row${curFam === f.id ? ' is-current' : ''}" data-goto="${FAMILY_PAGE[f.id]}">
         <img src="${famCard(f.id)}" alt="" loading="lazy">
-        <span><span class="idx-name">${f.num} · ${esc(f.name)}</span><span class="idx-sub">${plural(famModels[f.id].length, 'modelo', 'modelos')} · ${f.count} referencias</span></span>
+        <span><span class="idx-name">${f.num} · ${esc(f.name)}</span><span class="idx-sub">${famModels[f.id].length} referencias</span></span>
         <span class="idx-page">Pág. ${FAMILY_PAGE[f.id]}</span>
       </button>`).join('')}
     <div class="idx-sep">Final</div>
@@ -729,22 +743,22 @@ $('#selCsv').addEventListener('click', () => {
   const q = v => `"${String(v).replace(/"/g, '""')}"`;
   const lines = [head.map(q).join(';'), ...selRows().map(r => [r.ref, `="${r.ean}"`, r.nombre, r.familia, r.paq, r.caja, r.cajas, r.uds].map((v, i) => i === 1 ? v : q(v)).join(';'))];
   const blob = new Blob(['﻿' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
-  saveBlob(blob, `Seleccion-Criscolor-Invierno-2026.csv`);
+  saveBlob(blob, `Seleccion-Criscolor-Navidad-26-27.csv`);
 });
 $('#selMail').addEventListener('click', () => {
   const rows = selRows();
-  let body = 'Hola,\n\nMe interesan estas referencias del catálogo Invierno 2026:\n\n';
+  let body = 'Hola,\n\nMe interesan estas referencias del catálogo Navidad 26/27:\n\n';
   body += rows.map(r => `· Ref. ${r.ref} — ${r.nombre} — ${r.cajas} ${r.cajas === 1 ? 'caja' : 'cajas'}`).join('\n');
   body += '\n\n¿Me podéis pasar precios y disponibilidad?\n\nGracias.\n';
-  const href = `mailto:comercial@criscolor.com?subject=${encodeURIComponent('Selección catálogo Invierno 2026')}&body=${encodeURIComponent(body)}`;
+  const href = `mailto:info@criscolor.es?subject=${encodeURIComponent('Selección catálogo Navidad 26/27')}&body=${encodeURIComponent(body)}`;
   if (href.length > 1900) toast('Tu selección es larga: descárgala en Excel y adjúntala al email');
-  window.location.href = href.length > 1900 ? `mailto:comercial@criscolor.com?subject=${encodeURIComponent('Selección catálogo Invierno 2026')}&body=${encodeURIComponent('Hola,\n\nAdjunto mi selección del catálogo Invierno 2026 (' + rows.length + ' referencias). ¿Me podéis pasar precios y disponibilidad?\n\nGracias.\n')}` : href;
+  window.location.href = href.length > 1900 ? `mailto:info@criscolor.es?subject=${encodeURIComponent('Selección catálogo Navidad 26/27')}&body=${encodeURIComponent('Hola,\n\nAdjunto mi selección del catálogo Navidad 26/27 (' + rows.length + ' referencias). ¿Me podéis pasar precios y disponibilidad?\n\nGracias.\n')}` : href;
 });
 $('#selPrint').addEventListener('click', () => {
   const rows = selRows();
   $('#printSheet').innerHTML = `
-    <h1>Mi selección · Catálogo Invierno 2026</h1>
-    <p>Criscolor Distribuciones de Levante · comercial@criscolor.com · (+34) 961 53 21 09 · ${new Date().toLocaleDateString('es-ES')}</p>
+    <h1>Mi selección · Catálogo Navidad 26/27</h1>
+    <p>Criscolor Distribuciones de Levante · info@criscolor.es · (+34) 961 53 21 09 · ${new Date().toLocaleDateString('es-ES')}</p>
     <table><thead><tr><th></th><th>Ref.</th><th>Descripción</th><th>EAN</th><th class="num">Uds/caja</th><th class="num">Cajas</th><th class="num">Unidades</th></tr></thead>
     <tbody>${rows.map(r => `<tr><td><img src="${mini(r.ean)}" alt=""></td><td>${esc(r.ref)}</td><td>${esc(r.nombre)}</td><td>${esc(r.ean)}</td><td class="num">${r.caja}</td><td class="num">${r.cajas}</td><td class="num">${r.uds}</td></tr>`).join('')}</tbody></table>`;
   setTimeout(() => window.print(), 150);
