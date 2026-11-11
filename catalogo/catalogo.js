@@ -22,6 +22,14 @@ const CAT = Object.fromEntries(CATALOG.map(p => [p.c, p]));
   Object.values(byFam).forEach(list => {
     [...list.filter(m => m.s), ...list.filter(m => !m.s)].forEach(m => {
       const vs = [...m.v.filter(v => v.c === m.k), ...m.v.filter(v => v.c !== m.k)];
+      // Bobinas: cada diseño con sus dos tamaños en la misma página (62 cm arriba, 31 cm abajo).
+      if (m.f === 'bobinas') {
+        const size = c => { const x = /(\d+)\s*CM/i.exec(CAT[c] ? CAT[c].n : ''); return x ? +x[1] : 0; };
+        const design = c => (CAT[c] ? CAT[c].n : '').replace(/\s*\d+\s*CM/i, '').trim().toLowerCase();
+        const order = [];
+        vs.forEach(v => { const d = design(v.c); if (!order.includes(d)) order.push(d); });
+        vs.sort((x, y) => (order.indexOf(design(x.c)) - order.indexOf(design(y.c))) || (size(y.c) - size(x.c)));
+      }
       vs.forEach(v => { if (CAT[v.c]) out.push({ id: 'r' + v.c, t: CAT[v.c].n, f: m.f, d: [], v: [{ c: v.c, a: {} }], s: m.s && v.c === m.k ? 1 : 0, k: v.c, col: v.a.Color || '' }); });
     });
   });
