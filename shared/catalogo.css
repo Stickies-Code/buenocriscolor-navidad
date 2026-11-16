@@ -582,5 +582,5 @@ input[type="range"].scrub-range {
 .cover-logo { width: 60cqw; margin-bottom: 8cqw; }
 .back-logo { width: 36cqw; }
 /* Legibilidad de la portada sobre fotos de producto */
-.cover-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(var(--ov), .10) 0%, rgba(var(--ov), .42) 30%, rgba(var(--ov), .55) 46%, rgba(var(--ov), .12) 66%, rgba(var(--ov), 0) 76%, rgba(var(--ov), .62) 100%); }
+.cover-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(var(--ov), var(--cov-top, .10)) 0%, rgba(var(--ov), var(--cov-mid, .42)) 30%, rgba(var(--ov), var(--cov, .55)) 46%, rgba(var(--ov), .12) 66%, rgba(var(--ov), 0) 76%, rgba(var(--ov), .62) 100%); }
 .cover-eyebrow, .cover-kicker, .cover-meta, .cover-hint { text-shadow: 0 .3cqw 1.6cqw rgba(var(--ov), .85); }
