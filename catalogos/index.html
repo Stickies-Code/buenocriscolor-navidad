@@ -4,42 +4,136 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Catálogos Criscolor</title>
-<meta name="description" content="Catálogos interactivos de las marcas de Criscolor: Protect y Garden. Venta a profesionales.">
+<meta name="description" content="Catálogos interactivos de las marcas Criscolor: Criscolor Protect, Criscolor Garden. Una ficha por referencia.">
+<meta property="og:title" content="Catálogos Criscolor">
+<meta property="og:description" content="2 catálogos interactivos · 387 referencias">
+<meta property="og:image" content="/catalogos/og.jpg?v=2">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="/catalogos/cabecera.webp?v=2">
 <style>
-@font-face { font-family: 'Inter Tight'; font-weight: 100 900; font-display: swap; src: url('/shared/fonts/inter-tight-latin-wght-normal.woff2') format('woff2-variations'); }
-:root { --ink: #00109E; --night: #00063F; --paper: #F6F7FB; --text: #10122E; --text-2: #4A4D68; --line: #E1E4EE; }
-* { box-sizing: border-box; }
-body { margin: 0; font-family: 'Inter Tight', system-ui, sans-serif; background: var(--paper); color: var(--text); }
-header { background: linear-gradient(90deg, rgba(0,6,63,.92) 0%, rgba(0,6,63,.72) 45%, rgba(0,6,63,.25) 100%), url('/catalogos/cabecera.webp?v=1') center / cover no-repeat, var(--night); color: #fff; padding: 28px max(20px, env(safe-area-inset-left)) 64px; }
-@media (max-width: 640px) { header { background: linear-gradient(180deg, rgba(0,6,63,.55), rgba(0,6,63,.92)), url('/catalogos/cabecera.webp?v=1') center / cover no-repeat, var(--night); } }
-.wrap { max-width: 1080px; margin: 0 auto; }
-header img { height: 34px; filter: brightness(0) invert(1); display: block; }
-h1 { font-weight: 900; font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.03em; line-height: 1; margin: 28px 0 10px; text-wrap: balance; }
-header p { margin: 0; color: rgba(255,255,255,.75); font-size: 1.05rem; max-width: 60ch; }
-main { padding: 32px max(20px, env(safe-area-inset-left)) 56px; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 22px; }
-a.card { display: flex; flex-direction: column; background: #fff; border-radius: 20px; overflow: hidden; text-decoration: none; color: inherit; border: 1px solid var(--line); box-shadow: 0 20px 40px -28px rgba(0,10,99,.35); transition: transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s; }
-a.card:hover { transform: translateY(-3px); box-shadow: 0 26px 50px -26px rgba(0,10,99,.45); }
-.cover { aspect-ratio: 3 / 4; background: center / cover no-repeat; position: relative; }
-.cover .plate { position: absolute; left: 50%; top: 22%; transform: translateX(-50%); width: 64%; background: #fff; border-radius: 12px; padding: 12px 16px; box-shadow: 0 10px 28px rgba(0,0,0,.3); }
-.cover .plate img { width: 100%; display: block; }
-.meta { padding: 18px 20px 20px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-.meta b { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.02em; }
-.meta span { color: var(--text-2); font-size: .95rem; white-space: nowrap; }
-footer { color: var(--text-2); font-size: .9rem; padding: 0 max(20px, env(safe-area-inset-left)) 40px; }
+@font-face { font-family:'Inter Tight'; font-weight:100 900; font-display:swap; src:url('/shared/fonts/inter-tight-latin-wght-normal.woff2') format('woff2-variations'); }
+@font-face { font-family:'Inter Tight'; font-weight:100 900; font-display:swap; src:url('/shared/fonts/inter-tight-latin-ext-wght-normal.woff2') format('woff2-variations'); unicode-range:U+0100-024F; }
+:root { --ink:#00109E; --night:#00063F; --orange:#FF7A00; --paper:#F5F6FA; --card:#fff; --text:#10122E; --text-2:#4A4D68; --line:#E1E4EE; color-scheme:light; }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-padding-top:72px; }
+body { margin:0; font-family:'Inter Tight',system-ui,-apple-system,'Segoe UI',sans-serif; background:var(--paper); color:var(--text); -webkit-font-smoothing:antialiased; }
+.wrap { max-width:1160px; margin:0 auto; }
+.gut { padding-left:max(20px,env(safe-area-inset-left,0px)); padding-right:max(20px,env(safe-area-inset-right,0px)); }
+/* Intro */
+.hero { position:relative; color:#fff; background:var(--night); overflow:hidden; }
+.hero::before { content:''; position:absolute; inset:0; background:url('/catalogos/cabecera.webp?v=2') center 55% / cover no-repeat; transform:scale(1.04); animation:kb 18s ease-out both; }
+.hero::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,rgba(0,6,63,.94) 0%,rgba(0,10,99,.78) 42%,rgba(0,10,99,.25) 100%),linear-gradient(0deg,rgba(0,6,63,.6),transparent 40%); }
+@keyframes kb { to { transform:scale(1); } }
+@media (prefers-reduced-motion:reduce) { .hero::before { animation:none; transform:none; } }
+.hero .wrap { position:relative; z-index:1; padding-block:30px 72px; }
+.top { display:flex; justify-content:space-between; align-items:center; gap:16px; }
+.top img { height:34px; filter:brightness(0) invert(1); display:block; }
+.top a { color:#fff; text-decoration:none; font-weight:600; font-size:.92rem; opacity:.85; }
+.kicker { margin:64px 0 0; font-size:.8rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--orange); }
+.hero h1 { font-weight:900; font-size:clamp(2.4rem,6.4vw,4.6rem); letter-spacing:-.035em; line-height:.95; margin:14px 0 18px; max-width:12ch; text-wrap:balance; }
+.hero h1 em { font-style:normal; color:var(--orange); }
+.lead { margin:0; color:rgba(255,255,255,.82); font-size:clamp(1rem,1.6vw,1.15rem); line-height:1.55; max-width:52ch; }
+.stats { display:flex; flex-wrap:wrap; gap:12px 34px; margin:34px 0 0; padding:0; list-style:none; }
+.stats li { display:flex; flex-direction:column; }
+.stats b { font-size:2rem; font-weight:800; letter-spacing:-.03em; line-height:1; }
+.stats span { font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.65); margin-top:6px; }
+.cta { display:inline-flex; align-items:center; gap:8px; margin-top:34px; background:var(--orange); color:#fff; font-weight:700; text-decoration:none; padding:14px 22px; border-radius:999px; box-shadow:0 12px 30px -12px rgba(255,122,0,.7); }
+/* Barra */
+.bar { position:sticky; top:env(safe-area-inset-top,0px); z-index:5; background:rgba(245,246,250,.9); backdrop-filter:saturate(1.4) blur(12px); -webkit-backdrop-filter:saturate(1.4) blur(12px); border-bottom:1px solid var(--line); }
+.bar .wrap { display:flex; align-items:center; gap:14px; padding-block:12px; }
+.bar nav { display:flex; gap:6px; overflow-x:auto; scrollbar-width:none; flex:1; min-width:0; }
+.bar nav a { flex:none; text-decoration:none; color:var(--text); font-weight:600; font-size:.92rem; padding:8px 14px; border-radius:999px; border:1px solid var(--line); background:#fff; }
+.bar nav a:hover { border-color:var(--ink); color:var(--ink); }
+.search { flex:0 1 260px; min-width:0; position:relative; }
+.search input { width:100%; font:inherit; font-size:.95rem; padding:9px 14px 9px 36px; border-radius:999px; border:1px solid var(--line); background:#fff; color:var(--text); }
+.search input:focus { outline:2px solid var(--ink); outline-offset:1px; }
+.search svg { position:absolute; left:12px; top:50%; transform:translateY(-50%); }
+@media (max-width:640px) { .bar .wrap { flex-wrap:wrap; } .search { flex:1 1 100%; order:-1; } }
+/* Rejilla */
+main .wrap { padding-block:36px 64px; }
+.sec-h { display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin:0 0 22px; }
+.sec-h h2 { margin:0; font-size:1.5rem; font-weight:800; letter-spacing:-.02em; }
+.sec-h span { color:var(--text-2); font-size:.95rem; }
+.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr)); gap:24px; }
+.cat { background:var(--card); border:1px solid var(--line); border-radius:22px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 22px 44px -32px rgba(0,10,99,.4); }
+.cover { position:relative; display:block; aspect-ratio:4/3; overflow:hidden; background:var(--bink); }
+.cover .ph { width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s cubic-bezier(.22,1,.36,1); }
+.cover::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.55)); }
+.cover .plate { position:absolute; left:20px; top:20px; z-index:1; background:#fff; border-radius:12px; padding:10px 14px; box-shadow:0 10px 26px rgba(0,0,0,.25); width:min(52%,210px); }
+.cover .plate img { width:100%; display:block; }
+.cover .open { position:absolute; z-index:1; right:16px; bottom:14px; color:#fff; font-weight:700; font-size:.92rem; background:rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.4); padding:8px 14px; border-radius:999px; backdrop-filter:blur(6px); }
+.cat:hover .cover .ph { transform:scale(1.04); }
+.body { padding:18px 20px 22px; display:flex; flex-direction:column; gap:8px; }
+.head { display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
+.head h2 { margin:0; font-size:1.25rem; font-weight:800; letter-spacing:-.02em; }
+.head h2 a { color:inherit; text-decoration:none; }
+.head .n { flex:none; font-size:.85rem; font-weight:700; color:var(--bink); background:color-mix(in srgb,var(--acc) 28%,#fff); padding:4px 10px; border-radius:999px; }
+.tag { margin:0; color:var(--text-2); font-size:.95rem; }
+.fams { list-style:none; margin:8px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:6px; }
+.fams a { display:inline-flex; align-items:center; gap:7px; text-decoration:none; color:var(--text); font-size:.86rem; font-weight:500; padding:6px 10px; border-radius:10px; background:var(--paper); border:1px solid var(--line); }
+.fams a span { font-size:.75rem; font-weight:700; color:var(--text-2); }
+.fams a:hover { border-color:var(--bink); color:var(--bink); }
+.fams a.hit { border-color:var(--ink); background:#EEF0FF; }
+.soon { border:1.5px dashed #C9CDE0; border-radius:22px; display:flex; flex-direction:column; justify-content:center; gap:6px; padding:28px; color:var(--text-2); min-height:240px; align-self:start; aspect-ratio:4/3; }
+.soon b { color:var(--text); font-size:1.15rem; font-weight:800; }
+.empty { color:var(--text-2); padding:24px 0; }
+footer { border-top:1px solid var(--line); color:var(--text-2); font-size:.9rem; }
+footer .wrap { padding-block:26px 40px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px 24px; }
+footer b { color:var(--text); }
 </style>
 </head>
 <body>
-<header><div class="wrap">
-  <img src="/shared/img/logo.png" alt="Criscolor">
-  <h1>Catálogos de nuestras marcas</h1>
-  <p>Catálogos interactivos con una ficha por referencia. Busca, guarda tu selección y envíala a tu comercial.</p>
+<header class="hero"><div class="wrap gut">
+  <div class="top"><img src="/shared/img/logo.png" alt="Criscolor"><a href="#catalogos">Ver catálogos ↓</a></div>
+  <p class="kicker">Catálogos 2026</p>
+  <h1>Todas nuestras marcas, <em>en un sitio</em></h1>
+  <p class="lead">Catálogos interactivos con una ficha por referencia: hojéalos como un catálogo de papel, busca por nombre, código o EAN, guarda tu selección y envíala a tu comercial.</p>
+  <ul class="stats"><li><b>2</b><span>Catálogos</span></li><li><b>387</b><span>Referencias</span></li><li><b>13</b><span>Familias</span></li></ul>
+  <a class="cta" href="#catalogos">Explorar catálogos</a>
 </div></header>
-<main><div class="wrap grid">
-  <a class="card" href="/protect"><div class="cover" style="background-image:url('/protect/img/portada-thumb.webp?v=1')"><div class="plate"><img src="/protect/img/logo.png" alt="Criscolor Protect"></div></div><div class="meta"><b>Criscolor Protect</b><span>133 referencias</span></div></a>
-  <a class="card" href="/garden"><div class="cover" style="background-image:url('/garden/img/portada-thumb.webp?v=1')"><div class="plate"><img src="/garden/img/logo.png" alt="Criscolor Garden"></div></div><div class="meta"><b>Criscolor Garden</b><span>254 referencias</span></div></a>
+<div class="bar"><div class="wrap gut">
+  <nav aria-label="Marcas"><a href="#protect">Protect</a><a href="#garden">Garden</a></nav>
+  <label class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4A4D68" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Buscar marca o familia…" aria-label="Buscar marca o familia"></label>
+</div></div>
+<main id="catalogos"><div class="wrap gut">
+  <div class="sec-h"><h2>Catálogos de marca</h2><span id="cnt">2 catálogos</span></div>
+  <div class="grid" id="grid">
+<article class="cat" id="protect" style="--acc:#FFD21F;--bink:#1F1B17" data-q="criscolor protect protección frente a insectos, roedores y aves mosquitos enchufes, repelentes, pulseras y espirales de citronela para dormir y disfrutar del verano sin picaduras. moscas e insectos voladores lámparas, raquetas, tiras adhesivas, trampas y matamoscas para moscas, avispas e insectos voladores. rastreros y polillas geles, polvos y trampas para hormigas y cucarachas, y trampas para polillas en armarios y despensas. roedores la gama roetón: cebos, colas y trampas, ratoneras de madera, jaulas trampa y ahuyentadores solares. ahuyentadores de aves búhos y cuervos ahuyentadores, varillas y cintas reflectantes, desviadores y pinchos antipalomas. mosquiteras mosquiteras para ventana y puerta en blanco y negro, extensibles de aluminio y para carro de bebé.">
+  <a class="cover" href="/protect" aria-label="Abrir catálogo Criscolor Protect">
+    <img class="ph" src="/protect/img/portada-card.webp?v=2" alt="" loading="lazy" width="800" height="600">
+    <span class="plate"><img src="/protect/img/logo.png?v=2" alt="Criscolor Protect"></span>
+    <span class="open">Abrir catálogo →</span>
+  </a>
+  <div class="body">
+    <div class="head"><h2><a href="/protect">Criscolor Protect</a></h2><span class="n">133 ref.</span></div>
+    <p class="tag">Protección frente a insectos, roedores y aves</p>
+    <ul class="fams" aria-label="Familias de Criscolor Protect"><li><a href="/protect#fam-mosquitos">Mosquitos<span>19</span></a></li><li><a href="/protect#fam-voladores">Moscas e insectos voladores<span>28</span></a></li><li><a href="/protect#fam-rastreros">Rastreros y polillas<span>13</span></a></li><li><a href="/protect#fam-roedores">Roedores<span>22</span></a></li><li><a href="/protect#fam-aves">Ahuyentadores de aves<span>22</span></a></li><li><a href="/protect#fam-mosquiteras">Mosquiteras<span>29</span></a></li></ul>
+  </div>
+</article>
+<article class="cat" id="garden" style="--acc:#9BD14A;--bink:#00693A" data-q="criscolor garden riego, huerto, jardín y terraza riego mangueras de 3 y 4 capas, extensibles y en espiral, pistolas, aspersores, conectores y adaptadores. pulverizadores pulverizadores de mano, de presión y de mochila, de 500 ml a 16 litros. herramientas de jardín palas, rastrillos, azadillas, tijeras de podar y cortasetos, sierras y sets de herramientas. cultivo y huerto tutores y conectores, alambre plastificado, redes, macetas, carteles y sujeciones para el huerto. mallas y cerramientos mallas antihierba, de ocultación, de sombreo y cuadradas, malla metálica, cañizo y fijaciones. iluminación solar balizas, guirnaldas, apliques y focos solares, y lámparas de camping. jardín vertical y decoración jardines verticales, casetas nido, hotel de insectos, termómetros, pluviómetros, rodilleras y baldosas eva.">
+  <a class="cover" href="/garden" aria-label="Abrir catálogo Criscolor Garden">
+    <img class="ph" src="/garden/img/portada-card.webp?v=2" alt="" loading="lazy" width="800" height="600">
+    <span class="plate"><img src="/garden/img/logo.png?v=2" alt="Criscolor Garden"></span>
+    <span class="open">Abrir catálogo →</span>
+  </a>
+  <div class="body">
+    <div class="head"><h2><a href="/garden">Criscolor Garden</a></h2><span class="n">254 ref.</span></div>
+    <p class="tag">Riego, huerto, jardín y terraza</p>
+    <ul class="fams" aria-label="Familias de Criscolor Garden"><li><a href="/garden#fam-riego">Riego<span>68</span></a></li><li><a href="/garden#fam-pulverizadores">Pulverizadores<span>10</span></a></li><li><a href="/garden#fam-herramientas">Herramientas de jardín<span>26</span></a></li><li><a href="/garden#fam-cultivo">Cultivo y huerto<span>41</span></a></li><li><a href="/garden#fam-mallas">Mallas y cerramientos<span>42</span></a></li><li><a href="/garden#fam-solar">Iluminación solar<span>38</span></a></li><li><a href="/garden#fam-decoracion">Jardín vertical y decoración<span>29</span></a></li></ul>
+  </div>
+</article>
+  <div class="soon" id="soon"><b>Próximamente</b><span>Estamos preparando los catálogos del resto de marcas Criscolor.</span></div>
+  </div>
+  <p class="empty" id="empty" hidden>No hay ninguna marca o familia con ese nombre.</p>
 </div></main>
-<footer><div class="wrap">CRISCOLOR Distribuciones de Levante, S.L.U. · (+34) 961 53 21 09 · info@criscolor.es · Venta exclusiva a profesionales.</div></footer>
+<footer><div class="wrap gut"><span><b>CRISCOLOR</b> Distribuciones de Levante, S.L.U.</span><span>(+34) 961 53 21 09 · info@criscolor.es</span><span>Venta exclusiva a profesionales</span></div></footer>
+<script>
+(()=>{const q=document.getElementById('q'),cats=[...document.querySelectorAll('.cat')],soon=document.getElementById('soon'),empty=document.getElementById('empty'),cnt=document.getElementById('cnt');
+const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+q.addEventListener('input',()=>{const t=norm(q.value.trim());let n=0;
+cats.forEach(c=>{const ok=!t||norm(c.dataset.q).includes(t);c.hidden=!ok;if(ok)n++;
+c.querySelectorAll('.fams a').forEach(a=>a.classList.toggle('hit',!!t&&norm(a.textContent).includes(t)));});
+soon.hidden=!!t;empty.hidden=n>0;cnt.textContent=n+(n===1?' catálogo':' catálogos');});})();
+</script>
 </body>
 </html>

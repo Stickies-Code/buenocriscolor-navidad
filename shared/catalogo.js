@@ -803,8 +803,15 @@ document.addEventListener('keydown', e => {
 });
 
 /* ── Arranque ── */
+function famPage(h) {
+  const fm = h.match(/^#fam-([a-z0-9-]+)$/);
+  if (!fm) return -1;
+  const i = PAGES.findIndex(p => p.kind === 'opener' && p.family === fm[1]);
+  return i;
+}
 function startFromHash() {
   const h = location.hash;
+  const fp = famPage(h); if (fp >= 0) return fp;
   const pm = h.match(/^#p(\d+)$/);
   const rm = h.match(/^#ref=(.+)$/);
   if (rm) {
@@ -816,6 +823,7 @@ function startFromHash() {
 }
 window.addEventListener('hashchange', () => {
   const h = location.hash;
+  const fp = famPage(h); if (fp >= 0) { if (!visiblePages().includes(fp)) goTo(fp); return; }
   const rm = h.match(/^#ref=(.+)$/);
   if (rm) { const code = decodeURIComponent(rm[1]); const id = MODEL_OF[code]; if (id) { goTo(MODEL_PAGE[id]); setTimeout(() => openModel(id, code), 520); } return; }
   const pm = h.match(/^#p(\d+)$/);
