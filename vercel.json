@@ -21,7 +21,7 @@
       ]
     },
     {
-      "source": "/(protect|garden)/(productos|img)/(.*)",
+      "source": "/(protect|garden|pool|clean)/(productos|img)/(.*)",
       "headers": [
         {
           "key": "Cache-Control",

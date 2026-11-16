@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Catálogos Criscolor</title>
-<meta name="description" content="Catálogos interactivos de las marcas Criscolor: Criscolor Protect, Criscolor Garden. Una ficha por referencia.">
+<meta name="description" content="Catálogos interactivos de las marcas Criscolor: Criscolor Protect, Criscolor Garden, Criscolor Pool, Criscolor Clean. Una ficha por referencia.">
 <meta property="og:title" content="Catálogos Criscolor">
-<meta property="og:description" content="2 catálogos interactivos · 387 referencias">
-<meta property="og:image" content="/catalogos/og.jpg?v=3">
+<meta property="og:description" content="4 catálogos interactivos · 488 referencias">
+<meta property="og:image" content="/catalogos/og.jpg?v=4">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preload" as="image" href="/catalogos/cabecera.webp?v=3">
+<link rel="preload" as="image" href="/catalogos/cabecera.webp?v=4">
 <style>
 @font-face { font-family:'Inter Tight'; font-weight:100 900; font-display:swap; src:url('/shared/fonts/inter-tight-latin-wght-normal.woff2') format('woff2-variations'); }
 @font-face { font-family:'Inter Tight'; font-weight:100 900; font-display:swap; src:url('/shared/fonts/inter-tight-latin-ext-wght-normal.woff2') format('woff2-variations'); unicode-range:U+0100-024F; }
@@ -21,7 +21,7 @@ body { margin:0; font-family:'Inter Tight',system-ui,-apple-system,'Segoe UI',sa
 .gut { padding-left:max(20px,env(safe-area-inset-left,0px)); padding-right:max(20px,env(safe-area-inset-right,0px)); }
 /* Intro */
 .hero { position:relative; color:#fff; background:var(--night); overflow:hidden; }
-.hero::before { content:''; position:absolute; inset:0; background:url('/catalogos/cabecera.webp?v=3') center 55% / cover no-repeat; transform:scale(1.04); animation:kb 18s ease-out both; }
+.hero::before { content:''; position:absolute; inset:0; background:url('/catalogos/cabecera.webp?v=4') center 55% / cover no-repeat; transform:scale(1.04); animation:kb 18s ease-out both; }
 .hero::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,rgba(0,6,63,.94) 0%,rgba(0,10,99,.78) 42%,rgba(0,10,99,.25) 100%),linear-gradient(0deg,rgba(0,6,63,.6),transparent 40%); }
 @keyframes kb { to { transform:scale(1); } }
 @media (prefers-reduced-motion:reduce) { .hero::before { animation:none; transform:none; } }
@@ -58,8 +58,8 @@ main .wrap { padding-block:36px 64px; }
 .cat { background:var(--card); border:1px solid var(--line); border-radius:22px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 22px 44px -32px rgba(0,10,99,.4); }
 .cover { position:relative; display:block; aspect-ratio:4/3; overflow:hidden; background:var(--bink); }
 .cover .ph { width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s cubic-bezier(.22,1,.36,1); }
-.cover::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.55)); }
-.cover .plate { position:absolute; left:20px; top:20px; z-index:1; background:#fff; border-radius:12px; padding:10px 14px; box-shadow:0 10px 26px rgba(0,0,0,.25); width:min(52%,210px); }
+.cover::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,.12) 40%,rgba(0,0,0,0) 55%,rgba(0,0,0,.5)); }
+.cover .plate { position:absolute; left:22px; top:20px; z-index:1; width:min(58%,230px); filter:drop-shadow(0 4px 14px rgba(0,0,0,.45)); }
 .cover .plate img { width:100%; display:block; }
 .cover .open { position:absolute; z-index:1; right:16px; bottom:14px; color:#fff; font-weight:700; font-size:.92rem; background:rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.4); padding:8px 14px; border-radius:999px; backdrop-filter:blur(6px); }
 .cat:hover .cover .ph { transform:scale(1.04); }
@@ -88,20 +88,20 @@ footer b { color:var(--text); }
   <p class="kicker">Catálogos 2026</p>
   <h1>Todas nuestras marcas, <em>en un sitio</em></h1>
   <p class="lead">Catálogos interactivos con una ficha por referencia: hojéalos como un catálogo de papel, busca por nombre, código o EAN, guarda tu selección y envíala a tu comercial.</p>
-  <ul class="stats"><li><b>2</b><span>Catálogos</span></li><li><b>387</b><span>Referencias</span></li><li><b>13</b><span>Familias</span></li></ul>
+  <ul class="stats"><li><b>4</b><span>Catálogos</span></li><li><b>488</b><span>Referencias</span></li><li><b>21</b><span>Familias</span></li></ul>
   <a class="cta" href="#catalogos">Explorar catálogos</a>
 </div></header>
 <div class="bar"><div class="wrap gut">
-  <nav aria-label="Marcas"><a href="#protect">Protect</a><a href="#garden">Garden</a></nav>
+  <nav aria-label="Marcas"><a href="#protect">Protect</a><a href="#garden">Garden</a><a href="#pool">Pool</a><a href="#clean">Clean</a></nav>
   <label class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4A4D68" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Buscar marca o familia…" aria-label="Buscar marca o familia"></label>
 </div></div>
 <main id="catalogos"><div class="wrap gut">
-  <div class="sec-h"><h2>Catálogos de marca</h2><span id="cnt">2 catálogos</span></div>
+  <div class="sec-h"><h2>Catálogos de marca</h2><span id="cnt">4 catálogos</span></div>
   <div class="grid" id="grid">
 <article class="cat" id="protect" style="--acc:#FFD21F;--bink:#1F1B17" data-q="criscolor protect protección frente a insectos, roedores y aves mosquitos enchufes, repelentes, pulseras y espirales de citronela para dormir y disfrutar del verano sin picaduras. moscas e insectos voladores lámparas, raquetas, tiras adhesivas, trampas y matamoscas para moscas, avispas e insectos voladores. rastreros y polillas geles, polvos y trampas para hormigas y cucarachas, y trampas para polillas en armarios y despensas. roedores la gama roetón: cebos, colas y trampas, ratoneras de madera, jaulas trampa y ahuyentadores solares. ahuyentadores de aves búhos y cuervos ahuyentadores, varillas y cintas reflectantes, desviadores y pinchos antipalomas. mosquiteras mosquiteras para ventana y puerta en blanco y negro, extensibles de aluminio y para carro de bebé.">
   <a class="cover" href="/protect" aria-label="Abrir catálogo Criscolor Protect">
-    <img class="ph" src="/protect/img/portada-card.webp?v=3" alt="" loading="lazy" width="800" height="600">
-    <span class="plate"><img src="/protect/img/logo.png?v=3" alt="Criscolor Protect"></span>
+    <img class="ph" src="/protect/img/portada-card.webp?v=4" alt="" loading="lazy" width="800" height="600">
+    <span class="plate"><img src="/protect/img/logo-negativo.png?v=4" alt="Criscolor Protect"></span>
     <span class="open">Abrir catálogo →</span>
   </a>
   <div class="body">
@@ -112,14 +112,38 @@ footer b { color:var(--text); }
 </article>
 <article class="cat" id="garden" style="--acc:#9BD14A;--bink:#00693A" data-q="criscolor garden riego, huerto, jardín y terraza riego mangueras de 3 y 4 capas, extensibles y en espiral, pistolas, aspersores, conectores y adaptadores. pulverizadores pulverizadores de mano, de presión y de mochila, de 500 ml a 16 litros. herramientas de jardín palas, rastrillos, azadillas, tijeras de podar y cortasetos, sierras y sets de herramientas. cultivo y huerto tutores y conectores, alambre plastificado, redes, macetas, carteles y sujeciones para el huerto. mallas y cerramientos mallas antihierba, de ocultación, de sombreo y cuadradas, malla metálica, cañizo y fijaciones. iluminación solar balizas, guirnaldas, apliques y focos solares, y lámparas de camping. jardín vertical y decoración jardines verticales, casetas nido, hotel de insectos, termómetros, pluviómetros, rodilleras y baldosas eva.">
   <a class="cover" href="/garden" aria-label="Abrir catálogo Criscolor Garden">
-    <img class="ph" src="/garden/img/portada-card.webp?v=3" alt="" loading="lazy" width="800" height="600">
-    <span class="plate"><img src="/garden/img/logo.png?v=3" alt="Criscolor Garden"></span>
+    <img class="ph" src="/garden/img/portada-card.webp?v=4" alt="" loading="lazy" width="800" height="600">
+    <span class="plate"><img src="/garden/img/logo-negativo.png?v=4" alt="Criscolor Garden"></span>
     <span class="open">Abrir catálogo →</span>
   </a>
   <div class="body">
     <div class="head"><h2><a href="/garden">Criscolor Garden</a></h2><span class="n">254 ref.</span></div>
     <p class="tag">Riego, huerto, jardín y terraza</p>
     <ul class="fams" aria-label="Familias de Criscolor Garden"><li><a href="/garden#fam-riego">Riego<span>68</span></a></li><li><a href="/garden#fam-pulverizadores">Pulverizadores<span>10</span></a></li><li><a href="/garden#fam-herramientas">Herramientas de jardín<span>26</span></a></li><li><a href="/garden#fam-cultivo">Cultivo y huerto<span>41</span></a></li><li><a href="/garden#fam-mallas">Mallas y cerramientos<span>42</span></a></li><li><a href="/garden#fam-solar">Iluminación solar<span>38</span></a></li><li><a href="/garden#fam-decoracion">Jardín vertical y decoración<span>29</span></a></li></ul>
+  </div>
+</article>
+<article class="cat" id="pool" style="--acc:#FFC629;--bink:#0B4F8A" data-q="criscolor pool tratamiento, limpieza y juegos para la piscina cloro cloro compacto, granulado, rápido de choque y líquido, en formatos de 500 g a 5 kg, y kits para mini piscinas. tratamiento del agua reguladores de ph, algicidas, floculantes, clarificantes y desincrustantes para un agua transparente. dosificadores y control dosificadores flotantes y automáticos, termómetros, kits de análisis de cloro y ph y cartuchos de filtración. limpieza y mantenimiento recogehojas, cepillos, limpiafondos, pértigas telescópicas, mangueras y pintura para piscinas. juegos de agua pistolas de agua de espuma y de plástico y botellas de globos de agua para el verano.">
+  <a class="cover" href="/pool" aria-label="Abrir catálogo Criscolor Pool">
+    <img class="ph" src="/pool/img/portada-card.webp?v=4" alt="" loading="lazy" width="800" height="600">
+    <span class="plate"><img src="/pool/img/logo-negativo.png?v=4" alt="Criscolor Pool"></span>
+    <span class="open">Abrir catálogo →</span>
+  </a>
+  <div class="body">
+    <div class="head"><h2><a href="/pool">Criscolor Pool</a></h2><span class="n">83 ref.</span></div>
+    <p class="tag">Tratamiento, limpieza y juegos para la piscina</p>
+    <ul class="fams" aria-label="Familias de Criscolor Pool"><li><a href="/pool#fam-cloro">Cloro<span>20</span></a></li><li><a href="/pool#fam-agua">Tratamiento del agua<span>18</span></a></li><li><a href="/pool#fam-control">Dosificadores y control<span>13</span></a></li><li><a href="/pool#fam-limpieza">Limpieza y mantenimiento<span>19</span></a></li><li><a href="/pool#fam-juegos">Juegos de agua<span>13</span></a></li></ul>
+  </div>
+</article>
+<article class="cat" id="clean" style="--acc:#36C9F2;--bink:#0057B8" data-q="criscolor clean limpiadores, haraganes y limpiacristales limpiadores antical, quitagrasas, limpiador de freidoras de aire, limpiacristales y vinagre de limpieza. haraganes de suelo haraganes de plástico y metálicos pro de 45 a 65 cm para limpiar y achicar agua en suelos. limpiacristales limpiacristales de 30 a 40 cm, gama pro de acero y limpiacristales con enjabonador y mango.">
+  <a class="cover" href="/clean" aria-label="Abrir catálogo Criscolor Clean">
+    <img class="ph" src="/clean/img/portada-card.webp?v=4" alt="" loading="lazy" width="800" height="600">
+    <span class="plate"><img src="/clean/img/logo-negativo.png?v=4" alt="Criscolor Clean"></span>
+    <span class="open">Abrir catálogo →</span>
+  </a>
+  <div class="body">
+    <div class="head"><h2><a href="/clean">Criscolor Clean</a></h2><span class="n">18 ref.</span></div>
+    <p class="tag">Limpiadores, haraganes y limpiacristales</p>
+    <ul class="fams" aria-label="Familias de Criscolor Clean"><li><a href="/clean#fam-limpiadores">Limpiadores<span>6</span></a></li><li><a href="/clean#fam-haraganes">Haraganes de suelo<span>5</span></a></li><li><a href="/clean#fam-cristales">Limpiacristales<span>7</span></a></li></ul>
   </div>
 </article>
   <div class="soon" id="soon"><b>Próximamente</b><span>Estamos preparando los catálogos del resto de marcas Criscolor.</span></div>

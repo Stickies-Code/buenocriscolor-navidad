@@ -578,9 +578,9 @@ input[type="range"].scrub-range {
 .tile-meta strong { color: var(--ink); font-weight: 700; }
 
 /* ── Submarcas: el logo de color va sobre una placa blanca ── */
-.cover-logo, .back-logo { filter: none !important; opacity: 1 !important; background: #fff; border-radius: 2.2cqw; padding: 2.6cqw 3.4cqw; box-shadow: 0 1.2cqw 4cqw rgba(0, 0, 0, 0.28); box-sizing: content-box; }
-.cover-logo { width: 50cqw; margin-bottom: 9cqw; }
-.back-logo { width: 32cqw; padding: 2cqw 2.6cqw; }
+.cover-logo, .back-logo { opacity: 1 !important; background: none; padding: 0; box-shadow: none; filter: drop-shadow(0 0.5cqw 2.2cqw rgba(0, 0, 0, 0.45)) !important; }
+.cover-logo { width: 60cqw; margin-bottom: 8cqw; }
+.back-logo { width: 36cqw; }
 /* Legibilidad de la portada sobre fotos de producto */
 .cover-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(var(--ov), .10) 0%, rgba(var(--ov), .42) 30%, rgba(var(--ov), .55) 46%, rgba(var(--ov), .12) 66%, rgba(var(--ov), 0) 76%, rgba(var(--ov), .62) 100%); }
 .cover-eyebrow, .cover-kicker, .cover-meta, .cover-hint { text-shadow: 0 .3cqw 1.6cqw rgba(var(--ov), .85); }

@@ -223,7 +223,7 @@ function build() {
   PAGES.push({ kind: 'back', html: () => `
     <div class="pg">
       <div>
-        <img class="back-logo" src="${B.logo}" alt="${esc(B.name)}" draggable="false">
+        <img class="back-logo" src="${B.logoCover}" alt="${esc(B.name)}" draggable="false">
         <h2 class="back-title">Pide precios y<br><span>condiciones</span></h2>
         <p class="back-text">Venta exclusiva a profesionales. Nuestro equipo comercial te atiende en 24 h laborables con precios, disponibilidad y plazos de entrega.</p>
         <div class="back-contact">
