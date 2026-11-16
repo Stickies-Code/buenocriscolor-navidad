@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Catálogos Criscolor</title>
+<meta name="description" content="Catálogos interactivos de las marcas de Criscolor: Protect y Garden. Venta a profesionales.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+@font-face { font-family: 'Inter Tight'; font-weight: 100 900; font-display: swap; src: url('/shared/fonts/inter-tight-latin-wght-normal.woff2') format('woff2-variations'); }
+:root { --ink: #00109E; --night: #00063F; --paper: #F6F7FB; --text: #10122E; --text-2: #4A4D68; --line: #E1E4EE; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: 'Inter Tight', system-ui, sans-serif; background: var(--paper); color: var(--text); }
+header { background: var(--night); color: #fff; padding: 28px max(20px, env(safe-area-inset-left)) 30px; }
+.wrap { max-width: 1080px; margin: 0 auto; }
+header img { height: 34px; filter: brightness(0) invert(1); display: block; }
+h1 { font-weight: 900; font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.03em; line-height: 1; margin: 28px 0 10px; text-wrap: balance; }
+header p { margin: 0; color: rgba(255,255,255,.75); font-size: 1.05rem; max-width: 60ch; }
+main { padding: 32px max(20px, env(safe-area-inset-left)) 56px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 22px; }
+a.card { display: flex; flex-direction: column; background: #fff; border-radius: 20px; overflow: hidden; text-decoration: none; color: inherit; border: 1px solid var(--line); box-shadow: 0 20px 40px -28px rgba(0,10,99,.35); transition: transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s; }
+a.card:hover { transform: translateY(-3px); box-shadow: 0 26px 50px -26px rgba(0,10,99,.45); }
+.cover { aspect-ratio: 3 / 4; background: center / cover no-repeat; position: relative; }
+.cover .plate { position: absolute; left: 50%; top: 22%; transform: translateX(-50%); width: 64%; background: #fff; border-radius: 12px; padding: 12px 16px; box-shadow: 0 10px 28px rgba(0,0,0,.3); }
+.cover .plate img { width: 100%; display: block; }
+.meta { padding: 18px 20px 20px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.meta b { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.02em; }
+.meta span { color: var(--text-2); font-size: .95rem; white-space: nowrap; }
+footer { color: var(--text-2); font-size: .9rem; padding: 0 max(20px, env(safe-area-inset-left)) 40px; }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <img src="/shared/img/logo.png" alt="Criscolor">
+  <h1>Catálogos de nuestras marcas</h1>
+  <p>Catálogos interactivos con una ficha por referencia. Busca, guarda tu selección y envíala a tu comercial.</p>
+</div></header>
+<main><div class="wrap grid">
+  <a class="card" href="/protect"><div class="cover" style="background-image:url('/protect/img/portada-thumb.webp?v=1')"><div class="plate"><img src="/protect/img/logo.png" alt="Criscolor Protect"></div></div><div class="meta"><b>Criscolor Protect</b><span>133 referencias</span></div></a>
+  <a class="card" href="/garden"><div class="cover" style="background-image:url('/garden/img/portada-thumb.webp?v=1')"><div class="plate"><img src="/garden/img/logo.png" alt="Criscolor Garden"></div></div><div class="meta"><b>Criscolor Garden</b><span>254 referencias</span></div></a>
+</div></main>
+<footer><div class="wrap">CRISCOLOR Distribuciones de Levante, S.L.U. · (+34) 961 53 21 09 · info@criscolor.es · Venta exclusiva a profesionales.</div></footer>
+</body>
+</html>
