@@ -11,7 +11,8 @@
 :root { --ink: #00109E; --night: #00063F; --paper: #F6F7FB; --text: #10122E; --text-2: #4A4D68; --line: #E1E4EE; }
 * { box-sizing: border-box; }
 body { margin: 0; font-family: 'Inter Tight', system-ui, sans-serif; background: var(--paper); color: var(--text); }
-header { background: var(--night); color: #fff; padding: 28px max(20px, env(safe-area-inset-left)) 30px; }
+header { background: linear-gradient(90deg, rgba(0,6,63,.92) 0%, rgba(0,6,63,.72) 45%, rgba(0,6,63,.25) 100%), url('/catalogos/cabecera.webp?v=1') center / cover no-repeat, var(--night); color: #fff; padding: 28px max(20px, env(safe-area-inset-left)) 64px; }
+@media (max-width: 640px) { header { background: linear-gradient(180deg, rgba(0,6,63,.55), rgba(0,6,63,.92)), url('/catalogos/cabecera.webp?v=1') center / cover no-repeat, var(--night); } }
 .wrap { max-width: 1080px; margin: 0 auto; }
 header img { height: 34px; filter: brightness(0) invert(1); display: block; }
 h1 { font-weight: 900; font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.03em; line-height: 1; margin: 28px 0 10px; text-wrap: balance; }
