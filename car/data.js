@@ -1,0 +1,56 @@
+/* Criscolor Car · datos del catálogo interactivo (generado). 24 referencias. Fotos: /car/productos/{ficha-hd|mini}/<EAN>.webp */
+const TOTAL_REFS = 24;
+const STAR_CODES = [];
+const FAMILIES = [{"id": "parking", "name": "Protectores de parking", "desc": "Espumas protectoras con adhesivo para paredes, columnas y esquinas del garaje, en blanco y rojo o negro y amarillo.", "count": 13}, {"id": "liquidos", "name": "Líquidos para el coche", "desc": "Lavaparabrisas, anticongelante rosa y verde en 2 y 5 litros, y AdBlue de 10 litros con boquilla.", "count": 7}, {"id": "parasoles", "name": "Parasoles", "desc": "Parasoles reflectantes para el parabrisas de 130 x 60 a 160 x 90 cm, con ventosas.", "count": 4}];
+const CATALOG = [
+{"c": "40278", "n": "Protector de parking 24 x 18 cm blanco y rojo", "e": "8435621402780", "f": "parking"},
+{"c": "40279", "n": "Protector de parking 24 x 18 cm negro y amarillo", "e": "8435621402797", "f": "parking"},
+{"c": "40280", "n": "Protector de parking esquinera 40 x 20 cm blanco y rojo", "e": "8435621402803", "f": "parking"},
+{"c": "40281", "n": "Protector de parking esquinera 40 x 20 cm negro y amarillo", "e": "8435621402810", "f": "parking"},
+{"c": "40282", "n": "Protector de parking para pared o columna 25 x 20 cm blanco y rojo", "e": "8435621402827", "f": "parking"},
+{"c": "40283", "n": "Protector de parking para pared o columna 25 x 20 cm negro y amarillo", "e": "8435621402834", "f": "parking"},
+{"c": "40284", "n": "Protector de parking 50 x 10 cm blanco y rojo", "e": "8435621402841", "f": "parking"},
+{"c": "40285", "n": "Protector de parking 50 x 10 cm negro y amarillo", "e": "8435621402858", "f": "parking"},
+{"c": "40286", "n": "Protector de parking 40 x 20 cm blanco y rojo", "e": "8435621402865", "f": "parking"},
+{"c": "40287", "n": "Protector de parking 40 x 20 cm negro y amarillo", "e": "8435621402872", "f": "parking"},
+{"c": "40764", "n": "Protector de parking 36 x 8 cm blanco y rojo", "e": "8435621407648", "f": "parking"},
+{"c": "40765", "n": "Protector de parking 36 x 8 cm negro y amarillo", "e": "8435621407655", "f": "parking"},
+{"c": "07404", "n": "Expositor de protectores de parking", "e": "8436539074045", "f": "parking"},
+{"c": "40903", "n": "Lavaparabrisas 2 litros", "e": "8435621409031", "f": "liquidos"},
+{"c": "06702", "n": "Lavaparabrisas 5 litros", "e": "8436539067023", "f": "liquidos"},
+{"c": "40904", "n": "Anticongelante rosa 2 litros", "e": "8435621409048", "f": "liquidos"},
+{"c": "06704", "n": "Anticongelante rosa 5 litros", "e": "8436539067047", "f": "liquidos"},
+{"c": "40905", "n": "Anticongelante verde 2 litros", "e": "8435621409055", "f": "liquidos"},
+{"c": "06706", "n": "Anticongelante verde 5 litros", "e": "8436539067061", "f": "liquidos"},
+{"c": "43555", "n": "AdBlue 10 litros con boquilla", "e": "8435621435559", "f": "liquidos"},
+{"c": "43692", "n": "Parasol de coche 160 x 90 cm", "e": "8435621436921", "f": "parasoles"},
+{"c": "43693", "n": "Parasol de coche 150 x 80 cm", "e": "8435621436938", "f": "parasoles"},
+{"c": "43694", "n": "Parasol de coche 140 x 70 cm", "e": "8435621436945", "f": "parasoles"},
+{"c": "43695", "n": "Parasol de coche 130 x 60 cm", "e": "8435621436952", "f": "parasoles"}
+];
+const MODELS = [
+{"id": "r40278", "t": "Protector de parking 24 x 18 cm blanco y rojo", "f": "parking", "d": [], "v": [{"c": "40278", "a": {}}], "s": 0, "k": "40278"},
+{"id": "r40279", "t": "Protector de parking 24 x 18 cm negro y amarillo", "f": "parking", "d": [], "v": [{"c": "40279", "a": {}}], "s": 0, "k": "40279"},
+{"id": "r40280", "t": "Protector de parking esquinera 40 x 20 cm blanco y rojo", "f": "parking", "d": [], "v": [{"c": "40280", "a": {}}], "s": 0, "k": "40280"},
+{"id": "r40281", "t": "Protector de parking esquinera 40 x 20 cm negro y amarillo", "f": "parking", "d": [], "v": [{"c": "40281", "a": {}}], "s": 0, "k": "40281"},
+{"id": "r40282", "t": "Protector de parking para pared o columna 25 x 20 cm blanco y rojo", "f": "parking", "d": [], "v": [{"c": "40282", "a": {}}], "s": 0, "k": "40282"},
+{"id": "r40283", "t": "Protector de parking para pared o columna 25 x 20 cm negro y amarillo", "f": "parking", "d": [], "v": [{"c": "40283", "a": {}}], "s": 0, "k": "40283"},
+{"id": "r40284", "t": "Protector de parking 50 x 10 cm blanco y rojo", "f": "parking", "d": [], "v": [{"c": "40284", "a": {}}], "s": 0, "k": "40284"},
+{"id": "r40285", "t": "Protector de parking 50 x 10 cm negro y amarillo", "f": "parking", "d": [], "v": [{"c": "40285", "a": {}}], "s": 0, "k": "40285"},
+{"id": "r40286", "t": "Protector de parking 40 x 20 cm blanco y rojo", "f": "parking", "d": [], "v": [{"c": "40286", "a": {}}], "s": 0, "k": "40286"},
+{"id": "r40287", "t": "Protector de parking 40 x 20 cm negro y amarillo", "f": "parking", "d": [], "v": [{"c": "40287", "a": {}}], "s": 0, "k": "40287"},
+{"id": "r40764", "t": "Protector de parking 36 x 8 cm blanco y rojo", "f": "parking", "d": [], "v": [{"c": "40764", "a": {}}], "s": 0, "k": "40764"},
+{"id": "r40765", "t": "Protector de parking 36 x 8 cm negro y amarillo", "f": "parking", "d": [], "v": [{"c": "40765", "a": {}}], "s": 0, "k": "40765"},
+{"id": "r07404", "t": "Expositor de protectores de parking", "f": "parking", "d": [], "v": [{"c": "07404", "a": {}}], "s": 0, "k": "07404"},
+{"id": "r40903", "t": "Lavaparabrisas 2 litros", "f": "liquidos", "d": [], "v": [{"c": "40903", "a": {}}], "s": 0, "k": "40903"},
+{"id": "r06702", "t": "Lavaparabrisas 5 litros", "f": "liquidos", "d": [], "v": [{"c": "06702", "a": {}}], "s": 0, "k": "06702"},
+{"id": "r40904", "t": "Anticongelante rosa 2 litros", "f": "liquidos", "d": [], "v": [{"c": "40904", "a": {}}], "s": 0, "k": "40904"},
+{"id": "r06704", "t": "Anticongelante rosa 5 litros", "f": "liquidos", "d": [], "v": [{"c": "06704", "a": {}}], "s": 0, "k": "06704"},
+{"id": "r40905", "t": "Anticongelante verde 2 litros", "f": "liquidos", "d": [], "v": [{"c": "40905", "a": {}}], "s": 0, "k": "40905"},
+{"id": "r06706", "t": "Anticongelante verde 5 litros", "f": "liquidos", "d": [], "v": [{"c": "06706", "a": {}}], "s": 0, "k": "06706"},
+{"id": "r43555", "t": "AdBlue 10 litros con boquilla", "f": "liquidos", "d": [], "v": [{"c": "43555", "a": {}}], "s": 0, "k": "43555"},
+{"id": "r43692", "t": "Parasol de coche 160 x 90 cm", "f": "parasoles", "d": [], "v": [{"c": "43692", "a": {}}], "s": 0, "k": "43692"},
+{"id": "r43693", "t": "Parasol de coche 150 x 80 cm", "f": "parasoles", "d": [], "v": [{"c": "43693", "a": {}}], "s": 0, "k": "43693"},
+{"id": "r43694", "t": "Parasol de coche 140 x 70 cm", "f": "parasoles", "d": [], "v": [{"c": "43694", "a": {}}], "s": 0, "k": "43694"},
+{"id": "r43695", "t": "Parasol de coche 130 x 60 cm", "f": "parasoles", "d": [], "v": [{"c": "43695", "a": {}}], "s": 0, "k": "43695"}
+];
